@@ -30,8 +30,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="app.js" />
+    <Compile Include="models\user.js" />
+    <Compile Include="public\js\site.js" />
     <Compile Include="views\home.html" />
     <Content Include="package.json" />
+    <Content Include="public\css\site.css" />
+    <Content Include="public\images\tipexpert_v4_2.png" />
     <Content Include="README.md" />
     <Content Include="views\layout.html" />
   </ItemGroup>

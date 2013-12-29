@@ -4,12 +4,13 @@
     <meta charset="utf-8" />
     <title>{% block title %}{% endblock %} - Example</title>
 
-
+    <link type="text/css" rel="stylesheet" href="/css/site.css"/>
 </head>
 <body>
 
     <header>
         <h1>{% block title %}{% endblock %}</h1>
+        <div id="header-logo"></div>
         {% block header %}{% endblock %}
         <nav>
             <ul>

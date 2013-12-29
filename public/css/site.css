@@ -1,0 +1,15 @@
+h1 {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+p {
+    font-size: 12px;
+}
+
+#header-logo {
+    background: url(../images/tipexpert_v4_2.png) no-repeat;
+    background-size: 500px, 120px;
+    width: 500px;
+    height: 120px;
+}

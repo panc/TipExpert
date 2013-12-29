@@ -1,23 +1,26 @@
-// Module dependencies.
+// module dependencies.
 var express = require('express'),
     swig = require('swig');
 
-var server = express();
-server.engine('html', swig.renderFile);
+var app = express();
+app.engine('html', swig.renderFile);
 
-server.set('view engine', 'html');
-server.set('views', __dirname + '/views');
+app.set('view engine', 'html');
+app.set('views', __dirname + '/views');
 
-// Swig will cache templates for you, but you can disable
-// that and use Express's caching instead, if you like:
-server.set('view cache', false);
+// disable swig's view cache and use caching of express instead 
+// (which is enabled by default)
+swig.setDefaults({ cache: false });
 
-// Routes
-server.get('/', function(req, res) {
+// serve static files
+app.use(express.static(__dirname + '/public'));
+
+// routes
+app.get('/', function(req, res) {
     res.render('home', { /* template locals context */ });
 });
 
-server.listen(1337);
+app.listen(1337);
 
 console.log('Application Started on http://localhost:1337/');
 
