@@ -1,0 +1,17 @@
+{
+  "name": "TipExpert",
+  "version": "0.0.0",
+  "description": "TipExpert",
+  "scripts": {
+        "start": "node index",
+        "test": "grunt validate --verbose"
+  },
+  "author": {
+    "name": "Christoph",
+    "email": ""
+  },
+  "dependencies": {
+    "express": "3.4.7",
+    "swig": "~1.2.2"
+  }
+}
