@@ -37,6 +37,7 @@
     <Content Include="public\css\site.css" />
     <Content Include="public\images\tipexpert_v4_2.png" />
     <Content Include="README.md" />
+    <Content Include="views\user.html" />
     <Content Include="views\layout.html" />
   </ItemGroup>
   <ItemGroup>

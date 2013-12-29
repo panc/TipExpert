@@ -2,6 +2,10 @@
   "name": "TipExpert",
   "version": "0.0.0",
   "description": "TipExpert",
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/panc/TipExpert.git"
+  },
   "scripts": {
         "start": "node index",
         "test": "grunt validate --verbose"
@@ -12,6 +16,7 @@
   },
   "dependencies": {
     "express": "3.4.7",
-    "swig": "~1.2.2"
+    "swig": "~1.2.2",
+	"mongoose": "3.8.3"
   }
 }
