@@ -3,31 +3,25 @@ var express = require('express'),
     swig = require('swig'),
     fs = require('fs');
 
-var mongoose = require('mongoose');
+// load configurations
+// if test env, load example file
+var env = process.env.NODE_ENV || 'development'
+  , config = require('./config/config')[env]
+  , mongoose = require('mongoose');
 
-var app = express();
-app.engine('html', swig.renderFile);
-
-app.set('view engine', 'html');
-app.set('views', __dirname + '/views');
-
-// disable swig's view cache and use caching of express instead 
-// (which is enabled by default)
-swig.setDefaults({ cache: false });
-
-// serve static files
-app.use(express.static(__dirname + '/public'));
-
-// Bootstrap db connection
+// bootstrap db connection
 mongoose.connect('mongodb://localhost/TipExpert');
 
-console.log("Connected to mongodb");
-
-// Bootstrap models
-var models_path = __dirname + '/models';
+// bootstrap models
+var models_path = config.root + '/models';
 fs.readdirSync(models_path).forEach(function(file) {
     if (~file.indexOf('.js')) require(models_path + '/' + file);
 });
+
+var app = express();
+// express settings
+require('./config/express')(app, config);
+
 
 User = mongoose.model('User');
 
@@ -65,3 +59,5 @@ console.log('Application Started on http://localhost:1337/');
 // http://caolanmcmahon.com/posts/nodejs_style_and_structure/
 
 // https://github.com/madhums/node-express-mongoose-demo
+
+// http://blog.modulus.io/nodejs-and-express-sessions

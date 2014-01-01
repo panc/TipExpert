@@ -30,6 +30,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="app.js" />
+    <Compile Include="config\config.js" />
+    <Compile Include="config\express.js" />
     <Compile Include="models\user.js" />
     <Compile Include="public\js\site.js" />
     <Compile Include="views\home.html" />
@@ -41,6 +43,7 @@
     <Content Include="views\layout.html" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="config\" />
     <Folder Include="public\js\" />
     <Folder Include="public\css\" />
     <Folder Include="public\images\" />
