@@ -9,7 +9,7 @@ var env = process.env.NODE_ENV || 'development'
   , mongoose = require('mongoose');
 
 // bootstrap db connection
-mongoose.connect('mongodb://localhost/TipExpert');
+mongoose.connect(config.db);
 
 // bootstrap models
 var models_path = config.root + '/models';
@@ -21,15 +21,14 @@ var app = express();
 // express settings
 require('./config/express')(app, config);
 
+// bootstrap routes
+require('./config/routes')(app);
 
-// routes
-app.get('/', function(req, res) {
-    res.render('home', { /* template locals context */ });
-});
+// start the app by listening on <port>
+var port = process.env.PORT || 1337;
+app.listen(port);
 
-app.listen(1337);
-
-console.log('Application Started on http://localhost:1337/');
+console.log('Application started on port ' + port);
 
 // samples 
 // http://blog.ijasoneverett.com/2013/03/a-sample-app-with-node-js-express-and-mongodb-part-1/

@@ -32,6 +32,7 @@
     <Compile Include="app.js" />
     <Compile Include="config\config.js" />
     <Compile Include="config\express.js" />
+    <Compile Include="config\routes.js" />
     <Compile Include="models\user.js" />
     <Compile Include="public\js\site.js" />
     <Compile Include="views\home.html" />

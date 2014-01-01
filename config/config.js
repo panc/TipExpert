@@ -5,14 +5,14 @@ var path = require('path')
 
 module.exports = {
     development: {
-        db: 'mongodb://localhost/noobjs_dev',
+        db: 'mongodb://localhost/TipExpert',
         root: rootPath,
         app: {
             name: 'Tip Expert'
         },
     },
     test: {
-        db: 'mongodb://localhost/noobjs_test',
+        db: 'mongodb://localhost/TipExpert_Test',
         root: rootPath,
         app: {
             name: 'Tip Expert - Tests'
