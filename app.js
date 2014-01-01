@@ -1,6 +1,5 @@
-// module dependencies.
+// module dependencies
 var express = require('express'),
-    swig = require('swig'),
     fs = require('fs');
 
 // load configurations
@@ -23,28 +22,9 @@ var app = express();
 require('./config/express')(app, config);
 
 
-User = mongoose.model('User');
-
 // routes
 app.get('/', function(req, res) {
     res.render('home', { /* template locals context */ });
-});
-
-app.get('/user', function(req, res) {
-
-    var id = 1; // dummy
-    User
-        .findOne({ _id: id })
-        .exec(function(err, user) {
-            if (err) 
-                return next(err);
-            if (!user) 
-                return next(new Error('Failed to load User ' + id));
-            req.profile = user;
-            return next();
-        });
-    
-    res.render('user', { /* template locals context */ });
 });
 
 app.listen(1337);

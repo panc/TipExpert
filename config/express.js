@@ -1,7 +1,4 @@
-/**
- * Module dependencies.
- */
-
+// module dependencies
 var express = require('express')
   , mongoStore = require('connect-mongo')(express)
   , swig = require('swig')
@@ -101,4 +98,4 @@ module.exports = function (app, config) {
     app.configure('development', function () {
         app.locals.pretty = true
     })
-}
+};
