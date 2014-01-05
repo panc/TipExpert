@@ -3,7 +3,6 @@ var express = require('express'),
     fs = require('fs');
 
 // load configurations
-// if test env, load example file
 var env = process.env.NODE_ENV || 'development'
   , config = require('./config/config')[env]
   , mongoose = require('mongoose');
@@ -12,13 +11,13 @@ var env = process.env.NODE_ENV || 'development'
 mongoose.connect(config.db);
 
 // bootstrap models
-var models_path = config.root + '/models';
+var models_path = config.root + '/app/models';
 fs.readdirSync(models_path).forEach(function(file) {
     if (~file.indexOf('.js')) require(models_path + '/' + file);
 });
 
+// bootstrap express
 var app = express();
-// express settings
 require('./config/express')(app, config);
 
 // bootstrap routes

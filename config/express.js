@@ -44,7 +44,7 @@ module.exports = function (app, config) {
 
         // express/mongo session storage
         app.use(express.session({
-            secret: 'noobjs',
+            secret: 'tipexpert', // todo
             store: new mongoStore({
                 url: config.db,
                 collection: 'sessions'
@@ -78,7 +78,6 @@ module.exports = function (app, config) {
             }
 
             // log it
-            // send emails if you want
             console.error(err.stack);
 
             // error page

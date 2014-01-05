@@ -30,29 +30,32 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="app.js" />
+    <Compile Include="app\controllers\articles.js" />
+    <Compile Include="app\models\article.js" />
+    <Compile Include="app\models\user.js" />
     <Compile Include="config\config.js" />
     <Compile Include="config\express.js" />
     <Compile Include="config\routes.js" />
-    <Compile Include="models\user.js" />
     <Compile Include="public\js\site.js" />
-    <Compile Include="views\home.html" />
+    <Content Include="app\views\articles\index.html" />
+    <Content Include="app\views\layout.html" />
+    <Content Include="app\views\user.html" />
     <Content Include="package.json" />
     <Content Include="public\css\site.css" />
     <Content Include="public\images\tipexpert_v4_2.png" />
     <Content Include="README.md" />
-    <Content Include="views\user.html" />
-    <Content Include="views\layout.html" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="app\" />
+    <Folder Include="app\models\" />
+    <Folder Include="app\controllers\" />
+    <Folder Include="app\views\" />
+    <Folder Include="app\views\articles\" />
     <Folder Include="config\" />
     <Folder Include="public\js\" />
     <Folder Include="public\css\" />
     <Folder Include="public\images\" />
-    <Folder Include="tests\" />
     <Folder Include="public\" />
-    <Folder Include="routes\" />
-    <Folder Include="models\" />
-    <Folder Include="views\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />
   <ProjectExtensions>
