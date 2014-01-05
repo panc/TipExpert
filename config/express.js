@@ -27,13 +27,19 @@ module.exports = function (app, config) {
     app.engine('html', swig.renderFile);
 
     app.set('view engine', 'html');
-    app.set('views', config.root + '/views');
+    app.set('views', config.root + '/app/views');
   
     // disable swig's view cache and use caching of express instead 
     // (which is enabled by default)
     swig.setDefaults({ cache: false });
 
     app.configure(function() {
+
+        // expose package.json to views
+        app.use(function(req, res, next) {
+            res.locals.pkg = pkg;
+            next();
+        });
 
         // cookieParser should be above session
         app.use(express.cookieParser());

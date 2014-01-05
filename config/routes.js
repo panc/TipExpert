@@ -10,10 +10,6 @@ var articles = require('../app/controllers/articles');
 // expose routes
 module.exports = function(app) {
 
-    app.get('/', function(req, res) {
-        res.render('home', { /* template locals context */ });
-    });
-
     // article routes
     app.get('/articles', articles.index);
     //app.get('/articles/new', auth.requiresLogin, articles.new);
@@ -26,5 +22,5 @@ module.exports = function(app) {
     app.param('id', articles.load);
 
     // home route
-    //app.get('/', articles.index);
+    app.get('/', articles.index);
 };

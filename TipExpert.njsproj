@@ -37,9 +37,10 @@
     <Compile Include="config\express.js" />
     <Compile Include="config\routes.js" />
     <Compile Include="public\js\site.js" />
+    <Content Include="app\views\404.html" />
     <Content Include="app\views\articles\index.html" />
     <Content Include="app\views\layout.html" />
-    <Content Include="app\views\user.html" />
+    <Content Include="app\views\500.html" />
     <Content Include="package.json" />
     <Content Include="public\css\site.css" />
     <Content Include="public\images\tipexpert_v4_2.png" />
