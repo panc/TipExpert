@@ -1,21 +1,29 @@
-<!doctype html>
+﻿<!doctype html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <title>{% block title %}{% endblock %} - Example</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="description" content="{{pkg.description}}">
+    <meta name="keywords" content="{{pkg.keywords.join(',')}}">
+    
+    <meta name="og:title" content="{{pkg.name}} - {% block title %}{% endblock %}">
+    <meta name="og:description" content="{{pkg.description}}">
+    <meta name="og:url" content="http://www.tipexpert.net">
+    <meta name="og:image" content="http://www.tipexpert.net/files/tipexpert/img/preview.png">
+    <meta name="og:site_name" content="{{pkg.name}}">
+
+    <title>{{pkg.name}} - {% block title %}{% endblock %}</title>
 
     <link type="text/css" rel="stylesheet" href="/css/site.css"/>
 </head>
 <body>
 
-    <header>
+    <header id="header">
         <h1>{% block title %}{% endblock %}</h1>
         <div id="header-logo"></div>
         {% block header %}{% endblock %}
         <nav>
             <ul>
                 <li><a href="/">Home Page</a></li>
-                <li><a href="/people">People</a></li>
             </ul>
         </nav>
     </header>

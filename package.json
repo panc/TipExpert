@@ -1,7 +1,8 @@
 {
   "name": "TipExpert",
   "version": "0.0.0",
-  "description": "TipExpert",
+  "description": "Tipexpert ist das Tippspiel der nächsten Generation. Individuell anpassbar, persönlich und sozial. Messe spielerisch dein sportliches Gefühl mit Freunden, Bekannten und Kollegen.",
+  "keywords": "tip,expert",
   "repository" : {
     "type" : "git",
     "url" : "https://github.com/panc/TipExpert.git"
