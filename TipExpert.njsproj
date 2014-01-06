@@ -38,6 +38,7 @@
     <Compile Include="config\routes.js" />
     <Compile Include="public\js\site.js" />
     <Content Include="app\views\404.html" />
+    <Content Include="app\views\articles\new.html" />
     <Content Include="app\views\articles\index.html" />
     <Content Include="app\views\layout.html" />
     <Content Include="app\views\500.html" />

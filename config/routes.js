@@ -12,7 +12,7 @@ module.exports = function(app) {
 
     // article routes
     app.get('/articles', articles.index);
-    //app.get('/articles/new', auth.requiresLogin, articles.new);
+    app.get('/articles/new', articles.new);
     //app.post('/articles', auth.requiresLogin, articles.create);
     app.get('/articles/:id', articles.show);
     //app.get('/articles/:id/edit', articleAuth, articles.edit)

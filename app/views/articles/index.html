@@ -1,7 +1,17 @@
 {% extends '../layout.html' %}
 
-{% block title %}Article{% endblock %}
+{% block title %}{{ title }}{% endblock %}
 
 {% block body %}
-<p>body</p>
+
+    {% if article.length %}
+
+        <p>TODO</p>
+
+    {% else %}
+
+        <p class="muted">No Articles. <a href="/articles/new">Create one</a></p>
+    
+    {% endif %}
+
 {% endblock %}
