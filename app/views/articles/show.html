@@ -1,0 +1,19 @@
+{% extends '../layout.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+
+<div>
+    <p >Title: {{article.title}}</p>
+    <p >Body: {{article.body}}</p>
+    <p >CreatedAt: {{article.createdAt|date('Y-m-d')}}</p>
+    <p >Tags: {{article.tags}}</p>
+</div>
+
+<div>
+    <a href="{{article.id}}/edit">Edit</a>
+    <input type="button">Delete</>
+</div>
+
+{% endblock %}

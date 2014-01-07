@@ -13,10 +13,10 @@ module.exports = function(app) {
     // article routes
     app.get('/articles', articles.index);
     app.get('/articles/new', articles.new);
-    //app.post('/articles', auth.requiresLogin, articles.create);
+    app.post('/articles', articles.create);
     app.get('/articles/:id', articles.show);
-    //app.get('/articles/:id/edit', articleAuth, articles.edit)
-    //app.put('/articles/:id', articleAuth, articles.update)
+    app.get('/articles/:id/edit', articles.edit);
+    app.put('/articles/:id', articles.update);
     //app.del('/articles/:id', articleAuth, articles.destroy)
 
     app.param('id', articles.load);

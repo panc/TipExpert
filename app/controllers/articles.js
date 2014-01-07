@@ -52,6 +52,7 @@ exports.index = function(req, res) {
 exports.new = function(req, res) {
     res.render('articles/new', {
         title: 'New Article',
+        action: '/articles',
         article: new Article({ })
     });
 };
@@ -61,7 +62,7 @@ exports.new = function(req, res) {
  */
 exports.create = function(req, res) {
     var article = new Article(req.body);
-    article.user = req.user;
+    //article.user = req.user;
 
     article.save(function(err) {
         if (!err) {
@@ -84,6 +85,7 @@ exports.create = function(req, res) {
 exports.edit = function(req, res) {
     res.render('articles/edit', {
         title: 'Edit ' + req.article.title,
+        action: '/articles/' + req.article.id,
         article: req.article
     });
 };

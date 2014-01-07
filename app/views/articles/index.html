@@ -4,9 +4,19 @@
 
 {% block body %}
 
-    {% if article.length %}
+    {% if articles.length %}
 
-        <p>TODO</p>
+        <p>Count: {{articles.length}}</p>
+
+        <ul>
+        {% for article in articles%}
+        
+            <li>
+                <a href="articles/{{article.id}}">{{article.title}} - {{article.createdAt|date('Y-m-d')}}</a>
+            </li>
+            
+        {% endfor %}
+        </ul>
 
     {% else %}
 
