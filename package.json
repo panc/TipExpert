@@ -1,33 +1,30 @@
 {
-  "name": "TipExpert",
-  "version": "0.0.0",
-  "description": "Tipexpert ist das Tippspiel der nächsten Generation. Individuell anpassbar, persönlich und sozial. Messe spielerisch dein sportliches Gefühl mit Freunden, Bekannten und Kollegen.",
-  "keywords": "tip,expert",
-  "repository" : {
-    "type" : "git",
-    "url" : "https://github.com/panc/TipExpert.git"
-  },
-  "scripts": {
-        "start": "node index",
-        "test": "grunt validate --verbose"
-  },
-  "author": {
-    "name": "Christoph",
-    "email": ""
-  },
-  "dependencies": {
-    "express": "3.4.7",
-    "swig": "~1.2.2",
-	"connect-mongo": "0.4.0",
-    "mongoose": "3.8.3",
-	"underscore": "1.5.2",
+	"name": "TipExpert",
+	"version": "0.0.0",
+	"description": "Tipexpert ist das Tippspiel der nächsten Generation. Individuell anpassbar, persönlich und sozial. Messe spielerisch dein sportliches Gefühl mit Freunden, Bekannten und Kollegen.",
+	"keywords": "tip,expert",
+	"repository" : {
+		"type" : "git",
+		"url" : "https://github.com/panc/TipExpert.git"
+	},
+	"scripts": {
+		"start": "node index",
+		"test": "grunt validate --verbose"
+	},
+	"author": {
+		"name": "Christoph, Michael",
+		"email": ""
+	},
+	"dependencies": {
+		"express": "3.4.7",
+		"swig": "~1.2.2",
+		"connect-mongo": "0.4.0",
+		"mongoose": "3.8.3",
+		"underscore": "1.5.2",
 	
-	"passport": "latest",
-    "passport-local": "latest",
-    "passport-facebook": "latest",
-    "passport-twitter": "latest",
-    "passport-github": "latest",
-    "passport-google-oauth": "latest",
-    "passport-linkedin": "latest"
-  }
+		"passport": "latest",
+		"passport-local": "latest",
+		"passport-facebook": "latest",
+		"passport-google-oauth": "latest"
+	}
 }

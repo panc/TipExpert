@@ -4,7 +4,7 @@ var express = require('express')
   , swig = require('swig')
   , pkg = require('../package.json');
 
-module.exports = function (app, config) {
+module.exports = function (app, config, passport) {
 
     app.set('showStackError', true);
 

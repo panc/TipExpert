@@ -1,10 +1,7 @@
 var mongoose = require('mongoose')
   , LocalStrategy = require('passport-local').Strategy
-  , TwitterStrategy = require('passport-twitter').Strategy
   , FacebookStrategy = require('passport-facebook').Strategy
-  , GitHubStrategy = require('passport-github').Strategy
   , GoogleStrategy = require('passport-google-oauth').OAuth2Strategy
-  , LinkedinStrategy = require('passport-linkedin').Strategy
   , User = mongoose.model('User');
 
 
@@ -42,37 +39,6 @@ module.exports = function(passport, config) {
         }
     ));
 
-    // use twitter strategy
-    passport.use(new TwitterStrategy({
-            consumerKey: config.twitter.clientID,
-            consumerSecret: config.twitter.clientSecret,
-            callbackURL: config.twitter.callbackURL
-        },
-        function(token, tokenSecret, profile, done) {
-            User.findOne({ 'twitter.id_str': profile.id }, function(err, user) {
-                if (err)
-                    return done(err);
-
-                if (!user) {
-                    user = new User({
-                        name: profile.displayName,
-                        username: profile.username,
-                        provider: 'twitter',
-                        twitter: profile._json
-                    });
-
-                    user.save(function(e) {
-                        if (e)
-                            console.log(e);
-                        return done(e, user);
-                    });
-                } else {
-                    return done(err, user);
-                }
-            });
-        }
-    ));
-
     // use facebook strategy
     passport.use(new FacebookStrategy({
             clientID: config.facebook.clientID,
@@ -106,36 +72,6 @@ module.exports = function(passport, config) {
         }
     ));
 
-    // use github strategy
-    passport.use(new GitHubStrategy({
-            clientID: config.github.clientID,
-            clientSecret: config.github.clientSecret,
-            callbackURL: config.github.callbackURL
-        },
-        function(accessToken, refreshToken, profile, done) {
-            User.findOne({ 'github.id': profile.id }, function(err, user) {
-                if (!user) {
-                    user = new User({
-                        name: profile.displayName,
-                        email: profile.emails[0].value,
-                        username: profile.username,
-                        provider: 'github',
-                        github: profile._json
-                    });
-
-                    user.save(function(e) {
-                        if (e)
-                            console.log(e);
-
-                        return done(e, user);
-                    });
-                } else {
-                    return done(err, user);
-                }
-            });
-        }
-    ));
-
     // use google strategy
     passport.use(new GoogleStrategy({
             clientID: config.google.clientID,
@@ -157,35 +93,6 @@ module.exports = function(passport, config) {
                         if (e)
                             console.log(e);
 
-                        return done(e, user);
-                    });
-                } else {
-                    return done(err, user);
-                }
-            });
-        }
-    ));
-
-    // use linkedin strategy
-    passport.use(new LinkedinStrategy({
-            consumerKey: config.linkedin.clientID,
-            consumerSecret: config.linkedin.clientSecret,
-            callbackURL: config.linkedin.callbackURL,
-            profileFields: ['id', 'first-name', 'last-name', 'email-address']
-        },
-        function(accessToken, refreshToken, profile, done) {
-            User.findOne({ 'linkedin.id': profile.id }, function(err, user) {
-                if (!user) {
-                    user = new User({
-                        name: profile.displayName,
-                        email: profile.emails[0].value,
-                        username: profile.emails[0].value,
-                        provider: 'linkedin'
-                    });
-                    
-                    user.save(function(e) {
-                        if (e) 
-                            console.log(e);
                         return done(e, user);
                     });
                 } else {
