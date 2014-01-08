@@ -31,6 +31,7 @@
   <ItemGroup>
     <Compile Include="app.js" />
     <Compile Include="app\controllers\articles.js" />
+    <Compile Include="app\controllers\users.js" />
     <Compile Include="app\models\article.js" />
     <Compile Include="app\models\user.js" />
     <Compile Include="config\config.js" />
