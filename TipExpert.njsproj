@@ -36,6 +36,7 @@
     <Compile Include="app\models\user.js" />
     <Compile Include="config\config.js" />
     <Compile Include="config\express.js" />
+    <Compile Include="config\passport-config.js" />
     <Compile Include="config\routes.js" />
     <Compile Include="public\js\site.js" />
     <Content Include="app\views\404.html" />

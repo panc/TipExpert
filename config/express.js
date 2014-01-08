@@ -57,6 +57,10 @@ module.exports = function (app, config) {
             })
         }));
 
+        // use passport session
+        app.use(passport.initialize());
+        app.use(passport.session());
+
         // adds CSRF support
         if (process.env.NODE_ENV !== 'test') {
             app.use(express.csrf());

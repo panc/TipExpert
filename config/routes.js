@@ -8,7 +8,7 @@ var articles = require('../app/controllers/articles');
 //var articleAuth = [auth.requiresLogin, auth.article.hasAuthorization]
 
 // expose routes
-module.exports = function(app) {
+module.exports = function(app, passport) {
 
     // article routes
     app.get('/articles', articles.index);
