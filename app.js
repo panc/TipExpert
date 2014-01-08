@@ -35,7 +35,3 @@ console.log('Application started on port ' + port);
 // http://howtonode.org/express-mongodb
 
 // http://caolanmcmahon.com/posts/nodejs_style_and_structure/
-
-// https://github.com/madhums/node-express-mongoose-demo
-
-// http://blog.modulus.io/nodejs-and-express-sessions
