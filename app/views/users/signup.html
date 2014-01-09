@@ -1,0 +1,27 @@
+{% extends '../layout.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+
+    {% if articles.length %}
+
+        <p>Count: {{articles.length}}</p>
+
+        <ul>
+        {% for article in articles%}
+        
+            <li>
+                <a href="articles/{{article.id}}">{{article.title}} - {{article.createdAt|date('Y-m-d')}}</a>
+            </li>
+            
+        {% endfor %}
+        </ul>
+
+    {% else %}
+
+        <p class="muted">No Articles. <a href="/articles/new">Create one</a></p>
+    
+    {% endif %}
+
+{% endblock %}

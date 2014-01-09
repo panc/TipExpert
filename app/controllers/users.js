@@ -1,11 +1,8 @@
 
-/**
- * Module dependencies.
- */
-
 var mongoose = require('mongoose')
   , User = mongoose.model('User')
   , utils = require('../../lib/utils');
+
 
 var redirectAfterLogin = function(req, res) {
     var redirectTo = req.session.returnTo ? req.session.returnTo : '/';
@@ -18,13 +15,11 @@ exports.signin = function(req, res) { };
 /**
  * Auth callback
  */
-
 exports.authCallback = redirectAfterLogin;
 
 /**
  * Show login form
  */
-
 exports.login = function(req, res) {
     res.render('users/login', {
         title: 'Login'
@@ -34,7 +29,6 @@ exports.login = function(req, res) {
 /**
  * Show sign up form
  */
-
 exports.signup = function(req, res) {
     res.render('users/signup', {
         title: 'Sign up',
@@ -45,7 +39,6 @@ exports.signup = function(req, res) {
 /**
  * Logout
  */
-
 exports.logout = function(req, res) {
     req.logout();
     res.redirect('/login');
@@ -54,13 +47,11 @@ exports.logout = function(req, res) {
 /**
  * Session
  */
-
 exports.session = redirectAfterLogin;
 
 /**
  * Create user
  */
-
 exports.create = function(req, res) {
     var user = new User(req.body);
     user.provider = 'local';
@@ -86,10 +77,9 @@ exports.create = function(req, res) {
 /**
  *  Show profile
  */
-
-exports.show = function(req, res) {
+exports.showProfile = function(req, res) {
     var user = req.profile;
-    res.render('users/show', {
+    res.render('users/profile', {
         title: user.name,
         user: user
     });
@@ -98,7 +88,6 @@ exports.show = function(req, res) {
 /**
  * Find user by id
  */
-
 exports.user = function(req, res, next, id) {
     User
         .findOne({ _id: id })

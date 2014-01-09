@@ -40,6 +40,9 @@
     <Compile Include="config\routes.js" />
     <Compile Include="public\js\site.js" />
     <Content Include="app\views\404.html" />
+    <Content Include="app\views\users\signup.html" />
+    <Content Include="app\views\users\part-social.html" />
+    <Content Include="app\views\users\login.html" />
     <Content Include="app\views\articles\form.html" />
     <Content Include="app\views\articles\edit.html" />
     <Content Include="app\views\articles\show.html" />
@@ -57,6 +60,7 @@
     <Folder Include="app\models\" />
     <Folder Include="app\controllers\" />
     <Folder Include="app\views\" />
+    <Folder Include="app\views\users\" />
     <Folder Include="app\views\articles\" />
     <Folder Include="config\" />
     <Folder Include="public\js\" />
