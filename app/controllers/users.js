@@ -1,7 +1,6 @@
 
 var mongoose = require('mongoose')
-  , User = mongoose.model('User')
-  , utils = require('../../lib/utils');
+  , User = mongoose.model('User');
 
 
 var redirectAfterLogin = function(req, res) {
@@ -58,7 +57,7 @@ exports.create = function(req, res) {
     user.save(function(err) {
         if (err) {
             return res.render('users/signup', {
-                errors: utils.errors(err.errors),
+                errors:  concatenateErrors(err.errors),
                 user: user,
                 title: 'Sign up'
             });
@@ -72,6 +71,23 @@ exports.create = function(req, res) {
             return res.redirect('/');
         });
     });
+};
+
+var concatenateErrors = function(errors) {
+    var keys = Object.keys(errors);
+    var errs = [];
+
+    // if there is no validation error, just display a generic error
+    if (!keys) {
+        console.log(errors);
+        return ['Oops! There was an error'];
+    }
+
+    keys.forEach(function(key) {
+        errs.push(errors[key].message);
+    });
+
+    return errs;
 };
 
 /**
