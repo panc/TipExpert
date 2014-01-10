@@ -15,7 +15,6 @@ module.exports = function(app, passport) {
     app.get('/logout', users.logout);
     app.post('/users', users.create);
     app.get('/users/:userId', users.showProfile);
-    
     app.post('/users/session',
         passport.authenticate('local', {
             failureRedirect: '/login',

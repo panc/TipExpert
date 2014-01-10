@@ -14,7 +14,6 @@ exports.load = function(req, res, next, id) {
             return next(err);
         if (!article)
             return next(new Error('not found'));
-        
         req.article = article;
         return next();
     });
