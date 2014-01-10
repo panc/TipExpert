@@ -11,7 +11,7 @@ module.exports = function(app, passport) {
 
     // user routes
     app.get('/login', users.login);
-    //app.get('/signup', users.signup) // do we need signup?
+    app.get('/signup', users.signup) // do we need signup?
     app.get('/logout', users.logout);
     app.post('/users', users.create);
     app.get('/users/:userId', users.showProfile);
