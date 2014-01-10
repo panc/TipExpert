@@ -85,7 +85,7 @@ exports.create = function(req, res) {
 exports.edit = function(req, res) {
     res.render('articles/edit', {
         title: 'Edit ' + req.article.title,
-        action: '/articles/' + req.article.id,
+        action: url('articles-item', {id: req.article.id}),
         article: req.article
     });
 };
@@ -99,7 +99,7 @@ exports.update = function(req, res) {
 
     article.save(function(err) {
         if (!err)
-            return res.redirect('/articles/' + article._id);
+            return res.redirectToRoute('articles-item', {id: article._id});
 
         res.render('articles/edit', {
             title: 'Edit Article',
@@ -126,6 +126,6 @@ exports.destroy = function(req, res) {
     var article = req.article;
     article.remove(function(err) {
         //req.flash('info', 'Deleted successfully');
-        res.redirect('/articles');
+        res.redirectToRoute('articles');
     });
 };

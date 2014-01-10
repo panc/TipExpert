@@ -6,6 +6,8 @@ var express = require('express')
 
 module.exports = function (app, config, passport) {
 
+    require('express-reverse')(app);
+
     app.set('showStackError', true);
 
     // should be placed before express.static

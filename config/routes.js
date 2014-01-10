@@ -47,11 +47,11 @@ module.exports = function(app, passport) {
     app.param('userId', users.user);
 
     // article routes
-    app.get('/articles', articles.index);
+    app.get('articles', '/articles', articles.index);
     app.get('/articles/new', articles.new);
     app.post('/articles', articles.create);
-    app.get('/articles/:id', articles.show);
-    app.get('/articles/:id/edit', articles.edit);
+    app.get('articles-item', '/articles/:id', articles.show);
+    app.get('articles-item-edit', '/articles/:id/edit', articles.edit);
     app.put('/articles/:id', articles.update);
     //app.del('/articles/:id', articleAuth, articles.destroy)
 
