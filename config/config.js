@@ -11,9 +11,9 @@ module.exports = {
             name: 'Tip Expert'
         },
         facebook: {
-            clientID: "APP_ID",
-            clientSecret: "APP_SECRET",
-            callbackURL: "http://localhost:1337/auth/facebook/callback" // todo: use a url-helper...
+            clientID: "404904372977899",
+            clientSecret: "0bc86293adce59c1a748d3923f5ff851",
+            callbackURL: "http://localhost:1337/auth/facebook/callback"
         },
         google: {
             clientID: "252448485731-nkmpq849obisvg9o22iqkp2o08pidji3.apps.googleusercontent.com",
