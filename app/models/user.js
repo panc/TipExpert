@@ -14,10 +14,7 @@ var UserSchema = new Schema({
     salt: { type: String, default: '' },
     authToken: { type: String, default: '' },
     facebook: { },
-    twitter: { },
-    github: { },
-    google: { },
-    linkedin: { }
+    google: { }
 });
 
 // virtuals

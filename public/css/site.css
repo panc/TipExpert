@@ -9,7 +9,23 @@ p {
 
 #header-logo {
     background: url(../images/tipexpert_v4_2.png) no-repeat;
-    background-size: 500px, 120px;
-    width: 500px;
-    height: 120px;
+    background-size: 200px, 50px;
+    width: 200px;
+    height: 50px;
+}
+
+.login-info {
+    margin: 10px 0px 10px 40px;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.clear {
+    clear: both;
 }

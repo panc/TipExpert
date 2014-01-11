@@ -1,0 +1,11 @@
+<div class="login-info">
+    {% if user %}
+    
+    <a href="{{ userProfileUrl }}">{{ user.name }}</a>
+    
+    {% else %}
+    
+    <a href="/login">Sign in</a>
+    
+    {% endif %}
+</div>

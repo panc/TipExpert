@@ -1,8 +1,9 @@
 // module dependencies
-var express = require('express')
-  , mongoStore = require('connect-mongo')(express)
-  , swig = require('swig')
-  , pkg = require('../package.json');
+var express = require('express'),
+    mongoStore = require('connect-mongo')(express),
+    swig = require('swig'),
+    pkg = require('../package.json'),
+    profile = require('./middlewares/profile');
 
 module.exports = function (app, config, passport) {
 
@@ -37,7 +38,7 @@ module.exports = function (app, config, passport) {
 
     app.configure(function() {
 
-        // expose package.json to views
+        // expose package.json to all views
         app.use(function(req, res, next) {
             res.locals.pkg = pkg;
             next();
@@ -62,6 +63,8 @@ module.exports = function (app, config, passport) {
         // use passport session
         app.use(passport.initialize());
         app.use(passport.session());
+
+        app.use(profile.exposeUserInfoToViews);
 
         // adds CSRF support
         if (process.env.NODE_ENV !== 'test') {

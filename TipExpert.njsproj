@@ -37,11 +37,13 @@
     <Compile Include="app\utils\utils.js" />
     <Compile Include="config\config.js" />
     <Compile Include="config\express.js" />
+    <Compile Include="config\middlewares\profile.js" />
     <Compile Include="config\middlewares\authorization.js" />
     <Compile Include="config\passport-config.js" />
     <Compile Include="config\routes.js" />
     <Compile Include="public\js\site.js" />
     <Content Include="app\views\404.html" />
+    <Content Include="app\views\users\loginInfo.html" />
     <Content Include="app\views\users\signup.html" />
     <Content Include="app\views\users\part-social.html" />
     <Content Include="app\views\users\login.html" />

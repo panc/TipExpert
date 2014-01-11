@@ -18,7 +18,14 @@
 <body>
 
     <header id="header">
-        <a href="/"><div id="header-logo"></div></a>
+        <div class="left">
+            <a href="/"><div id="header-logo">&nbsp;</div></a>
+        </div>
+        <div class="left">
+            {% include "users/loginInfo.html" %}
+        </div>
+        <div class="clear"/>
+
         <h1>{% block title %}{% endblock %}</h1>
 
         {% block header %}{% endblock %}
