@@ -18,14 +18,10 @@
 <body>
 
     <header id="header">
+        <a href="/"><div id="header-logo"></div></a>
         <h1>{% block title %}{% endblock %}</h1>
-        <div id="header-logo"></div>
+
         {% block header %}{% endblock %}
-        <nav>
-            <ul>
-                <li><a href="/">Home Page</a></li>
-            </ul>
-        </nav>
     </header>
 
     <section role="main">
