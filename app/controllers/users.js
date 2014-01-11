@@ -57,7 +57,7 @@ exports.create = function(req, res) {
     user.save(function(err) {
         if (err) {
             return res.render('users/signup', {
-                errors:  concatenateErrors(err.errors),
+                errors:  utils.formatErrors(err.errors),
                 user: user,
                 title: 'Sign up'
             });
@@ -71,23 +71,6 @@ exports.create = function(req, res) {
             return res.redirect('/');
         });
     });
-};
-
-var concatenateErrors = function(errors) {
-    var keys = Object.keys(errors);
-    var errs = [];
-
-    // if there is no validation error, just display a generic error
-    if (!keys) {
-        console.log(errors);
-        return ['Oops! There was an error'];
-    }
-
-    keys.forEach(function(key) {
-        errs.push(errors[key].message);
-    });
-
-    return errs;
 };
 
 /**
@@ -105,8 +88,7 @@ exports.showProfile = function(req, res) {
  * Find user by id
  */
 exports.user = function(req, res, next, id) {
-    User
-        .findOne({ _id: id })
+    User.findOne({ _id: id })
         .exec(function(err, user) {
             if (err) 
                 return next(err);
