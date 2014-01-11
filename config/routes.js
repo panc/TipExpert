@@ -1,10 +1,11 @@
 
 // controlers
 var articles = require('../app/controllers/articles'),
-    users = require('../app/controllers/users');
+    users = require('../app/controllers/users'),
+    auth = require('./middlewares/authorization');
 
 // Route middlewares
-//var articleAuth = [auth.requiresLogin, auth.article.hasAuthorization]
+var articleAuth = [auth.requiresLogin, auth.article.hasAuthorization];
 
 // expose routes
 module.exports = function(app, passport) {
@@ -47,8 +48,8 @@ module.exports = function(app, passport) {
 
     // article routes
     app.get('articles', '/articles', articles.index);
-    app.get('/articles/new', articles.new);
-    app.post('/articles', articles.create);
+    app.get('/articles/new', articleAuth, articles.new);
+    app.post('/articles', articleAuth, articles.create);
     app.get('articles-item', '/articles/:id', articles.show);
     app.get('articles-item-edit', '/articles/:id/edit', articles.edit);
     app.put('/articles/:id', articles.update);
