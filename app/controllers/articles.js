@@ -1,7 +1,8 @@
 
-var mongoose = require('mongoose')
-  , Article = mongoose.model('Article')
-  , _ = require('underscore');
+var mongoose = require('mongoose'),
+    Article = mongoose.model('Article'),
+    _ = require('underscore'),
+    utils = require('../utils/utils');
 
 /**
  * Load
@@ -72,7 +73,7 @@ exports.create = function(req, res) {
         res.render('articles/new', {
             title: 'New Article',
             article: article,
-            errors: utils.errors(err.errors || err)
+            errors: utils.formatErrors(err.errors || err)
         });
     });
 };
