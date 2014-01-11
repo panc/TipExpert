@@ -16,8 +16,8 @@ module.exports = {
             callbackURL: "http://localhost:1337/auth/facebook/callback" // todo: use a url-helper...
         },
         google: {
-            clientID: "APP_ID",
-            clientSecret: "APP_SECRET",
+            clientID: "252448485731-nkmpq849obisvg9o22iqkp2o08pidji3.apps.googleusercontent.com",
+            clientSecret: "0rmj7j31DP2U-BVpPeZR-_Ia",
             callbackURL: "http://localhost:1337/auth/google/callback"
         }
     },
