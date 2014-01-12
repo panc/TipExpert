@@ -1,6 +1,6 @@
 {
     "name": "TipExpert",
-    "version": "0.0.0",
+    "version": "0.1.0",
     "description": "Tipexpert ist das Tippspiel der nächsten Generation. Individuell anpassbar, persönlich und sozial. Messe spielerisch dein sportliches Gefühl mit Freunden, Bekannten und Kollegen.",
     "keywords": "tip,expert",
     "repository" : {
@@ -8,8 +8,8 @@
         "url" : "https://github.com/panc/TipExpert.git"
     },
     "scripts": {
-        "start": "node index",
-        "test": "grunt validate --verbose"
+        "start": "node app.js",
+        "test": "NODE_ENV=test ./node_modules/.bin/mocha --reporter spec test/test-*.js"
     },
     "author": {
         "name": "Christoph, Michael",
@@ -30,6 +30,7 @@
 	"devDependencies": {
 		"supertest": "latest",
 		"should": "latest",
-		"mocha": "latest"
+		"mocha": "latest",
+		"async": "~0.2.9"
 	}
 }
