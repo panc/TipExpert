@@ -42,6 +42,8 @@
     <Compile Include="config\passport-config.js" />
     <Compile Include="config\routes.js" />
     <Compile Include="public\js\site.js" />
+    <Compile Include="test\helper.js" />
+    <Compile Include="test\test-articles.js" />
     <Content Include="app\views\404.html" />
     <Content Include="app\views\users\loginInfo.html" />
     <Content Include="app\views\users\signup.html" />
@@ -73,6 +75,7 @@
     <Folder Include="public\css\" />
     <Folder Include="public\images\" />
     <Folder Include="public\" />
+    <Folder Include="test\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />
   <ProjectExtensions>

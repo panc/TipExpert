@@ -49,9 +49,5 @@ app.listen(port);
 
 console.log('Application started on port ' + port);
 
-// samples 
-// http://blog.ijasoneverett.com/2013/03/a-sample-app-with-node-js-express-and-mongodb-part-1/
-// http://clock.co.uk/tech-blogs/a-simple-website-in-nodejs-with-express-jade-and-stylus
-// http://howtonode.org/express-mongodb
-
-// http://caolanmcmahon.com/posts/nodejs_style_and_structure/
+// expose app (needed for tests)
+exports = module.exports = app;
