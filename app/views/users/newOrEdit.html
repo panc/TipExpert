@@ -1,0 +1,49 @@
+{% if errors.length %}
+    
+    <h3>Errors:</h3>
+    <ul>
+    {% for error in errors %}
+        <li>{{error}}</li>
+    {% endfor %}
+    </ul>
+
+{% endif %}
+
+<form method="post" action="{{ action }}" enctype="multipart/form-data" role="form" class="form-horizontal">
+    
+    <input type="hidden" name="_csrf" value="{{ csrf_token }}">
+    
+    {% if !user.isNew %}
+        <input type="hidden" name="_method" value="PUT">
+    {% endif %}
+
+    <div class="group">
+        <label for="title" class="label">Username</label>
+        <div class="input-container">
+            <input id="username" type="text" name="username" value="{{ user.username }}" placeholder="Enter the username" class="control">
+        </div>
+    </div>
+    <div class="group">
+        <label for="desc" class="label">Name</label>
+        <div class="input-container">
+            <textarea id="name" rows="5" name="name" placeholder="Enter the name" class="control">{{ user.name }}</textarea>
+        </div>
+    </div>
+    <div class="group">
+        <label for="tags" class="label">Password</label>
+        <div class="input-container">
+            <input id="password" type="text" name="password" value="{{ user.password}}" placeholder="Enter the password" class="control">
+        </div>
+    </div>
+    <div class="group">
+    <label for="tags" class="label">Email</label>
+    <div class="input-container">
+        <input id="email" type="text" name="email" value="{{ user.email}}" placeholder="Enter the email" class="control">
+    </div>
+</div>
+    <div class="group">
+        <div class="button-container">
+            <button type="submit" class="btn btn-primary">Save</button>&nbsp;<a href="/users" title="cancel" class="btn">Cancel</a>
+        </div>
+    </div>
+</form>

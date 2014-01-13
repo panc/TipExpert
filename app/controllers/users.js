@@ -31,6 +31,7 @@ exports.login = function(req, res) {
 exports.signup = function(req, res) {
     res.render('users/signup', {
         title: 'Sign up',
+        action: 'users',
         user: new User()
     });
 };
@@ -80,6 +81,7 @@ exports.showProfile = function(req, res) {
     var user = req.profile;
     res.render('users/profile', {
         title: user.name,
+        action: 'user/' +  user.id,
         user: user
     });
 };
