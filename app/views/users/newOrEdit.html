@@ -26,13 +26,13 @@
     <div class="group">
         <label for="desc" class="label">Name</label>
         <div class="input-container">
-            <textarea id="name" rows="5" name="name" placeholder="Enter the name" class="control">{{ user.name }}</textarea>
+            <input id="name" type="text" name="name" value="{{ user.name }}" placeholder="Enter the name" class="control">
         </div>
     </div>
     <div class="group">
         <label for="tags" class="label">Password</label>
         <div class="input-container">
-            <input id="password" type="text" name="password" value="{{ user.password}}" placeholder="Enter the password" class="control">
+            <input id="password" type="password" name="password" value="{{ user.password}}" placeholder="Enter the password" class="control">
         </div>
     </div>
     <div class="group">

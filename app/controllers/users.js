@@ -59,6 +59,7 @@ exports.create = function(req, res) {
         if (err) {
             return res.render('users/signup', {
                 errors:  utils.formatErrors(err.errors),
+                action: 'users',
                 user: user,
                 title: 'Sign up'
             });
