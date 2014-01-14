@@ -27,10 +27,10 @@
         "passport-facebook": "latest",
         "passport-google-oauth": "latest"
     },
-	"devDependencies": {
-		"supertest": "latest",
-		"should": "latest",
-		"mocha": "latest",
-		"async": "~0.2.9"
-	}
+    "devDependencies": {
+        "supertest": "latest",
+        "should": "latest",
+        "mocha": "latest",
+        "async": "~0.2.9"
+    }
 }
