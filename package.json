@@ -16,12 +16,12 @@
         "email": ""
     },
     "dependencies": {
-        "express": "3.4.7",
+        "express": "~3.4.7",
         "express-reverse": "0.1.1",
-        "swig": "~1.2.2",
-        "connect-mongo": "0.4.0",
-        "mongoose": "3.8.3",
-        "underscore": "1.5.2",
+        "swig": "~1.2",
+        "connect-mongo": "~0.4",
+        "mongoose": "~3.8",
+        "underscore": "~1.5",
         "passport": "latest",
         "passport-local": "latest",
         "passport-facebook": "latest",
