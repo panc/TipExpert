@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/panc/TipExpert.png?branch=master)](https://travis-ci.org/panc/TipExpert)
+[![Build Status](https://travis-ci.org/panc/TipExpert.png?branch=master)](https://travis-ci.org/panc/TipExpert) [![Dependency Status](https://gemnasium.com/panc/TipExpert.png)](https://gemnasium.com/panc/TipExpert)
 
 # TipExpert
 
