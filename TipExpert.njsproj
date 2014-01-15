@@ -44,6 +44,7 @@
     <Compile Include="public\js\site.js" />
     <Compile Include="test\helper.js" />
     <Compile Include="test\test-articles.js" />
+    <Compile Include="test\test-users.js" />
     <Content Include=".travis.yml" />
     <Content Include="app\views\404.html" />
     <Content Include="app\views\users\newOrEdit.html" />
