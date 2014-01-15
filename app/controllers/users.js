@@ -1,6 +1,7 @@
 
-var mongoose = require('mongoose')
-  , User = mongoose.model('User');
+var mongoose = require('mongoose'),
+    User = mongoose.model('User'),
+    utils = require('../utils/utils');
 
 
 var redirectAfterLogin = function(req, res) {

@@ -52,7 +52,6 @@ describe('Articles', function() {
         context('When logged in', function() {
             before(function(done) {
                 // login the user
-                console.log("Login user");
                 agent
                     .post('/users/session')
                     .field('email', 'foobar@example.com')
