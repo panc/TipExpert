@@ -74,6 +74,8 @@ module.exports = function (app, config, passport) {
                 res.locals.csrf_token = req.csrfToken();
                 next();
             });
+        } else {
+            console.log("Test mode - csrf support not activated!");
         }
 
         // routes should be at the last
