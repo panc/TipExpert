@@ -1,14 +1,11 @@
 // module dependencies
 var express = require('express'),
     mongoStore = require('connect-mongo')(express),
-    swig = require('swig'),
     pkg = require('../package.json'),
     profile = require('./middlewares/profile'),
     logger = require('winston');
 
 module.exports = function(app, config, passport) {
-
-    require('express-reverse')(app);
 
     app.set('showStackError', true);
 
@@ -23,10 +20,10 @@ module.exports = function(app, config, passport) {
     app.use(express.favicon());
     app.use(express.static(config.root + '/public'));
 
-    // logging 
+    // logging
     var env = process.env.NODE_ENV || 'development';
     var log;
-    
+
     if (env !== 'development') {
         log = {
             stream: {
@@ -41,15 +38,23 @@ module.exports = function(app, config, passport) {
 
     // don't log during tests
     if (env !== 'test') app.use(express.logger(log));
-    
+
     app.engine('html', swig.renderFile);
 
     app.set('view engine', 'html');
     app.set('views', config.root + '/app/views');
 
-    // disable swig's view cache and use caching of express instead 
+    // disable swig's view cache and use caching of express instead
     // (which is enabled by default)
-    swig.setDefaults({ cache: false });
+    //swig.setDefaults({ cache: false });
+    //swig.setTag(
+      //"url",
+      //parse
+      //compile
+      //ends
+      //blockLevels
+//
+    //);
 
     app.configure(function() {
 
