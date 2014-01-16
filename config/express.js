@@ -2,6 +2,7 @@
 var express = require('express'),
     mongoStore = require('connect-mongo')(express),
     pkg = require('../package.json'),
+    cons = require('consolidate'),
     profile = require('./middlewares/profile'),
     logger = require('winston');
 
@@ -39,7 +40,7 @@ module.exports = function(app, config, passport) {
     // don't log during tests
     if (env !== 'test') app.use(express.logger(log));
 
-    app.engine('html', swig.renderFile);
+    app.engine('html', cons.swig);
 
     app.set('view engine', 'html');
     app.set('views', config.root + '/app/views');
