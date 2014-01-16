@@ -1,8 +1,9 @@
-var mongoose = require('mongoose')
-  , LocalStrategy = require('passport-local').Strategy
-  , FacebookStrategy = require('passport-facebook').Strategy
-  , GoogleStrategy = require('passport-google-oauth').OAuth2Strategy
-  , User = mongoose.model('User');
+var mongoose = require('mongoose'), 
+    LocalStrategy = require('passport-local').Strategy,
+    FacebookStrategy = require('passport-facebook').Strategy,
+    GoogleStrategy = require('passport-google-oauth').OAuth2Strategy,
+    User = mongoose.model('User'),
+    logger = require('winston');
 
 
 module.exports = function(passport, config) {
@@ -61,7 +62,7 @@ module.exports = function(passport, config) {
 
                     user.save(function(e) {
                         if (e)
-                            console.log(err);
+                            logger.log(err);
 
                         return done(e, user);
                     });
@@ -91,7 +92,7 @@ module.exports = function(passport, config) {
 
                     user.save(function(e) {
                         if (e)
-                            console.log(e);
+                            logger.log(e);
 
                         return done(e, user);
                     });

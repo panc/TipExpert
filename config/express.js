@@ -3,9 +3,10 @@ var express = require('express'),
     mongoStore = require('connect-mongo')(express),
     swig = require('swig'),
     pkg = require('../package.json'),
-    profile = require('./middlewares/profile');
+    profile = require('./middlewares/profile'),
+    logger = require('winston');
 
-module.exports = function (app, config, passport) {
+module.exports = function(app, config, passport) {
 
     require('express-reverse')(app);
 
@@ -22,16 +23,30 @@ module.exports = function (app, config, passport) {
     app.use(express.favicon());
     app.use(express.static(config.root + '/public'));
 
-    // don't use logger for test env
-    if (process.env.NODE_ENV !== 'test') {
-        app.use(express.logger('dev'));
+    // logging 
+    var env = process.env.NODE_ENV || 'development';
+    var log;
+    
+    if (env !== 'test') {
+        log = {
+            stream: {
+                write: function(message, encoding) {
+                    logger.info(message);
+                }
+            }
+        };
+    } else {
+        log = 'dev';
     }
 
+    // don't log during tests
+    if (env !== 'test') app.use(express.logger(log));
+    
     app.engine('html', swig.renderFile);
 
     app.set('view engine', 'html');
     app.set('views', config.root + '/app/views');
-  
+
     // disable swig's view cache and use caching of express instead 
     // (which is enabled by default)
     swig.setDefaults({ cache: false });
@@ -95,7 +110,7 @@ module.exports = function (app, config, passport) {
             }
 
             // log it
-            console.error(err.stack);
+            logger.error(err.stack);
 
             // error page
             res.status(500).render('500', { error: err.stack });

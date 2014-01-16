@@ -1,7 +1,8 @@
 // module dependencies
 var express = require('express'),
     fs = require('fs'),
-    passport = require('passport');
+    passport = require('passport'),
+    logger = require('winston');
 
 // load configurations
 var env = process.env.NODE_ENV || 'development'
@@ -18,7 +19,7 @@ connect();
 
 // error handler
 mongoose.connection.on('error', function(err) {
-    console.log(err);
+    logger.error(err.message);
 });
 
 // reconnect when closed
@@ -42,12 +43,11 @@ require('./config/express')(app, config, passport);
 // bootstrap routes
 require('./config/routes')(app, passport);
 
-
 // start the app by listening on <port>
 var port = process.env.PORT || 1337;
 app.listen(port);
 
-console.log('Application started on port ' + port);
+logger.info('Application started on port %d', port);
 
 // expose app (needed for tests)
 exports = module.exports = app;

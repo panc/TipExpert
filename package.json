@@ -25,7 +25,8 @@
         "passport": "latest",
         "passport-local": "latest",
         "passport-facebook": "latest",
-        "passport-google-oauth": "latest"
+        "passport-google-oauth": "latest",
+		"winston": "latest"
     },
     "devDependencies": {
         "supertest": "latest",
