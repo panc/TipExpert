@@ -27,7 +27,7 @@ module.exports = function(app, config, passport) {
     var env = process.env.NODE_ENV || 'development';
     var log;
     
-    if (env !== 'test') {
+    if (env !== 'development') {
         log = {
             stream: {
                 write: function(message, encoding) {
