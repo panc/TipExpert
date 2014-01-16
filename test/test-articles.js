@@ -53,7 +53,7 @@ describe('Articles', function() {
             before(function(done) {
                 // login the user
                 agent
-                    .post('/users/session')
+                    .post('/auth')
                     .field('email', 'foobar@example.com')
                     .field('password', 'foobar')
                     .end(done);
@@ -87,7 +87,7 @@ describe('Articles', function() {
             before(function(done) {
                 // login the user
                 agent
-                    .post('/users/session')
+                    .post('/auth')
                     .field('email', 'foobar@example.com')
                     .field('password', 'foobar')
                     .end(done);
