@@ -38,10 +38,8 @@ require('./config/passport-config')(passport, config);
 
 // bootstrap express
 var app = express();
-require('./config/express')(app, config, passport);
 
-// bootstrap routes
-require('./config/routes')(app, passport);
+require('./config/express')(app, config, passport);
 
 // start the app by listening on <port>
 var port = process.env.PORT || 1337;

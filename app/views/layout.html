@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="description" content="{{pkg.description}}">
     <meta name="keywords" content="{{pkg.keywords.join(',')}}">
-    
+
     <meta name="og:title" content="{{pkg.name}} - {% block title %}{% endblock %}">
     <meta name="og:description" content="{{pkg.description}}">
     <meta name="og:url" content="http://www.tipexpert.net">
@@ -16,14 +16,14 @@
     <link type="text/css" rel="stylesheet" href="/css/site.css"/>
     <link type="text/css" rel="stylesheet" href="/css/bootstrap.css"/>
     <link type="text/css" rel="stylesheet" href="/css/bootstrap-theme.css"/>
-    
+
     <script src="/js/bootstrap.js"></script>
 </head>
 <body>
 
     <header id="header">
         <div class="left">
-            <a href="/"><div id="header-logo">&nbsp;</div></a>
+          <a href="{{ url('home') }}"><div id="header-logo">&nbsp;</div></a>
         </div>
         <div class="left">
             {% include "users/loginInfo.html" %}

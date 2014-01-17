@@ -1,12 +1,12 @@
 <div class="login-info">
     {% if user %}
-    
+
     <a href="{{ userProfileUrl }}">{{ user.name }}</a>
     <img src="{{ user.google.picture }}" alt="avatar" width="80"/>
 
     {% else %}
-    
-    <a href="/login">Sign in</a>
-    
+
+    <a href="{{ url('login') }}">Sign in</a>
+
     {% endif %}
 </div>

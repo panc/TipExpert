@@ -52,7 +52,7 @@ exports.index = function(req, res) {
 exports.new = function(req, res) {
     res.render('articles/new', {
         title: 'New Article',
-        action: '/articles',
+        action: req.buildUrl('article'),
         article: new Article({ })
     });
 };
@@ -67,7 +67,7 @@ exports.create = function(req, res) {
     article.save(function(err) {
         if (!err) {
             //req.flash('success', 'Successfully created article!');
-            return res.redirect('/articles/' + article._id);
+            return res.redirect(req.buildUrl('article.item', {articleId: article.id}));
         }
 
         res.render('articles/new', {
@@ -85,7 +85,7 @@ exports.create = function(req, res) {
 exports.edit = function(req, res) {
     res.render('articles/edit', {
         title: 'Edit ' + req.article.title,
-        action: url('articles-item', {id: req.article.id}),
+        action: req.buildUrl('article.item', {articleId: req.article.id}),
         article: req.article
     });
 };
@@ -99,7 +99,7 @@ exports.update = function(req, res) {
 
     article.save(function(err) {
         if (!err)
-            return res.redirectToRoute('articles-item', {id: article._id});
+            return res.redirect(req.buildUrl('article.item', {articleId: article._id}));
 
         res.render('articles/edit', {
             title: 'Edit Article',
@@ -126,6 +126,6 @@ exports.destroy = function(req, res) {
     var article = req.article;
     article.remove(function(err) {
         //req.flash('info', 'Deleted successfully');
-        res.redirectToRoute('articles');
+        res.redirect(req.buildUrl('article'));
     });
 };

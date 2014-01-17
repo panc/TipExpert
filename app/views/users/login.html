@@ -14,9 +14,9 @@
 
 <div>
     <div class="login">
-        
-        <form class="form-horizontal" action="/users/session" method="post" role="form">
-            
+
+      <form class="form-horizontal" action="{{ url('auth') }}" method="post" role="form">
+
           <input type='hidden' name='_csrf' value="{{ csrf_token }}"/>
 
             <div class="group">
@@ -36,10 +36,10 @@
             <div class="group">
                 <div class="button-container">
                     <button type="submit" class="btn btn-primary">Log in</button>&nbsp; or &nbsp;
-                    <a href="/signup" title="sign up" class="show-signup">Sign up</a>
+                    <a href="{{ url('signup') }}" title="sign up" class="show-signup">Sign up</a>
                 </div>
             </div>
-        
+
         </form>
     </div>
 </div>

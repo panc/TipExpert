@@ -42,7 +42,7 @@ exports.signup = function(req, res) {
  */
 exports.logout = function(req, res) {
     req.logout();
-    res.redirect('/login');
+    res.redirect(req.buildUrl('login'));
 };
 
 /**
@@ -70,7 +70,7 @@ exports.create = function(req, res) {
         req.logIn(user, function(e) {
             if (e)
                 return next(e);
-            
+
             return res.redirect('/');
         });
     });
@@ -83,7 +83,7 @@ exports.showProfile = function(req, res) {
     var user = req.profile;
     res.render('users/profile', {
         title: user.name,
-        action: 'user/' +  user.id,
+        action: req.buildUrl('user', {userId: user.id}),
         user: user
     });
 };
@@ -94,9 +94,9 @@ exports.showProfile = function(req, res) {
 exports.user = function(req, res, next, id) {
     User.findOne({ _id: id })
         .exec(function(err, user) {
-            if (err) 
+            if (err)
                 return next(err);
-            
+
             if (!user)
                 return next(new Error('Failed to load User ' + id));
 

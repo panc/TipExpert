@@ -4,9 +4,19 @@ var express = require('express'),
     pkg = require('../package.json'),
     cons = require('consolidate'),
     profile = require('./middlewares/profile'),
-    logger = require('winston');
+    logger = require('winston'),
+    shrinkroute = require('shrinkroute');
+
+var articles = require('../app/controllers/articles'),
+    users = require('../app/controllers/users'),
+    auth = require('./middlewares/authorization');
+
+var articleAuth = [auth.requiresLogin, auth.article.hasAuthorization];
 
 module.exports = function(app, config, passport) {
+
+    var shrinkr = shrinkroute();
+    shrinkr.app( app );
 
     app.set('showStackError', true);
 
@@ -19,7 +29,6 @@ module.exports = function(app, config, passport) {
     }));
 
     app.use(express.favicon());
-    app.use(express.static(config.root + '/public'));
 
     // logging
     var env = process.env.NODE_ENV || 'development';
@@ -45,94 +54,182 @@ module.exports = function(app, config, passport) {
     app.set('view engine', 'html');
     app.set('views', config.root + '/app/views');
 
-    // disable swig's view cache and use caching of express instead
-    // (which is enabled by default)
-    //swig.setDefaults({ cache: false });
-    //swig.setTag(
-      //"url",
-      //parse
-      //compile
-      //ends
-      //blockLevels
-//
-    //);
+    // expose package.json to all views
+    app.use(function(req, res, next) {
+        res.locals.pkg = pkg;
+        next();
+    });
 
-    app.configure(function() {
+    // cookieParser should be above session
+    app.use(express.cookieParser());
 
-        // expose package.json to all views
+    // bodyParser should be above methodOverride
+    app.use(express.bodyParser());
+    app.use(express.methodOverride());
+
+    // express/mongo session storage
+    app.use(express.session({
+        secret: 'tipexpert', // todo
+        store: new mongoStore({
+            url: config.db,
+            collection: 'sessions'
+        })
+    }));
+
+    // use passport session
+    app.use(passport.initialize());
+    app.use(passport.session());
+
+    app.use( shrinkr.middleware );
+
+    // Parameter based preloaders
+    app.param('userId', users.user);
+    app.param('articleId', articles.load);
+
+    app.use(profile.exposeUserInfoToViews);
+    app.use(express.static(config.root + '/public'));
+
+    // adds CSRF support
+    if (process.env.NODE_ENV !== 'test') {
+        app.use(express.csrf());
+
         app.use(function(req, res, next) {
-            res.locals.pkg = pkg;
+            res.locals.csrf_token = req.csrfToken();
             next();
         });
+    } else {
+        console.log("Test mode - csrf support not activated!");
+    }
 
-        // cookieParser should be above session
-        app.use(express.cookieParser());
+    // routes should be at the last
+    app.use(app.router);
 
-        // bodyParser should be above methodOverride
-        app.use(express.bodyParser());
-        app.use(express.methodOverride());
+    // assume "not found" in the error msgs
+    // is a 404. this is somewhat silly, but
+    // valid, you can do whatever you like, set
+    // properties, use instanceof etc.
+    app.use(function(err, req, res, next) {
+        // treat as 404
+        if (err.message
+            && (~err.message.indexOf('not found')
+                || (~err.message.indexOf('Cast to ObjectId failed')))) {
 
-        // express/mongo session storage
-        app.use(express.session({
-            secret: 'tipexpert', // todo
-            store: new mongoStore({
-                url: config.db,
-                collection: 'sessions'
-            })
-        }));
-
-        // use passport session
-        app.use(passport.initialize());
-        app.use(passport.session());
-
-        app.use(profile.exposeUserInfoToViews);
-
-        // adds CSRF support
-        if (process.env.NODE_ENV !== 'test') {
-            app.use(express.csrf());
-
-            app.use(function(req, res, next) {
-                res.locals.csrf_token = req.csrfToken();
-                next();
-            });
-        } else {
-            console.log("Test mode - csrf support not activated!");
+            return next();
         }
 
-        // routes should be at the last
-        app.use(app.router);
+        // log it
+        logger.error(err.stack);
 
-        // assume "not found" in the error msgs
-        // is a 404. this is somewhat silly, but
-        // valid, you can do whatever you like, set
-        // properties, use instanceof etc.
-        app.use(function(err, req, res, next) {
-            // treat as 404
-            if (err.message
-                && (~err.message.indexOf('not found')
-                    || (~err.message.indexOf('Cast to ObjectId failed')))) {
+        // error page
+        res.status(500).render('500', { error: err.stack });
+    });
 
-                return next();
-            }
-
-            // log it
-            logger.error(err.stack);
-
-            // error page
-            res.status(500).render('500', { error: err.stack });
-        });
-
-        // assume 404 since no middleware responded
-        app.use(function(req, res, next) {
-            res.status(404).render('404', {
-                url: req.originalUrl,
-                error: 'Not found'
-            });
+    // assume 404 since no middleware responded
+    app.use(function(req, res, next) {
+        res.status(404).render('404', {
+            url: req.originalUrl,
+            error: 'Not found'
         });
     });
 
-    // development env config
-    app.configure('development', function() {
-        app.locals.pretty = true;
+    shrinkr.route({
+        // Session routes
+        "login": {
+            path: "/login",
+            get: users.login
+        },
+        "logout": {
+            path: "/logout",
+            get: users.logout
+        },
+        "signup": {
+            path: "/signup",
+            get: users.signup
+        },
+        // User routes
+        "user": {
+            path: "/users",
+            post: users.create
+        },
+        "user.profile": {
+            path: "/:userId",
+            get: users.showProfile
+        },
+        // Authentication routes
+        "auth": {
+            path: "/auth",
+            post: [
+                passport.authenticate('local', {
+                    failureRedirect: '/login'
+                }),
+                users.session
+            ]
+        },
+        "auth.facebook": {
+            path: "/facebook",
+            get: [
+                passport.authenticate('facebook', {
+                    scope: ['email', 'user_about_me'],
+                    failureRedirect: '/login'
+                }),
+                users.signin
+            ]
+        },
+        "auth.facebook.callback": {
+            path: "/callback",
+            get: [
+                passport.authenticate('facebook', {
+                    failureRedirect: '/login'
+                }),
+                users.authCallback
+            ]
+        },
+        "auth.google": {
+            path: "/google",
+            get: [
+                passport.authenticate('google', {
+                    failureRedirect: '/login',
+                    scope: [
+                        'https://www.googleapis.com/auth/userinfo.profile',
+                        'https://www.googleapis.com/auth/userinfo.email'
+                    ]
+                }),
+                users.signin
+            ]
+        },
+        "auth.google.callback": {
+            path: "/callback",
+            get :[
+                passport.authenticate('google', {
+                    failureRedirect: '/login'
+                }),
+                users.authCallback
+            ]
+        },
+        // Article routes
+        "article": {
+            path: "/articles",
+            get: articles.index,
+            post: [articleAuth, articles.create]
+        },
+        "article.new": {
+            path: "/new",
+            get: [articleAuth, articles.new]
+        },
+        "article.item": {
+            path: "/:articleId",
+            get: articles.show,
+            put: [articleAuth, articles.update]
+        },
+        "article.item.edit": {
+            path: "/edit",
+            get: [articleAuth, articles.edit]
+            //del: [articleAuth, articles.delete]
+        },
+        // Home route
+        "home": {
+            path: "/",
+            get: articles.index
+        }
     });
 };
