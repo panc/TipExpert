@@ -1,11 +1,11 @@
 {
     "name": "TipExpert",
     "version": "0.1.0",
-    "description": "Tipexpert ist das Tippspiel der nächsten Generation. Individuell anpassbar, persönlich und sozial. Messe spielerisch dein sportliches Gefühl mit Freunden, Bekannten und Kollegen.",
+    "description": "Tipexpert ist das Tippspiel der nÃ¤chsten Generation. Individuell anpassbar, persÃ¶nlich und sozial. Messe spielerisch dein sportliches GefÃ¼hl mit Freunden, Bekannten und Kollegen.",
     "keywords": "tip,expert",
-    "repository" : {
-        "type" : "git",
-        "url" : "https://github.com/panc/TipExpert.git"
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/panc/TipExpert.git"
     },
     "scripts": {
         "start": "node app.js",
@@ -27,7 +27,8 @@
         "passport-local": "latest",
         "passport-facebook": "latest",
         "passport-google-oauth": "latest",
-        "winston": "latest"
+        "winston": "latest",
+        "i18n-2": "~0.4.5"
     },
     "devDependencies": {
         "supertest": "latest",
