@@ -16,7 +16,7 @@ var articleAuth = [auth.requiresLogin, auth.article.hasAuthorization];
 module.exports = function(app, config, passport) {
 
     var shrinkr = shrinkroute();
-    shrinkr.app( app );
+    shrinkr.app(app);
 
     app.set('showStackError', true);
 
@@ -80,7 +80,7 @@ module.exports = function(app, config, passport) {
     app.use(passport.initialize());
     app.use(passport.session());
 
-    app.use( shrinkr.middleware );
+    app.use(shrinkr.middleware);
 
     // Parameter based preloaders
     app.param('userId', users.user);
@@ -199,7 +199,7 @@ module.exports = function(app, config, passport) {
         },
         "auth.google.callback": {
             path: "/callback",
-            get :[
+            get: [
                 passport.authenticate('google', {
                     failureRedirect: '/login'
                 }),
