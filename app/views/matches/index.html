@@ -1,0 +1,25 @@
+{% extends '../layout.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+
+<div class="left">
+    <ul class="league-list">
+        {% for league in leagues%}
+
+        <li><div id="{{ league.id }}" class="league-item">{{ league.name }}</div></li>
+
+        {% endfor %}
+        
+        <li>+ Add new league</li>
+    </ul>
+</div>
+
+<div class="left">
+    
+</div>
+
+<div class="clearfix"></div>
+
+{% endblock %}

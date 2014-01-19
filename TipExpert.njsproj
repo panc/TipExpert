@@ -50,6 +50,7 @@
     <Compile Include="test\test-users.js" />
     <Content Include=".travis.yml" />
     <Content Include="app\views\404.html" />
+    <Content Include="app\views\matches\index.html" />
     <Content Include="app\views\users\newOrEdit.html" />
     <Content Include="app\views\users\loginInfo.html" />
     <Content Include="app\views\users\signup.html" />
@@ -73,6 +74,7 @@
     <Folder Include="app\controllers\" />
     <Folder Include="app\utils\" />
     <Folder Include="app\views\" />
+    <Folder Include="app\views\matches\" />
     <Folder Include="app\views\users\" />
     <Folder Include="app\views\articles\" />
     <Folder Include="config\" />

@@ -1,18 +1,17 @@
     
 var mongoose = require('mongoose')
   , env = process.env.NODE_ENV || 'development'
-  , config = require('../../config/config')[env]
   , Schema = mongoose.Schema;
 
 
-// match schema
+// league schema
 var LeagueSchema = new Schema({
     name: { type: String, default: '', trim: true },
     createdAt: { type: Date, default: Date.now }
 });
 
-// static methods for the match schema
-MatchSchema.statics = {
+// static methods for the league schema
+LeagueSchema.statics = {
     /**
      * Find league by id
      *
