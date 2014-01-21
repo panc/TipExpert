@@ -5,7 +5,8 @@ var express = require('express'),
     cons = require('consolidate'),
     profile = require('./middlewares/profile'),
     logger = require('winston'),
-    shrinkroute = require('shrinkroute');
+    shrinkroute = require('shrinkroute'),
+    I18n = require('i18n-2');
 
 var articles = require('../app/controllers/articles'),
     users = require('../app/controllers/users'),
@@ -15,6 +16,12 @@ var articleAuth = [auth.requiresLogin, auth.article.hasAuthorization];
 
 module.exports = function(app, config, passport) {
 
+    // Load Module and Instantiate
+    I18n.expressBind(app, {
+        // setup some locales - other locales default to en silently
+        locales: ['en', 'de'],
+        directory: '../locales'
+    });
     var shrinkr = shrinkroute();
     shrinkr.app( app );
 
