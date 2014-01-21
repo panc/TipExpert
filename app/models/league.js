@@ -33,10 +33,8 @@ LeagueSchema.statics = {
      * @api private
      */
 
-    list: function(options, cb) {
-        var criteria = options.criteria || { };
-
-        this.find(criteria)
+    list: function(cb) {
+        this.find({ })
             .sort({ 'name': 1 }) // sort by date
             .exec(cb);
     }

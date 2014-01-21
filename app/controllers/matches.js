@@ -25,7 +25,7 @@ exports.load = function(req, res, next, id) {
 exports.index = function(req, res) {
     // group match by type
     
-    League.list(options, function(err, leagues) {
+    League.list(function(err, leagues) {
         if (err)
             return res.render('500');
 

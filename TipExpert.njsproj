@@ -44,7 +44,11 @@
     <Compile Include="config\middlewares\authorization.js" />
     <Compile Include="config\passport-config.js" />
     <Compile Include="config\routes.js" />
-    <Compile Include="public\js\site.js" />
+    <Compile Include="public\js\bootstrap.js" />
+    <Compile Include="public\js\bootstrap.min.js" />
+    <Compile Include="public\js\jquery-2.0.3.js" />
+    <Compile Include="public\js\jquery-2.0.3.min.js" />
+    <Compile Include="public\js\matches.js" />
     <Compile Include="test\helper.js" />
     <Compile Include="test\test-articles.js" />
     <Compile Include="test\test-users.js" />
@@ -64,7 +68,17 @@
     <Content Include="app\views\layout.html" />
     <Content Include="app\views\500.html" />
     <Content Include="package.json" />
+    <Content Include="public\css\bootstrap-theme.css" />
+    <Content Include="public\css\bootstrap-theme.min.css" />
+    <Content Include="public\css\bootstrap.css" />
+    <Content Include="public\css\bootstrap.min.css" />
     <Content Include="public\css\site.css" />
+    <Content Include="public\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="public\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="public\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="public\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="public\images\facebook.png" />
+    <Content Include="public\images\google.png" />
     <Content Include="public\images\tipexpert_v4_2.png" />
     <Content Include="README.md" />
   </ItemGroup>
@@ -79,6 +93,7 @@
     <Folder Include="app\views\articles\" />
     <Folder Include="config\" />
     <Folder Include="config\middlewares\" />
+    <Folder Include="public\fonts\" />
     <Folder Include="public\js\" />
     <Folder Include="public\css\" />
     <Folder Include="public\images\" />
