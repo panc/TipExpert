@@ -8,6 +8,8 @@
 
 <div class="left left-area">
     <h2>Leagues</h2>
+    <p>Select a league in order to show all available matches for this league.</p>
+
     <ul class="league-list">
         {% for league in leagues%}
 
@@ -15,7 +17,7 @@
 
         {% endfor %}
 
-        <li>
+        <li class="new-item">
             <div class="league-item">
                 <input type="hidden" name="_csrf" class ="_csrf" value="{{ csrf_token }}">
                 

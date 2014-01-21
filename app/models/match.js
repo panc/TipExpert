@@ -20,7 +20,6 @@ MatchSchema.statics = {
      *
      * @param {ObjectId} id
      * @param {Function} cb
-     * @api private
      */
 
     load: function(id, cb) {
@@ -33,7 +32,6 @@ MatchSchema.statics = {
      *
      * @param {Object} options
      * @param {Function} cb
-     * @api private
      */
 
     list: function(options, cb) {

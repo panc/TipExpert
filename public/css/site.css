@@ -32,12 +32,39 @@ p {
 
 .league-list {
     list-style: none;
+    margin-top: 20px;
+    padding: 0;
 }
 
 .league-item {
-    max-width: 200px;
+    line-height: 3em;
+    padding-left: 5px;
+}
+
+.league-item:hover {
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.new-item .league-item:hover {
+    background-color: inherit;
+    cursor: inherit;
+}
+
+.league-list li {
+    border-bottom: 1px #fff solid;
+}
+
+.league-list li:first-child {
+    border-top: 1px #fff solid;
+}
+
+.league-list li:last-child {
+    border-bottom: 0;
 }
 
 .left-area {
+    padding: 10px;
+    max-width: 300px;
     background-color: #dedede;
 }
