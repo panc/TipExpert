@@ -12,8 +12,10 @@ exports.create = function(req, res) {
     var league = new League(req.body);
 
     league.save(function(error) {
-        res.contentType('json');
-        res.send({ some: JSON.stringify({ response: 'json' }) });
+        if (error)
+            return res.send('500', utils.formatErrors(error));
+        
+        return res.send(league);
     });
 };
 

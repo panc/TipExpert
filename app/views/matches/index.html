@@ -7,6 +7,7 @@
 {% block body %}
 
 <div class="left left-area">
+    <h2>Leagues</h2>
     <ul class="league-list">
         {% for league in leagues%}
 
@@ -16,13 +17,13 @@
 
         <li>
             <div class="league-item">
-                <input type="hidden" name="_csrf" value="{{ csrf_token }}">
+                <input type="hidden" name="_csrf" class ="_csrf" value="{{ csrf_token }}">
                 
                 <div class="input-group">
-                  <input type="text" class="form-control" id="new-league-name" placeholder="Add a new league">
-                  <span class="input-group-btn">
-                    <button class="btn btn-default add-league" type="button"><span class="glyphicon glyphicon-ok"></span></button>
-                  </span>
+                    <input type="text" class="form-control" id="new-league-name" placeholder="Add a new league">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default add-league" type="button"><span class="glyphicon glyphicon-ok"></span></button>
+                    </span>
                 </div>
             </div>
         </li>

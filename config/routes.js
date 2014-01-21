@@ -1,10 +1,11 @@
 // module dependencies
 var auth = require('./middlewares/authorization');
 
-// models
+// controller
 var articles = require('../app/controllers/articles'),
     users = require('../app/controllers/users'),
     matches = require('../app/controllers/matches');
+    leagues = require('../app/controllers/leagues');
 
 var articleAuth = [auth.requiresLogin, auth.article.hasAuthorization];
 
@@ -121,7 +122,7 @@ module.exports = function(app, shrinkr, passport) {
         // League routes
         "leagues": {
             path: "/leagues",
-            get: matches.index
+            post: leagues.create
         },
         
         // Home route

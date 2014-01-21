@@ -30,7 +30,7 @@ exports.index = function(req, res) {
             return res.render('500');
 
         res.render('matches/index', {
-            title: 'Matches',
+            title: 'Match Overview',
             leagues: leagues
         });
     });
