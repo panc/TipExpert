@@ -29,3 +29,15 @@ p {
 .clear {
     clear: both;
 }
+
+.league-list {
+    list-style: none;
+}
+
+.league-item {
+    max-width: 200px;
+}
+
+.left-area {
+    background-color: #dedede;
+}
