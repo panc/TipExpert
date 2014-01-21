@@ -37,7 +37,7 @@ exports.index = function(req, res) {
 
         Article.count().exec(function(e, count) {
             res.render('articles/index', {
-                title: 'Articles',
+                title: req.i18n.__('Articles'),
                 articles: articles,
                 page: page + 1,
                 pages: Math.ceil(count / perPage)
@@ -51,7 +51,7 @@ exports.index = function(req, res) {
  */
 exports.new = function(req, res) {
     res.render('articles/new', {
-        title: 'New Article',
+        title: req.i18n.__('New Article'),
         action: req.buildUrl('article'),
         article: new Article({ })
     });
@@ -71,7 +71,7 @@ exports.create = function(req, res) {
         }
 
         res.render('articles/new', {
-            title: 'New Article',
+            title: req.i18n.__('New Article'),
             article: article,
             errors: utils.formatErrors(err.errors || err)
         });
@@ -84,7 +84,7 @@ exports.create = function(req, res) {
 
 exports.edit = function(req, res) {
     res.render('articles/edit', {
-        title: 'Edit ' + req.article.title,
+        title: req.i18n.__('Edit %s', req.article.title),
         action: req.buildUrl('article.item', {articleId: req.article.id}),
         article: req.article
     });
@@ -102,7 +102,7 @@ exports.update = function(req, res) {
             return res.redirect(req.buildUrl('article.item', {articleId: article._id}));
 
         res.render('articles/edit', {
-            title: 'Edit Article',
+            title: req.i18n.__('Edit Article'),
             article: article,
             errors: err.errors
         });

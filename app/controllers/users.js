@@ -22,7 +22,7 @@ exports.authCallback = redirectAfterLogin;
  */
 exports.login = function(req, res) {
     res.render('users/login', {
-        title: 'Login'
+        title: req.i18n.__('Login')
     });
 };
 
@@ -31,7 +31,7 @@ exports.login = function(req, res) {
  */
 exports.signup = function(req, res) {
     res.render('users/signup', {
-        title: 'Sign up',
+        title: req.i18n.__('Sign up'),
         action: 'users',
         user: new User()
     });
@@ -62,7 +62,7 @@ exports.create = function(req, res) {
                 errors:  utils.formatErrors(err.errors),
                 action: 'users',
                 user: user,
-                title: 'Sign up'
+                title: req.i18n.__('Sign up')
             });
         }
 
@@ -98,7 +98,7 @@ exports.user = function(req, res, next, id) {
                 return next(err);
 
             if (!user)
-                return next(new Error('Failed to load User ' + id));
+                return next(new Error(req.i18n.__('Failed to load User %s', id)));
 
             req.profile = user;
             return next();

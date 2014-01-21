@@ -5,15 +5,15 @@
 {% block body %}
 
 <div>
-    <p >Title: {{article.title}}</p>
-    <p >Body: {{article.body}}</p>
-    <p >CreatedAt: {{article.createdAt|date('Y-m-d')}}</p>
-    <p >Tags: {{article.tags}}</p>
+    <p>{{ __('Title') }}: {{article.title}}</p>
+    <p>{{ __('Body') }}: {{article.body}}</p>
+    <p>{{ __('Created At') }}: {{article.createdAt|date('Y-m-d')}}</p>
+    <p>{{ __('Tags') }}: {{article.tags}}</p>
 </div>
 
 <div>
   <a href="{{ url('article.item.edit', {articleId: article.id}) }}">Edit</a>
-    <input type="button">Delete</>
+    <input type="button">{{ __('Delete') }}</input>
 </div>
 
 {% endblock %}

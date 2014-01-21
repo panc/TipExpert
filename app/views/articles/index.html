@@ -6,7 +6,7 @@
 
     {% if articles.length %}
 
-        <p>Count: {{articles.length}}</p>
+        <p>{{ __('Count') }}: {{articles.length}}</p>
 
         <ul>
         {% for article in articles%}
@@ -18,11 +18,11 @@
         {% endfor %}
         </ul>
 
-        <a href="{{ url('article.new') }}">Add new Article</a>
+        <a href="{{ url('article.new') }}">{{ __('Add new Article') }}</a>
 
     {% else %}
 
-      <p>No Articles. <a href="{{ url('article.new') }}">Create one</a></p>
+      <p>{{ __('No Articles') }}. <a href="{{ url('article.new') }}">{{ __('Create one') }}</a></p>
 
     {% endif %}
 
