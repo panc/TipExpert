@@ -118,6 +118,12 @@ module.exports = function(app, shrinkr, passport) {
             get: matches.index
         },
         
+        // League routes
+        "leagues": {
+            path: "/leagues",
+            get: matches.index
+        },
+        
         // Home route
         "home": {
             path: "/",

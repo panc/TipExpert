@@ -17,7 +17,6 @@ LeagueSchema.statics = {
      *
      * @param {ObjectId} id
      * @param {Function} cb
-     * @api private
      */
 
     load: function(id, cb) {
@@ -30,7 +29,6 @@ LeagueSchema.statics = {
      *
      * @param {Object} options
      * @param {Function} cb
-     * @api private
      */
 
     list: function(cb) {
