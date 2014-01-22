@@ -11,11 +11,7 @@ var LeagueSchema = new Schema({
 });
 
 // validation
-LeagueSchema.path('name').validate(function(name) {
-    
-    return name.length;
-    
-}, 'League name cannot be blank');
+LeagueSchema.path('name').required(true, 'League name cannot be blank');
 
 // static methods for the league schema
 LeagueSchema.statics = {
