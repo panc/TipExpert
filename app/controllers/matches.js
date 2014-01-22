@@ -31,7 +31,8 @@ exports.index = function(req, res) {
 
         res.render('matches/index', {
             title: 'Match Overview',
-            leagues: leagues
+            leagues: leagues,
+            selectedLeague: leagues.length ? leagues[0].id : ''
         });
     });
 };

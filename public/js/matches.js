@@ -1,5 +1,18 @@
 function initializeMatchHandler(settings) {
 
+    var loadMatches = function(item) {
+        var id = item.attr('id');
+        $('.league-item').removeClass('selected');
+        item.addClass('selected');
+    };
+
+    if (settings.selectedLeague)
+        loadMatches($('#' + settings.selectedLeague));
+
+    $('.league-item').on('click', function() {
+        loadMatches($(this));
+    });
+
     var addLeague = function() {
         $.ajax({
             url: settings.addLeagueUrl,
