@@ -14,6 +14,7 @@ module.exports = function(app, shrinkr, passport) {
     // Parameter based preloaders
     app.param('userId', users.user);
     app.param('articleId', articles.load);
+//    app.param('matchId', matches.load);
 
     shrinkr.route({
         // Session routes
@@ -117,6 +118,10 @@ module.exports = function(app, shrinkr, passport) {
         "matches": {
             path: "/matches",
             get: matches.index
+        },
+        "matches.item": {
+            path: "/:matchId",
+            get: matches.edit
         },
         
         // League routes

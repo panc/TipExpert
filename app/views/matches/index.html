@@ -32,7 +32,7 @@
     </ul>
 </div>
 
-<div class="left">
+<div class="left main-content">
     
 </div>
 
@@ -41,7 +41,9 @@
 <script type="text/javascript">
     $(document).ready(function() {
         initializeMatchHandler({
-            addLeagueUrl: '/leagues'
+            addLeagueUrl: '{{ addLeagueUrl }}',
+            getMatchesUrl: '{{ getMatchUrl }}',
+            selectedLeague: '{{ selectedLeague }}'
         });
     });
 </script>

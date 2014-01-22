@@ -23,7 +23,6 @@ exports.load = function(req, res, next, id) {
  * List
  */
 exports.index = function(req, res) {
-    // group match by type
     
     League.list(function(err, leagues) {
         if (err)
@@ -32,8 +31,24 @@ exports.index = function(req, res) {
         res.render('matches/index', {
             title: 'Match Overview',
             leagues: leagues,
-            selectedLeague: leagues.length ? leagues[0].id : ''
+            selectedLeague: leagues.length ? leagues[0].id : '',
+            getMatchUrl: req.buildUrl('matches.item', { matchId: '' }),
+            addLeagueUrl: req.buildUrl('leagues')
         });
+    });
+};
+
+/**
+ * Edit
+ */
+exports.edit = function(req, res) {
+    console.log(id);
+    
+    res.app.render('matches/edit', {
+        title: 'Match ' + res.league.name,
+        league: league
+    }, function (error, html) {
+        res.send(html);
     });
 };
 

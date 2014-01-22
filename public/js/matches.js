@@ -1,13 +1,17 @@
 function initializeMatchHandler(settings) {
 
     var loadMatches = function(item) {
-        var id = item.attr('id');
         $('.league-item').removeClass('selected');
         item.addClass('selected');
+        
+        var id = item.attr('id');
+        $.get(settings.getMatchesUrl + id, function(data) {
+            $('.main-content').html(data);
+        });
     };
 
-    if (settings.selectedLeague)
-        loadMatches($('#' + settings.selectedLeague));
+//    if (settings.selectedLeague)
+//        loadMatches($('#' + settings.selectedLeague));
 
     $('.league-item').on('click', function() {
         loadMatches($(this));
