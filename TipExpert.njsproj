@@ -52,6 +52,7 @@
     <Compile Include="public\js\matches.js" />
     <Compile Include="test\helper.js" />
     <Compile Include="test\test-articles.js" />
+    <Compile Include="test\test-leagues.js" />
     <Compile Include="test\test-users.js" />
     <Content Include=".travis.yml" />
     <Content Include="app\views\404.html" />

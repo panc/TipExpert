@@ -13,7 +13,7 @@ exports.create = function(req, res) {
 
     league.save(function(error) {
         if (error)
-            return res.send('500', utils.formatErrors(error));
+            return res.send('500', utils.formatErrors(error.errors));
         
         return res.send(league);
     });

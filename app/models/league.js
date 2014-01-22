@@ -10,6 +10,13 @@ var LeagueSchema = new Schema({
     createdAt: { type: Date, default: Date.now }
 });
 
+// validation
+LeagueSchema.path('name').validate(function(name) {
+    
+    return name.length;
+    
+}, 'League name cannot be blank');
+
 // static methods for the league schema
 LeagueSchema.statics = {
     /**
