@@ -4,7 +4,6 @@ var auth = require('./middlewares/authorization');
 // controller
 var articles = require('../app/controllers/articles'),
     users = require('../app/controllers/users'),
-    matches = require('../app/controllers/matches');
     leagues = require('../app/controllers/leagues');
 
 var articleAuth = [auth.requiresLogin, auth.article.hasAuthorization];
@@ -13,8 +12,8 @@ module.exports = function(app, shrinkr, passport) {
 
     // Parameter based preloaders
     app.param('userId', users.user);
+    app.param('leagueId', leagues.load);
     app.param('articleId', articles.load);
-//    app.param('matchId', matches.load);
 
     shrinkr.route({
         // Session routes
@@ -114,26 +113,21 @@ module.exports = function(app, shrinkr, passport) {
             //del: [articleAuth, articles.delete]
         },
         
-        // Match routes
-        "matches": {
-            path: "/matches",
-            get: matches.index
-        },
-        "matches.item": {
-            path: "/:matchId",
-            get: matches.edit
-        },
-        
         // League routes
-        "leagues": {
+        "league": {
             path: "/leagues",
+            get : leagues.index,
             post: leagues.create
         },
-        
+        "league.matches": {
+            path: "/:leagueId/matches",
+            get: leagues.getMatches
+        },
+
         // Home route
         "home": {
             path: "/",
-            get: matches.index
+            get: leagues.index
         }
     });
 };

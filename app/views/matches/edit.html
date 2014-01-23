@@ -1,1 +1,23 @@
-<h3>Test</h3>
+<h3>{{ title }}</h3>
+
+{% if matches.length %}
+
+    <p>Count: {{ matches.length }}</p>
+
+    <ul>
+    {% for match in matches%}
+
+        <li>
+        {{ match.homeTeam }} : {{ match.guestTeam }}
+        </li>
+
+    {% endfor %}
+    </ul>
+
+    <a href="{{ url('article.new') }}">Add new Match</a>
+
+{% else %}
+
+    <p>No Articles. <a href="{{ url('article.new') }}">Create one</a></p>
+
+{% endif %}

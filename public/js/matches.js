@@ -5,13 +5,14 @@ function initializeMatchHandler(settings) {
         item.addClass('selected');
         
         var id = item.attr('id');
-        $.get(settings.getMatchesUrl + id, function(data) {
+        var url = settings.getMatchesUrl.replace('#id#', id);
+        $.get(url, function(data) {
             $('.main-content').html(data);
         });
     };
 
-//    if (settings.selectedLeague)
-//        loadMatches($('#' + settings.selectedLeague));
+    if (settings.selectedLeague)
+        loadMatches($('#' + settings.selectedLeague));
 
     $('.league-item').on('click', function() {
         loadMatches($(this));
