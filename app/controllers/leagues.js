@@ -28,8 +28,8 @@ exports.index = function(req, res) {
         if (err)
             return res.render('500');
 
-        res.render('matches/index', {
-            title: 'Match Overview',
+        res.render('leagues/index', {
+            title: 'League and Match Overview',
             leagues: leagues,
             selectedLeague: leagues.length ? leagues[0].id : '',
             getMatchUrl: req.buildFullUrl('league.matches', { leagueId: '#id#' }),
@@ -38,6 +38,9 @@ exports.index = function(req, res) {
     });
 };
 
+/**
+ * Get matches for league
+ */
 exports.getMatches = function(req, res) {
     
     Match.list({ league: req.league.id }, function(err, matches) {
@@ -49,7 +52,7 @@ exports.getMatches = function(req, res) {
             matches: matches
         };
 
-        res.app.render('matches/edit', options, function (error, html) {
+        res.app.render('leagues/matches', options, function (error, html) {
             res.send(html);
         });
     });
