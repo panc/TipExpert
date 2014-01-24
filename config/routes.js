@@ -4,6 +4,7 @@ var auth = require('./middlewares/authorization');
 // controller
 var articles = require('../app/controllers/articles'),
     users = require('../app/controllers/users'),
+    matches = require('../app/controllers/matches'),
     leagues = require('../app/controllers/leagues');
 
 var articleAuth = [auth.requiresLogin, auth.article.hasAuthorization];
@@ -122,6 +123,12 @@ module.exports = function(app, shrinkr, passport) {
         "league.matches": {
             path: "/:leagueId/matches",
             get: leagues.getMatches
+        },
+        
+        // Match routes
+        "match": {
+            path: "/matches",
+            post: matches.create
         },
 
         // Home route

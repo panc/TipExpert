@@ -30,8 +30,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="app.js" />
-    <Compile Include="app\controllers\leagues.js" />
     <Compile Include="app\controllers\matches.js" />
+    <Compile Include="app\controllers\leagues.js" />
     <Compile Include="app\controllers\articles.js" />
     <Compile Include="app\controllers\users.js" />
     <Compile Include="app\models\league.js" />
@@ -49,15 +49,15 @@
     <Compile Include="public\js\bootstrap.min.js" />
     <Compile Include="public\js\jquery-2.0.3.js" />
     <Compile Include="public\js\jquery-2.0.3.min.js" />
-    <Compile Include="public\js\matches.js" />
+    <Compile Include="public\js\te-matches.js" />
     <Compile Include="test\helper.js" />
     <Compile Include="test\test-articles.js" />
     <Compile Include="test\test-leagues.js" />
     <Compile Include="test\test-users.js" />
     <Content Include=".travis.yml" />
     <Content Include="app\views\404.html" />
-    <Content Include="app\views\matches\edit.html" />
-    <Content Include="app\views\matches\index.html" />
+    <Content Include="app\views\leagues\matches.html" />
+    <Content Include="app\views\leagues\index.html" />
     <Content Include="app\views\users\newOrEdit.html" />
     <Content Include="app\views\users\loginInfo.html" />
     <Content Include="app\views\users\signup.html" />
@@ -91,7 +91,7 @@
     <Folder Include="app\controllers\" />
     <Folder Include="app\utils\" />
     <Folder Include="app\views\" />
-    <Folder Include="app\views\matches\" />
+    <Folder Include="app\views\leagues\" />
     <Folder Include="app\views\users\" />
     <Folder Include="app\views\articles\" />
     <Folder Include="config\" />

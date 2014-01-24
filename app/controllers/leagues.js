@@ -49,7 +49,8 @@ exports.getMatches = function(req, res) {
 
         var options = {
             title: 'Matches for league ' + req.league.name,
-            matches: matches
+            matches: matches,
+            url: req.buildFullUrl
         };
 
         res.app.render('leagues/matches', options, function (error, html) {

@@ -8,16 +8,18 @@
     {% for match in matches%}
 
         <li>
-        {{ match.homeTeam }} : {{ match.guestTeam }}
+        {{ match.homeTeam }} : {{ match.guestTeam }} ({{ match.dueDate }})
         </li>
 
     {% endfor %}
     </ul>
 
-    <a href="{{ url('article.new') }}">Add new Match</a>
-
 {% else %}
 
-    <p>No Articles. <a href="{{ url('article.new') }}">Create one</a></p>
+<p>No Matches! 
+    <button class="btn btn-default add-match" type="button"><span class="glyphicon glyphicon-plus">Add one</span></button>
+</p>
+    
+<!--    <a href="{{ url('match') }}">Create one</a>-->
 
 {% endif %}

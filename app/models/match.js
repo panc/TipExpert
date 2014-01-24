@@ -13,6 +13,11 @@ var MatchSchema = new Schema({
     dueDate: { type: Date, default: Date.now }
 });
 
+// validation
+MatchSchema.path('homeTeam').required(true, 'Home team cannot be blank');
+MatchSchema.path('guestTeam').required(true, 'Guest team cannot be blank');
+MatchSchema.path('dueDate').required(true, 'Due date cannot be blank');
+
 // static methods for the match schema
 MatchSchema.statics = {
     /**
