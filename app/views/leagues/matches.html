@@ -14,12 +14,35 @@
     {% endfor %}
     </ul>
 
-{% else %}
+{% endif %}
 
-<p>No Matches! 
-    <button class="btn btn-default add-match" type="button"><span class="glyphicon glyphicon-plus">Add one</span></button>
-</p>
+<div>
+    <button class="btn btn-default show-add-match-items" type="button">
+        <span class="glyphicon glyphicon-plus">Add one</span>
+    </button>
+    <div class="add-new-match-area" style="display: none">
+        <div class="input-group left">
+            <span class="left">Home</span>
+            <input class="home-team left" type="text"/>
+        
+            <span class="left">&nbsp;-&nbsp;</span>
+        
+            <input class="guest-team left" type="text"/>
+            <span class="left">Guest</span>
+        
+            <div class="clear"></div>
+            <span>Date of match:</span>
+            <input class="due-date" type="date"/>
+        </div>
+        <div class="left save-match-buttons">
+            <span class="input-group-btn">
+                <button class="btn btn-default add-league" type="button"><span class="glyphicon glyphicon-ok"></span></button>
+                <button class="btn btn-default add-league" type="button"><span class="glyphicon glyphicon-remove"></span></button>
+            </span>
+        </div>
+    </div>
+</div>
     
 <!--    <a href="{{ url('match') }}">Create one</a>-->
 
-{% endif %}
+

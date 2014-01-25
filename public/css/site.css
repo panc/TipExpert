@@ -72,3 +72,11 @@ p {
     max-width: 300px;
     background-color: #dedede;
 }
+
+.save-match-buttons {
+    margin: 10px 20px;
+}
+
+.save-match-buttons .input-group-btn {
+    width: 100px;
+}
