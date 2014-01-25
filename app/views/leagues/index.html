@@ -41,9 +41,9 @@
 <script type="text/javascript">
     $(document).ready(function() {
         initializeMatchHandler({
-            addLeagueUrl: '{{ addLeagueUrl }}',
-            getMatchesUrl: '{{ getMatchUrl }}',
-            saveMatchUrl: "{{ url('match') }}",
+            addLeagueUrl: "{{ fullUrl('leagues') }}",
+            getMatchesUrl: "{{ fullUrl('league.matches', { leagueId: '#id#' }) }}",
+            saveMatchUrl: "{{ fullUrl('match') }}",
             selectedLeague: '{{ selectedLeague }}'
         });
     });

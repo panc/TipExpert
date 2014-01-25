@@ -1,6 +1,5 @@
 
 var mongoose = require('mongoose'),
-    ObjectId = require('mongoose').Types.ObjectId,
     League = mongoose.model('League'),
     Match = mongoose.model('Match'),
     utils = require('../utils/utils');
@@ -32,10 +31,7 @@ exports.index = function(req, res) {
         res.render('leagues/index', {
             title: 'League and Match Overview',
             leagues: leagues,
-            selectedLeague: leagues.length ? leagues[0].id : '',
-            getMatchUrl: req.buildFullUrl('league.matches', { leagueId: '#id#' }),
-            addLeagueUrl: req.buildFullUrl('leagues'),
-            url: req.buildFullUrl
+            selectedLeague: leagues.length ? leagues[0].id : ''
         });
     });
 };
@@ -52,7 +48,6 @@ exports.getMatches = function(req, res) {
         var options = {
             title: 'Matches for league ' + req.league.name,
             matches: matches,
-            url: req.buildFullUrl
         };
 
         res.app.render('leagues/matches', options, function (error, html) {
