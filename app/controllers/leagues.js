@@ -1,5 +1,6 @@
 
 var mongoose = require('mongoose'),
+    ObjectId = require('mongoose').Types.ObjectId,
     League = mongoose.model('League'),
     Match = mongoose.model('Match'),
     utils = require('../utils/utils');
@@ -33,7 +34,8 @@ exports.index = function(req, res) {
             leagues: leagues,
             selectedLeague: leagues.length ? leagues[0].id : '',
             getMatchUrl: req.buildFullUrl('league.matches', { leagueId: '#id#' }),
-            addLeagueUrl: req.buildFullUrl('leagues')
+            addLeagueUrl: req.buildFullUrl('leagues'),
+            url: req.buildFullUrl
         });
     });
 };
@@ -42,8 +44,8 @@ exports.index = function(req, res) {
  * Get matches for league
  */
 exports.getMatches = function(req, res) {
-    
-    Match.list({ league: req.league.id }, function(err, matches) {
+
+    Match.list({ leagueId: req.league.id }, function(err, matches) {
         if (err)
             return res.send('500', utils.formatErrors(err.errors));
 

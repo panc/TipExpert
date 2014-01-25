@@ -27,27 +27,24 @@ function initializeMatchHandler(settings) {
         $('.add-new-match-area').show();
     });
 
-    var addMatch = function() {
+    $('.main-content').on('click', '.save-match', function() {
         $.ajax({
-            url: settings.addMatchUrl,
+            url: settings.saveMatchUrl,
             type: 'post',
             data: {
                  _csrf: $('._csrf').val(), 
-                 homeTeam: $('#new-home-team').val(),
-                 guestTeam: $('#new-home-team').val(),
-                 dueDate: $('#new-due-date').val()
+                 homeTeam: $('.home-team').val(),
+                 guestTeam: $('.guest-team').val(),
+                 dueDate: $('.due-date').val(),
+                 league: $('.league-item.selected').attr('id')
             }
         })
-        .done(function(league) {
-            // todo
+        .done(function(match) {
+            alert('success');
         })
         .fail(function() {
             alert('failure'); // todo: handle alert correctly with a popup
         });
-    };
-
-    $('.add-match').on('click', function() {
-        addMatch();
     });
     
     

@@ -2,13 +2,12 @@
 
 {% if matches.length %}
 
-    <p>Count: {{ matches.length }}</p>
-
     <ul>
     {% for match in matches%}
 
         <li>
-        {{ match.homeTeam }} : {{ match.guestTeam }} ({{ match.dueDate }})
+            <input type="hidden" value="{{ JSON.stringify(match) }}"/>
+            <div>{{ match.homeTeam }} : {{ match.guestTeam }} ({{ match.dueDate }})</div>
         </li>
 
     {% endfor %}
@@ -36,8 +35,8 @@
         </div>
         <div class="left save-match-buttons">
             <span class="input-group-btn">
-                <button class="btn btn-default add-league" type="button"><span class="glyphicon glyphicon-ok"></span></button>
-                <button class="btn btn-default add-league" type="button"><span class="glyphicon glyphicon-remove"></span></button>
+                <button class="btn btn-default save-match" type="button"><span class="glyphicon glyphicon-ok"></span></button>
+                <button class="btn btn-default cancel-edit" type="button"><span class="glyphicon glyphicon-remove"></span></button>
             </span>
         </div>
     </div>

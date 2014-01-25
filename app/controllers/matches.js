@@ -14,7 +14,7 @@ exports.create = function(req, res) {
         if (error)
             return res.send('500', utils.formatErrors(error.errors));
         
-        return res.send(league);
+        return res.send(match);
     });
 };
 

@@ -1,8 +1,9 @@
     
-var mongoose = require('mongoose')
-  , env = process.env.NODE_ENV || 'development'
-  , config = require('../../config/config')[env]
-  , Schema = mongoose.Schema;
+var mongoose = require('mongoose'),
+    ObjectId = require('mongoose').Types.ObjectId,
+    env = process.env.NODE_ENV || 'development',
+    config = require('../../config/config')[env],
+    Schema = mongoose.Schema;
 
 
 // match schema
@@ -40,8 +41,10 @@ MatchSchema.statics = {
      */
 
     list: function(options, cb) {
-        var criteria = options.criteria || { };
-
+        var criteria = {
+            league: new ObjectId(options.leagueId)
+        };
+        
         this.find(criteria)
             .sort({ 'dueDate': 1 }) // sort by date
             .exec(cb);
