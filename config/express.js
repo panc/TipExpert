@@ -2,17 +2,11 @@
 var express = require('express'),
     mongoStore = require('connect-mongo')(express),
     pkg = require('../package.json'),
-    cons = require('consolidate'),
+    swig = require('swig'),
     profile = require('./middlewares/profile'),
     logger = require('winston'),
     shrinkroute = require('shrinkroute'),
     I18n = require('i18n-2');
-
-var articles = require('../app/controllers/articles'),
-    users = require('../app/controllers/users'),
-    auth = require('./middlewares/authorization');
-
-var articleAuth = [auth.requiresLogin, auth.article.hasAuthorization];
 
 module.exports = function(app, config, passport) {
 
@@ -23,7 +17,7 @@ module.exports = function(app, config, passport) {
         directory: '../locales'
     });
     var shrinkr = shrinkroute();
-    shrinkr.app( app );
+    shrinkr.app(app);
 
     app.set('showStackError', true);
 
@@ -56,7 +50,7 @@ module.exports = function(app, config, passport) {
     // don't log during tests
     if (env !== 'test') app.use(express.logger(log));
 
-    app.engine('html', cons.swig);
+    app.engine('html', swig.renderFile);
 
     app.set('view engine', 'html');
     app.set('views', config.root + '/app/views');
@@ -87,11 +81,7 @@ module.exports = function(app, config, passport) {
     app.use(passport.initialize());
     app.use(passport.session());
 
-    app.use( shrinkr.middleware );
-
-    // Parameter based preloaders
-    app.param('userId', users.user);
-    app.param('articleId', articles.load);
+    app.use(shrinkr.middleware);
 
     app.use(profile.exposeUserInfoToViews);
     app.use(express.static(config.root + '/public'));
@@ -110,6 +100,7 @@ module.exports = function(app, config, passport) {
 
     // routes should be at the last
     app.use(app.router);
+    require('./routes')(app, shrinkr, passport);
 
     // assume "not found" in the error msgs
     // is a 404. this is somewhat silly, but
@@ -137,106 +128,5 @@ module.exports = function(app, config, passport) {
             url: req.originalUrl,
             error: 'Not found'
         });
-    });
-
-    shrinkr.route({
-        // Session routes
-        "login": {
-            path: "/login",
-            get: users.login
-        },
-        "logout": {
-            path: "/logout",
-            get: users.logout
-        },
-        "signup": {
-            path: "/signup",
-            get: users.signup
-        },
-        // User routes
-        "user": {
-            path: "/users",
-            post: users.create
-        },
-        "user.profile": {
-            path: "/:userId",
-            get: users.showProfile
-        },
-        // Authentication routes
-        "auth": {
-            path: "/auth",
-            post: [
-                passport.authenticate('local', {
-                    failureRedirect: '/login'
-                }),
-                users.session
-            ]
-        },
-        "auth.facebook": {
-            path: "/facebook",
-            get: [
-                passport.authenticate('facebook', {
-                    scope: ['email', 'user_about_me'],
-                    failureRedirect: '/login'
-                }),
-                users.signin
-            ]
-        },
-        "auth.facebook.callback": {
-            path: "/callback",
-            get: [
-                passport.authenticate('facebook', {
-                    failureRedirect: '/login'
-                }),
-                users.authCallback
-            ]
-        },
-        "auth.google": {
-            path: "/google",
-            get: [
-                passport.authenticate('google', {
-                    failureRedirect: '/login',
-                    scope: [
-                        'https://www.googleapis.com/auth/userinfo.profile',
-                        'https://www.googleapis.com/auth/userinfo.email'
-                    ]
-                }),
-                users.signin
-            ]
-        },
-        "auth.google.callback": {
-            path: "/callback",
-            get :[
-                passport.authenticate('google', {
-                    failureRedirect: '/login'
-                }),
-                users.authCallback
-            ]
-        },
-        // Article routes
-        "article": {
-            path: "/articles",
-            get: articles.index,
-            post: [articleAuth, articles.create]
-        },
-        "article.new": {
-            path: "/new",
-            get: [articleAuth, articles.new]
-        },
-        "article.item": {
-            path: "/:articleId",
-            get: articles.show,
-            put: [articleAuth, articles.update]
-        },
-        "article.item.edit": {
-            path: "/edit",
-            get: [articleAuth, articles.edit]
-            //del: [articleAuth, articles.delete]
-        },
-        // Home route
-        "home": {
-            path: "/",
-            get: articles.index
-        }
     });
 };

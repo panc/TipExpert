@@ -1,0 +1,52 @@
+{% extends '../layout.html' %}
+
+{% block scripts %} <script type="text/javascript" src="/js/te-matches.js"></script> {% endblock %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+
+<input type="hidden" name="_csrf" class="_csrf" value="{{ csrf_token }}">
+
+<div class="left left-area">
+    <h2>Leagues</h2>
+    <p>Select a league in order to show all available matches for this league.</p>
+
+    <ul class="league-list">
+        {% for league in leagues%}
+
+        <li><div id="{{ league.id }}" class="league-item">{{ league.name }}</div></li>
+
+        {% endfor %}
+
+        <li class="new-item">
+            <div class="league-item">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="new-league-name" placeholder="Add a new league">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default add-league" type="button"><span class="glyphicon glyphicon-ok"></span></button>
+                    </span>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<div class="left main-content">
+    <!-- async rendered version of matches.html goes here -->
+</div>
+
+<div class="clearfix"></div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        initializeMatchHandler({
+            addLeagueUrl: "{{ fullUrl('leagues') }}",
+            getMatchesUrl: "{{ fullUrl('league.matches', { leagueId: '#id#' }) }}",
+            saveMatchUrl: "{{ fullUrl('match') }}",
+            selectedLeague: '{{ selectedLeague }}'
+        });
+    });
+</script>
+
+{% endblock %}
