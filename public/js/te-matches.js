@@ -8,8 +8,16 @@ function initializeMatchHandler(settings) {
         
         var id = item.attr('id');
         var url = settings.getMatchesUrl.replace('#id#', id);
-        $.get(url, function(data) {
+        $.ajax({
+            type: 'GET',
+            url: url
+        })
+        .done(function(data) {
+            History.pushState(null, null, url);
             $('.main-content').html(data);
+        })
+        .fail(function(error) {
+            alert('error');
         });
     };
 

@@ -4,7 +4,6 @@
  * @param {Array} errors
  * @return {Array}
  */
-
 exports.formatErrors = function(errors) {
     var keys = Object.keys(errors);
     var errs = [];
@@ -21,3 +20,16 @@ exports.formatErrors = function(errors) {
 
     return errs;
 };
+
+/**
+ * Check whether the given request is sent via a jquery ajax call (e.g. $.ajax())
+ *
+ * @param {request} request object
+ * @return {bool}
+ */
+exports.isAjaxRequest = function(req) {
+    
+    return req.headers && 
+           req.headers['x-requested-with'] && 
+           req.headers['x-requested-with'] == 'XMLHttpRequest';
+}

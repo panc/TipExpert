@@ -22,8 +22,8 @@ exports.load = function(req, res, next, id) {
 /**
  * List
  */
-exports.index = function(req, res) {
-    
+var showLeagueList = function(req, res, leagueId) {
+
     League.list(function(err, leagues) {
         if (err)
             return res.render('500');
@@ -31,9 +31,13 @@ exports.index = function(req, res) {
         res.render('leagues/index', {
             title: 'League and Match Overview',
             leagues: leagues,
-            selectedLeague: leagues.length ? leagues[0].id : ''
+            selectedLeague: (!leagueId && leagues) ? leagues[0].id : leagueId
         });
     });
+};
+
+exports.index = function(req, res) {
+    showLeagueList(req, res, null);
 };
 
 /**
@@ -41,6 +45,9 @@ exports.index = function(req, res) {
  */
 exports.getMatches = function(req, res) {
 
+    if (!utils.isAjaxRequest(req))
+        return showLeagueList(req, res, req.league.id);
+    
     Match.list({ leagueId: req.league.id }, function(err, matches) {
         if (err)
             return res.send('500', utils.formatErrors(err.errors));

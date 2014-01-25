@@ -49,6 +49,8 @@
     <Compile Include="public\js\bootstrap.min.js" />
     <Compile Include="public\js\jquery-2.0.3.js" />
     <Compile Include="public\js\jquery-2.0.3.min.js" />
+    <Compile Include="public\js\jquery.history.js" />
+    <Compile Include="public\js\jquery.history.min.js" />
     <Compile Include="public\js\te-matches.js" />
     <Compile Include="test\helper.js" />
     <Compile Include="test\test-articles.js" />
