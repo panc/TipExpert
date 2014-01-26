@@ -23,6 +23,7 @@ TBD
  * TBD
 
 * Social Login
+
 * User verwalten
   * TBD: 
   * Google und Facebook User verwalten
@@ -36,5 +37,7 @@ TBD
  * Freunde einladen
 
 * Eigenes Profil veralten
+
 * Freunde verwalten
+
 * Freunde von Google oder Facebook importieren?
