@@ -107,6 +107,9 @@ module.exports = function(app, config, passport) {
     // valid, you can do whatever you like, set
     // properties, use instanceof etc.
     app.use(function(err, req, res, next) {
+        // log it
+        logger.error(err.stack);
+
         // treat as 404
         if (err.message
             && (~err.message.indexOf('not found')
@@ -115,18 +118,12 @@ module.exports = function(app, config, passport) {
             return next();
         }
 
-        // log it
-        logger.error(err.stack);
-
         // error page
         res.status(500).render('500', { error: err.stack });
     });
 
     // assume 404 since no middleware responded
     app.use(function(req, res, next) {
-        res.status(404).render('404', {
-            url: req.originalUrl,
-            error: 'Not found'
-        });
+        res.status(404).render('404');
     });
 };

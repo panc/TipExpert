@@ -6,6 +6,7 @@ var articles = require('../app/controllers/articles'),
     users = require('../app/controllers/users'),
     matches = require('../app/controllers/matches'),
     leagues = require('../app/controllers/leagues');
+    home = require('../app/controllers/home');
 
 var articleAuth = [auth.requiresLogin, auth.article.hasAuthorization];
 
@@ -135,7 +136,7 @@ module.exports = function(app, shrinkr, passport) {
         // Home route
         "home": {
             path: "/",
-            get: leagues.index
+            get: home.index
         }
     });
 };

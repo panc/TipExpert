@@ -29,7 +29,6 @@ exports.login = function(req, res) {
  */
 exports.signup = function(req, res) {
     res.render('users/signup', {
-        action: req.buildUrl('user'),
         user: new User()
     });
 };
