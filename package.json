@@ -18,7 +18,7 @@
     "dependencies": {
         "express": "~3.4.7",
         "shrinkroute": "~0.2",
-        "swig": "~1.2",
+        "swig": "~1.3",
         "connect-mongo": "~0.4",
         "mongoose": "~3.8",
         "underscore": "~1.5",

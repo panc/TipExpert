@@ -28,6 +28,7 @@ function initializeMatchHandler(settings) {
         loadMatches($(this));
     });
 
+
     // add matches
 
     $('.main-content').on('click', '.show-add-match-items', function() {
