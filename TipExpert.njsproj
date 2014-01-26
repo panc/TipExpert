@@ -32,7 +32,6 @@
     <Compile Include="app.js" />
     <Compile Include="app\controllers\home.js" />
     <Compile Include="app\controllers\matches.js" />
-    <Compile Include="app\controllers\leagues.js" />
     <Compile Include="app\controllers\articles.js" />
     <Compile Include="app\controllers\users.js" />
     <Compile Include="app\models\league.js" />
