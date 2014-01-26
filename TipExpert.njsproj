@@ -45,6 +45,8 @@
     <Compile Include="config\middlewares\authorization.js" />
     <Compile Include="config\passport-config.js" />
     <Compile Include="config\routes.js" />
+    <Compile Include="locales\de.js" />
+    <Compile Include="locales\en.js" />
     <Compile Include="public\js\bootstrap.js" />
     <Compile Include="public\js\bootstrap.min.js" />
     <Compile Include="public\js\jquery-2.0.3.js" />
@@ -60,6 +62,7 @@
     <Content Include="app\views\404.html" />
     <Content Include="app\views\leagues\matches.html" />
     <Content Include="app\views\leagues\index.html" />
+    <Content Include="app\views\users\index.html" />
     <Content Include="app\views\users\newOrEdit.html" />
     <Content Include="app\views\users\loginInfo.html" />
     <Content Include="app\views\users\signup.html" />
@@ -94,10 +97,12 @@
     <Folder Include="app\utils\" />
     <Folder Include="app\views\" />
     <Folder Include="app\views\leagues\" />
+    <Folder Include="app\views\home\" />
     <Folder Include="app\views\users\" />
     <Folder Include="app\views\articles\" />
     <Folder Include="config\" />
     <Folder Include="config\middlewares\" />
+    <Folder Include="locales\" />
     <Folder Include="public\fonts\" />
     <Folder Include="public\js\" />
     <Folder Include="public\css\" />

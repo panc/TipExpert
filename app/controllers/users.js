@@ -31,7 +31,6 @@ exports.login = function(req, res) {
  */
 exports.signup = function(req, res) {
     res.render('users/signup', {
-        title: req.i18n.__('Sign up'),
         action: 'users',
         user: new User()
     });
@@ -50,6 +49,10 @@ exports.logout = function(req, res) {
  */
 exports.session = redirectAfterLogin;
 
+exports.index = function(req, res) {
+    res.render('users/index', { });
+};
+
 /**
  * Create user
  */
@@ -62,7 +65,6 @@ exports.create = function(req, res) {
                 errors:  utils.formatErrors(err.errors),
                 action: 'users',
                 user: user,
-                title: req.i18n.__('Sign up')
             });
         }
 

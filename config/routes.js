@@ -34,6 +34,7 @@ module.exports = function(app, shrinkr, passport) {
         // User routes
         "user": {
             path: "/users",
+            get : users.index,
             post: users.create
         },
         "user.profile": {
