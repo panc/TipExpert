@@ -50,9 +50,8 @@ p {
     background-color: #c0c3ce;
 }
 
-.new-item .league-item:hover {
-    background-color: inherit;
-    cursor: inherit;
+.new-item {
+    margin-top: 10px;
 }
 
 .league-list li {

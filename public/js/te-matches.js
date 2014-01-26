@@ -17,14 +17,14 @@ function initializeMatchHandler(settings) {
             $('.main-content').html(data);
         })
         .fail(function(error) {
-            alert('error');
+            alert('error: ');
         });
     };
 
     if (settings.selectedLeague)
         loadMatches($('#' + settings.selectedLeague));
 
-    $('.league-item').on('click', function() {
+    $('.left-area').on('click', '.league-item', function() {
         loadMatches($(this));
     });
 
@@ -69,7 +69,7 @@ function initializeMatchHandler(settings) {
             $('<li>').html(
                 $('<div>',
                     {
-                        'id': league.id,
+                        'id': league._id,
                         'class': 'league-item',
                         'html': league.name
                     }))
