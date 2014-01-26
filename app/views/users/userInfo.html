@@ -1,12 +1,12 @@
 <div class="login-info">
     {% if user %}
 
-    <a href="{{ userProfileUrl }}">{{ user.name }}</a>
+    <a href="{{ fullUrl('user.profile', { userId: user.id }) }}">{{ user.name }}</a>
     <img src="{{ user.google.picture }}" alt="avatar" width="80"/>
 
     {% else %}
 
-    <a href="{{ url('login') }}">{{ __('Sign in') }}</a>
+    <a href="{{ fullUrl('login') }}">{{ __('Sign in') }}</a>
 
     {% endif %}
 </div>

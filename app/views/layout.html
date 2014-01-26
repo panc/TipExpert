@@ -27,16 +27,15 @@
 
     <header id="header">
         <div class="left">
-          <a href="{{ url('home') }}"><div id="header-logo">&nbsp;</div></a>
+            <a href="{{ url('home') }}"><div id="header-logo">&nbsp;</div></a>
         </div>
         <div class="left">
-            {% include "users/loginInfo.html" %}
+            <h1>{% block title %}{% endblock %}</h1>
+        </div>
+        <div class="right">
+            {% include "users/userInfo.html" %}
         </div>
         <div class="clear"/>
-
-        <h1>{% block title %}{% endblock %}</h1>
-
-        {% block header %}{% endblock %}
     </header>
 
     <section role="main">

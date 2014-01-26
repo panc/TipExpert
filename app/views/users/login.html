@@ -1,10 +1,13 @@
 {% extends '../layout.html' %}
 
-{% block title %}{{ title }}{% endblock %}
+{% block title %}{{ __('Login') }}{% endblock %}
 
 {% block body %}
 
-{% include "socialLogin.html" %}
+<div class="center">
+  <a href="{{ fullUrl('auth.facebook') }}"><img src="/images/facebook.png"/></a>
+  <a href="{{ fullUrl('auth.google') }}"><img src="/images/google.png"/></a>
+</div>
 
 <div class="center">
     <br />
@@ -15,7 +18,7 @@
 <div>
     <div class="login">
 
-      <form class="form-horizontal" action="{{ url('auth') }}" method="post" role="form">
+      <form class="form-horizontal" action="{{ fullUrl('auth') }}" method="post" role="form">
 
           <input type='hidden' name='_csrf' value="{{ csrf_token }}"/>
 
@@ -35,7 +38,7 @@
             <div class="group">
                 <div class="button-container">
                     <button type="submit" class="btn btn-primary">{{ __('Log in') }}</button>&nbsp; or &nbsp;
-                    <a href="{{ url('signup') }}" title="sign up" class="show-signup">{{ __('Sign up') }}</a>
+                    <a href="{{ fullUrl('signup') }}" title="sign up" class="show-signup">{{ __('Sign up') }}</a>
                 </div>
             </div>
         </form>

@@ -21,9 +21,7 @@ exports.authCallback = redirectAfterLogin;
  * Show login form
  */
 exports.login = function(req, res) {
-    res.render('users/login', {
-        title: req.i18n.__('Login')
-    });
+    res.render('users/login');
 };
 
 /**
@@ -31,7 +29,7 @@ exports.login = function(req, res) {
  */
 exports.signup = function(req, res) {
     res.render('users/signup', {
-        action: 'users',
+        action: req.buildUrl('user'),
         user: new User()
     });
 };
@@ -50,7 +48,7 @@ exports.logout = function(req, res) {
 exports.session = redirectAfterLogin;
 
 exports.index = function(req, res) {
-    res.render('users/index', { });
+    res.render('users/index');
 };
 
 /**
@@ -63,7 +61,7 @@ exports.create = function(req, res) {
         if (err) {
             return res.render('users/signup', {
                 errors:  utils.formatErrors(err.errors),
-                action: 'users',
+                action: req.buildUrl('user'),
                 user: user,
             });
         }
@@ -84,8 +82,6 @@ exports.create = function(req, res) {
 exports.showProfile = function(req, res) {
     var user = req.profile;
     res.render('users/profile', {
-        title: user.name,
-        action: req.buildUrl('user', {userId: user.id}),
         user: user
     });
 };
