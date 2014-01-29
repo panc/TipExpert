@@ -52,15 +52,39 @@ exports.updateMatch = function(req, res) {
 /**
  * Show games for given user
  */
-exports.showGamesForUser = function(req, res) {
-   
-    Game.getGamesForPlayer(res.user.id, function(err, games) {
-        if (err)
-            return res.render('500');
+exports.index = function(req, res) {
 
-        res.render('games/forUser', {
-            leagues: leagues,
-            selectedLeague: (!leagueId && leagues) ? leagues[0].id : leagueId
-        });
-    });
+    res.render('games/index');
+};
+
+/**
+ * Shows the view for creating a new game
+ */
+exports.new = function(req, res) {
+
+    res.render('games/index');
+};
+
+/**
+ * Saves the given game
+ */
+exports.create = function(req, res) {
+
+    res.render('games/index');
+};
+
+/**
+ * Shows the edit view for the given game
+ */
+exports.edit = function(req, res) {
+
+    res.render('games/index');
+};
+
+/**
+ * Saves the changes for the given game
+ */
+exports.update = function(req, res) {
+
+    res.render('games/index');
 };

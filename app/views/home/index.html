@@ -4,6 +4,8 @@
 
 {% block body %}
 <ul>
+    <li>News</li>
+    
     <li>Administration:
         <ul>
             <li><a href="{{ fullUrl('user') }}">User Management</a></li>
@@ -11,10 +13,13 @@
         </ul>
     </li>
     
-    <li>News
-        
+    <li>Tip-Game
+        <ul>
+            <li><a href="{{ fullUrl('games.new') }}">Add a Game</a></li>
+            <li><a href="{{ fullUrl('games') }}">All My Games</a></li>
+            <li><a href="{{ fullUrl('games.createdByMe') }}">Games created by me</a></li>
+            <li><a href="{{ fullUrl('games.search') }}">Search for Games</a></li>
+        </ul>
     </li>
-    
-    <li></li>
 </ul>
 {% endblock %}

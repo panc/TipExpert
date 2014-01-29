@@ -5,6 +5,7 @@ var auth = require('./middlewares/authorization');
 var articles = require('../app/controllers/articles'),
     users = require('../app/controllers/users'),
     matches = require('../app/controllers/matches'),
+    games = require('../app/controllers/games'),
     home = require('../app/controllers/home');
 
 var articleAuth = [auth.requiresLogin, auth.article.hasAuthorization];
@@ -130,6 +131,30 @@ module.exports = function(app, shrinkr, passport) {
             get: matches.index, // just an alias
             post: matches.createMatch,
             put: matches.updateMatch
+        },
+        
+        // Game routes
+        "games": { 
+            path: "/games",
+            get: games.index,
+            post: games.create,
+            put: games.update
+        },
+        "games.createdByMe": { 
+            path: "/createdbyme",
+            get: games.index,
+        },
+        "games.search": { 
+            path: "/search",
+            get: games.index,
+        },
+        "games.new": { 
+            path: "/new",
+            get: games.new,
+        },
+        "games.edit": { 
+            path: "/edit",
+            get: games.edit,
         },
 
         // Home route
