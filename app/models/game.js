@@ -9,9 +9,17 @@ var GameSchema = new Schema({
     players: [{
         user: { type : Schema.ObjectId, ref : 'User'},
         stake: { type: Number, default: 0 }
-    }],    
+    }],
+    matches: [{
+        match: { type : Schema.ObjectId, ref : 'Match'},
+        tips: [{
+            user: { type : Schema.ObjectId, ref : 'User'},
+            homeScore: { type: Number, default: 0 },
+            guestScore: { type: Number, default: 0 }
+        }]
+    }],
     minStake: { type: Number, default: 0 },
-    dueDate: { type: Date, default: Date.now }
+    dueDate: { type: Date, default: Date.now } // wenn sich dieses Datum nicht eh automatisch aus dem letzten Match-Datum ergibt...
 });
 
 // validation
@@ -41,7 +49,7 @@ GameSchema .statics = {
 
     list: function(options, cb) {
         var criteria = {
-            league: new ObjectId(options.leagueId)
+            creator: new ObjectId(options.userId)
         };
         
         this.find(criteria)

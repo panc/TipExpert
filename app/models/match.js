@@ -9,6 +9,8 @@ var MatchSchema = new Schema({
     league: { type: Schema.ObjectId, ref: 'League' },
     homeTeam: { type: String, default: '', trim: true },
     guestTeam: { type: String, default: '', trim: true },
+    homeScore: { type: Number, default: 0 },
+    guestScore: { type: Number, default: 0 },
     dueDate: { type: Date, default: Date.now }
 });
 
