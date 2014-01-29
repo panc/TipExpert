@@ -38,13 +38,9 @@ exports.createMatch = function(req, res) {
  * Save match after edit
  */
 exports.updateMatch = function(req, res) {
-
-    
     var match = req.match;
-    article = _.extend(article, req.body);
-
-    var match = new Match(req.body);
-
+    match = _.extend(match, req.body);
+    
     match.save(function(error) {
         if (error)
             return res.send('500', utils.formatErrors(error.errors));
@@ -52,7 +48,6 @@ exports.updateMatch = function(req, res) {
         return res.send(match);
     });
 };
-
 
 /**
  * Create league

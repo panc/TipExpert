@@ -3,22 +3,23 @@ var mongoose = require('mongoose'),
     ObjectId = require('mongoose').Types.ObjectId,
     Schema = mongoose.Schema;
 
-
-// match schema
-var MatchSchema = new Schema({
-    league: { type: Schema.ObjectId, ref: 'League' },
-    homeTeam: { type: String, default: '', trim: true },
-    guestTeam: { type: String, default: '', trim: true },
+// game schema
+var GameSchema = new Schema({
+    creator: { type: Schema.ObjectId, ref: 'User' },
+    players: [{
+        user: { type : Schema.ObjectId, ref : 'User'},
+        stake: { type: Number, default: 0 }
+    }],    
+    minStake: { type: Number, default: 0 },
     dueDate: { type: Date, default: Date.now }
 });
 
 // validation
-MatchSchema.path('homeTeam').required(true, 'Home team cannot be blank');
-MatchSchema.path('guestTeam').required(true, 'Guest team cannot be blank');
-MatchSchema.path('dueDate').required(true, 'Due date cannot be blank');
+GameSchema.path('creator').required(true, 'Home team cannot be blank');
+GameSchema.path('dueDate').required(true, 'Due date cannot be blank');
 
 // static methods for the match schema
-MatchSchema.statics = {
+GameSchema .statics = {
     /**
      * Find match by id
      *
@@ -49,4 +50,4 @@ MatchSchema.statics = {
     }
 };
 
-mongoose.model('Match', MatchSchema);
+mongoose.model('Game', GameSchema);

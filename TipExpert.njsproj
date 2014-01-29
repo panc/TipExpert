@@ -31,10 +31,12 @@
   <ItemGroup>
     <Compile Include="app.js" />
     <Compile Include="app\controllers\home.js" />
+    <Compile Include="app\controllers\games.js" />
     <Compile Include="app\controllers\matches.js" />
     <Compile Include="app\controllers\articles.js" />
     <Compile Include="app\controllers\users.js" />
     <Compile Include="app\models\league.js" />
+    <Compile Include="app\models\game.js" />
     <Compile Include="app\models\match.js" />
     <Compile Include="app\models\article.js" />
     <Compile Include="app\models\user.js" />
