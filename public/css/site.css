@@ -1,3 +1,9 @@
+body {
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 50px;
+}
+
 h1 {
     font-size: 20px;
     font-weight: bold;
@@ -7,11 +13,11 @@ p {
     font-size: 12px;
 }
 
-#header-logo {
+.header-logo {
     background: url(../images/tipexpert_v4_2.png) no-repeat;
-    background-size: 200px, 50px;
-    width: 200px;
-    height: 50px;
+    background-size: 90px, 25px;
+    width: 100px;
+    height: 20px;
 }
 
 .login-info {

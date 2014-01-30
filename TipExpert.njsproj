@@ -62,6 +62,7 @@
     <Compile Include="test\test-users.js" />
     <Content Include=".travis.yml" />
     <Content Include="app\views\404.html" />
+    <Content Include="app\views\games\index.html" />
     <Content Include="app\views\home\index.html" />
     <Content Include="app\views\leagues\matches.html" />
     <Content Include="app\views\leagues\index.html" />
@@ -100,6 +101,7 @@
     <Folder Include="app\views\" />
     <Folder Include="app\views\leagues\" />
     <Folder Include="app\views\home\" />
+    <Folder Include="app\views\games\" />
     <Folder Include="app\views\users\" />
     <Folder Include="app\views\articles\" />
     <Folder Include="config\" />
