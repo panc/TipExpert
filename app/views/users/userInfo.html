@@ -1,8 +1,9 @@
     {% if user %}
 
-    <a href="{{ fullUrl('user.profile', { userId: user.id }) }}">{{ user.name }}</a>
-    <img src="{{ user.google.picture }}" alt="avatar" width="80"/>
-
+    <div>
+        <div class="left"><a href="{{ fullUrl('user.profile', { userId: user.id }) }}">{{ user.name }}</a></div>
+        <div class="left"><img src="{{ user.google.picture }}" alt="avatar" height="40" /></did>
+    </div>
     {% else %}
 
     <a href="{{ fullUrl('login') }}">{{ __('Sign in') }}</a>

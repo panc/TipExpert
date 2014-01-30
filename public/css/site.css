@@ -1,6 +1,4 @@
 body {
-    margin-left: auto;
-    margin-right: auto;
     padding-top: 50px;
 }
 
@@ -38,6 +36,12 @@ p {
 
 .clear {
     clear: both;
+}
+
+.center-login {
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .league-list {
