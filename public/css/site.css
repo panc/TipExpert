@@ -13,6 +13,10 @@ p {
     font-size: 12px;
 }
 
+.main {
+    margin-top: 50px;
+}
+
 .header-logo {
     background: url(../images/tipexpert_v4_2.png) no-repeat;
     background-size: 90px, 25px;

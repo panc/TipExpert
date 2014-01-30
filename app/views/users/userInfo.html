@@ -1,4 +1,3 @@
-<div class="login-info">
     {% if user %}
 
     <a href="{{ fullUrl('user.profile', { userId: user.id }) }}">{{ user.name }}</a>
@@ -9,4 +8,3 @@
     <a href="{{ fullUrl('login') }}">{{ __('Sign in') }}</a>
 
     {% endif %}
-</div>

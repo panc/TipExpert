@@ -15,43 +15,54 @@
 
 {% endif %}
 
-<form method="post" action="{{ fullUrl('user') }}" enctype="multipart/form-data" role="form" class="form-horizontal">
+<div class="row">
+    <div class="col-lg-6">
+        <div class="well">
+            <form method="post" action="{{ fullUrl('user') }}" enctype="multipart/form-data" role="form" class="form-horizontal">
+                <fieldset>
+                    <legend>{{ __('Sign up') }}</legend>
 
-    <input type="hidden" name="_csrf" value="{{ csrf_token }}">
+                    <input type="hidden" name="_csrf" value="{{ csrf_token }}">
 
-    {% if !user.isNew %}
-        <input type="hidden" name="_method" value="PUT">
-    {% endif %}
+                    {% if !user.isNew %}
+                    <input type="hidden" name="_method" value="PUT">
+                    {% endif %}
 
-    <div class="group">
-        <label for="title" class="label">{{ __('Username') }}</label>
-        <div class="input-container">
-            <input id="username" type="text" name="username" value="{{ user.username }}" placeholder="{{ __('Enter the username') }}" class="control">
+                    <div class="form-group">
+                        <label for="title" class="col-lg-2 control-label">{{ __('Username') }}</label>
+                        <div class="col-lg-10">
+                            <input id="username" type="text" name="username" value="{{ user.username }}" placeholder="{{ __('Enter the username') }}" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="desc" class="col-lg-2 control-label">{{ __('Name') }}</label>
+                        <div class="col-lg-10">
+                            <input id="name" type="text" name="name" value="{{ user.name }}" placeholder="{{ _('Enter the name') }}" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="tags" class="col-lg-2 control-label">{{ __('Password') }}</label>
+                        <div class="col-lg-10">
+                            <input id="password" type="password" name="password" value="{{ user.password}}" placeholder="{{ __('Enter the password') }}" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="tags" class="col-lg-2 control-label">{{ __('Email') }}</label>
+                        <div class="col-lg-10">
+                            <input id="email" type="text" name="email" value="{{ user.email}}" placeholder="{{ __('Enter the email') }}" class="form-control">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="col-lg-10 col-lg-offset-2">
+                            <a href="{{ url('home') }}" title="cancel" class="btn-default btn">{{ __('Cancel') }}</a>
+                            <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
         </div>
-    </div>
-    <div class="group">
-        <label for="desc" class="label">{{ __('Name') }}</label>
-        <div class="input-container">
-            <input id="name" type="text" name="name" value="{{ user.name }}" placeholder="{{ _('Enter the name') }}" class="control">
-        </div>
-    </div>
-    <div class="group">
-        <label for="tags" class="label">{{ __('Password') }}</label>
-        <div class="input-container">
-            <input id="password" type="password" name="password" value="{{ user.password}}" placeholder="{{ __('Enter the password') }}" class="control">
-        </div>
-    </div>
-    <div class="group">
-    <label for="tags" class="label">{{ __('Email') }}</label>
-    <div class="input-container">
-        <input id="email" type="text" name="email" value="{{ user.email}}" placeholder="{{ __('Enter the email') }}" class="control">
     </div>
 </div>
-    <div class="group">
-        <div class="button-container">
-          <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>&nbsp;<a href="{{ url('user') }}" title="cancel" class="btn">{{ __('Cancel') }}</a>
-        </div>
-    </div>
-</form>
 
 {% endblock %}
