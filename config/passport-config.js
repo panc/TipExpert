@@ -48,7 +48,7 @@ module.exports = function(passport, config) {
             profileFields: [ 'id',  'username', 'displayName', 'name', 'gender', 'profileUrl', 'emails', 'photos']
         },
         function(accessToken, refreshToken, profile, done) {
-            User.findOne({ 'facebook.id': profile.id }, function(err, user) {
+            User.findOne({ $or: [ {'facebook.id': profile.id}, {'email': profile.emails[0].value} ] }, function(err, user) {
                 if (err)
                     return done(err);
 
@@ -56,19 +56,18 @@ module.exports = function(passport, config) {
                     user = new User({
                         name: profile.displayName,
                         email: profile.emails[0].value,
-                        provider: 'facebook',
-                        facebook: profile._json
+                        provider: 'facebook'
                     });
-
-                    user.save(function(e) {
-                        if (e)
-                            logger.log(err);
-
-                        return done(e, user);
-                    });
-                } else {
-                    return done(err, user);
                 }
+
+                user.facebook = profile._json;
+
+                user.save(function(e) {
+                    if (e)
+                        logger.log(e);
+
+                    return done(e, user);
+                });
             });
         }
     ));
@@ -80,24 +79,23 @@ module.exports = function(passport, config) {
             callbackURL: config.google.callbackURL
         },
         function(accessToken, refreshToken, profile, done) {
-            User.findOne({ 'google.id': profile.id }, function(err, user) {
+            User.findOne({ $or: [ {'google.id': profile.id}, {'email': profile.emails[0].value} ] }, function(err, user) {
                 if (!user) {
                     user = new User({
                         name: profile.displayName,
                         email: profile.emails[0].value,
                         provider: 'google',
-                        google: profile._json
                     });
-
-                    user.save(function(e) {
-                        if (e)
-                            logger.log(e);
-
-                        return done(e, user);
-                    });
-                } else {
-                    return done(err, user);
                 }
+                
+                user.google = profile._json;
+
+                user.save(function(e) {
+                    if (e)
+                        logger.log(e);
+
+                    return done(e, user);
+                });
             });
         }
     ));
