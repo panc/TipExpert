@@ -1,12 +1,17 @@
-    {% if userprofile %}
+{% if userprofile %}
 
-    <li><a href="{{ fullUrl('logout') }}">{{ __('Log out') }}</a></li>
+<li><a href="{{ fullUrl('logout') }}">{{ __('Log out') }}</a></li>
 
-    <li><a href="{{ fullUrl('user.profile', { userId: userprofile.id }) }}">{{ userprofile.name }}</a></li>
+<li><a href="{{ fullUrl('user.profile', { userId: userprofile.id }) }}">{{ userprofile.name }}</a></li>
+    
+    {% if userprofile.google %}
     <li><img src="{{ userprofile.google.picture }}" alt="avatar" height="40" /></li>
-
-    {% else %}
-
-    <li><a href="{{ fullUrl('login') }}">{{ __('Sign in') }}</a></li>
-
+    {% elseif userprofile.facebook %}    
+    <li><img src="{{ userprofile.facebook.picture.data.url }}" alt="avatar" height="40" /></li>
     {% endif %}
+
+{% else %}
+
+<li><a href="{{ fullUrl('login') }}">{{ __('Sign in') }}</a></li>
+
+{% endif %}

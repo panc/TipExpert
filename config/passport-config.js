@@ -44,7 +44,8 @@ module.exports = function(passport, config) {
     passport.use(new FacebookStrategy({
             clientID: config.facebook.clientID,
             clientSecret: config.facebook.clientSecret,
-            callbackURL: config.facebook.callbackURL
+            callbackURL: config.facebook.callbackURL,
+            profileFields: [ 'id',  'username', 'displayName', 'name', 'gender', 'profileUrl', 'emails', 'photos']
         },
         function(accessToken, refreshToken, profile, done) {
             User.findOne({ 'facebook.id': profile.id }, function(err, user) {
@@ -55,7 +56,6 @@ module.exports = function(passport, config) {
                     user = new User({
                         name: profile.displayName,
                         email: profile.emails[0].value,
-                        username: profile.username,
                         provider: 'facebook',
                         facebook: profile._json
                     });
@@ -85,7 +85,6 @@ module.exports = function(passport, config) {
                     user = new User({
                         name: profile.displayName,
                         email: profile.emails[0].value,
-                        username: profile.username,
                         provider: 'google',
                         google: profile._json
                     });
