@@ -8,7 +8,6 @@ var mongoose = require('mongoose')
 var UserSchema = new Schema({
     name: { type: String, default: '' },
     email: { type: String, default: '' },
-    username: { type: String, default: '' },
     provider: { type: String, default: '' },
     hashed_password: { type: String, default: '' },
     salt: { type: String, default: '' },
@@ -69,14 +68,6 @@ UserSchema.path('email').validate(function(email, fn) {
     }
 }, 'Email already exists');
 
-UserSchema.path('username').validate(function(username) {
-    if (this.doesNotRequireValidation()) 
-        return true;
-    
-    return username.length;
-    
-}, 'Username cannot be blank');
-
 UserSchema.path('hashed_password').validate(function(hashed_password) {
     if (this.doesNotRequireValidation()) 
         return true;
@@ -99,7 +90,7 @@ UserSchema.pre('save', function(next) {
 
 // static methods for the user schema
 UserSchema.methods = {
-   /**
+  /**
    * Authenticate - check if the passwords are the same
    *
    * @param {String} plainText
@@ -111,7 +102,7 @@ UserSchema.methods = {
         return this.encryptPassword(plainText) === this.hashed_password;
     },
 
-   /**
+  /**
    * Make salt
    *
    * @return {String}
@@ -122,7 +113,7 @@ UserSchema.methods = {
         return Math.round((new Date().valueOf() * Math.random())) + '';
     },
 
-    /**
+  /**
    * Encrypt password
    *
    * @param {String} password
@@ -143,7 +134,7 @@ UserSchema.methods = {
         }
     },
 
-   /**
+  /**
    * Validation is not required if using OAuth
    */
 

@@ -1,11 +1,12 @@
-    {% if user %}
+    {% if userprofile %}
 
-    <div>
-        <div class="left"><a href="{{ fullUrl('user.profile', { userId: user.id }) }}">{{ user.name }}</a></div>
-        <div class="left"><img src="{{ user.google.picture }}" alt="avatar" height="40" /></did>
-    </div>
+    <li><a href="{{ fullUrl('logout') }}">{{ __('Log out') }}</a></li>
+
+    <li><a href="{{ fullUrl('user.profile', { userId: userprofile.id }) }}">{{ userprofile.name }}</a></li>
+    <li><img src="{{ userprofile.google.picture }}" alt="avatar" height="40" /></li>
+
     {% else %}
 
-    <a href="{{ fullUrl('login') }}">{{ __('Sign in') }}</a>
+    <li><a href="{{ fullUrl('login') }}">{{ __('Sign in') }}</a></li>
 
     {% endif %}
