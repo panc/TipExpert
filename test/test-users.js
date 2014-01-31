@@ -24,7 +24,6 @@ describe('Users', function() {
                 request(app)
                     .post('/users')
                     .field('name', 'Foo bar')
-                    .field('username', 'foobar')
                     .field('email', '')
                     .field('password', 'foobar')
                     .expect('Content-Type', /html/)
@@ -37,7 +36,6 @@ describe('Users', function() {
                 request(app)
                     .post('/users')
                     .field('name', '')
-                    .field('username', 'foobar')
                     .field('email', 'foobar@example.com')
                     .field('password', 'foobar')
                     .expect('Content-Type', /html/)
@@ -66,7 +64,6 @@ describe('Users', function() {
                 request(app)
                     .post('/users')
                     .field('name', 'Foo bar')
-                    .field('username', 'foobar')
                     .field('email', 'foobar@example.com')
                     .field('password', 'foobar')
                     .expect('Content-Type', /plain/)
@@ -84,7 +81,7 @@ describe('Users', function() {
             });
 
             it('should save the user to the database', function(done) {
-                User.findOne({ username: 'foobar' }).exec(function(err, user) {
+                User.findOne({ name: 'Foo bar' }).exec(function(err, user) {
                     should.not.exist(err);
                     user.should.be.an.instanceOf(User);
                     user.email.should.equal('foobar@example.com');
