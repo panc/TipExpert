@@ -1,0 +1,30 @@
+<div>
+    <ul>
+        <li>News</li>
+    
+        <li>Administration:
+            <ul>
+                <li><a href="{{ fullUrl('user') }}">User Management</a></li>
+                <li><a href="{{ fullUrl('matches') }}">Matches</a></li>
+            </ul>
+        </li>
+    
+        <li>Tip-Game
+            <ul>
+                <li><a href="{{ fullUrl('games.new') }}">Add a Game</a></li>
+                <li><a href="{{ fullUrl('games') }}">All My Games</a></li>
+                <li><a href="{{ fullUrl('games.createdByMe') }}">Games created by me</a></li>
+                <li><a href="{{ fullUrl('games.search') }}">Search for Games</a></li>
+            </ul>
+        </li>
+    </ul>
+    
+
+    <p>Total number of phones: {{phones.length}}</p>
+    <p>{{hello}}</p>
+        
+    <ul>
+        <li ng-repeat="phone in phones">Name: {{phone.name}}{{1+2}}</li>
+    </ul>
+
+</div>

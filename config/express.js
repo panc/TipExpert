@@ -1,3 +1,4 @@
+
 // module dependencies
 var express = require('express'),
     mongoStore = require('connect-mongo')(express),
@@ -64,8 +65,9 @@ module.exports = function(app, config, passport) {
     // cookieParser should be above session
     app.use(express.cookieParser());
 
-    // bodyParser should be above methodOverride
-    app.use(express.bodyParser());
+    // json parser should be above methodOverride
+    app.use(express.urlencoded());
+    app.use(express.json());
     app.use(express.methodOverride());
 
     // express/mongo session storage

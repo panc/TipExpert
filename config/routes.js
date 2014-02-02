@@ -5,18 +5,21 @@ var auth = require('./middlewares/authorization');
 var articles = require('../app/controllers/articles'),
     users = require('../app/controllers/users'),
     matches = require('../app/controllers/matches'),
-    games = require('../app/controllers/games'),
-    home = require('../app/controllers/home');
+    games = require('../app/controllers/games');
 
 var articleAuth = [auth.requiresLogin, auth.article.hasAuthorization];
+
+var redirectToAngular = function(req, res) {
+    res.sendfile('./app/views/index.html'); // load the single view file (angular will handle the page changes on the front-end)
+};
 
 module.exports = function(app, shrinkr, passport) {
 
     // Parameter based preloaders
-    app.param('userId', users.user);
     app.param('leagueId', matches.loadLeague);
     app.param('articleId', articles.load);
 
+    
     shrinkr.route({
         // Session routes
         "login": {
@@ -30,17 +33,6 @@ module.exports = function(app, shrinkr, passport) {
         "signup": {
             path: "/signup",
             get: users.signup
-        },
-        
-        // User routes
-        "user": {
-            path: "/users",
-            get : users.index,
-            post: users.create
-        },
-        "user.profile": {
-            path: "/:userId",
-            get: users.showProfile
         },
         
         // Authentication routes
@@ -160,7 +152,11 @@ module.exports = function(app, shrinkr, passport) {
         // Home route
         "home": {
             path: "/",
-            get: home.index
-        }
+            get: redirectToAngular
+        },
     });
+    
+    // let angularjs handle all other routes
+    // this can not be done via shrink route, because it fails when handling paramerts (e.g. :userId)
+    app.get('*', redirectToAngular);
 };

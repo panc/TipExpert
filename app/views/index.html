@@ -1,0 +1,77 @@
+﻿<!doctype html>
+<html ng-app="tipExpert">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="description" content="{{pkg.description}}">
+    <meta name="keywords" content="{{pkg.keywords.join(',')}}">
+
+    <meta name="og:title" content="{{pkg.name}} - {% block title %}{% endblock %}">
+    <meta name="og:description" content="{{pkg.description}}">
+    <meta name="og:url" content="http://www.tipexpert.net">
+    <meta name="og:image" content="http://www.tipexpert.net/files/tipexpert/img/preview.png">
+    <meta name="og:site_name" content="{{pkg.name}}">
+
+    <title>{{pkg.name}} - TODO</title>
+
+    <link rel="icon" type="image/vnd.microsoft.icon" href="/images/favicon.ico" />
+
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.css" />
+    <link type="text/css" rel="stylesheet" href="/css/site.css" />
+
+    <script type="text/javascript" src="/js/jquery-2.0.3.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.js"></script>
+    
+    <script type="text/javascript" src="/lib/angular/angular.js"></script>
+    <script type="text/javascript" src="/lib/angular-route/angular-route.js"></script>
+    <script type="text/javascript" src="/app.js"></script>
+    <script type="text/javascript" src="/controllers/home.js"></script>
+    <script type="text/javascript" src="/controllers/user.js"></script>
+</head>
+<body>
+
+    <header class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{ url('home') }}">
+                    <div class="header-logo">&nbsp;</div>                    
+                </a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="{{ url('home') }}">Home</a></li>
+                    
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administration <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ url('matches') }}">Matches</a></li>
+                            <li><a href="{{ url('user') }}">User</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tip-Game <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ url('games.new') }}"><b class="glyphicon-plus"></b> Add a Game</a></li>
+                            <li><a href="{{ url('games') }}">All My Games</a></li>
+                            <li><a href="{{ url('games.createdByMe') }}">Games created by me</a></li>
+                            <li><a href="{{ url('games.search') }}">Search for Games</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    {% include "users/userInfo.html" %}
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <section role="main" class="main container" ng-view>
+    </section>
+</body>
+</html>
