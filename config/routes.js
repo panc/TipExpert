@@ -7,7 +7,6 @@ var articles = require('../app/controllers/articles'),
     matches = require('../app/controllers/matches'),
     games = require('../app/controllers/games');
 
-var articleAuth = [auth.requiresLogin, auth.article.hasAuthorization];
 
 var redirectToAngular = function(req, res) {
     res.render('index');
@@ -90,20 +89,20 @@ module.exports = function(app, shrinkr, passport) {
         "article": {
             path: "/articles",
             get: articles.index,
-            post: [articleAuth, articles.create]
+            post: [auth.requiresLogin, articles.create]
         },
         "article.new": {
             path: "/new",
-            get: [articleAuth, articles.new]
+            get: [auth.requiresLogin, articles.new]
         },
         "article.item": {
             path: "/:articleId",
             get: articles.show,
-            put: [articleAuth, articles.update]
+            put: [auth.requiresLogin, articles.update]
         },
         "article.item.edit": {
             path: "/edit",
-            get: [articleAuth, articles.edit]
+            get: [auth.requiresLogin, articles.edit]
             //del: [articleAuth, articles.delete]
         },
         
@@ -148,14 +147,14 @@ module.exports = function(app, shrinkr, passport) {
             get: games.edit,
         },
         
-        // API routes
+        // API routes (for angular.js or any mobile app)
         "api": {
             path: "/api",
             get: redirectToAngular
         },
         "api.user": {
             path: "/user",
-            get: user.list
+            get: [ auth.requiresLogin, user.list ]
         },
 
         // these routes are only needed, that shrinkroutes resolve url feature is working in the angularjs template (index.html).
