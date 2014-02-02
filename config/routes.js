@@ -10,7 +10,7 @@ var articles = require('../app/controllers/articles'),
 var articleAuth = [auth.requiresLogin, auth.article.hasAuthorization];
 
 var redirectToAngular = function(req, res) {
-    res.sendfile('./app/views/index.html'); // load the single view file (angular will handle the page changes on the front-end)
+    res.render('index');
 };
 
 module.exports = function(app, shrinkr, passport) {
@@ -149,9 +149,14 @@ module.exports = function(app, shrinkr, passport) {
             get: games.edit,
         },
 
-        // Home route
+        // these routes are only needed, that shrinkroutes resolve url feature is working in the angularjs template (index.html).
         "home": {
             path: "/",
+            get: redirectToAngular
+        },
+        
+        "user": {
+            path: "/user",
             get: redirectToAngular
         },
     });

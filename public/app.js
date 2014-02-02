@@ -8,10 +8,10 @@ tipExpert.config(['$routeProvider', '$locationProvider', function($routeProvider
     $routeProvider
     
     // user routes
-//    .when('/user', {
-//        templateUrl: 'views/user.html',
-//        controller: 'userController'
-//    })
+    .when('/user', {
+        templateUrl: 'views/user.html',
+        controller: 'userController'
+    })
     .when('/user/:userId', {
         templateUrl: '/views/profile.html',
         controller: 'userController'
