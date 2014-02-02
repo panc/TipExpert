@@ -143,4 +143,18 @@ UserSchema.methods = {
     }
 };
 
+// static methods for the user schema
+UserSchema.statics = {
+   /**
+    * List all user
+    */
+
+    list: function(cb) {
+
+        this.find()
+            .sort({ 'name': 1 })
+            .exec(cb);
+    }
+};
+
 mongoose.model('User', UserSchema);

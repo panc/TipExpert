@@ -3,7 +3,7 @@ var auth = require('./middlewares/authorization');
 
 // controller
 var articles = require('../app/controllers/articles'),
-    users = require('../app/controllers/users'),
+    user = require('../app/controllers/user'),
     matches = require('../app/controllers/matches'),
     games = require('../app/controllers/games');
 
@@ -18,21 +18,20 @@ module.exports = function(app, shrinkr, passport) {
     // Parameter based preloaders
     app.param('leagueId', matches.loadLeague);
     app.param('articleId', articles.load);
-
     
     shrinkr.route({
         // Session routes
         "login": {
             path: "/login",
-            get: users.login
+            get: user.login
         },
         "logout": {
             path: "/logout",
-            get: users.logout
+            get: user.logout
         },
         "signup": {
             path: "/signup",
-            get: users.signup
+            get: user.signup
         },
         
         // Authentication routes
@@ -42,7 +41,7 @@ module.exports = function(app, shrinkr, passport) {
                 passport.authenticate('local', {
                     failureRedirect: '/login'
                 }),
-                users.session
+                user.session
             ]
         },
         "auth.facebook": {
@@ -52,7 +51,7 @@ module.exports = function(app, shrinkr, passport) {
                     scope: ['email', 'user_about_me'],
                     failureRedirect: '/login'
                 }),
-                users.signin
+                user.signin
             ]
         },
         "auth.facebook.callback": {
@@ -61,7 +60,7 @@ module.exports = function(app, shrinkr, passport) {
                 passport.authenticate('facebook', {
                     failureRedirect: '/login'
                 }),
-                users.authCallback
+                user.authCallback
             ]
         },
         "auth.google": {
@@ -74,7 +73,7 @@ module.exports = function(app, shrinkr, passport) {
                         'https://www.googleapis.com/auth/userinfo.email'
                     ]
                 }),
-                users.signin
+                user.signin
             ]
         },
         "auth.google.callback": {
@@ -83,7 +82,7 @@ module.exports = function(app, shrinkr, passport) {
                 passport.authenticate('google', {
                     failureRedirect: '/login'
                 }),
-                users.authCallback
+                user.authCallback
             ]
         },
         
@@ -147,6 +146,16 @@ module.exports = function(app, shrinkr, passport) {
         "games.edit": { 
             path: "/edit",
             get: games.edit,
+        },
+        
+        // API routes
+        "api": {
+            path: "/api",
+            get: redirectToAngular
+        },
+        "api.user": {
+            path: "/user",
+            get: user.list
         },
 
         // these routes are only needed, that shrinkroutes resolve url feature is working in the angularjs template (index.html).

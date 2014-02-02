@@ -1,4 +1,14 @@
 <div>
-    user are comming soon
-
+    <p>Number of users: {{users.length}}</p>
+    
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>Name</th>
+            <th>E-Mail</th>
+        </tr>
+        <tr ng-repeat="user in users">
+            <td>{{user.name}}</td>
+            <td>{{user.email}}</td>
+        </tr>
+    </table>
 </div>
