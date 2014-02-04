@@ -1,8 +1,0 @@
-https://github.com/btford/angular-express-seed
-https://github.com/btford/angular-express-blog/blob/master/app.js
-
-https://github.com/poeticninja/ninja-stack
-
-http://scotch.io/tutorials/javascript/creating-a-single-page-todo-app-with-node-and-angular
-
-https://github.com/angular-app/angular-app

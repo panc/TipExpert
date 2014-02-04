@@ -2,12 +2,14 @@
 var mongoose = require('mongoose')
   , Schema = mongoose.Schema
   , crypto = require('crypto')
-  , oAuthTypes = ['github', 'twitter', 'facebook', 'google', 'linkedin'];
+  , roles = require('../utils/userRoles').roles
+  , oAuthTypes = ['facebook', 'google'];
 
 // user schema
 var UserSchema = new Schema({
     name: { type: String, default: '' },
     email: { type: String, default: '' },
+    role: { type: Number, default: roles.user },
     provider: { type: String, default: '' },
     hashed_password: { type: String, default: '' },
     salt: { type: String, default: '' },

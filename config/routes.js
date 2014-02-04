@@ -3,7 +3,7 @@ var auth = require('./middlewares/authorization');
 
 // controller
 var articles = require('../app/controllers/articles'),
-    user = require('../app/controllers/user'),
+    user = require('../app/controllers/users'),
     matches = require('../app/controllers/matches'),
     games = require('../app/controllers/games');
 
