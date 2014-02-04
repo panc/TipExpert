@@ -4,11 +4,10 @@
 
 var home = angular.module('home', []);
 
-home.controller('homeController', function($scope) {
-    $scope.phones = [
-        { name: "Test1" },
-        { name: "2. Test"}
-    ];
+home.controller('homeController', ['$window', '$scope', function($window, $scope) {
     
-    $scope.hello = "Hello";
-});
+    $scope.loginOauth = function(provider) {
+        $window.location.href = '/auth/' + provider;
+    };
+    
+}]);

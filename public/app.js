@@ -4,7 +4,7 @@
 
 var tipExpert = angular.module('tipExpert', ['ngRoute', 'home', 'user']);
 
-tipExpert.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+tipExpert.config(['$routeProvider', '$locationProvider', '$window', '$httpProvider', function($routeProvider, $locationProvider, $window, $httpProvider) {
     $routeProvider
     
     // user routes
@@ -22,9 +22,22 @@ tipExpert.config(['$routeProvider', '$locationProvider', function($routeProvider
         templateUrl: '/views/index.html',
         controller: 'homeController'
     })
-    .otherwise({
-        redirectTo: '/'
-    });
+//    .otherwise({
+//        redirectTo: '/'
+//    });
 
     $locationProvider.html5Mode(true);
+    
+    $httpProvider.interceptors.push(function($q, $location) {
+        return {
+            'responseError': function(response) {
+                if (response.status === 401 || response.status === 403) {
+                    $location.path('/login');
+                     return $q.reject(response);
+                } else {
+                    return $q.reject(response);
+                }
+            }
+        };
+    });
 }]);
