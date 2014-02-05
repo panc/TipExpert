@@ -4,17 +4,21 @@
 
 var tipExpert = angular.module('tipExpert', ['ngRoute', 'home', 'user']);
 
-tipExpert.config(['$routeProvider', '$locationProvider', '$window', '$httpProvider', function($routeProvider, $locationProvider, $window, $httpProvider) {
+tipExpert.config(['$routeProvider', '$locationProvider', '$httpProvider', function($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider
     
     // user routes
     .when('/user', {
-        templateUrl: 'views/user.html',
+        templateUrl: 'views/user/user.html',
         controller: 'userController'
     })
     .when('/user/:userId', {
-        templateUrl: '/views/profile.html',
+        templateUrl: '/views/user/profile.html',
         controller: 'userController'
+    })
+    .when('/login', {
+        templateUrl: '/views/user/login.html',
+        controller: 'loginController'
     })
     
     // home route
@@ -22,9 +26,9 @@ tipExpert.config(['$routeProvider', '$locationProvider', '$window', '$httpProvid
         templateUrl: '/views/index.html',
         controller: 'homeController'
     })
-//    .otherwise({
-//        redirectTo: '/'
-//    });
+    .otherwise({
+        redirectTo: '/'
+    });
 
     $locationProvider.html5Mode(true);
     
@@ -33,7 +37,7 @@ tipExpert.config(['$routeProvider', '$locationProvider', '$window', '$httpProvid
             'responseError': function(response) {
                 if (response.status === 401 || response.status === 403) {
                     $location.path('/login');
-                     return $q.reject(response);
+                    return $q.reject(response);
                 } else {
                     return $q.reject(response);
                 }

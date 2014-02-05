@@ -20,10 +20,6 @@ module.exports = function(app, shrinkr, passport) {
     
     shrinkr.route({
         // Session routes
-        "login": {
-            path: "/login",
-            get: user.login
-        },
         "logout": {
             path: "/logout",
             get: user.logout

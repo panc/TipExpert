@@ -106,7 +106,7 @@
     <Content Include="app\views\leagues\index.html" />
     <Content Include="app\views\user\userInfo.html" />
     <Content Include="app\views\user\signup.html" />
-    <Content Include="app\views\user\login.html" />
+    <Content Include="public\views\user\login.html" />
     <Content Include="app\views\articles\form.html" />
     <Content Include="app\views\articles\edit.html" />
     <Content Include="app\views\articles\show.html" />
@@ -212,8 +212,8 @@
     <Content Include="public\lib\jquery\jquery.min.map" />
     <Content Include="public\lib\jquery\package.json" />
     <Content Include="public\lib\jquery\README.md" />
-    <Content Include="public\views\profile.html" />
-    <Content Include="public\views\user.html" />
+    <Content Include="public\views\user\profile.html" />
+    <Content Include="public\views\user\user.html" />
     <Content Include="public\views\index.html" />
     <Content Include="README.md" />
   </ItemGroup>
@@ -252,6 +252,7 @@
     <Folder Include="public\lib\jquery\" />
     <Folder Include="public\controllers\" />
     <Folder Include="public\views\" />
+    <Folder Include="public\views\user\" />
     <Folder Include="test\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />

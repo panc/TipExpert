@@ -10,6 +10,14 @@ user.controller('userController', function($scope, $http) {
             $scope.users = data;
         })
         .error(function(data, status, headers, config) {
-            alert('test'+ status);
+            //alert('test'+ status);
         });
+});
+
+user.controller('loginController', function($scope) {
+    
+    $scope.loginOauth = function(provider) {
+        $window.location.href = '/auth/' + provider;
+    };
+    
 });
