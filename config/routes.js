@@ -22,7 +22,7 @@ module.exports = function(app, shrinkr, passport) {
         // Session routes
         "logout": {
             path: "/logout",
-            get: user.logout
+            post: user.logout
         },
         "signup": {
             path: "/signup",
