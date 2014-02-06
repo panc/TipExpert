@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('tipExpert', [])
+angular.module('user', [])
     .factory('Auth', function($http, $cookieStore) {
 
         var accessLevels = {
