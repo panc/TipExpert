@@ -2,7 +2,7 @@
 
 // Declare app level module which depends on filters, and services
 
-var tipExpert = angular.module('tipExpert', ['ngRoute', 'home', 'user']);
+var tipExpert = angular.module('tipExpert', ['ngRoute', 'home', 'user', 'ui.bootstrap']);
 
 tipExpert.config(['$routeProvider', '$locationProvider', '$httpProvider', function($routeProvider, $locationProvider, $httpProvider) {
 
