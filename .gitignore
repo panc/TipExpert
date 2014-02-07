@@ -17,7 +17,7 @@ node_modules
 /TipExpert.sln.DotSettings.user
 /TipExpert.v11.suo
 
-/public/js/lib
+bower_components/*
 .bower-cache
 .bower-registry
 .bower-tmp

@@ -86,7 +86,8 @@ module.exports = function(app, config, passport) {
     app.use(shrinkr.middleware);
 
     app.use(profile.exposeUserInfoToViews);
-    app.use(express.static(config.root + '/public'));
+    app.use('/', express.static(config.root + '/public'));
+    app.use('/bower', express.static(config.root + '/bower_components'));
 
     // adds CSRF support
     if (process.env.NODE_ENV !== 'test') {
