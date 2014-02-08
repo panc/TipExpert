@@ -4,11 +4,7 @@ var tipExpert = angular.module('tipExpert', ['ngRoute', 'tipExpert.home', 'tipEx
 
 tipExpert.config(['$routeProvider', '$locationProvider', '$httpProvider', function($routeProvider, $locationProvider, $httpProvider) {
 
-    var accessLevels = {
-        admin: 1,
-        user: 2,
-        public: 3
-    };
+    var accessLevels = userConfig.accessLevels;
 
     $routeProvider
     
@@ -54,13 +50,17 @@ tipExpert.config(['$routeProvider', '$locationProvider', '$httpProvider', functi
     });
 }]);
 
-tipExpert.run(['$rootScope', '$location', '$http', 'Auth', function($rootScope, $location, $http, Auth) {
+tipExpert.run(['$rootScope', '$location', '$http', '$route', 'Auth', function($rootScope, $location, $http, $route, Auth) {
 
     $rootScope.$on("$routeChangeStart", function(event, next, current) {
-        $rootScope.error = null;
         if (!Auth.authorize(next.access)) {
-            if (Auth.isLoggedIn()) $location.path('/');
-            else $location.path('/login');
+
+            event.preventDefault();
+            
+            if (Auth.isLoggedIn()) 
+                $location.path('/');
+            else 
+                $location.path('/login');
         }
     });
 

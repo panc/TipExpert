@@ -6,17 +6,8 @@ var userModule = angular.module('tipExpert.user', [ 'ngCookies' ]);
     
 userModule.factory('Auth', ['$http', '$cookieStore', function($http, $cookieStore) {
 
-        var accessLevels = {
-            admin: 1,
-            user: 2,
-            public: 3
-        };
-        
-        var userRoles = {
-            admin: 1,
-            user: 2,
-            public: 3
-        };
+        var accessLevels =  userConfig.accessLevels;
+        var userRoles = userConfig.roles;
         
         var currentUser = $cookieStore.get('user') || { username: '', role: userRoles.public };
 
@@ -31,7 +22,7 @@ userModule.factory('Auth', ['$http', '$cookieStore', function($http, $cookieStor
                 if (role === undefined)
                     role = currentUser.role;
 
-                if (accessLevel == accessLevels.user)
+                if (accessLevel == accessLevels.admin)
                     return role == userRoles.admin;
                 
                 if (accessLevel == accessLevels.user)

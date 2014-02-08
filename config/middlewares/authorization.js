@@ -1,4 +1,4 @@
-var roles = require('../../app/utils/userRoles').roles;
+var roles = require('../../public/modules/user/userConfig').roles;
     
 /*
  *  Generic require login routing middleware

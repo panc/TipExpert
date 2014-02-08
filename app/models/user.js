@@ -2,7 +2,7 @@
 var mongoose = require('mongoose')
   , Schema = mongoose.Schema
   , crypto = require('crypto')
-  , roles = require('../utils/userRoles').roles
+  , roles = require('../../public/modules/user/userConfig').roles
   , oAuthTypes = ['facebook', 'google'];
 
 // user schema

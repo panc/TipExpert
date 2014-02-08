@@ -31,8 +31,4 @@ user.controller('navigationController', ['$rootScope', '$scope', '$location', 'A
         });
     };
     
-    $scope.login = function(provider) {
-        alert('ss');
-    };
-    
 }]);
