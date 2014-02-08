@@ -1,7 +1,10 @@
 'use strict';
 
-angular.module('user', [])
-    .factory('Auth', function($http, $cookieStore) {
+/* Define the User module */
+
+var userModule = angular.module('tipExpert.user', [ 'ngCookies' ]);
+    
+userModule.factory('Auth', ['$http', '$cookieStore', function($http, $cookieStore) {
 
         var accessLevels = {
             admin: 1,
@@ -22,21 +25,19 @@ angular.module('user', [])
         function changeUser(user) {
             _.extend(currentUser, user);
         }
-
-        ;
-
+        
         return {
             authorize: function(accessLevel, role) {
                 if (role === undefined)
                     role = currentUser.role;
 
-                if (userRoles.admin)
-                    return true;
+                if (accessLevel == accessLevels.user)
+                    return role == userRoles.admin;
                 
-                if (accessLevel == accessLevels.user && (role == userRoles.admin || role == userRoles.user))
-                    return true;
+                if (accessLevel == accessLevels.user)
+                    return role == userRoles.admin || role == userRoles.user;
 
-                return accessLevel == accessLevels.public;
+                return true;
             },
             isLoggedIn: function(user) {
                 if (user === undefined)
@@ -69,4 +70,4 @@ angular.module('user', [])
             userRoles: userRoles,
             user: currentUser
         };
-    });
+    }]);

@@ -2,9 +2,9 @@
 
 /* Home module */
 
-var home = angular.module('home', []);
+var homeModule = angular.module('tipExpert.home', []);
 
-home.controller('homeController', ['$window', '$scope', function($window, $scope) {
+homeModule.controller('homeController', ['$window', '$scope', function($window, $scope) {
     
     $scope.loginOauth = function(provider) {
         $window.location.href = '/auth/' + provider;

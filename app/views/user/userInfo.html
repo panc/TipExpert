@@ -1,6 +1,6 @@
 {% if userprofile %}
 
-<li><a href="{{ fullUrl('logout') }}">{{ __('Log out') }}</a></li>
+<li><a href="" ng-click="logout()">{{ __('Log out') }}</a></li>
 
 <li><a href="{{ fullUrl('user.profile', { userId: userprofile.id }) }}">{{ userprofile.name }}</a></li>
     

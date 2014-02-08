@@ -49,10 +49,12 @@
     <Compile Include="config\routes.js" />
     <Compile Include="locales\de.js" />
     <Compile Include="locales\en.js" />
-    <Compile Include="public\js\app.js" />
-    <Compile Include="public\js\controllers\user.js" />
-    <Compile Include="public\js\controllers\home.js" />
-    <Compile Include="public\js\te-matches.js" />
+    <Compile Include="public\app.js" />
+    <Compile Include="public\modules\game\gameControllers.js" />
+    <Compile Include="public\modules\match\matchControllers.js" />
+    <Compile Include="public\modules\user\userControllers.js" />
+    <Compile Include="public\modules\home\homeControllers.js" />
+    <Compile Include="public\modules\user\userServices.js" />
     <Compile Include="test\helper.js" />
     <Compile Include="test\test-articles.js" />
     <Compile Include="test\test-leagues.js" />
@@ -65,7 +67,7 @@
     <Content Include="app\views\leagues\index.html" />
     <Content Include="app\views\user\userInfo.html" />
     <Content Include="app\views\user\signup.html" />
-    <Content Include="public\views\user\login.html" />
+    <Content Include="public\modules\user\views\login.html" />
     <Content Include="app\views\articles\form.html" />
     <Content Include="app\views\articles\edit.html" />
     <Content Include="app\views\articles\show.html" />
@@ -82,9 +84,9 @@
     <Content Include="public\images\favicon.ico" />
     <Content Include="public\images\google.png" />
     <Content Include="public\images\tipexpert_v4_2.png" />
-    <Content Include="public\views\user\profile.html" />
-    <Content Include="public\views\user\user.html" />
-    <Content Include="public\views\index.html" />
+    <Content Include="public\modules\user\views\profile.html" />
+    <Content Include="public\modules\user\views\user.html" />
+    <Content Include="public\modules\home\views\index.html" />
     <Content Include="README.md" />
   </ItemGroup>
   <ItemGroup>
@@ -100,13 +102,16 @@
     <Folder Include="config\" />
     <Folder Include="config\middlewares\" />
     <Folder Include="locales\" />
-    <Folder Include="public\js\" />
     <Folder Include="public\css\" />
     <Folder Include="public\images\" />
     <Folder Include="public\" />
-    <Folder Include="public\js\controllers\" />
-    <Folder Include="public\views\" />
-    <Folder Include="public\views\user\" />
+    <Folder Include="public\modules\home\views\" />
+    <Folder Include="public\modules\home\" />
+    <Folder Include="public\modules\match\" />
+    <Folder Include="public\modules\game\" />
+    <Folder Include="public\modules\user\" />
+    <Folder Include="public\modules\" />
+    <Folder Include="public\modules\user\views\" />
     <Folder Include="test\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />

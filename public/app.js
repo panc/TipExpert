@@ -1,8 +1,6 @@
 'use strict';
 
-// Declare app level module which depends on filters, and services
-
-var tipExpert = angular.module('tipExpert', ['ngRoute', 'home', 'user', 'ui.bootstrap']);
+var tipExpert = angular.module('tipExpert', ['ngRoute', 'tipExpert.home', 'tipExpert.user', 'ui.bootstrap']);
 
 tipExpert.config(['$routeProvider', '$locationProvider', '$httpProvider', function($routeProvider, $locationProvider, $httpProvider) {
 
@@ -14,26 +12,26 @@ tipExpert.config(['$routeProvider', '$locationProvider', '$httpProvider', functi
 
     $routeProvider
     
-        // user routes
+        // routes for user module
         .when('/user', {
-            templateUrl: 'views/user/user.html',
+            templateUrl: '/modules/user/views/user.html',
             controller: 'userController',
             access: accessLevels.user
         })
         .when('/user/:userId', {
-            templateUrl: '/views/user/profile.html',
+            templateUrl: '/modules/user/views/profile.html',
             controller: 'userController',
             access: accessLevels.user
         })
         .when('/login', {
-            templateUrl: '/views/user/login.html',
+            templateUrl: '/modules/user/views/login.html',
             controller: 'loginController',
             access: accessLevels.public
         })
     
-        // home route
+        // routes for home module
         .when('/', {
-            templateUrl: '/views/index.html',
+            templateUrl: '/modules/home/views/index.html',
             controller: 'homeController'
         })
         .otherwise({
@@ -56,14 +54,14 @@ tipExpert.config(['$routeProvider', '$locationProvider', '$httpProvider', functi
     });
 }]);
 
-//.run(['$rootScope', '$location', '$http', 'Auth', function($rootScope, $location, $http, Auth) {
-//
-//    $rootScope.$on("$routeChangeStart", function(event, next, current) {
-//        $rootScope.error = null;
-//        if (!Auth.authorize(next.access)) {
-//            if (Auth.isLoggedIn()) $location.path('/');
-//            else $location.path('/login');
-//        }
-//    });
-//
-//}]);
+tipExpert.run(['$rootScope', '$location', '$http', 'Auth', function($rootScope, $location, $http, Auth) {
+
+    $rootScope.$on("$routeChangeStart", function(event, next, current) {
+        $rootScope.error = null;
+        if (!Auth.authorize(next.access)) {
+            if (Auth.isLoggedIn()) $location.path('/');
+            else $location.path('/login');
+        }
+    });
+
+}]);

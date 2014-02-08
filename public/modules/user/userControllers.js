@@ -1,8 +1,8 @@
 'use strict';
 
-/* User module */
+/* Use the User module (it is defined in the userServices.js) */
 
-var user = angular.module('user', []);
+var user = angular.module('tipExpert.user');
 
 user.controller('userController', ['$http', '$scope', function($http, $scope)  {
     $http.get('/api/user').
@@ -19,6 +19,20 @@ user.controller('loginController', ['$window', '$scope', function($window, $scop
     
     $scope.loginOauth = function(provider) {
         $window.location.href = '/auth/' + provider;
+    };
+    
+}]);
+
+user.controller('navigationController', ['$rootScope', '$scope', '$location', 'Auth', function($rootScope, $scope, $location, Auth) {
+    
+    $scope.logout = function(provider) {
+        Auth.logout(function() {
+            $location.path('/login');
+        });
+    };
+    
+    $scope.login = function(provider) {
+        alert('ss');
     };
     
 }]);
