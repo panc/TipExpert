@@ -14,6 +14,9 @@ user.controller('userController', ['$http', '$scope', function($http, $scope)  {
         });
 }]);
 
+user.controller('userProfileController', ['$http', '$scope', function($http, $scope)  {
+    var s = $scope.$state;
+}]);
 
 user.controller('loginController', ['$window', '$scope', function($window, $scope) {
     

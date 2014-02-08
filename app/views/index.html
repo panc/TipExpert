@@ -17,13 +17,14 @@
 
     <link type="text/css" rel="stylesheet" href="/css/bootstrap.css" />
     <link type="text/css" rel="stylesheet" href="/css/site.css" />
-
+    
     <script type="text/javascript" src="/bower/angular/angular.js"></script>
     <script type="text/javascript" src="/bower/angular-bootstrap/ui-bootstrap.js"></script>
     <script type="text/javascript" src="/bower/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script type="text/javascript" src="/bower/angular-route/angular-route.js"></script>
     <script type="text/javascript" src="/bower/angular-cookies/angular-cookies.js"></script>
-    
+    <script type="text/javascript" src="/bower/angular-ui-router/release/angular-ui-router.js"></script>
+
     <script type="text/javascript" src="/modules/user/userConfig.js"></script>
     <script type="text/javascript" src="/app.js"></script>
     <script type="text/javascript" src="/modules/user/userServices.js"></script>
@@ -76,7 +77,7 @@
         </div>
     </header>
 
-    <section role="main" class="main container" ng-view>
+    <section role="main" class="main container" ui-view>
     </section>
 </body>
 </html>
