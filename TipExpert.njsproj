@@ -62,7 +62,7 @@
     <Content Include=".travis.yml" />
     <Content Include="app\views\404.html" />
     <Content Include="app\views\games\index.html" />
-    <Content Include="app\views\index.html" />
+    <Content Include="app\views\template.html" />
     <Content Include="app\views\leagues\matches.html" />
     <Content Include="app\views\leagues\index.html" />
     <Content Include="app\views\user\userInfo.html" />

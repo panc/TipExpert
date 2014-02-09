@@ -5,13 +5,13 @@
     <meta name="description" content="{{pkg.description}}">
     <meta name="keywords" content="{{pkg.keywords.join(',')}}">
 
-    <meta name="og:title" content="{{pkg.name}} - {% block title %}{% endblock %}">
+    <meta name="og:title" content="{{pkg.name}}">
     <meta name="og:description" content="{{pkg.description}}">
     <meta name="og:url" content="http://www.tipexpert.net">
     <meta name="og:image" content="http://www.tipexpert.net/files/tipexpert/img/preview.png">
     <meta name="og:site_name" content="{{pkg.name}}">
 
-    <title>{{pkg.name}} - TODO</title>
+    <title ng-bind="'{{pkg.name}} - ' + $state.current.title"></title>
 
     <link rel="icon" type="image/vnd.microsoft.icon" href="/images/favicon.ico" />
 
@@ -54,18 +54,18 @@
                     <li class="dropdown">
                         <a href="" class="dropdown-toggle" data-toggle="dropdown">Administration <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="/matches">Matches</a></li>
-                            <li><a href="/user">User</a></li>
+                            <li><a ui-sref="matches.overview">Matches</a></li>
+                            <li><a ui-sref="user.overview">User</a></li>
                         </ul>
                     </li>
                     
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tip-Game <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{ url('games.new') }}"><b class="glyphicon-plus"></b> Add a Game</a></li>
-                            <li><a href="{{ url('games') }}">All My Games</a></li>
-                            <li><a href="{{ url('games.createdByMe') }}">Games created by me</a></li>
-                            <li><a href="{{ url('games.search') }}">Search for Games</a></li>
+                            <li><a ui-sref="games.new"><b class="glyphicon-plus"></b> Add a Game</a></li>
+                            <li><a ui-sref="games.me'">All My Games</a></li>
+                            <li><a ui-sref="games.createdByMe">Games created by me</a></li>
+                            <li><a ui-sref="games.search">Search for Games</a></li>
                         </ul>
                     </li>
                 </ul>

@@ -20,18 +20,21 @@ tipExpert.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '
             abstract: true
         })
         .state('user.overview', {
+            title: 'Users',
             url: '',
             templateUrl: '/modules/user/views/user.html',
             controller: 'userController',
             access: accessLevels.user
         })
         .state('user.profile', {
+            title: 'User profile',
             url: '/:userId',
             templateUrl: '/modules/user/views/profile.html',
             controller: 'userProfileController',
             access: accessLevels.user
         })
         .state('login', {
+            title: 'Login',
             url: '/login',
             templateUrl: '/modules/user/views/login.html',
             controller: 'loginController',
@@ -40,6 +43,7 @@ tipExpert.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '
     
         // routes for home module
         .state('home', {
+            title: 'Home',
             url: '/',
             templateUrl: '/modules/home/views/index.html',
             controller: 'homeController',

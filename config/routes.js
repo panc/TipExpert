@@ -9,7 +9,7 @@ var articles = require('../app/controllers/articles'),
 
 
 var redirectToAngular = function(req, res) {
-    res.render('index');
+    res.render('template');
 };
 
 module.exports = function(app, shrinkr, passport) {
@@ -151,17 +151,6 @@ module.exports = function(app, shrinkr, passport) {
         "api.user": {
             path: "/user",
             get: [ auth.requiresLogin, user.list ]
-        },
-
-        // these routes are only needed, that shrinkroutes resolve url feature is working in the angularjs template (index.html).
-        "home": {
-            path: "/",
-            get: redirectToAngular
-        },
-        
-        "user": {
-            path: "/user",
-            get: redirectToAngular
         },
     });
     
