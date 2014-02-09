@@ -42,13 +42,6 @@ exports.logout = function(req, res) {
 };
 
 /**
- * Session
- */
-exports.session = function(req, res) {
-    res.send(200);
-};
-
-/**
  * Create user
  */
 exports.create = function(req, res) {

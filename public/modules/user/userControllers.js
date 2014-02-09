@@ -18,20 +18,20 @@ user.controller('userProfileController', ['$http', '$scope', function($http, $sc
     
 }]);
 
-user.controller('loginController', ['$window', '$scope', 'Auth', function($window, $scope, Auth) {
+user.controller('loginController', ['$window', '$scope', '$state', 'Auth', function($window, $scope, $state, Auth) {
 
     $scope.login = function() {
         $scope.submitted = true;
         
         Auth.login({
-                email: $scope.loginForm.email,
-                password: $scope.loginForm.password
+                email: $scope.loginForm.email.$modelValue,
+                password: $scope.loginForm.password.$modelValue
             },
             function(res) {
-                $location.path('/');
+                $state.go('home');
             },
             function(err) {
-                var s = '';
+                // todo
             });
     };
 
