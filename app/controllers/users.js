@@ -6,9 +6,9 @@ var mongoose = require('mongoose'),
 
     // is not working when using angularjs!
 var redirectAfterLogin = function(req, res) {
-//    var redirectTo = req.session.returnTo ? req.session.returnTo : '/';
-//    delete req.session.returnTo;
-//    res.redirect(redirectTo);
+    var redirectTo = req.session.returnTo ? req.session.returnTo : '/';
+    delete req.session.returnTo;
+    res.redirect(redirectTo);
 };
 
 exports.signin = function(req, res) { };
@@ -39,7 +39,7 @@ exports.signup = function(req, res) {
  */
 exports.logout = function(req, res) {
     req.logout();
-    res.redirect('/');
+    res.send(200);
 };
 
 /**
