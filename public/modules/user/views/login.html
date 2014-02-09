@@ -14,27 +14,33 @@
     <div class="col-lg-6">
         <div class="well">
 
-            <form class="form-horizontal" action="{{ fullUrl('auth') }}" method="post" role="form">
+            <form class="form-horizontal" name="loginForm" ng-submit="login()" novalidate>
                 <fieldset>
                     <legend>Login</legend>
 
-                    <div class="form-group">
-                        <label for="email" class="col-lg-2 control-label">Email</label>
+                    <!-- EMAIL -->
+                    <div class="form-group" ng-class="{ 'has-error' : loginForm.email.$invalid && submitted }">
+                        <label class="col-lg-2 control-label">Email</label>
                         <div class="col-lg-10">
-                            <input id="email" type="email" name="email" placeholder="Email" class="form-control" />
+                            <input type="email" name="email" placeholder="Email" class="form-control" ng-model="email" required/>
+                            <p ng-show="loginForm.email.$invalid && submitted" class="help-block">E-Mail is required.</p>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="password" class="col-lg-2 control-label">Password</label>
+                    <!-- PASSWORD -->
+                    <div class="form-group" ng-class="{ 'has-error' : loginForm.password.$invalid && submitted }">
+                        <label class="col-lg-2 control-label">Password</label>
                         <div class="col-lg-10">
-                            <input id="password" type="password" name="password" placeholder="Password" class="form-control" />
+                            <input type="password" name="password" placeholder="Password" class="form-control" ng-model="password" required/>
+                            <p ng-show="loginForm.password.$invalid && submitted" class="help-block">Password is required.</p>
                         </div>
                     </div>
+                    
+                    <!-- BUTTONS -->
                     <div class="form-group">
                         <div class="col-lg-10 col-lg-offset-2">
                             <button type="submit" class="btn btn-primary">Log in</button>&nbsp; or &nbsp;
-                            <a href="" title="sign up" class="show-signup">Sign up</a>
+                            <a ui-sref="signup" title="sign up">Sign up</a>
                         </div>
                     </div>
                 </fieldset>

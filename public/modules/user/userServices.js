@@ -44,7 +44,7 @@ userModule.factory('Auth', ['$http', '$cookieStore', function($http, $cookieStor
 //                }).error(error);
 //            },
             login: function(user, success, error) {
-                $http.post('/login', user).success(function(user) {
+                $http.post('/auth', user).success(function(user) {
                     changeUser(user);
                     success(user);
                 }).error(error);

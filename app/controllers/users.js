@@ -4,7 +4,6 @@ var mongoose = require('mongoose'),
     utils = require('../utils/utils');
 
 
-    // is not working when using angularjs!
 var redirectAfterLogin = function(req, res) {
     var redirectTo = req.session.returnTo ? req.session.returnTo : '/';
     delete req.session.returnTo;
@@ -45,7 +44,9 @@ exports.logout = function(req, res) {
 /**
  * Session
  */
-exports.session = redirectAfterLogin;
+exports.session = function(req, res) {
+    res.send(200);
+};
 
 /**
  * Create user
