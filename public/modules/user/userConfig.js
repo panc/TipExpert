@@ -3,6 +3,7 @@
     exports.roles = {
         admin: 1,
         user: 2,
+        public: 3
     };
     
     exports.accessLevels = {

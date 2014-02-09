@@ -68,8 +68,6 @@ tipExpert.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '
 
 tipExpert.run(['$rootScope', '$location', '$state', 'Auth', function($rootScope, $location, $state, Auth) {
 
-$rootScope.$state = $state;
-
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
 
         if (!Auth.authorize(toState.access)) {

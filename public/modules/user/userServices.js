@@ -9,12 +9,13 @@ userModule.factory('Auth', ['$http', '$cookieStore', function($http, $cookieStor
         var accessLevels =  userConfig.accessLevels;
         var userRoles = userConfig.roles;
         
-        var currentUser = $cookieStore.get('user') || { username: '', role: userRoles.public };
+        var currentUser = $cookieStore.get('user') || { id: '', username: '', role: userRoles.public, picture: '' };
 
         $cookieStore.remove('user');
 
         function changeUser(user) {
-            _.extend(currentUser, user);
+            currentUser.username = user.username;
+            currentUser.role = user.role;
         }
         
         return {
@@ -50,10 +51,12 @@ userModule.factory('Auth', ['$http', '$cookieStore', function($http, $cookieStor
             },
             logout: function(success, error) {
                 $http.post('/logout').success(function() {
+                    
                     changeUser({
                         username: '',
                         role: userRoles.public
                     });
+                    
                     success();
                 }).error(error);
             },

@@ -5,10 +5,26 @@ var auth = require('./middlewares/authorization');
 var articles = require('../app/controllers/articles'),
     user = require('../app/controllers/users'),
     matches = require('../app/controllers/matches'),
-    games = require('../app/controllers/games');
+    games = require('../app/controllers/games'),
+    roles = require('../public/modules/user/userConfig').roles;
 
 
 var redirectToAngular = function(req, res) {
+    var user = req.user || { };
+    
+    var picture = '';
+    if (user.google)
+        picture = req.user.google.picture;
+    if (user.facebook)
+        picture = req.user.facebook.picture.data.url ;
+    
+    res.cookie('user', JSON.stringify({
+        'id': user.id || '',
+        'username': user.name || '',
+        'role': user.role || roles.public,
+        'picture': picture
+    }));
+    
     res.render('template');
 };
 

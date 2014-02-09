@@ -15,7 +15,7 @@ user.controller('userController', ['$http', '$scope', function($http, $scope)  {
 }]);
 
 user.controller('userProfileController', ['$http', '$scope', function($http, $scope)  {
-    var s = $scope.$state;
+    
 }]);
 
 user.controller('loginController', ['$window', '$scope', function($window, $scope) {
@@ -26,11 +26,16 @@ user.controller('loginController', ['$window', '$scope', function($window, $scop
     
 }]);
 
-user.controller('navigationController', ['$rootScope', '$scope', '$location', 'Auth', function($rootScope, $scope, $location, Auth) {
-    
-    $scope.logout = function(provider) {
+user.controller('navigationController', ['$rootScope', '$scope', '$state', 'Auth', function($rootScope, $scope, $state, Auth) {
+
+    $scope.isLoggedIn = Auth.isLoggedIn();
+    $scope.user = Auth.user;
+
+    $scope.logout = function() {
         Auth.logout(function() {
-            $location.path('/login');
+            $state.go('login');
+            $scope.isLoggedIn = Auth.isLoggedIn();
+            $scope.user = Auth.user;
         });
     };
     
