@@ -64,8 +64,7 @@ user.controller('signUpController', ['$scope', '$state', 'Auth', function($scope
     $scope.user = {
         name: '',
         email: '',
-        password: '',
-        role: userConfig.roles.user
+        password: ''
     };
 
     $scope.signup = function() {
@@ -73,7 +72,7 @@ user.controller('signUpController', ['$scope', '$state', 'Auth', function($scope
             $state.go('home');
         },
         function(err) {
-            // todo
+            alert(err.errors);
         });
     };
     

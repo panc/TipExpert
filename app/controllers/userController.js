@@ -1,7 +1,8 @@
 
 var mongoose = require('mongoose'),
     User = mongoose.model('User'),
-    utils = require('../utils/utils');
+    utils = require('../utils/utils'),
+    roles = require('../../public/modules/user/userConfig').roles;
 
 
 var redirectAfterLogin = function(req, res) {
@@ -38,21 +39,18 @@ exports.logout = function(req, res) {
 exports.create = function(req, res) {
     var user = new User(req.body);
     user.provider = 'local';
-    user.save(function(err) {
-        if (err) {
-            return res.render('authentication/signup', {
-                errors:  utils.formatErrors(err.errors),
-                action: req.buildUrl('home'),
-                user: user,
-            });
-        }
+    user.role = roles.user; 
 
+    user.save(function(err) {
+        if (err) 
+            return res.json(400, { errors: utils.formatErrors(err.errors) });
+        
         // manually login the user once successfully signed up
         req.logIn(user, function(e) {
             if (e)
                 return next(e);
 
-            return res.redirect('/');
+            return res.send(200);
         });
     });
 };

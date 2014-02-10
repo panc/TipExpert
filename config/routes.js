@@ -42,7 +42,7 @@ module.exports = function(app, shrinkr, passport) {
         },
         "signup": {
             path: "/signup",
-            get: user.create
+            post: user.create
         },
         
         // Authentication routes
