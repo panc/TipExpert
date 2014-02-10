@@ -68,6 +68,11 @@ user.controller('signUpController', ['$scope', '$state', 'Auth', function($scope
     };
 
     $scope.signup = function() {
+        $scope.submitted = true;
+        
+        if ($scope.submitForm.$invalid)
+            return;
+
         Auth.signup($scope.user, function() {
             $state.go('home');
         },

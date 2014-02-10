@@ -19,13 +19,6 @@ exports.signin = function(req, res) { };
 exports.authCallback = redirectAfterLogin;
 
 /**
- * Show login form
- */
-exports.login = function(req, res) {
-    res.render('user/login');
-};
-
-/**
  * Logout
  */
 exports.logout = function(req, res) {
