@@ -33,11 +33,20 @@ tipExpert.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '
             controller: 'userProfileController',
             access: accessLevels.user
         })
+    
+        // session routes
         .state('login', {
             title: 'Login',
             url: '/login',
             templateUrl: '/modules/user/views/login.html',
             controller: 'loginController',
+            access: accessLevels.public
+        })
+        .state('signup', {
+            title: 'Sign Up',
+            url: '/signup',
+            templateUrl: '/modules/user/views/signup.html',
+            controller: 'signUpController',
             access: accessLevels.public
         })
     

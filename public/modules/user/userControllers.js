@@ -41,7 +41,7 @@ user.controller('loginController', ['$window', '$scope', '$state', 'Auth', funct
     
 }]);
 
-user.controller('navigationController', ['$rootScope', '$scope', '$state', 'Auth', function($rootScope, $scope, $state, Auth) {
+user.controller('navigationController', ['$scope', '$state', 'Auth', function($scope, $state, Auth) {
 
     $scope.isLoggedIn = Auth.isLoggedIn();
     $scope.user = Auth.user;
@@ -51,6 +51,29 @@ user.controller('navigationController', ['$rootScope', '$scope', '$state', 'Auth
             $state.go('login');
             $scope.isLoggedIn = Auth.isLoggedIn();
             $scope.user = Auth.user;
+        },
+        function(err) {
+            // todo
+        });
+    };
+    
+}]);
+
+user.controller('signUpController', ['$scope', '$state', 'Auth', function($scope, $state, Auth) {
+
+    $scope.user = {
+        name: '',
+        email: '',
+        password: '',
+        role: userConfig.roles.user
+    };
+
+    $scope.signup = function() {
+        Auth.signup($scope.user, function() {
+            $state.go('home');
+        },
+        function(err) {
+            // todo
         });
     };
     

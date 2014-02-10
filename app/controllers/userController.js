@@ -25,15 +25,6 @@ exports.login = function(req, res) {
 };
 
 /**
- * Show sign up form
- */
-exports.signup = function(req, res) {
-    res.render('user/signup', {
-        user: new User()
-    });
-};
-
-/**
  * Logout
  */
 exports.logout = function(req, res) {
@@ -66,6 +57,9 @@ exports.create = function(req, res) {
     });
 };
 
+/**
+ * List all user
+ */
 exports.list = function(req, res) {
     User.list(function(err, users) {
         res.json(users);

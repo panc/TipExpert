@@ -1,0 +1,40 @@
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class="well">
+            <form role="form" class="form-horizontal">
+                <fieldset>
+                    <legend>Sign up</legend>
+
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Username</label>
+                        <div class="col-lg-10">
+                            <input type="text" name="name" value="{{ user.name }}" placeholder="Enter the name" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Password</label>
+                        <div class="col-lg-10">
+                            <input type="password" name="password" value="{{ user.password}}" placeholder="Enter the password" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Email</label>
+                        <div class="col-lg-10">
+                            <input type="text" name="email" value="{{ user.email}}" placeholder="Enter the email" class="form-control">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="col-lg-10 col-lg-offset-2">
+                            <a ui-sref="home" title="cancel" class="btn-default btn">Cancel</a>
+                            <button ng-click="signup()" class="btn btn-primary">Save</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -3,7 +3,7 @@ var auth = require('./middlewares/authorization');
 
 // controller
 var articles = require('../app/controllers/articles'),
-    user = require('../app/controllers/users'),
+    user = require('../app/controllers/userController'),
     matches = require('../app/controllers/matches'),
     games = require('../app/controllers/games'),
     roles = require('../public/modules/user/userConfig').roles;
@@ -42,7 +42,7 @@ module.exports = function(app, shrinkr, passport) {
         },
         "signup": {
             path: "/signup",
-            get: user.signup
+            get: user.create
         },
         
         // Authentication routes

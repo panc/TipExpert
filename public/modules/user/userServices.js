@@ -37,12 +37,12 @@ userModule.factory('Auth', ['$http', '$cookieStore', function($http, $cookieStor
                 
                 return user.role == userRoles.user || user.role == userRoles.admin;
             },
-//            register: function(user, success, error) {
-//                $http.post('/register', user).success(function(res) {
-//                    changeUser(res);
-//                    success();
-//                }).error(error);
-//            },
+            signup: function(user, success, error) {
+                $http.post('/signup', user).success(function(res) {
+                    changeUser(res);
+                    success();
+                }).error(error);
+            },
             login: function(user, success, error) {
                 $http.post('/auth', user).success(function(user) {
                     changeUser(user);
