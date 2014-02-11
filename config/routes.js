@@ -20,7 +20,7 @@ var redirectToAngular = function(req, res) {
     
     res.cookie('user', JSON.stringify({
         'id': user.id || '',
-        'username': user.name || '',
+        'name': user.name || '',
         'role': user.role || roles.public,
         'picture': picture
     }));
@@ -63,7 +63,7 @@ module.exports = function(app, shrinkr, passport) {
                         if (req.body.rememberme) 
                             req.session.cookie.maxAge = 1000 * 60 * 60 * 24 * 7;
                         
-                        res.json(200, { "role": user.role, "username": user.username });
+                        res.json(200, user);
                     });
                 })(req, res, next);
             }

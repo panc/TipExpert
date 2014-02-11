@@ -43,7 +43,7 @@ exports.create = function(req, res) {
             if (e)
                 return next(e);
 
-            return res.send(200);
+            return res.send(200, user);
         });
     });
 };

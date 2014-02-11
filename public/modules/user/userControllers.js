@@ -43,14 +43,11 @@ user.controller('loginController', ['$window', '$scope', '$state', 'Auth', funct
 
 user.controller('navigationController', ['$scope', '$state', 'Auth', function($scope, $state, Auth) {
 
-    $scope.isLoggedIn = Auth.isLoggedIn();
     $scope.user = Auth.user;
 
     $scope.logout = function() {
         Auth.logout(function() {
             $state.go('login');
-            $scope.isLoggedIn = Auth.isLoggedIn();
-            $scope.user = Auth.user;
         },
         function(err) {
             // todo

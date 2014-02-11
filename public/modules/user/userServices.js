@@ -9,14 +9,17 @@ userModule.factory('Auth', ['$http', '$cookieStore', function($http, $cookieStor
         var accessLevels =  userConfig.accessLevels;
         var userRoles = userConfig.roles;
         
-        var currentUser = $cookieStore.get('user') || { id: '', username: '', role: userRoles.public, picture: '' };
+        function changeUser(user) {
+            currentUser.name = user.name;
+            currentUser.role = user.role;
+            
+            currentUser.isLoggedIn = user.role == userRoles.user || user.role == userRoles.admin;
+        }
+        
+        var currentUser = $cookieStore.get('user') || { id: '', name: '', role: userRoles.public, picture: '', isLoggedIn: false };
 
         $cookieStore.remove('user');
-
-        function changeUser(user) {
-            currentUser.username = user.username;
-            currentUser.role = user.role;
-        }
+        changeUser(currentUser);
         
         return {
             authorize: function(accessLevel, role) {
@@ -30,12 +33,6 @@ userModule.factory('Auth', ['$http', '$cookieStore', function($http, $cookieStor
                     return role == userRoles.admin || role == userRoles.user;
 
                 return true;
-            },
-            isLoggedIn: function(user) {
-                if (user === undefined)
-                    user = currentUser;
-                
-                return user.role == userRoles.user || user.role == userRoles.admin;
             },
             signup: function(user, success, error) {
                 $http.post('/signup', user).success(function(res) {
@@ -60,8 +57,6 @@ userModule.factory('Auth', ['$http', '$cookieStore', function($http, $cookieStor
                     success();
                 }).error(error);
             },
-            accessLevels: accessLevels,
-            userRoles: userRoles,
             user: currentUser
         };
     }]);
