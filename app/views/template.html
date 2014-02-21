@@ -19,21 +19,18 @@
     {% for css in cssList %}
     <link type="text/css" rel="stylesheet" href="{{ css }}" />
     {% endfor %}
+    
+    {% set bowerList = '/js/bower.min.js'|minifyURL %}
+    {% for js in bowerList %}
+    <script src="{{ js }}" type="text/javascript"></script>
+    {% endfor %}
+    
+    {% set appList = '/js/app.min.js'|minifyURL %}
+    {% for app in appList %}
+    <script src="{{ app }}" type="text/javascript"></script>
+    {% endfor %}
 
-    <script type="text/javascript" src="/bower/angular/angular.js"></script>
-    <script type="text/javascript" src="/bower/angular-bootstrap/ui-bootstrap.js"></script>
-    <script type="text/javascript" src="/bower/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-    <script type="text/javascript" src="/bower/angular-route/angular-route.js"></script>
-    <script type="text/javascript" src="/bower/angular-cookies/angular-cookies.js"></script>
-    <script type="text/javascript" src="/bower/angular-ui-router/release/angular-ui-router.js"></script>
-
-    <script type="text/javascript" src="/modules/user/userConfig.js"></script>
-    <script type="text/javascript" src="/app.js"></script>
-    <script type="text/javascript" src="/modules/user/userServices.js"></script>
-    <script type="text/javascript" src="/modules/user/userControllers.js"></script>
-    <script type="text/javascript" src="/modules/home/homeControllers.js"></script>
-    <script type="text/javascript" src="/modules/game/gameControllers.js"></script>
-    <script type="text/javascript" src="/modules/match/matchControllers.js"></script>
+    
 </head>
 <body>
 

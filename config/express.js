@@ -25,9 +25,10 @@ module.exports = function(app, config, passport) {
         assets: {
             '/css/main.min.css': [
                 '/public/css/site.css',
-                '/bower_components/bootstrap/dist/css/bootstrap.css'
+                //'/bower_components/bootstrap/dist/css/bootstrap.css'
+                '/public/css/bootstrap.css'
             ],
-            '/js/angular.min.js': [
+            '/js/bower.min.js': [
                 '/bower_components/angular/angular.js',
                 '/bower_components/angular-bootstrap/ui-bootstrap.js',
                 '/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
@@ -36,21 +37,21 @@ module.exports = function(app, config, passport) {
                 '/bower_components/angular-ui-router/release/angular-ui-router.js'
             ],
             '/js/app.min.js': [
-                'public/modules/user/userConfig.js',
-                'public/app.js',
-                'public/modules/user/userServices.js',
-                'public/modules/user/userControllers.js',
-                'public/modules/home/homeControllers.js',
-                'public/modules/game/gameControllers.js',
-                'public/modules/match/matchControllers.js'
+                '/public/modules/user/userConfig.js',
+                '/public/app.js',
+                '/public/modules/user/userServices.js',
+                '/public/modules/user/userControllers.js',
+                '/public/modules/home/homeControllers.js',
+                '/public/modules/game/gameControllers.js',
+                '/public/modules/match/matchControllers.js'
             ]
         },
         // root - where resources can be found
         root: path.join(__dirname, '..'),
-        // default is to minify files
-        development: true,
+        development: false, // todo
         map: {
-            '/bower_components/': '/bower/'
+            '/bower_components/': '/bower/',
+            '/public/': '/'
         }
     });
 
