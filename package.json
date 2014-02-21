@@ -27,7 +27,8 @@
         "passport-facebook": "latest",
         "passport-google-oauth": "latest",
         "winston": "latest",
-        "i18n-2": "~0.4.5"
+        "i18n-2": "~0.4.5",
+        "connect-minify": "panc/connect-minify.git"
     },
     "devDependencies": {
         "supertest": "latest",

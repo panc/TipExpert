@@ -15,9 +15,11 @@
 
     <link rel="icon" type="image/vnd.microsoft.icon" href="/images/favicon.ico" />
 
-    <link type="text/css" rel="stylesheet" href="/css/bootstrap.css" />
-    <link type="text/css" rel="stylesheet" href="/css/site.css" />
-    
+    {% set cssList = '/css/main.min.css'|minifyURL %}
+    {% for css in cssList %}
+    <link type="text/css" rel="stylesheet" href="{{ css }}" />
+    {% endfor %}
+
     <script type="text/javascript" src="/bower/angular/angular.js"></script>
     <script type="text/javascript" src="/bower/angular-bootstrap/ui-bootstrap.js"></script>
     <script type="text/javascript" src="/bower/angular-bootstrap/ui-bootstrap-tpls.js"></script>

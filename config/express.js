@@ -7,7 +7,9 @@ var express = require('express'),
     profile = require('./middlewares/profile'),
     logger = require('winston'),
     shrinkroute = require('shrinkroute'),
-    I18n = require('i18n-2');
+    I18n = require('i18n-2'),
+    minify = require('connect-minify'),
+    path = require('path');
 
 module.exports = function(app, config, passport) {
 
@@ -17,6 +19,45 @@ module.exports = function(app, config, passport) {
         locales: ['en', 'de'],
         directory: '../locales'
     });
+
+    var assets = minify({
+        // assets map - maps served file identifier to a list of resources
+        assets: {
+            '/css/main.min.css': [
+                '/public/css/site.css',
+                '/bower_components/bootstrap/dist/css/bootstrap.css'
+            ],
+            '/js/angular.min.js': [
+                '/bower_components/angular/angular.js',
+                '/bower_components/angular-bootstrap/ui-bootstrap.js',
+                '/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
+                '/bower_components/angular-route/angular-route.js',
+                '/bower_components/angular-cookies/angular-cookies.js',
+                '/bower_components/angular-ui-router/release/angular-ui-router.js'
+            ],
+            '/js/app.min.js': [
+                'public/modules/user/userConfig.js',
+                'public/app.js',
+                'public/modules/user/userServices.js',
+                'public/modules/user/userControllers.js',
+                'public/modules/home/homeControllers.js',
+                'public/modules/game/gameControllers.js',
+                'public/modules/match/matchControllers.js'
+            ]
+        },
+        // root - where resources can be found
+        root: path.join(__dirname, '..'),
+        // default is to minify files
+        development: true,
+        map: {
+            '/bower_components/': '/bower/'
+        }
+    });
+
+    swig.setFilter('minifyURL', function(url){
+        return assets.minifiedURL(url);
+    });
+
     var shrinkr = shrinkroute();
     shrinkr.app(app);
 
@@ -84,6 +125,7 @@ module.exports = function(app, config, passport) {
     app.use(passport.session());
 
     app.use(shrinkr.middleware);
+    app.use(assets.middleware);
 
     app.use(profile.exposeUserInfoToViews);
     app.use('/', express.static(config.root + '/public'));
