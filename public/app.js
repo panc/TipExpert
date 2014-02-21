@@ -61,7 +61,7 @@ tipExpert.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '
 
     $locationProvider.html5Mode(true);
 
-    $httpProvider.interceptors.push(function($q, $location) {
+    $httpProvider.interceptors.push(['$q', '$location', function($q, $location) {
         return {
             'responseError': function(response) {
                 if (response.status === 401 || response.status === 403) {
@@ -72,7 +72,7 @@ tipExpert.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '
                 }
             }
         };
-    });
+    }]);
 }]);
 
 tipExpert.run(['$rootScope', '$location', '$state', 'Auth', function($rootScope, $location, $state, Auth) {
