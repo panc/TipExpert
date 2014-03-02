@@ -53,7 +53,7 @@
     <Compile Include="public\modules\game\gameControllers.js" />
     <Compile Include="public\modules\match\matchControllers.js" />
     <Compile Include="public\modules\user\userPresenter.js" />
-    <Compile Include="public\modules\home\homeControllers.js" />
+    <Compile Include="public\modules\home\homePresenter.js" />
     <Compile Include="public\modules\user\userServices.js" />
     <Compile Include="test\helper.js" />
     <Compile Include="test\test-articles.js" />

@@ -42,7 +42,7 @@ module.exports = function(app, config, passport) {
                 '/public/app.js',
                 '/public/modules/user/userServices.js',
                 '/public/modules/user/userPresenter.js',
-                '/public/modules/home/homeControllers.js',
+                '/public/modules/home/homePresenter.js',
                 '/public/modules/game/gameControllers.js',
                 '/public/modules/match/matchControllers.js'
             ]

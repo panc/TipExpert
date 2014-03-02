@@ -28,7 +28,7 @@ user.controller('userController', ['$http', '$scope', function($http, $scope)  {
             $scope.users = data;
         })
         .error(function(data, status, headers, config) {
-            //alert('test'+ status);
+            // todo
         });
 }]);
 
