@@ -13,6 +13,8 @@ var express = require('express'),
 
 module.exports = function(app, config, passport) {
 
+    var env = process.env.NODE_ENV || 'development';
+    
     // Load Module and Instantiate
     I18n.expressBind(app, {
         // setup some locales - other locales default to en silently
@@ -25,7 +27,6 @@ module.exports = function(app, config, passport) {
         assets: {
             '/css/main.min.css': [
                 '/public/css/site.css',
-                //'/bower_components/bootstrap/dist/css/bootstrap.css'
                 '/public/css/bootstrap.css'
             ],
             '/js/bower.min.js': [
@@ -48,7 +49,7 @@ module.exports = function(app, config, passport) {
         },
         // root - where resources can be found
         root: path.join(__dirname, '..'),
-        development: false, // todo
+        development: env === 'development',
         map: {
             '/bower_components/': '/bower/',
             '/public/': '/'
@@ -75,7 +76,6 @@ module.exports = function(app, config, passport) {
     app.use(express.favicon());
 
     // logging
-    var env = process.env.NODE_ENV || 'development';
     var log;
 
     if (env !== 'development') {
