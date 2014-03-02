@@ -156,7 +156,20 @@ UserSchema.statics = {
         this.find()
             .sort({ 'name': 1 })
             .exec(cb);
-    }
+    },
+    
+    /**
+     * Find user by id
+     *
+     * @param {ObjectId} id
+     * @param {Function} cb
+     * @api private
+     */
+
+    load: function(id, cb) {
+        this.findOne({ _id: id })
+            .exec(cb);
+    },
 };
 
 mongoose.model('User', UserSchema);

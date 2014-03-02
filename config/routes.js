@@ -33,6 +33,7 @@ module.exports = function(app, shrinkr, passport) {
     // Parameter based preloaders
     app.param('leagueId', matches.loadLeague);
     app.param('articleId', articles.load);
+    app.param('userId', user.load);
     
     shrinkr.route({
         // Session routes
@@ -181,6 +182,10 @@ module.exports = function(app, shrinkr, passport) {
             path: "/user",
             get: [ auth.requiresLogin, user.list ]
         },
+        "api.user.item": {
+            path: "/:userId",
+            put: [ auth.requiresLogin, user.update ]
+        }
     });
     
     // let angularjs handle all other routes

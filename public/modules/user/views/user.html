@@ -5,10 +5,19 @@
         <tr>
             <th>Name</th>
             <th>E-Mail</th>
+            <th>Is Admin</th>
         </tr>
         <tr ng-repeat="user in users">
             <td>{{user.name}}</td>
             <td>{{user.email}}</td>
+            <td>
+                <select ng-model="user.role" ng-options="obj.index as obj.name for obj in roles"/>
+            </td>
         </tr>
     </table>
+    
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" ng-click="save()">Save</button>&nbsp;
+        <a ui-sref="home">Cancel</a>
+    </div>
 </div>

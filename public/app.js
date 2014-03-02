@@ -83,7 +83,7 @@ tipExpert.run(['$rootScope', '$location', '$state', 'Auth', function($rootScope,
 
             event.preventDefault();
 
-            if (Auth.isLoggedIn())
+            if (Auth.user.isLoggedIn)
                 $state.go('home');
             else
                 $state.go('login');

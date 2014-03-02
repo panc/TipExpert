@@ -41,7 +41,7 @@ module.exports = function(app, config, passport) {
                 '/public/modules/user/userConfig.js',
                 '/public/app.js',
                 '/public/modules/user/userServices.js',
-                '/public/modules/user/userControllers.js',
+                '/public/modules/user/userPresenter.js',
                 '/public/modules/home/homeControllers.js',
                 '/public/modules/game/gameControllers.js',
                 '/public/modules/match/matchControllers.js'
@@ -165,11 +165,11 @@ module.exports = function(app, config, passport) {
         }
 
         // error page
-        res.status(500).render('500', { error: err.stack });
+        res.status(500).json('500', { error: err.stack });
     });
 
     // assume 404 since no middleware responded
     app.use(function(req, res, next) {
-        res.status(404).render('404');
+        res.status(404).json('404');
     });
 };

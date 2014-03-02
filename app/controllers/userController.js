@@ -1,6 +1,7 @@
 
 var mongoose = require('mongoose'),
     User = mongoose.model('User'),
+    _ = require('underscore'),
     utils = require('../utils/utils'),
     roles = require('../../public/modules/user/userConfig').roles;
 
@@ -26,6 +27,18 @@ exports.logout = function(req, res) {
     res.send(200);
 };
 
+exports.load = function(req, res, next, id) {
+    
+    User.load(id, function(err, user) {
+        if (err)
+            return next(err);
+        if (!user)
+            return next(new Error('not found'));
+        req.user = user;
+        return next();
+    });
+};
+
 /**
  * Create user
  */
@@ -36,15 +49,27 @@ exports.create = function(req, res) {
 
     user.save(function(err) {
         if (err) 
-            return res.json(400, { errors: utils.formatErrors(err.errors) });
+            return res.json(500, { errors: utils.formatErrors(err.errors) });
         
         // manually login the user once successfully signed up
         req.logIn(user, function(e) {
             if (e)
-                return next(e);
+                return res.send(500, e);
 
             return res.send(200, user);
         });
+    });
+};
+
+exports.update = function(req, res) {
+    var user = req.user;
+    user = _.extend(user, req.body);
+
+    user.save(function(err) {
+        if (err) 
+            return res.send(500, { errors: utils.formatErrors(err.errors) });
+
+        return res.send(200);
     });
 };
 
