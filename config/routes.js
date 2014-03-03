@@ -55,7 +55,7 @@ module.exports = function(app, shrinkr, passport) {
                     if (err)
                         return next(err);
                     if (!user)
-                        return res.send(400);
+                        return res.json(400, {msg: 'User or E-Mail is invalid!'});
 
                     req.logIn(user, function(e) {
                         if (e)

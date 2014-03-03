@@ -54,9 +54,9 @@ exports.create = function(req, res) {
         // manually login the user once successfully signed up
         req.logIn(user, function(e) {
             if (e)
-                return res.send(500, e);
+                return res.json(500, e);
 
-            return res.send(200, user);
+            return res.json(200, user);
         });
     });
 };
@@ -67,7 +67,7 @@ exports.update = function(req, res) {
 
     user.save(function(err) {
         if (err) 
-            return res.send(500, { errors: utils.formatErrors(err.errors) });
+            return res.json(500, { errors: utils.formatErrors(err.errors) });
 
         return res.send(200);
     });
