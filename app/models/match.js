@@ -41,9 +41,9 @@ MatchSchema.statics = {
      */
 
     list: function(options, cb) {
-        var criteria = {
-            league: new ObjectId(options.leagueId)
-        };
+        var criteria = options.leagueId 
+            ? { league: new ObjectId(options.leagueId) }
+            : { };
         
         this.find(criteria)
             .sort({ 'dueDate': 1 }) // sort by date

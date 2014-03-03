@@ -1,9 +1,9 @@
 
 var mongoose = require('mongoose'),
     User = mongoose.model('User'),
-    _ = require('underscore'),
     utils = require('../utils/utils'),
-    roles = require('../../public/modules/user/userConfig').roles;
+    roles = require('../../public/modules/user/userConfig').roles,
+    _ = require('underscore');
 
 
 var redirectAfterLogin = function(req, res) {
@@ -78,6 +78,9 @@ exports.update = function(req, res) {
  */
 exports.list = function(req, res) {
     User.list(function(err, users) {
+        if (err) 
+            return res.json(500, { errors: utils.formatErrors(err.errors) });
+       
         res.json(users);
     });
 };

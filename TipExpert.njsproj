@@ -31,7 +31,8 @@
   <ItemGroup>
     <Compile Include="app.js" />
     <Compile Include="app\controllers\games.js" />
-    <Compile Include="app\controllers\matches.js" />
+    <Compile Include="app\controllers\leagueController.js" />
+    <Compile Include="app\controllers\matchController.js" />
     <Compile Include="app\controllers\articles.js" />
     <Compile Include="app\controllers\userController.js" />
     <Compile Include="app\models\league.js" />

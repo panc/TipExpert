@@ -111,44 +111,6 @@ module.exports = function(app, shrinkr, passport) {
             ]
         },
         
-        // Article routes
-        "article": {
-            path: "/articles",
-            get: articles.index,
-            post: [auth.requiresLogin, articles.create]
-        },
-        "article.new": {
-            path: "/new",
-            get: [auth.requiresLogin, articles.new]
-        },
-        "article.item": {
-            path: "/:articleId",
-            get: articles.show,
-            put: [auth.requiresLogin, articles.update]
-        },
-        "article.item.edit": {
-            path: "/edit",
-            get: [auth.requiresLogin, articles.edit]
-            //del: [articleAuth, articles.delete]
-        },
-        
-        // Match and League routes
-        "leagues": {
-            path: "/leagues",
-            get: matches.index,
-            post: matches.createLeague
-        },
-        "leagues.matches": {
-            path: "/:leagueId/matches",
-            get: matches.getMatchesForLeague
-        },
-        "matches": { 
-            path: "/matches",
-            get: matches.index, // just an alias
-            post: matches.createMatch,
-            put: matches.updateMatch
-        },
-        
         // Game routes
         "games": { 
             path: "/games",
@@ -185,7 +147,31 @@ module.exports = function(app, shrinkr, passport) {
         "api.user.item": {
             path: "/:userId",
             put: [ auth.requiresLogin, user.update ]
-        }
+        },
+        
+        // Match and League routes
+        "api.leagues": {
+            path: "/leagues",
+            get: [ auth.requiresLogin, matches.list ],
+            post: [ auth.requiresLogin, matches.create ]
+        },
+        "api.leagues.item": {
+            path: "/:leagueId",
+            put: [ auth.requiresLogin, matches.update ]
+        },
+        "api.leagues.matches": {
+            path: "/:leagueId/matches",
+            get: [ auth.requiresLogin, matches.getMatchesForLeague ],
+        },
+        "api.matches": { 
+            path: "/matches",
+            get: [ auth.requiresLogin, matches.list ],
+            post: [ auth.requiresLogin, matches.create ]
+        },
+        "api.matches.item": { 
+            path: "/:matchId",
+            put: [ auth.requiresLogin, matches.update ]
+        },
     });
     
     // let angularjs handle all other routes
