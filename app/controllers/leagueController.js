@@ -24,7 +24,7 @@ exports.load = function(req, res, next, id) {
 /**
  * List
  */
-var list = function(req, res) {
+exports.list = function(req, res) {
 
     League.list(function(err, leagues) {
         if (err)
