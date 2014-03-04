@@ -4,7 +4,8 @@ var auth = require('./middlewares/authorization');
 // controller
 var articles = require('../app/controllers/articles'),
     user = require('../app/controllers/userController'),
-    matches = require('../app/controllers/matches'),
+    matches = require('../app/controllers/matchController'),
+    leagues = require('../app/controllers/leagueController'),
     games = require('../app/controllers/games'),
     roles = require('../public/modules/user/userConfig').roles;
 
@@ -31,7 +32,8 @@ var redirectToAngular = function(req, res) {
 module.exports = function(app, shrinkr, passport) {
 
     // Parameter based preloaders
-    app.param('leagueId', matches.loadLeague);
+    app.param('leagueId', leagues.load);
+    app.param('matchId', matches.load);
     app.param('articleId', articles.load);
     app.param('userId', user.load);
     
@@ -152,16 +154,16 @@ module.exports = function(app, shrinkr, passport) {
         // Match and League routes
         "api.leagues": {
             path: "/leagues",
-            get: [ auth.requiresLogin, matches.list ],
-            post: [ auth.requiresLogin, matches.create ]
+            get: [ auth.requiresLogin, leagues.list ],
+            post: [ auth.requiresLogin, leagues.create ]
         },
         "api.leagues.item": {
             path: "/:leagueId",
-            put: [ auth.requiresLogin, matches.update ]
+            put: [ auth.requiresLogin, leagues.update ]
         },
         "api.leagues.matches": {
             path: "/:leagueId/matches",
-            get: [ auth.requiresLogin, matches.getMatchesForLeague ],
+            get: [ auth.requiresLogin, matches.getMatchesForLeague ]
         },
         "api.matches": { 
             path: "/matches",
