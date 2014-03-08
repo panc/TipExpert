@@ -159,7 +159,8 @@ module.exports = function(app, shrinkr, passport) {
         },
         "api.leagues.item": {
             path: "/:leagueId",
-            put: [ auth.requiresLogin, leagues.update ]
+            put: [ auth.requiresLogin, leagues.update ],
+            delete: [ auth.requiresLogin, leagues.delete ]
         },
         "api.leagues.matches": {
             path: "/:leagueId/matches",

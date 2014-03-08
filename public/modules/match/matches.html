@@ -4,7 +4,14 @@
 
     <ul class="league-list">
         <li ng-repeat="league in leagues">
-            <div id="{{ league.id }}" class="league-item">{{ league.name }}</div>
+            <div id="{{ league.id }}" class="league-item">
+                <div class="left">{{ league.name }}</div>
+                <div class="league-edit-buttons">
+                    <span class="edit-button glyphicon glyphicon-pencil"></span>
+                    <span ng-click="removeLeague(league)" class="edit-button glyphicon glyphicon-trash"></span>
+                </div>
+                <div class="clear"></div>
+            </div>
         </li>
 
         <li class="new-item">

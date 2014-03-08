@@ -63,3 +63,18 @@ exports.update = function(req, res) {
         return res.json(league);
     });
 };
+
+
+/**
+ * remove leage
+ */
+exports.delete = function(req, res) {
+    var league = req.league;
+    
+    league.remove(function(err) {
+        if (err)
+            return res.json('500', utils.formatErrors(err.errors));
+        
+        return res.send(200);
+    });
+};

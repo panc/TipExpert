@@ -17,6 +17,21 @@ match.controller('matchController', ['$http', '$scope', function($http, $scope) 
             })
             .error(function(data, status, headers, config) {
                 // todo   
+                alert(data);
+            });
+    };
+
+    $scope.removeLeague = function(league) {
+
+        $http.delete('api/leagues/' + league._id)
+            .success(function(data, status, headers, config) {
+
+                var index = $scope.leagues.indexOf(league);
+                $scope.leagues.splice(index, 1);
+            })
+            .error(function(data, status, headers, config) {
+                // todo   
+                alert(data);
             });
     };
     

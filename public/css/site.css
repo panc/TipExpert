@@ -80,6 +80,20 @@ p {
     border-bottom: 0;
 }
 
+.league-item > .league-edit-buttons {
+    display: none;
+}
+
+.league-item:hover > .league-edit-buttons {
+    display: block;
+    float: right;
+    margin-right: 5px;
+}
+
+.edit-button {
+    margin: 5px;
+}
+
 .left-area {
     padding: 10px;
     max-width: 300px;
