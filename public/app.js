@@ -1,6 +1,6 @@
 'use strict';
 
-var tipExpert = angular.module('tipExpert', ['ngRoute', 'tipExpert.home', 'tipExpert.user', 'ui.bootstrap', 'ui.router']);
+var tipExpert = angular.module('tipExpert', ['ngRoute', 'tipExpert.home', 'tipExpert.user', 'tipExpert.match', 'ui.bootstrap', 'ui.router']);
 
 tipExpert.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
 
@@ -14,7 +14,7 @@ tipExpert.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '
         // routes for user module
         .state('user', {
             // Note: abstract still needs a ui-view for its children to populate.
-            // You can simply add it inline here.
+            // We can simply add it inline here.
             template: '<ui-view/>',
             url: '/user',
             abstract: true
@@ -31,6 +31,27 @@ tipExpert.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '
             url: '/:userId',
             templateUrl: '/modules/user/views/profile.html',
             controller: 'userProfileController',
+            access: accessLevels.user
+        })
+    
+        // routes for match module
+        .state('matches', {
+            template: '<ui-view/>',
+            url: '/matches',
+            abstract: true
+        })
+        .state('matches.overview', {
+            title: 'Matches',
+            url: '',
+            templateUrl: '/modules/match/matches.html',
+            controller: 'matchController',
+            access: accessLevels.user // todo
+        })
+        .state('matches.finished', {
+            title: 'Not implemented yet!',
+            url: '/finished',
+            templateUrl: 'todo',
+            controller: 'finishedMatchesController',
             access: accessLevels.user
         })
     

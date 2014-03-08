@@ -1,0 +1,25 @@
+<div class="left left-area">
+    <h2>Leagues</h2>
+    <p>Select a league in order to show all available matches for this league.</p>
+
+    <ul class="league-list">
+        <li ng-repeate="league in leagues">
+            <div id="{{ league.id }}" class="league-item">{{ league.name }}</div>
+        </li>
+
+        <li class="new-item">
+            <div class="input-group">
+                <input type="text" class="form-control" id="new-league-name" placeholder="Add a new league">
+                <span class="input-group-btn">
+                    <button class="btn btn-default add-league" type="button"><span class="glyphicon glyphicon-ok"></span></button>
+                </span>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<div class="left main-content">
+    <!-- async rendered version of matches.html goes here -->
+</div>
+
+<div class="clearfix"></div>

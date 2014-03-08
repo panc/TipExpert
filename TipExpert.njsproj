@@ -52,12 +52,11 @@
     <Compile Include="locales\en.js" />
     <Compile Include="public\app.js" />
     <Compile Include="public\modules\game\gameControllers.js" />
-    <Compile Include="public\modules\match\matchControllers.js" />
+    <Compile Include="public\modules\match\matchPresenter.js" />
     <Compile Include="public\modules\user\userPresenter.js" />
     <Compile Include="public\modules\home\homePresenter.js" />
     <Compile Include="public\modules\user\userServices.js" />
     <Compile Include="test\helper.js" />
-    <Compile Include="test\test-articles.js" />
     <Compile Include="test\test-leagues.js" />
     <Compile Include="test\test-users.js" />
     <Content Include=".travis.yml" />
@@ -67,6 +66,7 @@
     <Content Include="app\views\leagues\matches.html" />
     <Content Include="app\views\leagues\index.html" />
     <Content Include="app\views\user\userInfo.html" />
+    <Content Include="public\modules\match\matches.html" />
     <Content Include="public\modules\user\views\signup.html" />
     <Content Include="public\modules\user\views\login.html" />
     <Content Include="app\views\articles\form.html" />

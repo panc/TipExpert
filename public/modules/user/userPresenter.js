@@ -18,7 +18,8 @@ user.controller('userController', ['$http', '$scope', function($http, $scope)  {
                     alert('success');
                 })
                 .error(function(data, status, headers, config) {
-                    // todo   
+                    // todo 
+                    alert(data);
                 });
         });
     };
@@ -29,6 +30,7 @@ user.controller('userController', ['$http', '$scope', function($http, $scope)  {
         })
         .error(function(data, status, headers, config) {
             // todo
+            alert(data);
         });
 }]);
 
@@ -50,6 +52,7 @@ user.controller('loginController', ['$window', '$scope', '$state', 'Auth', funct
             },
             function(err) {
                 // todo
+                alert(data);
             });
     };
 
@@ -69,6 +72,7 @@ user.controller('navigationController', ['$scope', '$state', 'Auth', function($s
         },
         function(err) {
             // todo
+            alert(data);
         });
     };
     

@@ -44,7 +44,7 @@ module.exports = function(app, config, passport) {
                 '/public/modules/user/userPresenter.js',
                 '/public/modules/home/homePresenter.js',
                 '/public/modules/game/gameControllers.js',
-                '/public/modules/match/matchControllers.js'
+                '/public/modules/match/matchPresenter.js'
             ]
         },
         // root - where resources can be found
