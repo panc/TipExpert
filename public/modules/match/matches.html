@@ -3,15 +3,18 @@
     <p>Select a league in order to show all available matches for this league.</p>
 
     <ul class="league-list">
-        <li ng-repeate="league in leagues">
+        <li ng-repeat="league in leagues">
             <div id="{{ league.id }}" class="league-item">{{ league.name }}</div>
         </li>
 
         <li class="new-item">
             <div class="input-group">
-                <input type="text" class="form-control" id="new-league-name" placeholder="Add a new league">
+                <input type="text" class="form-control" id="new-league-name" placeholder="Add a new league" ng-model="newLeague.name">
+                
                 <span class="input-group-btn">
-                    <button class="btn btn-default add-league" type="button"><span class="glyphicon glyphicon-ok"></span></button>
+                    <button class="btn btn-default add-league" type="button" ng-click="addLeague()">
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </button>
                 </span>
             </div>
         </li>
