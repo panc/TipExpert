@@ -4,13 +4,26 @@
 
     <ul class="league-list">
         <li ng-repeat="league in leagues">
-            <div id="{{ league.id }}" class="league-item">
-                <div class="left">{{ league.name }}</div>
-                <div class="league-edit-buttons">
-                    <span class="edit-button glyphicon glyphicon-pencil"></span>
-                    <span ng-click="removeLeague(league)" class="edit-button glyphicon glyphicon-trash"></span>
+            <div id="{{ league.item.id }}">
+                
+                <div ng-hide="league.editorEnabled" class="league-item">
+                    <div class="left">{{ league.item.name }}</div>
+                    <div class="league-edit-buttons">
+                        <span ng-click="editLeague(league)" class="edit-button glyphicon glyphicon-pencil"></span>
+                        <span ng-click="removeLeague(league)" class="edit-button glyphicon glyphicon-trash"></span>
+                    </div>
+                    <div class="clear"></div>
                 </div>
-                <div class="clear"></div>
+                
+                <div ng-show="league.editorEnabled" class="input-group league-item-editor">
+                    <input type="text" class="form-control" ng-model="league.editableName">
+                    
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" ng-click="saveLeague(league)"><span class="glyphicon glyphicon-ok"></span></button>
+                        <button class="btn btn-default" type="button" ng-click="cancelEditLeague(league)"><span class="glyphicon glyphicon-remove"></span></button>
+                    </span>
+                </div>
+
             </div>
         </li>
 
@@ -19,8 +32,7 @@
                 <input type="text" class="form-control" id="new-league-name" placeholder="Add a new league" ng-model="newLeague.name">
                 
                 <span class="input-group-btn">
-                    <button class="btn btn-default add-league" type="button" ng-click="addLeague()">
-                        <span class="glyphicon glyphicon-ok"></span>
+                    <button class="btn btn-default" type="button" ng-click="addLeague()"><span class="glyphicon glyphicon-ok"></span>
                     </button>
                 </span>
             </div>
