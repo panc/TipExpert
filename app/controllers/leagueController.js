@@ -64,7 +64,6 @@ exports.update = function(req, res) {
     });
 };
 
-
 /**
  * remove leage
  */

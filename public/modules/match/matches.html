@@ -49,23 +49,35 @@
         </li>
     </ul>
     
-    <button ng-click='toggleModal()'>Open Modal Dialog</button>
-    <modal-dialog show='modalShown' width='400px'>
+    <button ng-click='addMatch()'>Add match...</button>
+
+    <modal-dialog show='showEditMatchDialog' width="500px">
         <div class="modal-header">
-            <h3>I'm a modal!</h3>
+            <h3>{{ selectedMatch._id ? 'Edit match' : 'Add new match' }}</h3>
         </div>
         <div class="modal-body">
-            <ul>
-                <li ng-repeat="item in items">
-                    <a ng-click="selected.item = item">{{ item }}</a>
-                </li>
-            </ul>
-            Selected: <b>{{ selected.item }}</b>
+            <div class="form-group">
+                <label class="left control-label">Due Date: </label>
+                <div class="left">
+                    <input type="date" ng-model="selectedMatch.dueDate" class="form-control" required>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            
+            <table>
+                <tr><th>Home</th><th></th><th>Guest</th></tr>
+                <tr>
+                    <td><input type="text" class="form-control" placeholder="Home team" ng-model="selectedMatch.homeTeam"/></td>
+                    <td>&nbsp; - &nbsp;</td>
+                    <td><input type="text" class="form-control" placeholder="Guest team" ng-model="selectedMatch.guestTeam"/></td>
+                </tr>
+            </table>
+
         </div>
         <div class="modal-footer">
             <span class="input-group-btn">
-                <button class="btn btn-primary" ng-click="ok()">OK</button>
-                <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+                <button class="btn btn-primary" ng-click="saveMatch(selectedMatch)">OK</button>
+                <button class="btn btn-warning" ng-click="cancelEditMatch()">Cancel</button>
             </span>
         </div>
     </modal-dialog>

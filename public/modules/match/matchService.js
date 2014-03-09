@@ -34,9 +34,6 @@ matchModule.factory('matchService', ['$http', function($http) {
         
         delete: function (match, error) {
             $http.delete('api/matches/' + match._id)
-                .success(function(data, status, headers, config) {
-                    
-                })
                 .error(error);
         }
     };

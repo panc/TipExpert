@@ -6,11 +6,7 @@ var match = angular.module('tipExpert.match');
 
 match.controller('matchController', ['$http', '$scope', 'leagueService', 'matchService', function($http, $scope, leagueService, matchService)  {
 
-    $scope.modalShown = false;
-    $scope.toggleModal = function() {
-        $scope.modalShown = !$scope.modalShown;
-    };
-
+    $scope.selectedMatch = { homeTeam: '', guestTeam: '', dueDate: new Date()};
     $scope.leagues = leagueService.leagues;
     $scope.newLeague = { name: ''};
 
@@ -87,5 +83,30 @@ match.controller('matchController', ['$http', '$scope', 'leagueService', 'matchS
                 // todo
                 alert(data);
             });
+    };
+    
+    $scope.addMatch = function() {
+        $scope.selectedMatch = { homeTeam: '', guestTeam: '', dueDate: new Date(), leagueId: $scope.selectedLeague._id };
+        $scope.showEditMatchDialog = true;
+    };
+    
+    $scope.cancelEditMatch = function() {
+        $scope.showEditMatchDialog = false;
+    };
+
+    $scope.saveMatch = function(match) {
+
+        var success = function() { $scope.showEditMatchDialog = false; };
+        var error = function(data) { alert(data); /* todo */ };
+
+        if (match._id)
+            matchService.update(match, success, error);
+        else
+            matchService.create(match,
+                function(newMatch) {
+                    $scope.matches.push(newMatch);
+                    success();
+                }, error);
+
     };
 }]);
