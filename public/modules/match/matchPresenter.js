@@ -16,6 +16,7 @@ match.controller('matchController', ['$http', '$scope', 'leagueService', 'matchS
         leagueService.create($scope.newLeague,
             function(league) {
                 league.editorEnabled = false;
+                $scope.newLeague = "";
             }),
             function(data) {
                 // todo   
@@ -58,6 +59,9 @@ match.controller('matchController', ['$http', '$scope', 'leagueService', 'matchS
             angular.forEach($scope.leagues, function(league) {
                 league.editorEnabled = false;
             });
+            
+            if ($scope.leagues.length > 0)
+                $scope.loadMatches($scope.leagues[0]);
         },
         function(data) {
             // todo
@@ -68,6 +72,8 @@ match.controller('matchController', ['$http', '$scope', 'leagueService', 'matchS
     // matches
 
     $scope.loadMatches = function(league) {
+        $scope.selectedLeague = league;
+        
         matchService.load(league,
             function(matches) {
                 $scope.matches = matches;

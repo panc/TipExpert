@@ -4,9 +4,9 @@
 
     <ul class="league-list">
         <li ng-repeat="league in leagues">
-            <div id="{{ league.id }}" ng-click="loadMatches(league)">
+            <div ng-click="loadMatches(league)">
                 
-                <div ng-hide="league.editorEnabled" class="league-item">
+                <div ng-hide="league.editorEnabled" class="league-item" ng-class="league == selectedLeague ? 'selected' : ''">
                     <div class="left">{{ league.name }}</div>
                     <div class="league-edit-buttons">
                         <span ng-click="editLeague(league)" class="edit-button glyphicon glyphicon-pencil"></span>
@@ -41,7 +41,11 @@
 </div>
 
 <div class="left main-content">
-    <!-- async rendered version of matches.html goes here -->
-</div>
+    <h2>{{ selectedLeague.name }}</h2>
 
-<div class="clearfix"></div>
+    <ul>
+        <li ng-repeat="match in matches">
+            <div>{{ match.homeTeam }} : {{ match.guestTeam }} ({{ match.dueDate }})</div>
+        </li>
+    </ul>
+</div>
