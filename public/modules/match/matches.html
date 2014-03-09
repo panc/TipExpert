@@ -4,10 +4,10 @@
 
     <ul class="league-list">
         <li ng-repeat="league in leagues">
-            <div id="{{ league.item.id }}">
+            <div id="{{ league.id }}" ng-click="loadMatches(league)">
                 
                 <div ng-hide="league.editorEnabled" class="league-item">
-                    <div class="left">{{ league.item.name }}</div>
+                    <div class="left">{{ league.name }}</div>
                     <div class="league-edit-buttons">
                         <span ng-click="editLeague(league)" class="edit-button glyphicon glyphicon-pencil"></span>
                         <span ng-click="removeLeague(league)" class="edit-button glyphicon glyphicon-trash"></span>

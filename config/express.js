@@ -44,7 +44,8 @@ module.exports = function(app, config, passport) {
                 '/public/modules/user/userPresenter.js',
                 '/public/modules/home/homePresenter.js',
                 '/public/modules/game/gameControllers.js',
-                '/public/modules/match/matchServices.js',
+                '/public/modules/match/leagueService.js',
+                '/public/modules/match/matchService.js',
                 '/public/modules/match/matchPresenter.js'
             ]
         },

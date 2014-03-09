@@ -4,7 +4,7 @@
 
 var match = angular.module('tipExpert.match');
 
-match.controller('matchController', ['$http', '$scope', 'leagueService', function($http, $scope, leagueService)  {
+match.controller('matchController', ['$http', '$scope', 'leagueService', 'matchService', function($http, $scope, leagueService, matchService)  {
 
     $scope.leagues = leagueService.leagues;
     $scope.newLeague = { name: ''};
@@ -12,27 +12,21 @@ match.controller('matchController', ['$http', '$scope', 'leagueService', functio
     // leagues
 
     $scope.addLeague = function() {
-        
-        $http.post('api/leagues/', $scope.newLeague)
-            .success(function(data, status, headers, config) {
-                data.editorEnabled= false ;
-                $scope.leagues.push(data);
-            })
-            .error(function(data, status, headers, config) {
+
+        leagueService.create($scope.newLeague,
+            function(league) {
+                league.editorEnabled = false;
+            }),
+            function(data) {
                 // todo   
                 alert(data);
-            });
+            };
     };
 
     $scope.removeLeague = function(league) {
-        $http.delete('api/leagues/' + league._id)
-            .success(function(data, status, headers, config) {
-
-                var index = $scope.leagues.indexOf(league);
-                $scope.leagues.splice(index, 1);
-            })
-            .error(function(data, status, headers, config) {
-                // todo   
+        leagueService.delete(league,
+            function(data) {
+                // todo
                 alert(data);
             });
     };
@@ -47,20 +41,20 @@ match.controller('matchController', ['$http', '$scope', 'leagueService', functio
     };
     
     $scope.saveLeague = function(league) {
-
         league.name = league.editableName;
 
-        $http.put('/api/leagues/' + league._id, league)
-            .success(function(data, status, headers, config) {
+        leagueService.update(league,
+            function() {
                 league.editorEnabled = false;
-            })
-            .error(function(data, status, headers, config) {
+            },
+            function() {
                 // todo
                 alert(data);
             });
     };
     
-    leagueService.load(function() {
+    leagueService.load(
+        function() {
             angular.forEach($scope.leagues, function(league) {
                 league.editorEnabled = false;
             });
@@ -69,4 +63,18 @@ match.controller('matchController', ['$http', '$scope', 'leagueService', functio
             // todo
             alert(data);
         });
+    
+    
+    // matches
+
+    $scope.loadMatches = function(league) {
+        matchService.load(league,
+            function(matches) {
+                $scope.matches = matches;
+            },
+            function(data) {
+                // todo
+                alert(data);
+            });
+    };
 }]);
