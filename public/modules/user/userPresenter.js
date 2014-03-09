@@ -93,11 +93,11 @@ user.controller('signUpController', ['$scope', '$state', 'Auth', function($scope
             return;
 
         Auth.signup($scope.user, function() {
-            $state.go('home');
-        },
-        function(err) {
-            alert(err.errors);
-        });
+                $state.go('home');
+            },
+            function(err) {
+                alert(err.errors);
+            });
     };
     
 }]);
