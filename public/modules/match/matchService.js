@@ -10,33 +10,32 @@ matchModule.factory('matchService', ['$http', function($http) {
         load: function(league, success, error) {
             $http.get('/api/leagues/' + league._id + '/matches')
                 .success(function(data, status, headers, config) {
+                    
                     success(data);
                 })
                 .error(error);
         },
         
-        create: function (newLeague, success, error) {
-            $http.post('api/leagues/', newLeague)
-                .success(function(league, status, headers, config) {
-                    leagues.push(league);
-                    success(league);
+        create: function (newMatch, success, error) {
+            $http.post('api/matches/', newMatch)
+                .success(function(match, status, headers, config) {
+                    success(match);
                 })
                 .error(error);
         },
         
-        update: function (league, success, error) {
-            $http.put('/api/leagues/' + league._id, league)
+        update: function (match, success, error) {
+            $http.put('/api/matches/' + match._id, match)
                 .success(function(data, status, headers, config) {
                     success();
                 })
                 .error(error);
         },
         
-        delete: function (league, error) {
-            $http.delete('api/leagues/' + league._id)
+        delete: function (match, error) {
+            $http.delete('api/matches/' + match._id)
                 .success(function(data, status, headers, config) {
-                    var index = leagues.indexOf(league);
-                    leagues.splice(index, 1);
+                    
                 })
                 .error(error);
         }

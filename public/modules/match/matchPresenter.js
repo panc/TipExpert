@@ -6,6 +6,11 @@ var match = angular.module('tipExpert.match');
 
 match.controller('matchController', ['$http', '$scope', 'leagueService', 'matchService', function($http, $scope, leagueService, matchService)  {
 
+    $scope.modalShown = false;
+    $scope.toggleModal = function() {
+        $scope.modalShown = !$scope.modalShown;
+    };
+
     $scope.leagues = leagueService.leagues;
     $scope.newLeague = { name: ''};
 
