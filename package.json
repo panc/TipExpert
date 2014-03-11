@@ -9,7 +9,8 @@
     },
     "scripts": {
         "start": "node app.js",
-        "test": "NODE_ENV=test ./node_modules/.bin/mocha --reporter spec test/test-*.js"
+        "test": "NODE_ENV=test ./node_modules/.bin/mocha --reporter spec test/test-*.js",
+        "postinstall": ".\node_modules\.bin\bower install"
     },
     "author": {
         "name": "Christoph, Michael",
@@ -28,6 +29,7 @@
         "passport-google-oauth": "latest",
         "winston": "latest",
         "i18n-2": "~0.4.5",
+        "bower": "1.2.x",
         "connect-minify": "panc/connect-minify.git"
     },
     "devDependencies": {
