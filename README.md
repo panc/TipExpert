@@ -10,27 +10,44 @@ Tipexpert ist das Tippspiel der nächsten Generation. Individuell anpassbar, per
 
 TBD
 
+## Demo
+
+Eine erste Demo-Version kann unter http://tipexpert.herokuapp.com/ getestet werden.
+
+Einfach mit einem Facebook- oder Google-Konto anmelden oder einen neuen User registrieren.
+Angemeldete User verfügen derzeit noch über alle Rechte, also nicht wundern ;-)
+
+
 # Features
 
 ## Backend (Administration)
 
+**Erledigt**
+
+* User-Verwaltung
+ * Social Login
+ * Normaler Login über User-Registrierung
+ * Rollen (bisher nur User oder Admin) vergeben
+
+* Ligen verwalten 
+ * Liga hinzufügen/editieren/löschen
+
+
+**TBD**
+
 * Manschaften verwalten 
- * TBD: 
- * löschen
- * Ergebnis eintrage
+ * hinzufügen/editieren/löschen
+ * automatisch anlegen wenn beim Erfassen einer Spielpaarung eine unbekannte Mannschaft eingegeben wird
 
 * Spielpaarungen verwalten
- * TBD
-
-* Social Login
-
-* User verwalten
-  * TBD: 
-  * Google und Facebook User verwalten
+ * Paarungen hinzufügen/editieren/löschen
+ * Ergebnis erfasse
+ * Spielpaarungen und Ergebnisse über WebService abrufen (http://www.openligadb.de/)
 
 
 ## Frontend (User)
 
+TBD:
 * Tipp-Spiel anlegen
  * Spielpaarungen auswählen
  * Freunde hinzufügen
