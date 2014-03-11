@@ -7,7 +7,6 @@ var express = require('express'),
     profile = require('./middlewares/profile'),
     logger = require('winston'),
     shrinkroute = require('shrinkroute'),
-    I18n = require('i18n-2'),
     minify = require('connect-minify'),
     path = require('path');
 
@@ -15,14 +14,7 @@ module.exports = function(app, config, passport) {
 
     var env = process.env.NODE_ENV || 'development';
     
-    // Load Module and Instantiate
-    I18n.expressBind(app, {
-        // setup some locales - other locales default to en silently
-        locales: ['en', 'de'],
-        directory: '../locales'
-    });
-
-    var assets = minify({
+        var assets = minify({
         // assets map - maps served file identifier to a list of resources
         assets: {
             '/css/main.min.css': [
