@@ -16,5 +16,3 @@ if (env === 'heroku') {
 
     return;
 }
-
-process.exit(1);
