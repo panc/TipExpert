@@ -1,8 +1,8 @@
 
 var mongoose = require('mongoose'),
     User = mongoose.model('User'),
-    utils = require('../utils/utils'),
-    roles = require('../../public/modules/user/userConfig').roles,
+    utils = require('../../helper/formatHelper'),
+    roles = require('../../../public/modules/user/userConfig').roles,
     _ = require('underscore');
 
 

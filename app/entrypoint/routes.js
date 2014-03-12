@@ -2,11 +2,11 @@
 var auth = require('./middlewares/authorization');
 
 // controller
-var user = require('../app/controllers/userController'),
-    matches = require('../app/controllers/matchController'),
-    leagues = require('../app/controllers/leagueController'),
-    games = require('../app/controllers/games'),
-    roles = require('../public/modules/user/userConfig').roles;
+var user = require('../api/controllers/userController'),
+    matches = require('../api/controllers/matchController'),
+    leagues = require('../api/controllers/leagueController'),
+    games = require('../api/controllers/games'),
+    roles = require('../../public/modules/user/userConfig').roles;
 
 
 var redirectToAngular = function(req, res) {
@@ -109,30 +109,6 @@ module.exports = function(app, shrinkr, passport) {
                 }),
                 user.authCallback
             ]
-        },
-        
-        // Game routes
-        "games": { 
-            path: "/games",
-            get: games.index,
-            post: games.create,
-            put: games.update
-        },
-        "games.createdByMe": { 
-            path: "/createdbyme",
-            get: games.index,
-        },
-        "games.search": { 
-            path: "/search",
-            get: games.index,
-        },
-        "games.new": { 
-            path: "/new",
-            get: games.new,
-        },
-        "games.edit": { 
-            path: "/edit",
-            get: games.edit,
         },
         
         // API routes (for angular.js or any mobile app)

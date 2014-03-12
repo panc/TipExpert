@@ -2,7 +2,7 @@
 // module dependencies
 var express = require('express'),
     mongoStore = require('connect-mongo')(express),
-    pkg = require('../package.json'),
+    pkg = require('../../package.json'),
     swig = require('swig'),
     profile = require('./middlewares/profile'),
     logger = require('winston'),
@@ -13,8 +13,8 @@ var express = require('express'),
 module.exports = function(app, config, passport) {
 
     var env = process.env.NODE_ENV || 'development';
-    
-        var assets = minify({
+
+    var assets = minify({
         // assets map - maps served file identifier to a list of resources
         assets: {
             '/css/main.min.css': [
@@ -43,7 +43,7 @@ module.exports = function(app, config, passport) {
             ]
         },
         // root - where resources can be found
-        root: path.join(__dirname, '..'),
+        root: config.root,
         development: env === 'development',
         map: {
             '/bower_components/': '/bower/',
@@ -91,7 +91,7 @@ module.exports = function(app, config, passport) {
     app.engine('html', swig.renderFile);
 
     app.set('view engine', 'html');
-    app.set('views', config.root + '/app/views');
+    app.set('views', config.root + '/app/api/views');
 
     // expose package.json to all views
     app.use(function(req, res, next) {

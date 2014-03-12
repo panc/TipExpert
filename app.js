@@ -6,7 +6,7 @@ var express = require('express'),
 
 // load configurations
 var env = process.env.NODE_ENV || 'development'
-  , config = require('./config/config')[env]
+  , config = require('./app/entrypoint/app-config')[env]
   , mongoose = require('mongoose');
 
 // bootstrap db connection
@@ -28,18 +28,18 @@ mongoose.connection.on('disconnected', function() {
 });
 
 // bootstrap models
-var models_path = config.root + '/app/models';
+var models_path = config.root + '/app/api/models';
 fs.readdirSync(models_path).forEach(function(file) {
     if (~file.indexOf('.js')) require(models_path + '/' + file);
 });
 
 // bootstrap passport config
-require('./config/passport-config')(passport, config);
+require('./app/entrypoint/passport-config')(passport, config);
 
 // bootstrap express
 var app = express();
 
-require('./config/express')(app, config, passport);
+require('./app/entrypoint/express')(app, config, passport);
 
 // start the app by listening on <port>
 var port = process.env.PORT || 1337;

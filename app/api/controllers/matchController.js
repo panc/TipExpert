@@ -2,7 +2,7 @@
 var mongoose = require('mongoose'),
     League = mongoose.model('League'),
     Match = mongoose.model('Match'),
-    utils = require('../utils/utils'),
+    utils = require('../../helper/formatHelper'),
     _ = require('underscore');
     
 /**

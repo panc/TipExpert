@@ -20,16 +20,3 @@ exports.formatErrors = function(errors) {
 
     return errs;
 };
-
-/**
- * Check whether the given request is sent via a jquery ajax call (e.g. $.ajax())
- *
- * @param {request} request object
- * @return {bool}
- */
-exports.isAjaxRequest = function(req) {
-    
-    return req.headers && 
-           req.headers['x-requested-with'] && 
-           req.headers['x-requested-with'] == 'XMLHttpRequest';
-}
