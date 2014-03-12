@@ -2,7 +2,7 @@ var env = process.env.NODE_ENV;
 
 console.log('post install script for environment "' + env + '"');
 
-if (env === 'heroku') {
+if (env === 'heroku' || env === 'production') {
     
     console.log('Install bower components after "npm intall"');
 
