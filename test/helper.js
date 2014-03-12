@@ -1,7 +1,7 @@
 
 var mongoose = require('mongoose'),
     async = require('async'),
-    Article = mongoose.model('Article'),
+    League = mongoose.model('League'),
     User = mongoose.model('User');
 
 exports.clearDb = function(done) {
@@ -10,7 +10,7 @@ exports.clearDb = function(done) {
             User.collection.remove(cb);
         },
         function(cb) {
-            Article.collection.remove(cb);
+            League.collection.remove(cb);
         }
     ], done);
 };
