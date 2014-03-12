@@ -38,6 +38,7 @@
     <Compile Include="app\api\models\game.js" />
     <Compile Include="app\api\models\match.js" />
     <Compile Include="app\api\models\user.js" />
+    <Compile Include="app\entrypoint\postInstall.js" />
     <Compile Include="public\directives\modalDialogDirective.js" />
     <Compile Include="public\modules\match\matchService.js" />
     <Compile Include="public\modules\match\leagueService.js" />

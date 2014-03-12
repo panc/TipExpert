@@ -10,7 +10,7 @@
     "scripts": {
         "start": "node app.js",
         "test": "NODE_ENV=test ./node_modules/.bin/mocha --reporter spec test/test-*.js",
-        "postinstall": "./node_modules/.bin/bower install"
+        "postinstall": "node ./app/entrypoint/postInstall.js"
     },
     "author": {
         "name": "Christoph, Michael",
