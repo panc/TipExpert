@@ -2,8 +2,7 @@
 var auth = require('./middlewares/authorization');
 
 // controller
-var articles = require('../app/controllers/articles'),
-    user = require('../app/controllers/userController'),
+var user = require('../app/controllers/userController'),
     matches = require('../app/controllers/matchController'),
     leagues = require('../app/controllers/leagueController'),
     games = require('../app/controllers/games'),
@@ -34,7 +33,6 @@ module.exports = function(app, shrinkr, passport) {
     // Parameter based preloaders
     app.param('leagueId', leagues.load);
     app.param('matchId', matches.load);
-    app.param('articleId', articles.load);
     app.param('userId', user.load);
     
     shrinkr.route({
