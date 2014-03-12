@@ -16,6 +16,9 @@
         "name": "Christoph, Michael",
         "email": ""
     },
+	"engines": {
+        "node": "0.10.x"
+    },
     "dependencies": {
         "express": "~3.4.7",
         "shrinkroute": "~0.2",
