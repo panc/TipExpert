@@ -32,6 +32,9 @@ Angemeldete User verfügen derzeit noch über alle Rechte, also nicht wundern ;-
 * Ligen verwalten 
  * Liga hinzufügen/editieren/löschen
 
+* Spielpaarungen verwalten
+ * Paarungen hinzufügen/editieren
+
 
 **TBD**
 
@@ -40,8 +43,9 @@ Angemeldete User verfügen derzeit noch über alle Rechte, also nicht wundern ;-
  * automatisch anlegen wenn beim Erfassen einer Spielpaarung eine unbekannte Mannschaft eingegeben wird
 
 * Spielpaarungen verwalten
- * Paarungen hinzufügen/editieren/löschen
- * Ergebnis erfasse
+ * Paarungen löschen
+ * Paarungen nach Datum gruppiert anzeigen
+ * Ergebnis erfassen
  * Spielpaarungen und Ergebnisse über WebService abrufen (http://www.openligadb.de/)
 
 

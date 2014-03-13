@@ -13,7 +13,7 @@ exports.load = function(req, res, next, id) {
     Match.load(id, function(err, match) {
         if (err)
             return next(err);
-        if (!league)
+        if (!match)
             return next(new Error('not found'));
         
         req.match = match;
