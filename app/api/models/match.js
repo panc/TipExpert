@@ -18,6 +18,7 @@ var MatchSchema = new Schema({
 MatchSchema.path('homeTeam').required(true, 'Home team cannot be blank');
 MatchSchema.path('guestTeam').required(true, 'Guest team cannot be blank');
 MatchSchema.path('dueDate').required(true, 'Due date cannot be blank');
+MatchSchema.path('league').required(true, 'League cannot be blank');
 
 // static methods for the match schema
 MatchSchema.statics = {

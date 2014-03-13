@@ -40,6 +40,7 @@
     <Compile Include="app\api\models\user.js" />
     <Compile Include="app\entrypoint\postInstall.js" />
     <Compile Include="public\directives\modalDialogDirective.js" />
+    <Compile Include="public\modules\match\editMatchPresenter.js" />
     <Compile Include="public\modules\match\matchService.js" />
     <Compile Include="public\modules\match\leagueService.js" />
     <Compile Include="public\modules\user\userConfig.js" />
@@ -63,7 +64,8 @@
     <Content Include="app\api\views\404.html" />
     <Content Include="app\api\views\template.html" />
     <Content Include="app\api\views\userInfo.html" />
-    <Content Include="public\modules\match\matches.html" />
+    <Content Include="public\modules\match\views\editMatchDialog.html" />
+    <Content Include="public\modules\match\views\matches.html" />
     <Content Include="public\modules\user\views\signup.html" />
     <Content Include="public\modules\user\views\login.html" />
     <Content Include="app\api\views\500.html" />
@@ -97,6 +99,7 @@
     <Folder Include="public\modules\home\" />
     <Folder Include="public\modules\match\" />
     <Folder Include="public\modules\game\" />
+    <Folder Include="public\modules\match\views\" />
     <Folder Include="public\modules\user\" />
     <Folder Include="public\modules\" />
     <Folder Include="public\modules\user\views\" />

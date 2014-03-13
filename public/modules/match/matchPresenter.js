@@ -85,27 +85,18 @@ match.controller('matchController', ['$http', '$scope', '$modal', 'leagueService
             });
     };
     
-    $scope.saveMatch = function(match) {
-
-        var error = function(data) { alert(data); /* todo */ };
-
-        if (match._id) {
-            matchService.update(match, function () { }, error);
-        }
-        else {
-            matchService.create(match, function(newMatch) {
-                $scope.matches.push(newMatch);
-            }, error);
-        }
-    };
-
     $scope.addMatch = function() {
-        var match = { homeTeam: 'Home', guestTeam: '', dueDate: Date.now(), leagueId: $scope.selectedLeague._id };
-        $scope.editMatch(match);
+        var match = { homeTeam: 'Home', guestTeam: '', dueDate: Date.now(), league: $scope.selectedLeague._id };
+        showEditMatchDialog(match, function (newMatch) {
+            $scope.matches.push(newMatch);
+        });
     };
     
     $scope.editMatch = function(match) {
-        
+        showEditMatchDialog(match);
+    };
+
+    var showEditMatchDialog = function(match, onSavedCallback) {
         var modalInstance = $modal.open({
             templateUrl: 'modules/match/views/editMatchDialog.html',
             controller: 'EditMatchController',
@@ -116,25 +107,13 @@ match.controller('matchController', ['$http', '$scope', '$modal', 'leagueService
             }
         });
 
-        modalInstance.result.then(function(modifiedMatch) {
+        modalInstance.result.then(function(newOrUpdatedMatch) {
 
-            $scope.saveMatch(modifiedMatch);
+            if (onSavedCallback)
+                onSavedCallback(newOrUpdatedMatch);
 
         }, function() {
             // canceld -> nothing to do
         });
-    };
-}]);
-
-match.controller('EditMatchController', ['$scope', '$modalInstance', 'match', function($scope, $modalInstance, match) {
-
-    $scope.match = match;
-
-    $scope.ok = function() {
-        $modalInstance.close($scope.match);
-    };
-
-    $scope.cancel = function() {
-        $modalInstance.dismiss('cancel');
     };
 }]);

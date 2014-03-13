@@ -39,7 +39,8 @@ module.exports = function(app, config, passport) {
                 '/public/modules/game/gameControllers.js',
                 '/public/modules/match/leagueService.js',
                 '/public/modules/match/matchService.js',
-                '/public/modules/match/matchPresenter.js'
+                '/public/modules/match/matchPresenter.js',
+                '/public/modules/match/editMatchPresenter.js'
             ]
         },
         // root - where resources can be found
