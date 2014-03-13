@@ -120,7 +120,6 @@ module.exports = function(app, config, passport) {
     app.use(passport.initialize());
     app.use(passport.session());
 
-    app.use(shrinkr.middleware);
     app.use(assets.middleware);
 
     app.use(profile.exposeUserInfoToViews);
