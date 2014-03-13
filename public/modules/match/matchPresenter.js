@@ -4,7 +4,7 @@
 
 var match = angular.module('tipExpert.match');
 
-match.controller('matchController', ['$http', '$scope', 'leagueService', 'matchService', function($http, $scope, leagueService, matchService)  {
+match.controller('matchController', ['$http', '$scope', '$modal', 'leagueService', 'matchService', function($http, $scope, $modal, leagueService, matchService)  {
 
     $scope.selectedMatch = { homeTeam: '', guestTeam: '', dueDate: new Date()};
     $scope.leagues = leagueService.leagues;
@@ -85,28 +85,56 @@ match.controller('matchController', ['$http', '$scope', 'leagueService', 'matchS
             });
     };
     
-    $scope.addMatch = function() {
-        $scope.selectedMatch = { homeTeam: '', guestTeam: '', dueDate: new Date(), leagueId: $scope.selectedLeague._id };
-        $scope.showEditMatchDialog = true;
-    };
-    
-    $scope.cancelEditMatch = function() {
-        $scope.showEditMatchDialog = false;
-    };
-
     $scope.saveMatch = function(match) {
 
-        var success = function() { $scope.showEditMatchDialog = false; };
         var error = function(data) { alert(data); /* todo */ };
 
-        if (match._id)
-            matchService.update(match, success, error);
-        else
-            matchService.create(match,
-                function(newMatch) {
-                    $scope.matches.push(newMatch);
-                    success();
-                }, error);
+        if (match._id) {
+            matchService.update(match, function () { }, error);
+        }
+        else {
+            matchService.create(match, function(newMatch) {
+                $scope.matches.push(newMatch);
+            }, error);
+        }
+    };
 
+    $scope.addMatch = function() {
+        var match = { homeTeam: 'Home', guestTeam: '', dueDate: Date.now(), leagueId: $scope.selectedLeague._id };
+        $scope.editMatch(match);
+    };
+    
+    $scope.editMatch = function(match) {
+        
+        var modalInstance = $modal.open({
+            templateUrl: 'modules/match/views/editMatchDialog.html',
+            controller: 'EditMatchController',
+            resolve: {
+                match: function() {
+                    return match;
+                }
+            }
+        });
+
+        modalInstance.result.then(function(modifiedMatch) {
+
+            $scope.saveMatch(modifiedMatch);
+
+        }, function() {
+            // canceld -> nothing to do
+        });
+    };
+}]);
+
+match.controller('EditMatchController', ['$scope', '$modalInstance', 'match', function($scope, $modalInstance, match) {
+
+    $scope.match = match;
+
+    $scope.ok = function() {
+        $modalInstance.close($scope.match);
+    };
+
+    $scope.cancel = function() {
+        $modalInstance.dismiss('cancel');
     };
 }]);

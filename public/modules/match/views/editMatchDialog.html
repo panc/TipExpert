@@ -1,0 +1,31 @@
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="cancel()">&times;</button>
+            <h4 class="modal-title">{{ match._id ? 'Edit match' : 'Add new match' }}</h4>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label class="left control-label">Due Date: </label>
+                <div class="left">
+                    <input type="date" ng-model="match.dueDate" class="form-control" required>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            
+            <table>
+                <tr><th>Home</th><th></th><th>Guest</th></tr>
+                <tr>
+                    <td><input type="text" class="form-control" placeholder="Home team" ng-model="match.homeTeam"/></td>
+                    <td>&nbsp; - &nbsp;</td>
+                    <td><input type="text" class="form-control" placeholder="Guest team" ng-model="match.guestTeam"/></td>
+                </tr>
+            </table>
+
+        </div>
+        <div class="modal-footer">
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
+                <button type="button" class="btn btn-primary" ng-click="ok()">Save</button>
+            </span>
+        </div>
+    </div>

@@ -2,7 +2,7 @@
 
 /* Define the Match module */
 
-var matchModule = angular.module('tipExpert.match', [ ]);
+var matchModule = angular.module('tipExpert.match', []);
 
 matchModule.factory('leagueService', ['$http', function($http) {
 

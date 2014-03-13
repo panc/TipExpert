@@ -43,7 +43,7 @@ tipExpert.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '
         .state('matches.overview', {
             title: 'Matches',
             url: '',
-            templateUrl: '/modules/match/matches.html',
+            templateUrl: '/modules/match/views/matches.html',
             controller: 'matchController',
             access: accessLevels.user // todo
         })

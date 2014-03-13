@@ -11,6 +11,10 @@ p {
     font-size: 12px;
 }
 
+.modal {
+  display: block; 
+}
+
 .main {
     margin-top: 50px;
 }
