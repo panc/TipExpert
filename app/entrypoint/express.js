@@ -32,14 +32,18 @@ module.exports = function(app, config, passport) {
             '/js/app.min.js': [
                 '/public/modules/user/userConfig.js',
                 '/public/app.js',
-                '/public/modules/user/userServices.js',
-                '/public/modules/user/userPresenter.js',
                 '/public/modules/home/homePresenter.js',
-                '/public/modules/game/gameControllers.js',
-                '/public/modules/match/leagueService.js',
-                '/public/modules/match/matchService.js',
-                '/public/modules/match/matchPresenter.js',
-                '/public/modules/match/editMatchPresenter.js'
+                '/public/modules/user/services/authenticationService.js',
+                '/public/modules/user/presenter/loginPresenter.js',
+                '/public/modules/user/presenter/navigationPresenter.js',
+                '/public/modules/user/presenter/signUpPresenter.js',
+                '/public/modules/user/presenter/userPresenter.js',
+                '/public/modules/user/presenter/userProfilePresenter.js',
+                '/public/modules/match/services/leagueService.js',
+                '/public/modules/match/services/matchService.js',
+                '/public/modules/match/presenter/matchPresenter.js',
+                '/public/modules/match/presenter/editMatchPresenter.js',
+                '/public/modules/game/gameControllers.js'
             ]
         },
         // root - where resources can be found
