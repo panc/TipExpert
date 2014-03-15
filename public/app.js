@@ -1,11 +1,14 @@
 'use strict';
 
+// define all available modules
+angular.module('tipExpert.user', [ 'ngCookies' ]);
+angular.module('tipExpert.match', [ ]);
+angular.module('tipExpert.game', [ ]);
+
 var tipExpert = angular.module('tipExpert', ['ngRoute', 'tipExpert.home', 'tipExpert.user', 'tipExpert.match', 'ui.bootstrap', 'ui.router']);
 
+// configure the main module
 tipExpert.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
-
-    // For any unmatched url, redirect to /
-    //$urlRouterProvider.otherwise("/");
 
     var accessLevels = userConfig.accessLevels;
 

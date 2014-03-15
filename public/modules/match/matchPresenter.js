@@ -1,7 +1,5 @@
 'use strict';
 
-/* Use the Match module */
-
 var match = angular.module('tipExpert.match');
 
 match.controller('matchController', ['$http', '$scope', '$modal', 'leagueService', 'matchService', function($http, $scope, $modal, leagueService, matchService)  {

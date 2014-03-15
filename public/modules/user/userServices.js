@@ -1,8 +1,6 @@
 'use strict';
 
-/* Define the User module */
-
-var userModule = angular.module('tipExpert.user', [ 'ngCookies' ]);
+var userModule = angular.module('tipExpert.user');
     
 userModule.factory('Auth', ['$http', '$cookieStore', function($http, $cookieStore) {
 

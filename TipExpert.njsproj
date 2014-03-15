@@ -39,7 +39,7 @@
     <Compile Include="app\api\models\match.js" />
     <Compile Include="app\api\models\user.js" />
     <Compile Include="app\entrypoint\postInstall.js" />
-    <Compile Include="public\directives\modalDialogDirective.js" />
+    <Compile Include="public\modules\bootstrap.js" />
     <Compile Include="public\modules\match\editMatchPresenter.js" />
     <Compile Include="public\modules\match\matchService.js" />
     <Compile Include="public\modules\match\leagueService.js" />
@@ -103,7 +103,6 @@
     <Folder Include="public\modules\user\" />
     <Folder Include="public\modules\" />
     <Folder Include="public\modules\user\views\" />
-    <Folder Include="public\directives\" />
     <Folder Include="test\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />

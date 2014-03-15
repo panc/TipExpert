@@ -1,7 +1,5 @@
 'use strict';
 
-/* Use the Match module */
-
 var matchModule = angular.module('tipExpert.match');
 
 matchModule.factory('matchService', ['$http', function($http) {

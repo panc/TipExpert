@@ -32,7 +32,6 @@ module.exports = function(app, config, passport) {
             '/js/app.min.js': [
                 '/public/modules/user/userConfig.js',
                 '/public/app.js',
-                '/public/directives/modalDialogDirective.js',
                 '/public/modules/user/userServices.js',
                 '/public/modules/user/userPresenter.js',
                 '/public/modules/home/homePresenter.js',

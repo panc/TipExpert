@@ -1,7 +1,5 @@
 'use strict';
 
-/* Use the User module (it is defined in the userServices.js) */
-
 var user = angular.module('tipExpert.user');
 
 user.controller('userController', ['$http', '$scope', function($http, $scope)  {

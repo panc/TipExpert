@@ -2,4 +2,4 @@
 
 /* Match module */
 
-var gameModule = angular.module('tipExpert.game', []);
+var gameModule = angular.module('tipExpert.game');
