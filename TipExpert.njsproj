@@ -39,10 +39,13 @@
     <Compile Include="app\api\models\match.js" />
     <Compile Include="app\api\models\user.js" />
     <Compile Include="app\entrypoint\postInstall.js" />
-    <Compile Include="public\modules\bootstrap.js" />
-    <Compile Include="public\modules\match\editMatchPresenter.js" />
-    <Compile Include="public\modules\match\matchService.js" />
-    <Compile Include="public\modules\match\leagueService.js" />
+    <Compile Include="public\modules\match\presenter\editMatchPresenter.js" />
+    <Compile Include="public\modules\match\services\matchService.js" />
+    <Compile Include="public\modules\match\services\leagueService.js" />
+    <Compile Include="public\modules\user\presenter\loginPresenter.js" />
+    <Compile Include="public\modules\user\presenter\navigationPresenter.js" />
+    <Compile Include="public\modules\user\presenter\signUpPresenter.js" />
+    <Compile Include="public\modules\user\presenter\userProfilePresenter.js" />
     <Compile Include="public\modules\user\userConfig.js" />
     <Compile Include="app\helper\formatHelper.js" />
     <Compile Include="app\entrypoint\app-config.js" />
@@ -53,10 +56,10 @@
     <Compile Include="app\entrypoint\routes.js" />
     <Compile Include="public\app.js" />
     <Compile Include="public\modules\game\gameControllers.js" />
-    <Compile Include="public\modules\match\matchPresenter.js" />
-    <Compile Include="public\modules\user\userPresenter.js" />
+    <Compile Include="public\modules\match\presenter\matchPresenter.js" />
+    <Compile Include="public\modules\user\presenter\userPresenter.js" />
     <Compile Include="public\modules\home\homePresenter.js" />
-    <Compile Include="public\modules\user\userServices.js" />
+    <Compile Include="public\modules\user\services\authenticationService.js" />
     <Compile Include="test\helper.js" />
     <Compile Include="test\test-leagues.js" />
     <Compile Include="test\test-users.js" />
@@ -99,9 +102,13 @@
     <Folder Include="public\modules\home\" />
     <Folder Include="public\modules\match\" />
     <Folder Include="public\modules\game\" />
+    <Folder Include="public\modules\match\services\" />
+    <Folder Include="public\modules\match\presenter\" />
     <Folder Include="public\modules\match\views\" />
     <Folder Include="public\modules\user\" />
     <Folder Include="public\modules\" />
+    <Folder Include="public\modules\user\services\" />
+    <Folder Include="public\modules\user\presenter\" />
     <Folder Include="public\modules\user\views\" />
     <Folder Include="test\" />
   </ItemGroup>

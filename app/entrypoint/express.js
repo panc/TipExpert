@@ -19,7 +19,7 @@ module.exports = function(app, config, passport) {
         assets: {
             '/css/main.min.css': [
                 '/public/css/site.css',
-                '/public/css/bootstrap.css'
+                '/bower_components/bootstrap/dist/css/bootstrap.css'
             ],
             '/js/bower.min.js': [
                 '/bower_components/angular/angular.js',

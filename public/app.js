@@ -5,7 +5,8 @@ angular.module('tipExpert.user', [ 'ngCookies' ]);
 angular.module('tipExpert.match', [ ]);
 angular.module('tipExpert.game', [ ]);
 
-var tipExpert = angular.module('tipExpert', ['ngRoute', 'tipExpert.home', 'tipExpert.user', 'tipExpert.match', 'ui.bootstrap', 'ui.router']);
+var tipExpert = angular.module('tipExpert', ['tipExpert.home', 'tipExpert.user', 'tipExpert.match', 
+                                             'ui.bootstrap', 'ui.router', 'ngRoute']);
 
 // configure the main module
 tipExpert.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {

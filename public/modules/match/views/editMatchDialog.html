@@ -6,8 +6,12 @@
         <div class="modal-body">
             <div class="form-group">
                 <label class="left control-label">Due Date: </label>
+                
                 <div class="left">
-                    <input type="date" ng-model="match.dueDate" class="form-control" required>
+                    <p class="input-group">
+                        <input type="text" class="form-control" ng-model="match.dueDate" 
+                            is-open="opened" ng-required="true" close-text="Close" datepicker-popup="dd.MM.yyyy"/>
+                    </p>
                 </div>
                 <div class="clearfix"></div>
             </div>
