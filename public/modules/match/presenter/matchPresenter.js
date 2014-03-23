@@ -2,7 +2,7 @@
 
 var match = angular.module('tipExpert.match');
 
-match.controller('matchController', ['$http', '$scope', '$modal', 'leagueService', 'matchService', function($http, $scope, $modal, leagueService, matchService)  {
+match.controller('matchController', ['$scope', '$modal', 'leagueService', 'matchService', function($scope, $modal, leagueService, matchService)  {
 
     $scope.selectedMatch = { homeTeam: '', guestTeam: '', dueDate: new Date()};
     $scope.leagues = leagueService.leagues;

@@ -30,7 +30,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="app.js" />
-    <Compile Include="app\api\controllers\games.js" />
+    <Compile Include="app\api\controllers\gameController.js" />
     <Compile Include="app\api\controllers\leagueController.js" />
     <Compile Include="app\api\controllers\matchController.js" />
     <Compile Include="app\api\controllers\userController.js" />
@@ -38,7 +38,9 @@
     <Compile Include="app\api\models\game.js" />
     <Compile Include="app\api\models\match.js" />
     <Compile Include="app\api\models\user.js" />
+    <Compile Include="app\entrypoint\assets-config.js" />
     <Compile Include="app\entrypoint\postInstall.js" />
+    <Compile Include="public\modules\game\services\gameService.js" />
     <Compile Include="public\modules\match\presenter\editMatchPresenter.js" />
     <Compile Include="public\modules\match\services\matchService.js" />
     <Compile Include="public\modules\match\services\leagueService.js" />
@@ -55,7 +57,7 @@
     <Compile Include="app\entrypoint\passport-config.js" />
     <Compile Include="app\entrypoint\routes.js" />
     <Compile Include="public\app.js" />
-    <Compile Include="public\modules\game\gameControllers.js" />
+    <Compile Include="public\modules\game\presenter\gamePresenter.js" />
     <Compile Include="public\modules\match\presenter\matchPresenter.js" />
     <Compile Include="public\modules\user\presenter\userPresenter.js" />
     <Compile Include="public\modules\home\homePresenter.js" />
@@ -67,6 +69,7 @@
     <Content Include="app\api\views\404.html" />
     <Content Include="app\api\views\template.html" />
     <Content Include="app\api\views\userInfo.html" />
+    <Content Include="public\modules\game\views\myGames.html" />
     <Content Include="public\modules\match\views\editMatchDialog.html" />
     <Content Include="public\modules\match\views\matches.html" />
     <Content Include="public\modules\user\views\signup.html" />
@@ -98,6 +101,9 @@
     <Folder Include="public\css\" />
     <Folder Include="public\images\" />
     <Folder Include="public\" />
+    <Folder Include="public\modules\game\views\" />
+    <Folder Include="public\modules\game\services\" />
+    <Folder Include="public\modules\game\presenter\" />
     <Folder Include="public\modules\home\views\" />
     <Folder Include="public\modules\home\" />
     <Folder Include="public\modules\match\" />

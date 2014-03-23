@@ -36,7 +36,8 @@ module.exports = function(config) {
                 '/public/modules/match/services/matchService.js',
                 '/public/modules/match/presenter/matchPresenter.js',
                 '/public/modules/match/presenter/editMatchPresenter.js',
-                '/public/modules/game/gameControllers.js'
+                '/public/modules/game/services/gameService.js',
+                '/public/modules/game/presenter/gamePresenter.js'
             ]
         },
         // root - where resources can be found

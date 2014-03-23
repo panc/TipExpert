@@ -5,7 +5,7 @@ angular.module('tipExpert.user', [ 'ngCookies' ]);
 angular.module('tipExpert.match', [ ]);
 angular.module('tipExpert.game', [ ]);
 
-var tipExpert = angular.module('tipExpert', ['tipExpert.home', 'tipExpert.user', 'tipExpert.match', 
+var tipExpert = angular.module('tipExpert', ['tipExpert.home', 'tipExpert.user', 'tipExpert.match', 'tipExpert.game',
                                              'ui.bootstrap', 'ui.router', 'ngRoute']);
 
 // configure the main module
@@ -57,6 +57,20 @@ tipExpert.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '
             templateUrl: 'todo',
             controller: 'finishedMatchesController',
             access: accessLevels.user
+        })
+    
+        // routes for game module
+        .state('games', {
+            template: '<ui-view/>',
+            url: '/games',
+            abstract: true
+        })
+        .state('games.overview', {
+            title: 'Games',
+            url: '',
+            templateUrl: '/modules/game/views/myGames.html',
+            controller: 'gameController',
+            access: accessLevels.user // todo
         })
     
         // session routes

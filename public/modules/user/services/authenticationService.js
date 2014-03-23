@@ -8,6 +8,7 @@ userModule.factory('Auth', ['$http', '$cookieStore', function($http, $cookieStor
         var userRoles = userConfig.roles;
         
         function changeUser(user) {
+            currentUser.id = user.id;
             currentUser.name = user.name;
             currentUser.role = user.role;
             

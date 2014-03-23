@@ -5,7 +5,7 @@ var auth = require('./middlewares/authorization');
 var user = require('../api/controllers/userController'),
     matches = require('../api/controllers/matchController'),
     leagues = require('../api/controllers/leagueController'),
-    games = require('../api/controllers/games'),
+    games = require('../api/controllers/gameController'),
     roles = require('../../public/modules/user/userConfig').roles;
 
 
@@ -34,6 +34,7 @@ module.exports = function(app, shrinkr, passport) {
     app.param('leagueId', leagues.load);
     app.param('matchId', matches.load);
     app.param('userId', user.load);
+    app.param('gameId', games.load);
     
     shrinkr.route({
         // Session routes
@@ -149,6 +150,18 @@ module.exports = function(app, shrinkr, passport) {
             path: "/:matchId",
             put: [ auth.requiresLogin, matches.update ]
         },
+        
+        // Game routes
+        "api.games": {
+            path: "/:userId/games",
+            get: [ auth.requiresLogin, games.list ],
+            post: [ auth.requiresLogin, games.create ]
+        },
+        "api.games.item": {
+            path: "/:gameId",
+            put: [ auth.requiresLogin, games.update ],
+            delete: [ auth.requiresLogin, games.delete ]
+        }
     });
     
     // let angularjs handle all other routes
