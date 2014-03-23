@@ -20,15 +20,24 @@ exports.load = function(req, res, next, id) {
 };
 
 /**
+ * Loads a single game
+ */
+exports.loadGame = function(req, res) {
+    
+    return res.json(req.game);
+};
+
+
+/**
  * List all games for a user
  */
 exports.list = function(req, res) {
     
-    Game.list({ userId: req.user.id }, function(err, matches) {
+    Game.list({ userId: req.user.id }, function(err, games) {
         if (err)
             return res.json('500', utils.formatErrors(err.errors));
 
-        return res.json(matches);
+        return res.json(games);
     });
 };
 

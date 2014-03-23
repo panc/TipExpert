@@ -159,6 +159,7 @@ module.exports = function(app, shrinkr, passport) {
         },
         "api.games.item": {
             path: "/:gameId",
+            get: [ auth.requiresLogin, games.loadGame ],
             put: [ auth.requiresLogin, games.update ],
             delete: [ auth.requiresLogin, games.delete ]
         }

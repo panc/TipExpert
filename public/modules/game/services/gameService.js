@@ -5,8 +5,16 @@ var game = angular.module('tipExpert.game');
 game.factory('gameService', ['$http', 'Auth', function($http, Auth) {
 
         return {
-        load: function(success, error) {
+        loadGamesForCurrentUser: function(success, error) {
             $http.get('/api/' + Auth.user.id + '/games')
+                .success(function(data, status, headers, config) {
+                    success(data);
+                })
+                .error(error);
+        },
+        
+        load: function(gameId, success, error) {
+            $http.get('/api/' + Auth.user.id + '/games/' + gameId)
                 .success(function(data, status, headers, config) {
                     success(data);
                 })
@@ -21,16 +29,16 @@ game.factory('gameService', ['$http', 'Auth', function($http, Auth) {
                 .error(error);
         },
         
-        update: function (match, success, error) {
-            $http.put('/api/' + Auth.user.id + '/games' + match._id, match)
+        update: function (game, success, error) {
+            $http.put('/api/' + Auth.user.id + '/games/' + game._id, game)
                 .success(function(data, status, headers, config) {
-                    success(match);
+                    success(game);
                 })
                 .error(error);
         },
         
-        delete: function (match, error) {
-            $http.delete('/api/' + Auth.user.id + '/games' + match._id)
+        delete: function (game, error) {
+            $http.delete('/api/' + Auth.user.id + '/games/' + game._id)
                 .error(error);
         }
     };
