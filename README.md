@@ -51,7 +51,14 @@ Angemeldete User verfügen derzeit noch über alle Rechte, also nicht wundern ;-
 
 ## Frontend (User)
 
-TBD:
+**Erledigt**
+
+* Tipp-Spiele verwalten
+ * Spiele anlegen / bearbeiten (bisher ist nur der Title editierbar)
+
+
+**TBD**
+
 * Tipp-Spiel anlegen
  * Spielpaarungen auswählen
  * Freunde hinzufügen
