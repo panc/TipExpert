@@ -1,0 +1,23 @@
+<div>
+    <form role="form" name="submitForm" class="form-horizontal" novalidate>
+        <fieldset>
+                    
+            <!-- TITLE -->
+            <div class="form-group" ng-class="{ 'has-error' : submitForm.name.$invalid && submitted }">
+                <label class="col-lg-2 control-label">Title</label>
+                <div class="col-lg-10">
+                    <input type="text" name="title" ng-model="game.title" placeholder="Enter title of the game" class="form-control" required>
+                    <p ng-show="submitForm.name.$invalid && submitted" class="help-block">Title is required.</p>
+                </div>
+            </div>
+                      
+            <!-- BUTTONS -->                  
+            <div class="form-group">
+                <div class="col-lg-10 col-lg-offset-2">
+                    <a ui-sref="games.overview" title="cancel" class="btn-default btn">Cancel</a>
+                    <button ng-click="save()" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>

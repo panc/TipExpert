@@ -24,7 +24,7 @@ var GameSchema = new Schema({
 });
 
 // validation
-GameSchema.path('creator').required(true, 'Home team cannot be blank');
+GameSchema.path('creator').required(true, 'Creator cannot be blank');
 GameSchema.path('dueDate').required(true, 'Due date cannot be blank');
 
 // static methods for the match schema

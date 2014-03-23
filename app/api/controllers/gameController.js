@@ -36,12 +36,12 @@ exports.list = function(req, res) {
  * Create game
  */
 exports.create = function(req, res) {
-    
     var game = new Game(req.body);
+    game.creator = req.user.id;
 
     game.save(function(error) {
         if (error)
-            return res.send('500', utils.formatErrors(error.errors));
+            return res.json('500', utils.formatErrors(error.errors));
         
         return res.send(game);
     });
@@ -56,7 +56,7 @@ exports.update = function(req, res) {
     
     game.save(function(error) {
         if (error)
-            return res.send('500', utils.formatErrors(error.errors));
+            return res.json('500', utils.formatErrors(error.errors));
         
         return res.send(game);
     });

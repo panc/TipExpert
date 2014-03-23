@@ -72,6 +72,20 @@ tipExpert.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '
             controller: 'gameController',
             access: accessLevels.user // todo
         })
+        .state('games.create', {
+            title: 'Create game',
+            url: '/create',
+            templateUrl: '/modules/game/views/editGame.html',
+            controller: 'editGameController',
+            access: accessLevels.user // todo
+        })
+        .state('games.edit', {
+            title: 'Edit game',
+            url: '/:gameId',
+            templateUrl: '/modules/game/views/editGame.html',
+            controller: 'editGameController',
+            access: accessLevels.user // todo
+        })
     
         // session routes
         .state('login', {

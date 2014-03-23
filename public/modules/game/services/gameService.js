@@ -13,10 +13,10 @@ game.factory('gameService', ['$http', 'Auth', function($http, Auth) {
                 .error(error);
         },
         
-        create: function (newMatch, success, error) {
-            $http.post('/api/' + Auth.user.id + '/games', newMatch)
-                .success(function(match, status, headers, config) {
-                    success(match);
+        create: function (newGame, success, error) {
+            $http.post('/api/' + Auth.user.id + '/games', newGame)
+                .success(function(game, status, headers, config) {
+                    success(game);
                 })
                 .error(error);
         },

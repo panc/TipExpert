@@ -1,11 +1,12 @@
 <div>
     
     <ul>
-        
         <li ng-repeat="game in games">
-            {{game.title}} {{game.dueDate}}
+            <span>{{game.title}} {{game.dueDate}} <a ui-sref="games.edit({ gameId: game._id })">Edit</a></span>
         </li>
-
     </ul>
-
+    
+    <span class="input-group-btn">
+        <a ui-sref="games.create" class="btn btn-default">Add game</a>
+    </span>
 </div>
