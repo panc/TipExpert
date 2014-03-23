@@ -38,6 +38,9 @@ GameSchema .statics = {
 
     load: function(id, cb) {
         this.findOne({ _id: id })
+            .populate('creator')
+            .populate('matches')
+            .populate('players')
             .exec(cb);
     },
 
