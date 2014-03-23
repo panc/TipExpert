@@ -5,6 +5,7 @@ var mongoose = require('mongoose'),
 
 // game schema
 var GameSchema = new Schema({
+    title: { type: String, default: '' },
     creator: { type: Schema.ObjectId, ref: 'User' },
     players: [{
         user: { type : Schema.ObjectId, ref : 'User'},
