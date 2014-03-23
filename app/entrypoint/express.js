@@ -122,7 +122,7 @@ module.exports = function(app, config, passport) {
         }
 
         // error page
-        res.status(500).json('500', { error: err.stack });
+        res.status(500).json('500', err.stack);
     });
 
     // assume 404 since no middleware responded

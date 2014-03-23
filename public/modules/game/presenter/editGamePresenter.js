@@ -4,7 +4,7 @@ var game = angular.module('tipExpert.game');
 
 game.controller('editGameController', ['$scope', '$state', '$stateParams', 'gameService', 'matchService', function($scope, $state, $stateParams, gameService, matchService) {
     
-    $scope.game = {};
+    $scope.game = { isNewGame: true };
 
     if ($stateParams.gameId) {
         gameService.load($stateParams.gameId, function(game) {
@@ -22,7 +22,11 @@ game.controller('editGameController', ['$scope', '$state', '$stateParams', 'game
         if ($scope.submitForm.$invalid)
             return;
 
-        gameService.create($scope.game, function(newGame) {
+        var saveGame = ($scope.game.isNewGame === true) 
+            ? gameService.create 
+            : gameService.update;
+
+        saveGame($scope.game, function(newGame) {
             $state.go('games.edit', { gameId: newGame._id });
         },
         function(err) {
