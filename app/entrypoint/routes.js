@@ -10,22 +10,25 @@ var user = require('../api/controllers/userController'),
 
 
 var redirectToAngular = function(req, res) {
-    var user = req.user || { };
+    res.cookie('user', JSON.stringify(convertUser(user)));    
+    res.render('template');
+};
+
+var convertUser = function(user) {
+    user = user || { };
     
     var picture = '';
     if (user.google)
-        picture = req.user.google.picture;
+        picture = user.google.picture;
     if (user.facebook)
-        picture = req.user.facebook.picture.data.url ;
+        picture = user.facebook.picture.data.url ;
     
-    res.cookie('user', JSON.stringify({
-        'id': user.id || '',
+    return {
+        'id': user.id || user._id || '',
         'name': user.name || '',
         'role': user.role || roles.public,
         'picture': picture
-    }));
-    
-    res.render('template');
+    };
 };
 
 module.exports = function(app, shrinkr, passport) {
@@ -65,7 +68,7 @@ module.exports = function(app, shrinkr, passport) {
                         if (req.body.rememberme) 
                             req.session.cookie.maxAge = 1000 * 60 * 60 * 24 * 7;
                         
-                        res.json(200, user);
+                        res.json(200, convertUser(user));
                     });
                 })(req, res, next);
             }
