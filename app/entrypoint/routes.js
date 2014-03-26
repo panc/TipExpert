@@ -10,7 +10,7 @@ var user = require('../api/controllers/userController'),
 
 
 var redirectToAngular = function(req, res) {
-    res.cookie('user', JSON.stringify(convertUser(user)));    
+    res.cookie('user', JSON.stringify(convertUser(req.user)));    
     res.render('template');
 };
 
