@@ -40,6 +40,7 @@
     <Compile Include="app\api\models\user.js" />
     <Compile Include="app\entrypoint\assets-config.js" />
     <Compile Include="app\entrypoint\postInstall.js" />
+    <Compile Include="public\modules\game\presenter\addGamePresenter.js" />
     <Compile Include="public\modules\game\presenter\editGamePresenter.js" />
     <Compile Include="public\modules\game\services\gameService.js" />
     <Compile Include="public\modules\match\presenter\editMatchPresenter.js" />
@@ -70,6 +71,7 @@
     <Content Include="app\api\views\404.html" />
     <Content Include="app\api\views\template.html" />
     <Content Include="app\api\views\userInfo.html" />
+    <Content Include="public\modules\game\views\addGame.html" />
     <Content Include="public\modules\game\views\editGame.html" />
     <Content Include="public\modules\game\views\myGames.html" />
     <Content Include="public\modules\match\views\editMatchDialog.html" />
