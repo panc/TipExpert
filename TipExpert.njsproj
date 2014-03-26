@@ -71,7 +71,7 @@
     <Content Include="app\api\views\404.html" />
     <Content Include="app\api\views\template.html" />
     <Content Include="app\api\views\userInfo.html" />
-    <Content Include="public\modules\game\views\addGame.html" />
+    <Content Include="public\modules\game\views\addGameDialog.html" />
     <Content Include="public\modules\game\views\editGame.html" />
     <Content Include="public\modules\game\views\myGames.html" />
     <Content Include="public\modules\match\views\editMatchDialog.html" />
