@@ -1,4 +1,5 @@
 {
 	"HEADLINE": "Hello there, This is my awesome app!",
-	"INTRO_TEXT": "And it has i18n support!"
+	"INTRO_TEXT": "And it has i18n support!",
+	"GAME-MATCHAREA": "Matches"
 }

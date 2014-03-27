@@ -159,3 +159,12 @@ p {
     display: inline-block;
     font-weight: bold;
 }
+
+/* GAME */
+.game-title {
+    font-size: 20px;
+}
+
+.buttonbar-offset {
+    margin-top: 80px;
+}

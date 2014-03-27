@@ -71,6 +71,8 @@
     <Content Include="app\api\views\404.html" />
     <Content Include="app\api\views\template.html" />
     <Content Include="app\api\views\userInfo.html" />
+    <Content Include="public\locales\de.json" />
+    <Content Include="public\locales\en.json" />
     <Content Include="public\modules\game\views\addGameDialog.html" />
     <Content Include="public\modules\game\views\editGame.html" />
     <Content Include="public\modules\game\views\myGames.html" />
@@ -105,6 +107,7 @@
     <Folder Include="public\css\" />
     <Folder Include="public\images\" />
     <Folder Include="public\" />
+    <Folder Include="public\locales\" />
     <Folder Include="public\modules\game\views\" />
     <Folder Include="public\modules\game\services\" />
     <Folder Include="public\modules\game\presenter\" />

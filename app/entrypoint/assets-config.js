@@ -10,9 +10,9 @@ module.exports = function(config) {
         // assets map - maps served file identifier to a list of resources
         assets: {
             '/css/main.min.css': [
-                '/public/css/site.css',
                 //'/bower_components/bootstrap/dist/css/bootstrap.css'
-                '/public/css/bootstrap.css'
+                '/public/css/bootstrap.css',
+                '/public/css/site.css'
             ],
             '/js/bower.min.js': [
                 '/bower_components/angular/angular.js',
