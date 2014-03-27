@@ -11,12 +11,12 @@
             </div>
             
             <!-- MATCHES -->
-            <div class="container row">
+            <div class="container row matches-container">
                 
                 <h1>Matches</h1>
                 
+                <p>Choose the matches on which your friends should tip.</p>
                 <p>
-                    Choose the matches on which your friends should tip.
                     The matches can be of any league so you can select e.g. a Premier League match 
                     as well as any Champions League matche and add it to your tip game.
                 </p>
@@ -25,10 +25,16 @@
                     <button ng-click="addMatch()" class="btn btn-primary">Add Match</button>
                 </span>
                 
+                <ul>
+                    <li ng-repeat="match in game.matches">
+                        <span>{{game.title}} {{game.dueDate}} <a ui-sref="games.edit({ gameId: game._id })">Edit</a></span>
+                    </li>
+                </ul>
+
             </div>
 
             <!-- PLAYERS -->
-            <div class="container row">
+            <div class="container row players-container">
                 
                 <h1>Players</h1>
                 

@@ -2,18 +2,19 @@
 
 var game = angular.module('tipExpert.game');
 
-game.controller('editGameController', ['$scope', '$state', '$stateParams', 'gameService', 'matchService', function($scope, $state, $stateParams, gameService, matchService) {
+game.controller('editGameController', ['$scope', '$state', '$stateParams', '$modal', 'gameService', 'matchService', function($scope, $state, $stateParams, $modal, gameService, matchService) {
     
-    $scope.game = { isNewGame: true };
+    $scope.game = { };
 
     if ($stateParams.gameId) {
-        gameService.load($stateParams.gameId, function(game) {
-            $scope.game = game;
-        },
-        function(data) {
-            // todo
-            alert(data);
-        });
+        gameService.load($stateParams.gameId,
+            function(game) {
+                $scope.game = game;
+            },
+            function(data) {
+                // todo
+                alert(data);
+            });
     }
 
     $scope.save = function() {
@@ -22,15 +23,32 @@ game.controller('editGameController', ['$scope', '$state', '$stateParams', 'game
         if ($scope.submitForm.$invalid)
             return;
 
-        var saveGame = ($scope.game.isNewGame === true) 
-            ? gameService.create 
-            : gameService.update;
+        gameService.update($scope.game,
+            function(newGame) {
+                // nothing to do yet
+            },
+            function(err) {
+                // todo
+                alert(err);
+            });
+    };
 
-        saveGame($scope.game, function(newGame) {
-            $state.go('games.edit', { gameId: newGame._id });
-        },
-        function(err) {
-            alert(err);
+    $scope.addMatch = function() {
+        var modalInstance = $modal.open({
+            templateUrl: 'modules/game/views/selectMatchesDialog.html',
+            controller: 'SelectMatchesController',
+            resolve: {
+                game: function() {
+                    return $scope.game;
+                }
+            }
+        });
+
+        modalInstance.result.then(function() {
+            
+
+        }, function() {
+            // canceld -> nothing to do
         });
     };
 }]);
