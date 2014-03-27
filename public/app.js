@@ -6,7 +6,7 @@ angular.module('tipExpert.match', [ ]);
 angular.module('tipExpert.game', [ ]);
 
 var tipExpert = angular.module('tipExpert', ['tipExpert.home', 'tipExpert.user', 'tipExpert.match', 'tipExpert.game',
-                                             'ui.bootstrap', 'ui.router', 'ngRoute']);
+                                             'ui.bootstrap', 'ui.router', 'ngRoute', 'pascalprecht.translate']);
 
 // configure the main module
 tipExpert.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
@@ -126,6 +126,25 @@ tipExpert.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '
             }
         };
     }]);
+}]);
+
+tipExpert.config(['$translateProvider', function($translateProvider) {
+
+    $translateProvider
+        .fallbackLanguage('en')
+        .registerAvailableLanguageKeys(['en', 'de'], {
+            'en_US': 'en',
+            'en_UK': 'en',
+            'de_DE': 'de',
+            'de_CH': 'de',
+            'de_AT': 'de'
+        })
+        .determinePreferredLanguage();
+
+    $translateProvider.useStaticFilesLoader({
+        prefix: 'locales/',
+        suffix: '.json'
+    });
 }]);
 
 tipExpert.run(['$rootScope', '$location', '$state', 'Auth', function($rootScope, $location, $state, Auth) {

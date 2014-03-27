@@ -20,7 +20,9 @@ module.exports = function(config) {
                 '/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
                 '/bower_components/angular-route/angular-route.js',
                 '/bower_components/angular-cookies/angular-cookies.js',
-                '/bower_components/angular-ui-router/release/angular-ui-router.js'
+                '/bower_components/angular-ui-router/release/angular-ui-router.js',
+                '/bower_components/angular-translate/angular-translate.js',
+                '/bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js'
             ],
             '/js/app.min.js': [
                 '/public/modules/user/userConfig.js',
