@@ -142,7 +142,7 @@ tipExpert.config(['$translateProvider', function($translateProvider) {
         .determinePreferredLanguage();
 
     $translateProvider.useStaticFilesLoader({
-        prefix: 'locales/',
+        prefix: window.location.origin + '/locales/',
         suffix: '.json'
     });
 }]);
