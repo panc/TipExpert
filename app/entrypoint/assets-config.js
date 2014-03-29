@@ -26,6 +26,7 @@ module.exports = function(config) {
             ],
             '/js/app.min.js': [
                 '/public/modules/user/userConfig.js',
+                '/public/toast.js',
                 '/public/app.js',
                 '/public/modules/home/homePresenter.js',
                 '/public/modules/user/services/authenticationService.js',

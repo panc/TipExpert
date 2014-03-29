@@ -2,9 +2,16 @@
 
 var game = angular.module('tipExpert.game');
 
-game.controller('SelectMatchesController', ['$scope', '$modalInstance', 'matchService', 'gameService', 'game', function($scope, $modalInstance, matchService, gameService, game) {
+game.controller('SelectMatchesController', ['$scope', '$modalInstance', 'leagueService', 'matchService', 'gameService', 'game', function($scope, $modalInstance, leagueService, matchService, gameService, game) {
     
     $scope.game = game;
+
+    leagueService.load(
+        function(leagues) {
+            $scope.leagues = leagues;
+        }, 
+        toast.error);
+    
 
     //matchService.Select
     
