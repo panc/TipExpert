@@ -8,6 +8,11 @@ matchModule.factory('leagueService', ['$http', function($http) {
 
     return {
         load: function(success, error) {
+            if (leagues.length > 0) {
+                success(leagues);
+                return;
+            }
+
             $http.get('/api/leagues')
                 .success(function(data, status, headers, config) {
                     leagues.length = 0;
@@ -15,7 +20,7 @@ matchModule.factory('leagueService', ['$http', function($http) {
                         leagues.push(league);
                     });
                     
-                    success();
+                    success(leagues);
                 })
                 .error(error);
         },
@@ -44,8 +49,6 @@ matchModule.factory('leagueService', ['$http', function($http) {
                     leagues.splice(index, 1);
                 })
                 .error(error);
-        },
-
-        leagues: leagues
+        }
     };
 }]);

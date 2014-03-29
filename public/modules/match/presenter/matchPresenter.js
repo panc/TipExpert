@@ -5,7 +5,7 @@ var match = angular.module('tipExpert.match');
 match.controller('matchController', ['$scope', '$modal', 'leagueService', 'matchService', function($scope, $modal, leagueService, matchService)  {
 
     $scope.selectedMatch = { homeTeam: '', guestTeam: '', dueDate: new Date()};
-    $scope.leagues = leagueService.leagues;
+    $scope.leagues = [];
     $scope.newLeague = { name: ''};
 
     // leagues
@@ -53,21 +53,6 @@ match.controller('matchController', ['$scope', '$modal', 'leagueService', 'match
             });
     };
     
-    leagueService.load(
-        function() {
-            angular.forEach($scope.leagues, function(league) {
-                league.editorEnabled = false;
-            });
-            
-            if ($scope.leagues.length > 0)
-                $scope.loadMatches($scope.leagues[0]);
-        },
-        function(data) {
-            // todo
-            alert(data);
-        });
-    
-    
     // matches
 
     $scope.loadMatches = function(league) {
@@ -96,7 +81,7 @@ match.controller('matchController', ['$scope', '$modal', 'leagueService', 'match
 
     var showEditMatchDialog = function(match, onSavedCallback) {
         var modalInstance = $modal.open({
-            templateUrl: 'modules/match/views/editMatchDialog.html',
+            templateUrl: '/modules/match/views/editMatchDialog.html',
             controller: 'EditMatchController',
             resolve: {
                 match: function() {
@@ -114,4 +99,20 @@ match.controller('matchController', ['$scope', '$modal', 'leagueService', 'match
             // canceld -> nothing to do
         });
     };
+    
+    leagueService.load(
+        function(leagues) {
+            $scope.leagues = leagues;
+            
+            angular.forEach($scope.leagues, function(league) {
+                league.editorEnabled = false;
+            });
+            
+            if ($scope.leagues.length > 0)
+                $scope.loadMatches($scope.leagues[0]);
+        },
+        function(data) {
+            // todo
+            alert(data);
+        });
 }]);
