@@ -10,13 +10,19 @@ game.controller('SelectMatchesController', ['$scope', '$modalInstance', 'leagueS
         function(leagues) {
             $scope.leagues = leagues;
             
-            if (leagues.length > 0)
-                $scope.selectedLeague = leagues[0];
+            if (leagues.length > 0) {
+                $scope.league = leagues[0];
+                $scope.loadMatches($scope.league);
+            }
         }, 
         toast.error);
 
-    $scope.loadMatches = function(selectedLeague) {
-        toast.info(selectedLeague.name);
+    $scope.loadMatches = function(league) {
+        matchService.load(league,
+            function(matches) {
+                $scope.matches = matches;
+            },
+            toast.error);
     };
 
     $scope.save = function() {

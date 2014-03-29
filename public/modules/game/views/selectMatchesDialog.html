@@ -7,13 +7,20 @@
 
     <div class="modal-body">
         
-        <div>
+        <div class="league-selection">
             <div class="left">Show matches for league:</div>
             <div class="left">
-                <select class="league-dropdown" ng-model="league" ng-options="l.name for l in leagues" ng-change="loadMatches(league)" >
-                    
-                </select>
+                <select class="league-dropdown" ng-model="league" ng-options="l.name for l in leagues" ng-change="loadMatches(league)" ></select>
             </div>
+            <div class="clear"></div>
+        </div>
+        
+        <div class="match-selection">
+            <ul>
+                <li ng-repeat="match in matches" ng-click="toggleMatchSelection(match)">
+                    <div>{{ match.homeTeam }} : {{ match.guestTeam }} ({{ match.dueDate }})</div>
+                </li>
+            </ul>
         </div>
     </div>
 

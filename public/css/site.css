@@ -177,3 +177,7 @@ p {
     margin-left: 10px;
     color: inherit;
 }
+
+.match-selection {
+    margin-top: 40px;
+}
