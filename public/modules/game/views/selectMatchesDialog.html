@@ -17,7 +17,7 @@
         
         <div class="match-selection">
             <ul>
-                <li ng-repeat="match in matches" ng-click="toggleMatchSelection(match)">
+                <li ng-repeat="match in matches" ng-click="toggleMatchSelection(match)" ng-class="{ 'selected-match': match.selected }" class="match-selection-item">
                     <div>{{ match.homeTeam }} : {{ match.guestTeam }} ({{ match.dueDate }})</div>
                 </li>
             </ul>
@@ -27,7 +27,7 @@
     <div class="modal-footer">
         <span class="input-group-btn">
             <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
-            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="submit" class="btn btn-primary" ng-click="save()">Save</button>
         </span>
     </div>
 </div>

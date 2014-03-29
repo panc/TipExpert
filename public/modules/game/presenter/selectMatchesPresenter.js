@@ -5,24 +5,49 @@ var game = angular.module('tipExpert.game');
 game.controller('SelectMatchesController', ['$scope', '$modalInstance', 'leagueService', 'matchService', 'gameService', 'game', function($scope, $modalInstance, leagueService, matchService, gameService, game) {
     
     $scope.game = game;
-    
-    leagueService.load(
-        function(leagues) {
-            $scope.leagues = leagues;
-            
-            if (leagues.length > 0) {
-                $scope.league = leagues[0];
-                $scope.loadMatches($scope.league);
-            }
-        }, 
-        toast.error);
 
+    var areMatchesEqual = function(match, otherMatch) {
+        return match.homeTeam == otherMatch.homeTeam
+            && match.guestTeam == otherMatch.guestTeam
+            && match.dueDate == otherMatch.dueDate
+            && match.league._ide == otherMatch.league._ide;
+    };
+    
     $scope.loadMatches = function(league) {
         matchService.load(league,
             function(matches) {
                 $scope.matches = matches;
+
+                angular.forEach(matches, function(match) {
+                    angular.forEach($scope.game.matches, function(matchContainer) {
+                        
+                        if (areMatchesEqual(match, matchContainer.match))
+                            match.selected = true;
+                    });
+                });
+
             },
             toast.error);
+    };
+
+    $scope.toggleMatchSelection = function(match) {
+        match.selected = !match.selected;
+
+        if (match.selected) {
+            // if selected add the match to the match-list of the game
+            var container = { match: match };
+            $scope.game.matches.push(container);
+        }
+        else {
+            // if not selected remove the match from the match-list of the game
+            angular.forEach($scope.game.matches, function(matchContainer) {
+                
+                if (areMatchesEqual(match, matchContainer.match)) {
+                    var index = $scope.game.matches.indexOf(matchContainer);
+                    $scope.game.matches.splice(index, 1);
+                }
+            });
+        }
     };
 
     $scope.save = function() {
@@ -37,4 +62,15 @@ game.controller('SelectMatchesController', ['$scope', '$modalInstance', 'leagueS
     $scope.cancel = function() {
         $modalInstance.dismiss('cancel');
     };
+    
+    leagueService.load(
+        function(leagues) {
+            $scope.leagues = leagues;
+            
+            if (leagues.length > 0) {
+                $scope.league = leagues[0];
+                $scope.loadMatches($scope.league);
+            }
+        }, 
+        toast.error);
 }]);

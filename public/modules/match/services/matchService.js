@@ -4,6 +4,9 @@ var matchModule = angular.module('tipExpert.match');
 
 matchModule.factory('matchService', ['$http', function($http) {
 
+    // todo:
+    // use cache for the matches...
+
     return {
         load: function(league, success, error) {
             $http.get('/api/leagues/' + league._id + '/matches')

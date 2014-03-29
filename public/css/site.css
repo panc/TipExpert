@@ -181,3 +181,12 @@ p {
 .match-selection {
     margin-top: 40px;
 }
+
+.selected-match {
+    background-color: #a8eba5;
+}
+
+.match-selection-item:hover {
+    cursor: pointer;
+    background-color: #a5d2eb;
+}

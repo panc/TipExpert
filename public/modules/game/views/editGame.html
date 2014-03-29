@@ -26,8 +26,8 @@
                 </span>
                 
                 <ul>
-                    <li ng-repeat="match in game.matches">
-                        <span>{{game.title}} {{game.dueDate}} <a ui-sref="games.edit({ gameId: game._id })">Edit</a></span>
+                    <li ng-repeat="matchContainer in game.matches">
+                        <div>{{ matchContainer.match.homeTeam }} : {{ matchContainer.match.guestTeam }} ({{ matchContainer.match.dueDate }})</div>
                     </li>
                 </ul>
 

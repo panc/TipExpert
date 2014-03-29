@@ -64,6 +64,10 @@ exports.update = function(req, res) {
     var game = req.game;
     game = _.extend(game, req.body);
     
+    // todo
+    // check that an update can only be done
+    // by the creator or by an administrator!
+
     game.save(function(error) {
         if (error)
             return res.json('500', utils.formatErrors(error.errors));
@@ -78,6 +82,10 @@ exports.update = function(req, res) {
 exports.delete = function(req, res) {
     var game = req.game;
     
+    // todo
+    // check that a game can only be deleted
+    // by the creator or by an administrator!
+
     game.remove(function(err) {
         if (err)
             return res.json('500', utils.formatErrors(err.errors));

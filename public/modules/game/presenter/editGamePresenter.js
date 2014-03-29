@@ -39,7 +39,8 @@ game.controller('editGameController', ['$scope', '$state', '$stateParams', '$mod
         });
 
         modalInstance.result.then(function() {
-            
+
+            toast.info('Changes successfully saved!');
 
         }, function() {
             // canceld -> nothing to do
