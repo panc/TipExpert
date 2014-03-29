@@ -11,10 +11,7 @@ game.controller('editGameController', ['$scope', '$state', '$stateParams', '$mod
             function(game) {
                 $scope.game = game;
             },
-            function(data) {
-                // todo
-                alert(data);
-            });
+            toast.error);
     }
 
     $scope.save = function() {
@@ -27,10 +24,7 @@ game.controller('editGameController', ['$scope', '$state', '$stateParams', '$mod
             function(newGame) {
                 // nothing to do yet
             },
-            function(err) {
-                // todo
-                alert(err);
-            });
+            toast.error);
     };
 
     $scope.addMatch = function() {

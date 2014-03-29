@@ -172,3 +172,8 @@ p {
 .players-container {
     margin-top: 40px;
 }
+
+.league-dropdown {
+    margin-left: 10px;
+    color: inherit;
+}

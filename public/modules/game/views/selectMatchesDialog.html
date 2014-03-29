@@ -6,9 +6,15 @@
 
 
     <div class="modal-body">
-
         
-        
+        <div>
+            <div class="left">Show matches for league:</div>
+            <div class="left">
+                <select class="league-dropdown" ng-model="league" ng-options="l.name for l in leagues" ng-change="loadMatches(league)" >
+                    
+                </select>
+            </div>
+        </div>
     </div>
 
     <div class="modal-footer">

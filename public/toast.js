@@ -9,7 +9,7 @@
     exports.error = function(message) {
         // todo
         // show toast message
-        console.debug(message);
+        alert(message);
     };
     
 })(this['toast'] = { });
