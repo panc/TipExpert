@@ -27,8 +27,8 @@ matchModule.factory('matchService', ['$http', function($http) {
         
         update: function (match, success, error) {
             $http.put('/api/matches/' + match._id, match)
-                .success(function(data, status, headers, config) {
-                    success(match);
+                .success(function(updatedMatch, status, headers, config) {
+                    success(updatedMatch);
                 })
                 .error(error);
         },

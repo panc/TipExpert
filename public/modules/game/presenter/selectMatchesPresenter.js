@@ -54,7 +54,7 @@ game.controller('SelectMatchesController', ['$scope', '$modalInstance', 'leagueS
 
         gameService.update(game,
             function(updatedGame) {
-                $modalInstance.close();
+                $modalInstance.close(updatedGame);
             },
             toast.error);
     };

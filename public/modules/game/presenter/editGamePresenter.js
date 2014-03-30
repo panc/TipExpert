@@ -21,8 +21,8 @@ game.controller('editGameController', ['$scope', '$state', '$stateParams', '$mod
             return;
 
         gameService.update($scope.game,
-            function(newGame) {
-                // nothing to do yet
+            function(updatedGame) {
+                $scope.game = updatedGame;
             },
             toast.error);
     };
@@ -38,8 +38,8 @@ game.controller('editGameController', ['$scope', '$state', '$stateParams', '$mod
             }
         });
 
-        modalInstance.result.then(function() {
-
+        modalInstance.result.then(function(updatedGame) {
+            $scope.game = updatedGame;
             toast.info('Changes successfully saved!');
 
         }, function() {

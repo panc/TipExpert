@@ -5,6 +5,9 @@
  * @return {Array}
  */
 exports.formatErrors = function(errors) {
+    if (typeof errors === 'string')
+        return errors;
+
     var keys = Object.keys(errors);
     var errs = [];
 

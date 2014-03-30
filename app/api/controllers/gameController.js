@@ -63,6 +63,8 @@ exports.create = function(req, res) {
 exports.update = function(req, res) {
     var game = req.game;
     game = _.extend(game, req.body);
+    game.matches = req.body.matches;
+    game.players = req.body.players;
     
     // todo
     // check that an update can only be done

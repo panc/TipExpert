@@ -36,7 +36,7 @@ matchModule.factory('leagueService', ['$http', function($http) {
         
         update: function (league, success, error) {
             $http.put('/api/leagues/' + league._id, league)
-                .success(function(data, status, headers, config) {
+                .success(function(newLeague, status, headers, config) {
                     success();
                 })
                 .error(error);
