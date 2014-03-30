@@ -43,7 +43,8 @@ module.exports = function(config) {
                 '/public/modules/game/presenter/gamePresenter.js',
                 '/public/modules/game/presenter/editGamePresenter.js',
                 '/public/modules/game/presenter/addGamePresenter.js',
-                '/public/modules/game/presenter/selectMatchesPresenter.js'
+                '/public/modules/game/presenter/selectMatchesPresenter.js',
+                '/public/modules/game/presenter/selectPlayersPresenter.js'
             ]
         },
         // root - where resources can be found

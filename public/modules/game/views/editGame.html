@@ -1,7 +1,7 @@
 <div>
     <form role="form" name="submitForm" class="form-horizontal" novalidate>
         <fieldset>
-                    
+
             <!-- TITLE -->
             <div class="form-group" ng-class="{ 'has-error' : submitForm.name.$invalid && submitted }">
                 <div class="col-lg-8">
@@ -9,22 +9,22 @@
                     <p ng-show="submitForm.name.$invalid && submitted" class="help-block">Title is required.</p>
                 </div>
             </div>
-            
+
             <!-- MATCHES -->
             <div class="container row matches-container">
-                
+
                 <h1 translate="GAME-MATCHAREA"></h1>
-                
+
                 <p>Choose the matches on which you and your friends should tip.</p>
                 <p>
                     The matches can be of any league so you can select e.g. a Premier League match 
                     as well as any Champions League matche and add it to your tip game.
                 </p>
-                
+
                 <span class="input-group-btn">
                     <button ng-click="addMatch()" class="btn">Add Match</button>
                 </span>
-                
+
                 <ul>
                     <li ng-repeat="matchContainer in game.matches">
                         <div>{{ matchContainer.match.homeTeam }} : {{ matchContainer.match.guestTeam }} ({{ matchContainer.match.dueDate }})</div>
@@ -35,18 +35,28 @@
 
             <!-- PLAYERS -->
             <div class="container row players-container">
+
+                <h1 translate="GAME-PLAYERSAREA">Players</h1>
+
+                <p>Choose your friends which should play the tip game with you.</p>
                 
-                <h1>Players</h1>
-                
-                <p>Player selection is comming soon :-)</p>
-                
+                <span class="input-group-btn">
+                    <button ng-click="addPlayer()" class="btn">Add Player</button>
+                </span>
+
+                <ul>
+                    <li ng-repeat="player in game.players">
+                        <div>{{ player.user.username }}</div>
+                    </li>
+                </ul>
+
             </div>
-            
-            <!-- BUTTONS -->                  
+
+            <!-- BUTTONS -->
             <div class="form-group buttonbar-offset">
                 <div class="col-lg-10">
                     <a ui-sref="games.overview" title="back" class="btn-default btn">Back</a>
-                    <button ng-click="save()" class="btn btn-primary">Save</button>                    
+                    <button ng-click="save()" class="btn btn-primary">Save</button>
                 </div>
             </div>
         </fieldset>

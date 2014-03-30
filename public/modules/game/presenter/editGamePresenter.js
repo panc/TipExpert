@@ -46,4 +46,24 @@ game.controller('editGameController', ['$scope', '$state', '$stateParams', '$mod
             // canceld -> nothing to do
         });
     };
+    
+    $scope.addPlayer = function() {
+        var modalInstance = $modal.open({
+            templateUrl: '/modules/game/views/selectPlayersDialog.html',
+            controller: 'SelectPlayersController',
+            resolve: {
+                game: function() {
+                    return $scope.game;
+                }
+            }
+        });
+
+        modalInstance.result.then(function(updatedGame) {
+            $scope.game = updatedGame;
+            toast.info('Changes successfully saved!');
+
+        }, function() {
+            // canceld -> nothing to do
+        });
+    };
 }]);
