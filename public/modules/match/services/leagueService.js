@@ -19,13 +19,13 @@ matchModule.factory('leagueService', ['$http', function($http) {
                     angular.forEach(data, function(league) {
                         leagues.push(league);
                     });
-                    
+
                     success(leagues);
                 })
                 .error(error);
         },
-        
-        create: function (newLeague, success, error) {
+
+        create: function(newLeague, success, error) {
             $http.post('api/leagues/', newLeague)
                 .success(function(league, status, headers, config) {
                     leagues.push(league);
@@ -33,16 +33,16 @@ matchModule.factory('leagueService', ['$http', function($http) {
                 })
                 .error(error);
         },
-        
-        update: function (league, success, error) {
+
+        update: function(league, success, error) {
             $http.put('/api/leagues/' + league._id, league)
                 .success(function(newLeague, status, headers, config) {
                     success();
                 })
                 .error(error);
         },
-        
-        delete: function (league, error) {
+
+        delete: function(league, error) {
             $http.delete('api/leagues/' + league._id)
                 .success(function(data, status, headers, config) {
                     var index = leagues.indexOf(league);

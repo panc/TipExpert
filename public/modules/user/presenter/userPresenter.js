@@ -2,7 +2,7 @@
 
 var user = angular.module('tipExpert.user');
 
-user.controller('userController', ['$http', '$scope', function($http, $scope)  {
+user.controller('userController', ['$scope', 'userService', function($scope, userService)  {
 
     $scope.roles = [
         { name: 'Admin', index: 1 },
@@ -10,24 +10,14 @@ user.controller('userController', ['$http', '$scope', function($http, $scope)  {
     ];
 
     $scope.save = function() {
-        angular.forEach($scope.users, function(user) {
-            $http.put('api/user/' + user._id, user)
-                .success(function(data, status, headers, config) {
-                    alert('success');
-                })
-                .error(function(data, status, headers, config) {
-                    // todo 
-                    alert(data);
-                });
+        userService.update($scope.users, function() {
+            toast.info('Successfully saved.');
         });
     };
     
-    $http.get('/api/user').
-        success(function(data, status, headers, config) {
-            $scope.users = data;
-        })
-        .error(function(data, status, headers, config) {
-            // todo
-            alert(data);
-        });
+    userService.loadAllUser(
+        function(users) {
+            $scope.users = users;
+        },
+        toast.error);
 }]);

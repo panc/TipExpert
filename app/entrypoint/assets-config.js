@@ -30,6 +30,7 @@ module.exports = function(config) {
                 '/public/app.js',
                 '/public/modules/home/homePresenter.js',
                 '/public/modules/user/services/authenticationService.js',
+                '/public/modules/user/services/userService.js',
                 '/public/modules/user/presenter/loginPresenter.js',
                 '/public/modules/user/presenter/navigationPresenter.js',
                 '/public/modules/user/presenter/signUpPresenter.js',

@@ -4,7 +4,7 @@ var game = angular.module('tipExpert.game');
 
 game.factory('gameService', ['$http', 'Auth', function($http, Auth) {
 
-        return {
+    return {
         loadGamesForCurrentUser: function(success, error) {
             $http.get('/api/' + Auth.user.id + '/games')
                 .success(function(data, status, headers, config) {
@@ -12,7 +12,7 @@ game.factory('gameService', ['$http', 'Auth', function($http, Auth) {
                 })
                 .error(error);
         },
-        
+
         load: function(gameId, success, error) {
             $http.get('/api/' + Auth.user.id + '/games/' + gameId)
                 .success(function(data, status, headers, config) {
@@ -20,24 +20,24 @@ game.factory('gameService', ['$http', 'Auth', function($http, Auth) {
                 })
                 .error(error);
         },
-        
-        create: function (newGame, success, error) {
+
+        create: function(newGame, success, error) {
             $http.post('/api/' + Auth.user.id + '/games', newGame)
                 .success(function(game, status, headers, config) {
                     success(game);
                 })
                 .error(error);
         },
-        
-        update: function (game, success, error) {
+
+        update: function(game, success, error) {
             $http.put('/api/' + Auth.user.id + '/games/' + game._id, game)
                 .success(function(data, status, headers, config) {
                     success(game);
                 })
                 .error(error);
         },
-        
-        delete: function (game, error) {
+
+        delete: function(game, error) {
             $http.delete('/api/' + Auth.user.id + '/games/' + game._id)
                 .error(error);
         }

@@ -48,7 +48,8 @@ exports.list = function(req, res) {
 exports.create = function(req, res) {
     var game = new Game(req.body);
     game.creator = req.user.id;
-
+    game.players.push({ user: req.user });
+    
     game.save(function(error) {
         if (error)
             return res.json('500', utils.formatErrors(error.errors));
@@ -62,17 +63,32 @@ exports.create = function(req, res) {
  */
 exports.update = function(req, res) {
     var game = req.game;
-    game = _.extend(game, req.body);
+    
+    game.title = req.body.title;
+    game.creator = req.body.creator;
+    game.minStake = req.body.minStake;
+    game.dueDate = req.body.dueDate;
     game.matches = req.body.matches;
     game.players = req.body.players;
+
+    var creatorExists = false;
+    for(var i = 0; i < game.players.length; i++) {
+        if (game.players[i].user.id == req.user.id) {
+            creatorExists = true;
+            break;
+        }
+    }
     
+    if (!creatorExists)
+        game.players.push({ user: req.user });
+
     // todo
     // check that an update can only be done
     // by the creator or by an administrator!
 
     game.save(function(error) {
         if (error)
-            return res.json('500', utils.formatErrors(error.errors));
+            return res.json('500', utils.formatErrors(error.errors || error.err || error));
         
         return res.send(game);
     });

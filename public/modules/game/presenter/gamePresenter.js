@@ -17,8 +17,7 @@ game.controller('gameController', ['$scope', '$modal', '$state', 'gameService', 
             $scope.games = games;
         },
         function(data) {
-            // todo
-            alert(data);
+            toast.error();
         });
 }]);
 

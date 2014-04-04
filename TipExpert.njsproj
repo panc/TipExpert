@@ -45,6 +45,7 @@
     <Compile Include="public\modules\game\presenter\addGamePresenter.js" />
     <Compile Include="public\modules\game\presenter\editGamePresenter.js" />
     <Compile Include="public\modules\game\services\gameService.js" />
+    <Compile Include="public\modules\user\services\userService.js" />
     <Compile Include="public\toast.js" />
     <Compile Include="public\modules\match\presenter\editMatchPresenter.js" />
     <Compile Include="public\modules\match\services\matchService.js" />

@@ -2,24 +2,24 @@
 
 var game = angular.module('tipExpert.game');
 
-game.controller('SelectPlayersController', ['$scope', '$modalInstance', 'userService', 'gameService', 'game', function($scope, $modalInstance, userService, gameService, game) {
+game.controller('SelectPlayersController', ['$scope', '$modalInstance', 'Auth', 'userService', 'gameService', 'game', function($scope, $modalInstance, Auth, userService, gameService, game) {
     
     $scope.game = game;
 
     var areUserEqual = function(user, otherUser) {
-        return user.username == otherUser.username;
+        return user.name == otherUser.name;
     };
 
-    $scope.toggleMatchSelection = function(user) {
+    $scope.toggleUserSelection = function(user) {
         user.selected = !user.selected;
 
         if (user.selected) {
-            // if selected add the match to the match-list of the game
+            // if selected add the user to the player-list of the game
             var container = { user: user };
             $scope.game.players.push(container);
         }
         else {
-            // if not selected remove the match from the match-list of the game
+            // if not selected remove the user from the player-list of the game
             angular.forEach($scope.game.players, function(player) {
                 
                 if (areUserEqual(user, player.user)) {
@@ -43,15 +43,15 @@ game.controller('SelectPlayersController', ['$scope', '$modalInstance', 'userSer
         $modalInstance.dismiss('cancel');
     };
     
-    userService.loadFriends(
+    userService.loadFriendsForUser(Auth.currentUser,
         function(users) {
             $scope.users = users;
 
             angular.forEach(users, function(user) {
                 angular.forEach($scope.game.players, function(player) {
 
-                    if (areUserEqual(users, player.user))
-                        match.selected = true;
+                    if (areUserEqual(user, player.user))
+                        user.selected = true;
                 });
             });
 

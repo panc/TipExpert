@@ -190,3 +190,16 @@ p {
     cursor: pointer;
     background-color: #a5d2eb;
 }
+
+.user-selection {
+    margin-top: 40px;
+}
+
+.selected-user {
+    background-color: #a8eba5;
+}
+
+.user-selection-item:hover {
+    cursor: pointer;
+    background-color: #a5d2eb;
+}
