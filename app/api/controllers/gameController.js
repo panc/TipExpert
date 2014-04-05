@@ -68,6 +68,7 @@ exports.update = function(req, res) {
     game.creator = req.body.creator;
     game.minStake = req.body.minStake;
     game.dueDate = req.body.dueDate;
+    game.description = req.body.description;
     game.matches = req.body.matches;
     game.players = req.body.players;
 

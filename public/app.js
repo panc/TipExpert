@@ -69,7 +69,7 @@ tipExpert.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '
             title: 'Games',
             url: '',
             templateUrl: '/modules/game/views/myGames.html',
-            controller: 'gameController',
+            controller: 'myGamesController',
             access: accessLevels.user // todo
         })
         .state('games.create', {
@@ -81,9 +81,16 @@ tipExpert.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '
         })
         .state('games.edit', {
             title: 'Edit game',
-            url: '/:gameId',
+            url: '/:gameId/edit',
             templateUrl: '/modules/game/views/editGame.html',
             controller: 'editGameController',
+            access: accessLevels.user // todo
+        })
+        .state('games.show', {
+            title: 'Game',
+            url: '/:gameId',
+            templateUrl: '/modules/game/views/game.html',
+            controller: 'gameController',
             access: accessLevels.user // todo
         })
     

@@ -165,6 +165,10 @@ p {
     font-size: 20px;
 }
 
+.game-min-stake {
+    margin-left: 10px;
+}
+
 .buttonbar-offset {
     margin-top: 80px;
 }

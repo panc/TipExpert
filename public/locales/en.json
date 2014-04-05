@@ -1,6 +1,7 @@
 {
 	"HEADLINE": "Hello there, This is my awesome app!",
 	"INTRO_TEXT": "And it has i18n support!",
-	"GAME-MATCHAREA": "Select Matches",
-	"GAME-PLAYERSAREA": "Select Friends"
+	"GAME-MINSTAKEAREA": "1. Define Minimum Stake",
+	"GAME-MATCHAREA": "2. Select Matches",
+	"GAME-PLAYERSAREA": "3. Select Friends"
 }

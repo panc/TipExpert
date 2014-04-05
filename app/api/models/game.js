@@ -6,11 +6,16 @@ var mongoose = require('mongoose'),
 // game schema
 var GameSchema = new Schema({
     title: { type: String, default: '' },
+    description: { type: String, default: '' },
     creator: { type: Schema.ObjectId, ref: 'User' },
+    minStake: { type: Number, default: 0 },
+    dueDate: { type: Date, default: Date.now }, // wenn sich dieses Datum nicht eh automatisch aus dem letzten Match-Datum ergibt...
+    
     players: [{
         user: { type : Schema.ObjectId, ref : 'User'},
         stake: { type: Number, default: 0 }
     }],
+    
     matches: [{
         match: { type : Schema.ObjectId, ref : 'Match'},
         tips: [{
@@ -18,9 +23,7 @@ var GameSchema = new Schema({
             homeScore: { type: Number, default: 0 },
             guestScore: { type: Number, default: 0 }
         }]
-    }],
-    minStake: { type: Number, default: 0 },
-    dueDate: { type: Date, default: Date.now } // wenn sich dieses Datum nicht eh automatisch aus dem letzten Match-Datum ergibt...
+    }]
 });
 
 // validation

@@ -42,6 +42,7 @@ module.exports = function(config) {
                 '/public/modules/match/presenter/editMatchPresenter.js',
                 '/public/modules/game/services/gameService.js',
                 '/public/modules/game/presenter/gamePresenter.js',
+                '/public/modules/game/presenter/myGamesPresenter.js',
                 '/public/modules/game/presenter/editGamePresenter.js',
                 '/public/modules/game/presenter/addGamePresenter.js',
                 '/public/modules/game/presenter/selectMatchesPresenter.js',

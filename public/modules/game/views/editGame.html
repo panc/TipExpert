@@ -9,7 +9,31 @@
                     <p ng-show="submitForm.name.$invalid && submitted" class="help-block">Title is required.</p>
                 </div>
             </div>
+            
+            <!-- DESCRIPTION -->
+            <div class="form-group" ng-class="{ 'has-error' : submitForm.description.$invalid && submitted }">
+                <div class="col-lg-8">
+                    <textarea class="form-control game-description" type="text" name="description" ng-model="game.description" 
+                              placeholder="Enter a optional description for your game"></textarea>
+                    <p ng-show="submitForm.description.$invalid && submitted" class="help-block">Title is required.</p>
+                </div>
+            </div>
 
+            <!-- MIN-STAKE -->
+            <div class="container row">
+                <h1 translate="GAME-MINSTAKEAREA"></h1>
+
+                <div class="form-group" ng-class="{ 'has-error' : submitForm.minStake.$invalid && submitted }">
+                    <div class="col-lg-8">
+                        <label class="left control-label">Minimum Stake:</label>
+                        <div class="left">
+                            <input class="form-control game-min-stake" type="text" name="minStake" ng-model="game.minStake" placeholder="Minimum stake">
+                            <p ng-show="submitForm.minStake.$invalid && submitted" class="help-block">Min stake is required.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
             <!-- MATCHES -->
             <div class="container row matches-container">
 

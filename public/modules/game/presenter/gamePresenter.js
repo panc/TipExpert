@@ -2,22 +2,16 @@
 
 var game = angular.module('tipExpert.game');
 
-game.controller('gameController', ['$scope', '$modal', '$state', 'gameService', function($scope, $modal, $state, gameService) {
-    $scope.games = [];
-
-    $scope.createGame = function() {
-        $modal.open({
-            templateUrl: 'modules/game/views/addGameDialog.html',
-            controller: 'AddGameController'
-        });
-    };
+game.controller('gameController', ['$scope', '$modal', '$stateParams', 'gameService', function($scope, $modal, $stateParams, gameService) {
     
-    gameService.loadGamesForCurrentUser(
-        function(games) {
-            $scope.games = games;
-        },
-        function(data) {
-            toast.error();
-        });
+    $scope.game = { };
+
+    if ($stateParams.gameId) {
+        gameService.load($stateParams.gameId,
+            function(game) {
+                $scope.game = game;
+            },
+            toast.error);
+    }
 }]);
 

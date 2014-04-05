@@ -23,6 +23,7 @@ game.controller('editGameController', ['$scope', '$state', '$stateParams', '$mod
         gameService.update($scope.game,
             function(updatedGame) {
                 $scope.game = updatedGame;
+                toast.info('Successfully saved!');
             },
             toast.error);
     };
