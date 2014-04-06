@@ -6,6 +6,8 @@ lib-cov
 *.out
 *.pid
 *.gz
+*.suo
+*.user
 
 pids
 logs
@@ -13,11 +15,5 @@ results
 
 npm-debug.log
 node_modules
-
-/TipExpert.sln.DotSettings.user
-/TipExpert.v11.suo
-
-bower_components/*
-.bower-cache
-.bower-registry
-.bower-tmp
+bower_components
+obj
