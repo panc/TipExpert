@@ -6,6 +6,10 @@ game.controller('gameController', ['$scope', '$modal', '$stateParams', 'gameServ
     
     $scope.game = { };
 
+    $scope.save = function() {
+
+    };
+
     if ($stateParams.gameId) {
         gameService.load($stateParams.gameId,
             function(game) {

@@ -4,6 +4,8 @@
 	"GAME-MINSTAKEAREA": "1. Define Minimum Stake",
 	"GAME-MATCHAREA": "2. Select Matches",
 	"GAME-PLAYERSAREA": "3. Select Friends",
+	"GAME-PARTICIPANTS": "Participants",
+	"GAME-TIPS": "Tips",
 	"MYGAMES-CREATED": "Games created by me:",
 	"MYGAMES-INVITED": "Games I'm invited to:"
 }

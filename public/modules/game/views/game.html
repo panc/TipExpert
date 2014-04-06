@@ -1,12 +1,32 @@
-<div>
+<div class="container">
+    
+    <div class="row">
+        <h2>{{ game.title }}</h2>
+        <p class="match-description">{{ game.description }}</p>
+    </div>
+    
+    <h3 translate="GAME-PARTICIPANTS"></h3>
+    <div>
+        
+    </div>
+ 
+    <h3 translate="GAME-TIPS"></h3>
+    <div class="participants">
+        <table>
+            <tr><th>Home</th><th></th><th></th><th></th><th>Guest</th></tr>
+            <tr ng-repeat="tip in game.player.tips">
+                <td>{{ tip.homeTeam }}</td>
+                <td><input type="text" class="form-control" placeholder="Home team" ng-model="tip.homeScore" /></td>
+                <td>&nbsp; - &nbsp;</td>
+                <td><input type="text" class="form-control" placeholder="Guest team" ng-model="tip.guestScore" /></td>
+                <td>{{ tip.homeTeam }}</td>
+            </tr>
+        </table>
+    </div>
+
     <form role="form" name="submitForm" class="form-horizontal" novalidate>
         <fieldset>
 
-            <!-- TITLE -->
-            <div class="form-group" ng-class="{ 'has-error' : submitForm.name.$invalid && submitted }">
-                <div class="col-lg-8">{{ game.title }}</div>
-            </div>
-            
             <!-- BUTTONS -->
             <div class="form-group buttonbar-offset">
                 <div class="col-lg-10">

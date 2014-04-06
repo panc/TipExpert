@@ -4,7 +4,42 @@ var mongoose = require('mongoose'),
     Game = mongoose.model('Game'),
     utils = require('../../helper/formatHelper'),
     _ = require('underscore');
-    
+
+
+var findContainerForUser = function(containers, id) {
+
+    for (var i = 0; i < containers.length; i++) {
+        var container = containers[i];
+        if (container.user.id == id || container.user == id)
+            return container;
+    }
+
+    return null;
+};
+
+var prepareGameForPlayer = function(game, userId) {
+    var player = findContainerForUser(game.players, userId);
+    var tips = [];
+
+    for (var i = 0; i < game.matches.length; i++) {
+        var match = game.matches[i];
+        var tip = findContainerForUser(match.tips, userId) || { user: userId, homeTeam: 'test', guestTeam: 'anoter' };
+        tips.push(tip);
+    }
+
+    return {
+        title: game.title,
+        description: game.description,
+        creator: game.creator.name,
+
+        player: {
+            stake: player.stake,
+            tips: tips
+        }
+    };
+};
+
+
 /**
  * Load
  */
@@ -24,8 +59,13 @@ exports.load = function(req, res, next, id) {
  * Loads a single game
  */
 exports.loadGame = function(req, res) {
+
+    var game = req.game;
     
-    return res.json(req.game);
+    if (req.user.id != game.creator.id) 
+        game = prepareGameForPlayer(game, req.user.id);
+
+    return res.json(game);
 };
 
 

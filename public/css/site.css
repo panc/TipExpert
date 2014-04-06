@@ -53,6 +53,9 @@ p {
     margin-right: auto;
 }
 
+
+/* MATCH  */
+
 .league-list {
     list-style: none;
     margin-top: 20px;
@@ -160,7 +163,13 @@ p {
     font-weight: bold;
 }
 
+.buttonbar-offset {
+    margin-top: 80px;
+}
+
+
 /* GAME */
+
 .game-title {
     font-size: 20px;
 }
@@ -169,8 +178,8 @@ p {
     margin-left: 10px;
 }
 
-.buttonbar-offset {
-    margin-top: 80px;
+.match-description {
+    margin-left: 5px;
 }
 
 .players-container {
