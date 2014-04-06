@@ -4,13 +4,13 @@ var game = angular.module('tipExpert.game');
 
 game.controller('SelectMatchesController', ['$scope', '$modalInstance', 'leagueService', 'matchService', 'gameService', 'game', function($scope, $modalInstance, leagueService, matchService, gameService, game) {
     
-    $scope.game = game;
+    var selectedMatches = game.matches.slice(0);
 
     var areMatchesEqual = function(match, otherMatch) {
         return match.homeTeam == otherMatch.homeTeam
             && match.guestTeam == otherMatch.guestTeam
             && match.dueDate == otherMatch.dueDate
-            && match.league._ide == otherMatch.league._ide;
+            && match.league == otherMatch.league;
     };
     
     $scope.loadMatches = function(league) {
@@ -19,7 +19,7 @@ game.controller('SelectMatchesController', ['$scope', '$modalInstance', 'leagueS
                 $scope.matches = matches;
 
                 angular.forEach(matches, function(match) {
-                    angular.forEach($scope.game.matches, function(matchContainer) {
+                    angular.forEach(selectedMatches, function(matchContainer) {
                         
                         if (areMatchesEqual(match, matchContainer.match))
                             match.selected = true;
@@ -36,21 +36,23 @@ game.controller('SelectMatchesController', ['$scope', '$modalInstance', 'leagueS
         if (match.selected) {
             // if selected add the match to the match-list of the game
             var container = { match: match };
-            $scope.game.matches.push(container);
+            selectedMatches.push(container);
         }
         else {
             // if not selected remove the match from the match-list of the game
-            angular.forEach($scope.game.matches, function(matchContainer) {
+            angular.forEach(selectedMatches, function(matchContainer) {
                 
                 if (areMatchesEqual(match, matchContainer.match)) {
-                    var index = $scope.game.matches.indexOf(matchContainer);
-                    $scope.game.matches.splice(index, 1);
+                    var index = selectedMatches.indexOf(matchContainer);
+                    selectedMatches.splice(index, 1);
                 }
             });
         }
     };
 
     $scope.save = function() {
+
+        game.matches = selectedMatches;
 
         gameService.update(game,
             function(updatedGame) {

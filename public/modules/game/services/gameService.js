@@ -32,7 +32,7 @@ game.factory('gameService', ['$http', 'Auth', function($http, Auth) {
         update: function(game, success, error) {
             $http.put('/api/' + Auth.user.id + '/games/' + game._id, game)
                 .success(function(data, status, headers, config) {
-                    success(game);
+                    success(data);
                 })
                 .error(error);
         },
