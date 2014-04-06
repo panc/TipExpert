@@ -3,5 +3,7 @@
 	"INTRO_TEXT": "And it has i18n support!",
 	"GAME-MINSTAKEAREA": "1. Define Minimum Stake",
 	"GAME-MATCHAREA": "2. Select Matches",
-	"GAME-PLAYERSAREA": "3. Select Friends"
+	"GAME-PLAYERSAREA": "3. Select Friends",
+	"MYGAMES-CREATED": "Games created by me:",
+	"MYGAMES-INVITED": "Games I'm invited to:"
 }

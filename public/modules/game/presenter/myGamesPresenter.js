@@ -3,7 +3,8 @@
 var game = angular.module('tipExpert.game');
 
 game.controller('myGamesController', ['$scope', '$modal', '$state', 'gameService', function($scope, $modal, $state, gameService) {
-    $scope.games = [];
+    $scope.createdGames = [];
+    $scope.invitedGames = [];
 
     $scope.createGame = function() {
         $modal.open({
@@ -12,9 +13,15 @@ game.controller('myGamesController', ['$scope', '$modal', '$state', 'gameService
         });
     };
     
+    gameService.loadGamesCreatedByCurrentUser(
+        function(games) {
+            $scope.createdGames = games;
+        },
+        toast.error);
+
     gameService.loadGamesForCurrentUser(
         function(games) {
-            $scope.games = games;
+            $scope.invitedGames = games;
         },
         toast.error);
 }]);

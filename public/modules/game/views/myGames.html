@@ -1,10 +1,22 @@
 <div>
     
+    <h1 translate="MYGAMES-CREATED"></h1>
     <ul>
-        <li ng-repeat="game in games">
-            <span>{{game.title}} {{game.dueDate}} 
+        <li ng-repeat="game in createdGames">
+            <span>
+                {{game.title}}
                 <a ui-sref="games.show({ gameId: game._id })">Show</a>
                 <a ui-sref="games.edit({ gameId: game._id })">Edit</a>
+            </span>
+        </li>
+    </ul>
+    
+    <h1 translate="MYGAMES-INVITED"></h1>
+    <ul>
+        <li ng-repeat="game in invitedGames">
+            <span>
+                {{game.title}}
+                <a ui-sref="games.show({ gameId: game._id })">Show</a>
             </span>
         </li>
     </ul>

@@ -34,7 +34,33 @@ exports.loadGame = function(req, res) {
  */
 exports.list = function(req, res) {
     
-    Game.list({ userId: req.user.id }, function(err, games) {
+    Game.list({ players: req.user.id }, function(err, games) {
+        if (err)
+            return res.json('500', utils.formatErrors(err.errors));
+
+        return res.json(games);
+    });
+};
+
+/**
+ * List all games for a user
+ */
+exports.listCreated = function(req, res) {
+    
+    Game.list({ creator: req.user.id }, function(err, games) {
+        if (err)
+            return res.json('500', utils.formatErrors(err.errors));
+
+        return res.json(games);
+    });
+};
+
+/**
+ * List all games for a user
+ */
+exports.listInvited = function(req, res) {
+    
+    Game.list({ player: req.user.id }, function(err, games) {
         if (err)
             return res.json('500', utils.formatErrors(err.errors));
 

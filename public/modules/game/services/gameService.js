@@ -6,7 +6,15 @@ game.factory('gameService', ['$http', 'Auth', function($http, Auth) {
 
     return {
         loadGamesForCurrentUser: function(success, error) {
-            $http.get('/api/' + Auth.user.id + '/games')
+            $http.get('/api/' + Auth.user.id + '/games/invited')
+                .success(function(data, status, headers, config) {
+                    success(data);
+                })
+                .error(error);
+        },
+
+        loadGamesCreatedByCurrentUser: function(success, error) {
+            $http.get('/api/' + Auth.user.id + '/games/created')
                 .success(function(data, status, headers, config) {
                     success(data);
                 })

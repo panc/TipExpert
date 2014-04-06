@@ -55,9 +55,13 @@ GameSchema .statics = {
      */
 
     list: function(options, cb) {
-        var criteria = {
-            creator: new ObjectId(options.userId)
-        };
+        var criteria = {};
+
+        if (options.creator)
+            criteria.creator = new ObjectId(options.creator);
+
+        if (options.player)
+            criteria['players.user'] = new ObjectId(options.player);
         
         this.find(criteria)
             .sort({ 'dueDate': 1 }) // sort by date
