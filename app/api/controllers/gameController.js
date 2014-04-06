@@ -6,7 +6,7 @@ var mongoose = require('mongoose'),
     _ = require('underscore');
 
 
-var findContainerForUser = function(containers, id) {
+var findUserObject = function(containers, id) {
 
     for (var i = 0; i < containers.length; i++) {
         var container = containers[i];
@@ -17,13 +17,41 @@ var findContainerForUser = function(containers, id) {
     return null;
 };
 
+var prepareUser = function(user) {
+
+    var picture = '';
+    if (user.google)
+        picture = user.google.picture;
+    if (user.facebook)
+        picture = user.facebook.picture.data.url;
+
+    return {
+        name: user.name,
+        picture: picture
+    };
+};
+
 var prepareGameForPlayer = function(game, userId) {
-    var player = findContainerForUser(game.players, userId);
+    var player = findUserObject(game.players, userId);
+    var allPlayers = [];
     var tips = [];
 
+    for (var i = 0; i < game.players.length; i++)
+        allPlayers.push(prepareUser(game.players[i].user));
+
     for (var i = 0; i < game.matches.length; i++) {
+
         var match = game.matches[i];
-        var tip = findContainerForUser(match.tips, userId) || { user: userId, homeTeam: 'test', guestTeam: 'anoter' };
+        var tip = findUserObject(match.tips, userId);
+
+        if (!tip) {
+            tip = {
+                user: userId,
+                homeTeam: match.match.homeTeam,
+                guestTeam: match.match.guestTeam
+            };
+        }
+
         tips.push(tip);
     }
 
@@ -31,6 +59,7 @@ var prepareGameForPlayer = function(game, userId) {
         title: game.title,
         description: game.description,
         creator: game.creator.name,
+        allPlayers: allPlayers,
 
         player: {
             stake: player.stake,

@@ -8,8 +8,10 @@
     <h3 translate="GAME-PARTICIPANTS"></h3>
     <div class="participants row">
         <ul>
-            <li ng-repeat="player in game.players">
-                <div>{{ player.user }}</div>
+            <li ng-repeat="player in game.allPlayers">
+                <img class="left" ng-src="{{ player.picture }}" alt="avatar" height="40" ng-show="{{ player.picture }}"/>
+                <div class="left">{{ player.name }}</div>
+                <div class="clear"></div>
             </li>
         </ul>
     </div>
