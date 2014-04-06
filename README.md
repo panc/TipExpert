@@ -54,15 +54,21 @@ Angemeldete User verfügen derzeit noch über alle Rechte, also nicht wundern ;-
 **Erledigt**
 
 * Tipp-Spiele verwalten
- * Spiele anlegen / bearbeiten (bisher ist nur der Title editierbar)
-
+ * Spiele anlegen / bearbeiten
+ * Mindest-Spiel-Einsatz festlegen
+ * Spielpaarungen auswählen
+ * Freunde hinzufügen (z.Z. werden einfach alle User angezeigt)
+ * 2 Ansichten: Aus Sicht des Erstellers (Edit) | Aus Sicht des eingelandenen Teilnehmers (Show)
+ 
 
 **TBD**
 
 * Tipp-Spiel anlegen
- * Spielpaarungen auswählen
- * Freunde hinzufügen
- * Freunde einladen
+ * Freunde einladen (z.B. per E-Mail)
+
+* Tipps in einem Tipp-Spiel abgeben
+
+* Punkte auswerten, wenn alle Begenungen in einem Tipp-Spiel abgeschossen wurden
 
 * Eigenes Profil veralten
 
