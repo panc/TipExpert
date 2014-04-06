@@ -7,7 +7,7 @@ game.controller('editGameController', ['$scope', '$state', '$stateParams', '$mod
     $scope.game = { };
 
     if ($stateParams.gameId) {
-        gameService.load($stateParams.gameId,
+        gameService.loadForEdit($stateParams.gameId,
             function(game) {
                 $scope.game = game;
             },

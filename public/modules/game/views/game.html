@@ -16,9 +16,9 @@
             <tr><th>Home</th><th></th><th></th><th></th><th>Guest</th></tr>
             <tr ng-repeat="tip in game.player.tips">
                 <td>{{ tip.homeTeam }}</td>
-                <td><input type="text" class="form-control" placeholder="Home team" ng-model="tip.homeScore" /></td>
+                <td><input type="text" class="form-control" ng-model="tip.homeScore" /></td>
                 <td>&nbsp; - &nbsp;</td>
-                <td><input type="text" class="form-control" placeholder="Guest team" ng-model="tip.guestScore" /></td>
+                <td><input type="text" class="form-control" ng-model="tip.guestScore" /></td>
                 <td>{{ tip.homeTeam }}</td>
             </tr>
         </table>

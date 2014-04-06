@@ -23,3 +23,10 @@ exports.requiresAdmin = function(req, res, next) {
 
     res.send(401);
 };
+
+exports.requiresGameCreator = function(req, res, next) {
+    if (!req.user || !req.game || req.user.id != req.game.creator.id) 
+        return res.send(401, 'Not authorized!');
+        
+    return next();
+};

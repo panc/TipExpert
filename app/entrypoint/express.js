@@ -4,7 +4,6 @@ var express = require('express'),
     mongoStore = require('connect-mongo')(express),
     pkg = require('../../package.json'),
     swig = require('swig'),
-    profile = require('./middlewares/profile'),
     logger = require('winston'),
     shrinkroute = require('shrinkroute'),
     path = require('path');
@@ -85,7 +84,6 @@ module.exports = function(app, config, passport) {
 
     app.use(assets.middleware);
 
-    app.use(profile.exposeUserInfoToViews);
     app.use('/', express.static(config.root + '/public'));
     app.use('/bower', express.static(config.root + '/bower_components'));
 

@@ -170,9 +170,13 @@ module.exports = function(app, shrinkr, passport) {
         },
         "api.games.item": {
             path: "/:gameId",
-            get: [ auth.requiresLogin, games.loadGame ],
-            put: [ auth.requiresLogin, games.update ],
-            delete: [ auth.requiresLogin, games.delete ]
+            get: [ auth.requiresLogin, games.loadGameForPlayer ]
+        },
+        "api.games.item.edit": {
+            path: "/edit",
+            get: [ auth.requiresLogin, auth.requiresGameCreator, games.loadGameForEdit ],
+            put: [ auth.requiresLogin, auth.requiresGameCreator, games.update ],
+            delete: [ auth.requiresLogin, auth.requiresGameCreator, games.delete ]
         }
     });
     

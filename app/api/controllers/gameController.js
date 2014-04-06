@@ -56,9 +56,17 @@ exports.load = function(req, res, next, id) {
 };
 
 /**
- * Loads a single game
+ * Loads a single game the edit view
  */
-exports.loadGame = function(req, res) {
+exports.loadGameForEdit = function(req, res) {
+
+    return res.json(req.game);
+};
+
+/**
+ * Loads a single game for the players view
+ */
+exports.loadGameForPlayer = function(req, res) {
 
     var game = req.game;
     

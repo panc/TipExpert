@@ -29,6 +29,14 @@ game.factory('gameService', ['$http', 'Auth', function($http, Auth) {
                 .error(error);
         },
 
+        loadForEdit: function(gameId, success, error) {
+            $http.get('/api/' + Auth.user.id + '/games/' + gameId + '/edit')
+                .success(function(data, status, headers, config) {
+                    success(data);
+                })
+                .error(error);
+        },
+
         create: function(newGame, success, error) {
             $http.post('/api/' + Auth.user.id + '/games', newGame)
                 .success(function(game, status, headers, config) {
