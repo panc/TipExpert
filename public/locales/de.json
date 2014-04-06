@@ -1,6 +1,7 @@
 {
-	"HEADLINE": "Hey, das ist meine großartige App!",
-	"INTRO_TEXT": "Und sie untersützt mehrere Sprachen!",
+	"ENGLISH": "Englisch",
+	"GERMAN": "Deutsch",
+	"CHANGE-LANGUAGE": "Die aktuelle Sprache ändern:",
 	"GAME-MINSTAKEAREA": "1. Minimalen Einsatz festlegen",
 	"GAME-MATCHAREA": "2. Spielpaarungen festlegen",
 	"GAME-PLAYERSAREA": "3. Freunde auswählen",
