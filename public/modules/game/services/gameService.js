@@ -46,7 +46,7 @@ game.factory('gameService', ['$http', 'Auth', function($http, Auth) {
         },
 
         update: function(game, success, error) {
-            $http.put('/api/' + Auth.user.id + '/games/' + game._id, game)
+            $http.put('/api/' + Auth.user.id + '/games/' + game._id + '/edit', game)
                 .success(function(data, status, headers, config) {
                     success(data);
                 })
@@ -54,7 +54,7 @@ game.factory('gameService', ['$http', 'Auth', function($http, Auth) {
         },
 
         delete: function(game, error) {
-            $http.delete('/api/' + Auth.user.id + '/games/' + game._id)
+            $http.delete('/api/' + Auth.user.id + '/games/' + game._id + '/edit')
                 .error(error);
         }
     };
