@@ -182,6 +182,20 @@ p {
     margin-left: 5px;
 }
 
+.game-tip-team-col {
+    font-weight: bold;
+    padding: 0 10px 0 10px;
+    max-width: 200px;
+}
+
+.game-tip-score {
+    width: 30px;
+}
+
+.game-tip-score-left-col {
+    padding-left: 40px;
+}
+
 .players-container {
     margin-top: 40px;
 }

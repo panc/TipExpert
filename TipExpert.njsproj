@@ -59,7 +59,6 @@
     <Compile Include="app\helper\formatHelper.js" />
     <Compile Include="app\entrypoint\app-config.js" />
     <Compile Include="app\entrypoint\express.js" />
-    <Compile Include="app\entrypoint\middlewares\profile.js" />
     <Compile Include="app\entrypoint\middlewares\authorization.js" />
     <Compile Include="app\entrypoint\passport-config.js" />
     <Compile Include="app\entrypoint\routes.js" />

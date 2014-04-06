@@ -68,11 +68,7 @@ exports.loadGameForEdit = function(req, res) {
  */
 exports.loadGameForPlayer = function(req, res) {
 
-    var game = req.game;
-    
-    if (req.user.id != game.creator.id) 
-        game = prepareGameForPlayer(game, req.user.id);
-
+    var game = prepareGameForPlayer(req.game, req.user.id);
     return res.json(game);
 };
 
