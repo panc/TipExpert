@@ -195,6 +195,16 @@ p {
     padding-left: 40px;
 }
 
+.game-stake {
+    margin-top: 20px;
+}
+
+.game-participants, .game-tips {
+    margin-top: 40px;
+}
+
+
+/* EDIT GAME */
 .players-container {
     margin-top: 40px;
 }

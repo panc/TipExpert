@@ -4,32 +4,50 @@
         <h2>{{ game.title }}</h2>
         <p class="game-description">{{ game.description }}</p>
     </div>
-    
-    <h3 translate="GAME-PARTICIPANTS"></h3>
+
+    <p>minstake: {{ game.minStake }}</p>
+    <div class="game-stake row">
+        <form role="form" name="submitForm" class="form-horizontal" novalidate>
+            
+            <div class="form-group" ng-class="{ 'has-error' : submitForm.stake.$invalid && submitted }">
+                <label class="col-lg-1 control-label">Your Stake:</label>
+                <div class="col-lg-1">
+                    <input type="number" name="stake" ng-model="game.stake" class="form-control" required min="0" max="{{ minStake }}">
+                </div>
+                <div class="col-lg-6">
+                    <p ng-show="submitForm.stake.$invalid && submitted" class="help-block">Name is required.</p>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
     <div class="game-participants row">
+        <h3 translate="GAME-PARTICIPANTS"></h3>
         <ul>
             <li ng-repeat="player in game.allPlayers">
                 <img class="left" ng-src="{{ player.picture }}" alt="avatar" height="40" ng-show="{{ player.picture }}" />
                 <div class="left">{{ player.name }}</div>
                 <div class="clear">
-    </div>
+                </div>
             </li>
         </ul>
     </div>
  
-    <h3 translate="GAME-TIPS"></h3>
+
     <div class="game-tips row">
-    <table>
-        <tr ng-repeat="tip in game.player.tips">
-            <td class="game-tip-team-col">{{ tip.homeTeam }}</td>
-            <td>&nbsp; - &nbsp;</td>
-            <td class="game-tip-team-col">{{ tip.guestTeam }}</td>
-            <td class="game-tip-score-left-col"><input type="text" class="form-control game-tip-score" ng-model="tip.homeScore" /></td>
-            <td>&nbsp; : &nbsp;</td>
-            <td><input type="text" class="form-control game-tip-score" ng-model="tip.guestScore" /></td>
-        </tr>
-    </table>
-</div>
+        <h3 translate="GAME-TIPS"></h3>
+        <table>
+            <tr ng-repeat="tip in game.player.tips">
+                <td class="game-tip-team-col">{{ tip.homeTeam }}</td>
+                <td>&nbsp; - &nbsp;</td>
+                <td class="game-tip-team-col">{{ tip.guestTeam }}</td>
+                <td class="game-tip-score-left-col"><input type="text" class="form-control game-tip-score" ng-model="tip.homeScore" /></td>
+                <td>&nbsp; : &nbsp;</td>
+                <td><input type="text" class="form-control game-tip-score" ng-model="tip.guestScore" /></td>
+            </tr>
+        </table>
+    </div>
     
     <div class="form-group buttonbar-offset">
         <a ui-sref="games.overview" title="back" class="btn-default btn">Back</a>

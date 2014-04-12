@@ -60,6 +60,7 @@ var prepareGameForPlayer = function(game, userId) {
         description: game.description,
         creator: game.creator.name,
         allPlayers: allPlayers,
+        minStake: game.minStake,
 
         player: {
             stake: player.stake,
