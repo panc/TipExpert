@@ -5,11 +5,16 @@
         <p class="game-description">{{ game.description }}</p>
     </div>
 
-    <p>minstake: {{ game.minStake }}</p>
     <div class="game-stake row">
-        <form role="form" name="submitForm" class="form-horizontal" novalidate>
-            
-            <div class="form-group" ng-class="{ 'has-error' : submitForm.stake.$invalid && submitted }">
+        
+        <div ng-show="!editStake">
+            <p class="left">Your Stake: {{ game.player.stake }}</p>
+            <div class="left" ng-click="editStake = true">Edit</div>
+        </div>
+
+        <form role="form" name="submitForm" class="form-horizontal" novalidate ng-show="editStake">
+
+            <div class=" form-group" ng-class="{ 'has-error' : submitForm.stake.$invalid && submitted }">
                 <label class="col-lg-1 control-label">Your Stake:</label>
                 <div class="col-lg-1">
                     <input type="number" name="stake" ng-model="game.stake" class="form-control" required min="0" max="{{ minStake }}">

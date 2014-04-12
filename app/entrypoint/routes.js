@@ -21,7 +21,7 @@ var convertUser = function(user) {
     if (user.google)
         picture = user.google.picture;
     if (user.facebook)
-        picture = user.facebook.picture.data.url ;
+        picture = user.facebook.picture.data.url;
     
     return {
         'id': user.id || user._id || '',

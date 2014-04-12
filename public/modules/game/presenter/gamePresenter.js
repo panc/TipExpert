@@ -7,6 +7,7 @@ game.controller('gameController', ['$scope', '$modal', '$stateParams', 'gameServ
     $scope.game = { };
     $scope.submitted = true;
     $scope.minStake = 0.0;
+    $scope.editStake = false;
 
     $scope.save = function() {
 

@@ -63,7 +63,8 @@ var prepareGameForPlayer = function(game, userId) {
         minStake: game.minStake,
 
         player: {
-            stake: player.stake,
+            stake: player.stake || game.minStake,
+            stakeNotSet: player.stake == null,
             tips: tips
         }
     };
