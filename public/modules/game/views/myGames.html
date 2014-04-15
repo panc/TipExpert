@@ -1,26 +1,30 @@
 <div>
     
-    <h1 translate="MYGAMES-CREATED"></h1>
-    <ul>
-        <li ng-repeat="game in createdGames">
-            <span>
-                {{game.title}}
-                <a ui-sref="games.show({ gameId: game._id })">Show</a>
-                <a ui-sref="games.edit({ gameId: game._id })">Edit</a>
-            </span>
-        </li>
-    </ul>
+    <div class="row">
+        <h2 translate="MYGAMES-CREATED"></h2>
+        <ul>
+            <li ng-repeat="game in createdGames">
+                <span>
+                    {{game.title}}
+                    <a ui-sref="games.show({ gameId: game._id })">Show</a>
+                    <a ui-sref="games.edit({ gameId: game._id })">Edit</a>
+                </span>
+            </li>
+        </ul>
+    </div>
     
-    <h1 translate="MYGAMES-INVITED"></h1>
-    <ul>
-        <li ng-repeat="game in invitedGames">
-            <span>
-                {{game.title}}
-                <a ui-sref="games.show({ gameId: game._id })">Show</a>
-            </span>
-        </li>
-    </ul>
-    
+    <div class="row">
+        <h2 translate="MYGAMES-INVITED"></h2>
+        <ul>
+            <li ng-repeat="game in invitedGames">
+                <span>
+                    {{game.title}}
+                    <a ui-sref="games.show({ gameId: game._id })">Show</a>
+                </span>
+            </li>
+        </ul>
+    </div>
+
     <span class="input-group-btn">
         <button class="btn btn-default" type="button" ng-click="createGame()">Add game</button>
     </span>

@@ -177,6 +177,10 @@ module.exports = function(app, shrinkr, passport) {
             get: [ auth.requiresLogin, auth.requiresGameCreator, games.loadGameForEdit ],
             put: [ auth.requiresLogin, auth.requiresGameCreator, games.update ],
             delete: [ auth.requiresLogin, auth.requiresGameCreator, games.delete ]
+        },
+        "api.games.item.stake": {
+            path: "/stake",
+            put: [ auth.requiresLogin, auth.requiresGamePlayer, games.updateStake ]
         }
     });
     

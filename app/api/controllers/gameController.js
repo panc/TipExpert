@@ -56,6 +56,7 @@ var prepareGameForPlayer = function(game, userId) {
     }
 
     return {
+        id: game._id,
         title: game.title,
         description: game.description,
         creator: game.creator.name,
@@ -195,6 +196,31 @@ exports.update = function(req, res) {
         return res.send(game);
     });
 };
+
+exports.updateStake  = function(req, res) {
+    var game = req.game;
+    var stake = req.body.stake;
+
+    var changed = false;
+    for (var i = 0; i < req.game.players.length; i++) {
+        
+        if (req.game.players[i].user.id == req.user.id) {
+
+            req.game.players[i].stake = stake;
+            changed = true;
+            break;
+        }
+    }
+
+    if (changed) {
+        game.save(function(error) {
+            if (error)
+                return res.json('500', utils.formatErrors(error.errors || error.err || error));
+
+            return res.send(game);
+        });
+    }
+}
 
 /**
  * Delete game

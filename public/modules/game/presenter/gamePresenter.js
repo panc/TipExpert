@@ -7,10 +7,21 @@ game.controller('gameController', ['$scope', '$modal', '$stateParams', 'gameServ
     $scope.game = { };
     $scope.submitted = true;
     $scope.minStake = 0.0;
+    $scope.stake = 0.0;
     $scope.editStake = false;
 
-    $scope.save = function() {
+    $scope.cancelEditStake = function() {
+        $scope.stake = $scope.game.player.stake;
+        $scope.editStake = false;
+    };
 
+    $scope.saveStake = function() {
+        gameService.updateStake($scope.game.id, $scope.stake, 
+            function() {
+                $scope.game.player.stake = $scope.stake;
+                $scope.editStake = false;
+            }, 
+            toast.error);
     };
 
     if ($stateParams.gameId) {
@@ -18,6 +29,7 @@ game.controller('gameController', ['$scope', '$modal', '$stateParams', 'gameServ
             function(game) {
                 $scope.game = game;
                 $scope.minStake = game.minStake;
+                $scope.stake = game.player.stake;
             },
             toast.error);
     }

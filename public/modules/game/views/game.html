@@ -1,29 +1,38 @@
 <div class="container">
     
     <div class="row">
-        <h2>{{ game.title }}</h2>
+        <h1>{{ game.title }}</h1>
         <p class="game-description">{{ game.description }}</p>
     </div>
 
     <div class="game-stake row">
         
+        <p class="left">Your Stake:</p>
+
         <div ng-show="!editStake">
-            <p class="left">Your Stake: {{ game.player.stake }}</p>
-            <div class="left" ng-click="editStake = true">Edit</div>
+            <p class="stake-text left">{{ game.player.stake }}</p>
+            <div class="edit-stake-button left" ng-click="editStake = true">Edit...</div>
         </div>
 
-        <form role="form" name="submitForm" class="form-horizontal" novalidate ng-show="editStake">
+        <form name="stakeForm" class="stake-form left" ng-show="editStake" novalidate>
 
-            <div class=" form-group" ng-class="{ 'has-error' : submitForm.stake.$invalid && submitted }">
-                <label class="col-lg-1 control-label">Your Stake:</label>
-                <div class="col-lg-1">
-                    <input type="number" name="stake" ng-model="game.stake" class="form-control" required min="0" max="{{ minStake }}">
+            <div class="input-group" ng-class="{ 'has-error' : stakeForm.stake.$invalid && submitted }">
+                <div class="left">
+                    <input type="number" name="stake" ng-model="stake" class="form-control" required min="{{ minStake }}">
                 </div>
-                <div class="col-lg-6">
-                    <p ng-show="submitForm.stake.$invalid && submitted" class="help-block">Name is required.</p>
+
+                <span class="input-group-btn left">
+                    <button class="btn btn-default" type="button" ng-click="saveStake()"><span class="glyphicon glyphicon-ok"></span></button>
+                    <button class="btn btn-default" type="button" ng-click="cancelEditStake()"><span class="glyphicon glyphicon-remove"></span></button>
+                </span>
+
+                <div class="left">
+                    <p ng-show="stakeForm.stake.$invalid && submitted" class="help-block">A stake with a minimum of {{ minStake }} coins is required!</p>
                 </div>
             </div>
         </form>
+        
+        <div class="clear"></div>
     </div>
 
 

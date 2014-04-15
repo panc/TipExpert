@@ -2,15 +2,6 @@ body {
     padding-top: 50px;
 }
 
-h1 {
-    font-size: 20px;
-    font-weight: bold;
-}
-
-p {
-    font-size: 12px;
-}
-
 .modal {
   display: block; 
 }
@@ -197,6 +188,23 @@ p {
 
 .game-stake {
     margin-top: 20px;
+    font-size: 18px;
+}
+
+.edit-stake-button {
+    margin-left: 25px;
+    color: #beb9b9;
+    cursor: pointer;
+}
+
+.stake-text {
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+.stake-form {
+    margin-left: 10px;
+    margin-top: -5px;
 }
 
 .game-participants, .game-tips {

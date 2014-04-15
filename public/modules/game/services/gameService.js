@@ -53,6 +53,14 @@ game.factory('gameService', ['$http', 'Auth', function($http, Auth) {
                 .error(error);
         },
 
+        updateStake: function(gameId, newStake, success, error) {
+            $http.put('/api/' + Auth.user.id + '/games/' + gameId + '/stake', { stake: newStake })
+                .success(function(data, status, headers, config) {
+                    success();
+                })
+                .error(error);
+        },
+
         delete: function(game, error) {
             $http.delete('/api/' + Auth.user.id + '/games/' + game._id + '/edit')
                 .error(error);
