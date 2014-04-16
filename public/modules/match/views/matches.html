@@ -44,13 +44,16 @@
     <h2>{{ selectedLeague.name }}</h2>
     
     <table>
-        <tr ng-repeat="match in matches" ng-click="editMatch(match)" class="match-table-row">
+        <tr ng-repeat="match in matches | orderBy:dueDate" 
+            ng-click="editMatch(match)" class="match-table-row">
+            
             <td class="match-team-col">{{ match.homeTeam }}</td>
             <td>&nbsp; - &nbsp;</td>
             <td class="match-team-col">{{ match.guestTeam }}</td>
             <td class="match-score-left-col">{{ match.homeScore }}</td>
             <td>&nbsp; : &nbsp;</td>
             <td>{{ match.guestScore }}</td>
+
         </tr>
     </table>
 

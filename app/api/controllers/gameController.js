@@ -42,16 +42,19 @@ var prepareGameForPlayer = function(game, userId) {
     for (var i = 0; i < game.matches.length; i++) {
 
         var match = game.matches[i];
-        var tip = findUserObject(match.tips, userId);
+        var storedTip = findUserObject(match.tips, userId);
 
-        if (!tip) {
-            tip = {
-                user: userId,
-                homeTeam: match.match.homeTeam,
-                guestTeam: match.match.guestTeam
-            };
-        }
-
+        var tip = {
+            user: userId,
+            homeTeam: match.match.homeTeam,
+            guestTeam: match.match.guestTeam,
+            homeTip: storedTip ? storedTip.homeScore : null,
+            guestTip: storedTip ? storedTip.guestScore : null,
+            homeResult: match.match.homeScore,
+            guestResult: match.match.guestScore,
+            finished: match.match.homeScore != null
+        };
+        
         tips.push(tip);
     }
 

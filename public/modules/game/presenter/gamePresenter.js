@@ -24,6 +24,11 @@ game.controller('gameController', ['$scope', '$modal', '$stateParams', 'gameServ
             toast.error);
     };
 
+    $scope.cancelTipEditing = function(tip) {
+
+        tip.showSaveButton = false;
+    };
+
     if ($stateParams.gameId) {
         gameService.load($stateParams.gameId,
             function(game) {
