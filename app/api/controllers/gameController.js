@@ -45,6 +45,7 @@ var prepareGameForPlayer = function(game, userId) {
         var storedTip = findUserObject(match.tips, userId);
 
         var tip = {
+            match: match._id,
             user: userId,
             homeTeam: match.match.homeTeam,
             guestTeam: match.match.guestTeam,

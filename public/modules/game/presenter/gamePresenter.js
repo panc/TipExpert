@@ -24,8 +24,14 @@ game.controller('gameController', ['$scope', '$modal', '$stateParams', 'gameServ
             toast.error);
     };
 
-    $scope.cancelTipEditing = function(tip) {
+    $scope.saveTip = function(tip) {
 
+        // todo: save to server
+        tip.showSaveButton = false;
+    };
+
+    $scope.cancelTipEditing = function(tip) {
+        // todo
         tip.showSaveButton = false;
     };
 
