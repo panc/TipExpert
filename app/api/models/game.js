@@ -31,7 +31,7 @@ GameSchema.path('creator').required(true, 'Creator cannot be blank');
 GameSchema.path('dueDate').required(true, 'Due date cannot be blank');
 
 // static methods for the match schema
-GameSchema .statics = {
+GameSchema.statics = {
     /**
      * Find match by id
      *
@@ -44,6 +44,11 @@ GameSchema .statics = {
             .populate('creator')
             .populate('matches.match')
             .populate('players.user')
+            .exec(cb);
+    },
+
+    loadMatchEntry: function(matchId, cb) {
+        this.findOne({ 'matches.match': matchId })
             .exec(cb);
     },
 

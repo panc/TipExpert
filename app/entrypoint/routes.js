@@ -181,6 +181,10 @@ module.exports = function(app, shrinkr, passport) {
         "api.games.item.stake": {
             path: "/stake",
             put: [ auth.requiresLogin, auth.requiresGamePlayer, games.updateStake ]
+        },
+        "api.games.item.tip": {
+            path: "/tip",
+            put: [ auth.requiresLogin, auth.requiresGamePlayer, games.updateTip ]
         }
     });
     

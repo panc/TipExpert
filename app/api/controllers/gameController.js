@@ -42,15 +42,16 @@ var prepareGameForPlayer = function(game, userId) {
     for (var i = 0; i < game.matches.length; i++) {
 
         var match = game.matches[i];
-        var storedTip = findUserObject(match.tips, userId);
+        var storedTip = findUserObject(match.tips, userId) || { };
 
         var tip = {
+            id: storedTip._id,
             match: match._id,
             user: userId,
             homeTeam: match.match.homeTeam,
             guestTeam: match.match.guestTeam,
-            homeTip: storedTip ? storedTip.homeScore : null,
-            guestTip: storedTip ? storedTip.guestScore : null,
+            homeTip: storedTip.homeScore,
+            guestTip: storedTip.guestScore,
             homeResult: match.match.homeScore,
             guestResult: match.match.guestScore,
             finished: match.match.homeScore != null
@@ -107,7 +108,6 @@ exports.loadGameForPlayer = function(req, res) {
     var game = prepareGameForPlayer(req.game, req.user.id);
     return res.json(game);
 };
-
 
 /**
  * List all games for a user
@@ -201,7 +201,10 @@ exports.update = function(req, res) {
     });
 };
 
-exports.updateStake  = function(req, res) {
+/**
+ * Update stake of a player for a game
+ */
+exports.updateStake = function(req, res) {
     var game = req.game;
     var stake = req.body.stake;
 
@@ -221,9 +224,24 @@ exports.updateStake  = function(req, res) {
             if (error)
                 return res.json('500', utils.formatErrors(error.errors || error.err || error));
 
-            return res.send(game);
+            return res.send({ stake: stake });
         });
+    } else {
+        return res.send('Nothing to update!');
     }
+}
+
+/**
+ * Update the tip of a player for a match in a game
+ */
+exports.updateTip = function(req, res) {
+    var game = req.game;
+    var tipId = req.body.tip;
+    var matchId = req.body.match;
+    var homeTip = req.body.homeTip;
+    var guestTip = req.body.guestTip;
+    
+    
 }
 
 /**
@@ -241,5 +259,4 @@ exports.delete = function(req, res) {
             return res.json('500', utils.formatErrors(err.errors));
         
         return res.send(200);
-    });
-};
+    }};

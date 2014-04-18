@@ -26,12 +26,21 @@ game.controller('gameController', ['$scope', '$modal', '$stateParams', 'gameServ
 
     $scope.saveTip = function(tip) {
 
-        // todo: save to server
-        tip.showSaveButton = false;
+        gameService.updateTip($scope.game.id, tip.match, tip, 
+            function() {
+                tip.oldHomeTip = tip.homeTip;
+                tip.oldGuestTip = tip.guestTip;
+
+                tip.showSaveButton = false;
+            }, 
+            toast.error);
     };
 
     $scope.cancelTipEditing = function(tip) {
-        // todo
+        
+        tip.homeTip = tip.oldHomeTip;
+        tip.guestTip = tip.oldGuestTip;
+
         tip.showSaveButton = false;
     };
 

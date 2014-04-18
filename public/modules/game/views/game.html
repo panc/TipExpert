@@ -67,7 +67,9 @@
         
         <h3>Upcomming Games</h3>
         <table>
-            <tr ng-repeat="tip in game.player.tips | filter:{ finished: false }">
+            <tr ng-repeat="tip in game.player.tips | filter:{ finished: false }" 
+                ng-init="tip.oldHomeTip = tip.homeTip; tip.oldGuestTip = tip.guestTip">
+                
                 <td class="game-tip-team-col">{{ tip.homeTeam }}</td>
                 <td>&nbsp; - &nbsp;</td>
                 <td class="game-tip-team-col">{{ tip.guestTeam }}</td>
