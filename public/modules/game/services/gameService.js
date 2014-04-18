@@ -54,8 +54,12 @@ game.factory('gameService', [
                     .error(error);
             },
 
-            updateStake: function(gameId, newStake, success, error) {
-                $http.put('/api/games/' + gameId + '/stake', { stake: newStake })
+            updateStake: function(gameId, playerId, newStake, success, error) {
+                $http.put('/api/games/' + gameId + '/stake',
+                    {
+                        playerId: playerId,
+                        stake: newStake
+                    })
                     .success(function(data, status, headers, config) {
                         success();
                     })

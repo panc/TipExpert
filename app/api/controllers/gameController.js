@@ -69,6 +69,7 @@ var prepareGameForPlayer = function(game, userId) {
         minStake: game.minStake,
 
         player: {
+            id: player._id,
             stake: player.stake || game.minStake,
             stakeNotSet: player.stake == null,
             tips: tips
@@ -206,29 +207,19 @@ exports.update = function(req, res) {
  */
 exports.updateStake = function(req, res) {
     var game = req.game;
-    var stake = req.body.stake;
+    var player = game.players.id(req.body.playerId);
 
-    var changed = false;
-    for (var i = 0; i < req.game.players.length; i++) {
-        
-        if (req.game.players[i].user.id == req.user.id) {
+    if (!player || player.user.id != req.user.id)
+        return res.send(304, 'Nothing to update!');
 
-            req.game.players[i].stake = stake;
-            changed = true;
-            break;
-        }
-    }
+    player.stake = req.body.stake;
 
-    if (changed) {
-        game.save(function(error) {
-            if (error)
-                return res.json('500', utils.formatErrors(error.errors || error.err || error));
+    game.save(function(error) {
+        if (error)
+            return res.json('500', utils.formatErrors(error.errors || error.err || error));
 
-            return res.send({ stake: stake });
-        });
-    } else {
-        return res.send('Nothing to update!');
-    }
+        return res.send({ stake: stake });
+    });
 }
 
 /**
@@ -238,10 +229,29 @@ exports.updateTip = function(req, res) {
     var game = req.game;
     var tipId = req.body.tip;
     var matchId = req.body.match;
-    var homeTip = req.body.homeTip;
-    var guestTip = req.body.guestTip;
     
+    var match = game.matches.id(matchId);
+    if (!match)
+         return res.send(304, 'Nothing to update!');
+
+    var tip = match.tips.id(tipId);
+    if (!tip) {
+        tip = { user: req.user, homeScore: req.body.homeTip, guestScore: req.body.guestTip };
+        match.tips.push(tip);
+    }
+    else if (tip.user != req.user.id) {
+        return res.send(304, 'Wrong user!');
+    }
+
+    tip.homeScore = req.body.homeTip;
+    tip.guestScore = req.body.guestTip;
+
+    game.save(function(error) {
+        if (error)
+            return res.json('500', utils.formatErrors(error.errors || error.err || error));
     
+        return res.send({ homeScore: tip.homeScore, guestScore: tip.guestScore });
+    });
 }
 
 /**
@@ -257,6 +267,7 @@ exports.delete = function(req, res) {
     game.remove(function(err) {
         if (err)
             return res.json('500', utils.formatErrors(err.errors));
-        
+
         return res.send(200);
-    }};
+    });
+}

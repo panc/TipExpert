@@ -16,7 +16,7 @@ game.controller('gameController', ['$scope', '$modal', '$stateParams', 'gameServ
     };
 
     $scope.saveStake = function() {
-        gameService.updateStake($scope.game.id, $scope.stake, 
+        gameService.updateStake($scope.game.id, $scope.game.player.id, $scope.stake, 
             function() {
                 $scope.game.player.stake = $scope.stake;
                 $scope.editStake = false;
