@@ -27,9 +27,9 @@ game.controller('gameController', ['$scope', '$modal', '$stateParams', 'gameServ
     $scope.saveTip = function(tip) {
 
         gameService.updateTip($scope.game.id, tip.match, tip, 
-            function() {
-                tip.oldHomeTip = tip.homeTip;
-                tip.oldGuestTip = tip.guestTip;
+            function(homeTip, guestTip) {
+                tip.oldHomeTip = homeTip;
+                tip.oldGuestTip = guestTip;
 
                 tip.showSaveButton = false;
             }, 
