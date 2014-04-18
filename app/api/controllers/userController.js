@@ -34,7 +34,7 @@ exports.load = function(req, res, next, id) {
             return next(err);
         if (!user)
             return next(new Error('not found'));
-        req.user = user;
+        req.loadedUser = user;
         return next();
     });
 };
@@ -62,7 +62,7 @@ exports.create = function(req, res) {
 };
 
 exports.update = function(req, res) {
-    var user = req.user;
+    var user = req.loadedUser;
     user = _.extend(user, req.body);
 
     user.save(function(err) {
