@@ -204,6 +204,10 @@ body {
     padding-left: 40px;
 }
 
+.game-tip-result-left-col {
+    padding-left: 10px;
+}
+
 .game-stake {
     margin-top: 20px;
     font-size: 18px;
