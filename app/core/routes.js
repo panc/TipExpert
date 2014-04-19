@@ -1,5 +1,5 @@
 // module dependencies
-var auth = require('./middlewares/authorization');
+var auth = require('../middlewares/authorization');
 
 // controller
 var user = require('../api/controllers/userController'),

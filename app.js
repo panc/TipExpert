@@ -6,7 +6,7 @@ var express = require('express'),
 
 // load configurations
 var env = process.env.NODE_ENV || 'development'
-  , config = require('./app/entrypoint/app-config')[env]
+  , config = require('./app/config/app-config')[env]
   , mongoose = require('mongoose');
 
 // bootstrap db connection
@@ -34,12 +34,12 @@ fs.readdirSync(models_path).forEach(function(file) {
 });
 
 // bootstrap passport config
-require('./app/entrypoint/passport-config')(passport, config);
+require('./app/config/passport-config')(passport, config);
 
 // bootstrap express
 var app = express();
 
-require('./app/entrypoint/express')(app, config, passport);
+require('./app/core/express')(app, config, passport);
 
 // start the app by listening on <port>
 var port = process.env.PORT || 1337;

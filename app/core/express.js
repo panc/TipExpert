@@ -6,12 +6,13 @@ var express = require('express'),
     swig = require('swig'),
     logger = require('winston'),
     shrinkroute = require('shrinkroute'),
-    path = require('path');
+    path = require('path'),
+    assetConfig = require('../config/assets-config');
 
 module.exports = function(app, config, passport) {
 
     var env = process.env.NODE_ENV || 'development';
-    var assets = require('./assets-config')(config);
+    var assets = assetConfig(config);
 
     swig.setFilter('minifyURL', function(url){
         return assets.minifiedURL(url);
