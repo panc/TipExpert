@@ -218,7 +218,7 @@ exports.updateStake = function(req, res) {
         if (error)
             return res.json('500', utils.formatErrors(error.errors || error.err || error));
 
-        return res.send({ stake: stake });
+        return res.send({ stake: player.stake });
     });
 }
 

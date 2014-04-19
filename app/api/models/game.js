@@ -47,11 +47,6 @@ GameSchema.statics = {
             .exec(cb);
     },
 
-    loadMatchEntry: function(matchId, cb) {
-        this.findOne({ 'matches.match': matchId })
-            .exec(cb);
-    },
-
     /**
      * List matches
      *
