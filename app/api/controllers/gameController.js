@@ -54,7 +54,8 @@ var prepareGameForPlayer = function(game, userId) {
             guestTip: storedTip.guestScore,
             homeResult: match.match.homeScore,
             guestResult: match.match.guestScore,
-            finished: match.match.homeScore != null
+            points: storedTip.points,
+            finished: storedTip.points != null
         };
         
         tips.push(tip);

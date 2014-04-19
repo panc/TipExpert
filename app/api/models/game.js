@@ -21,7 +21,8 @@ var GameSchema = new Schema({
         tips: [{
             user: { type : Schema.ObjectId, ref : 'User'},
             homeScore: { type: Number, default: 0 },
-            guestScore: { type: Number, default: 0 }
+            guestScore: { type: Number, default: 0 },
+            points: {type: Number, default: null }
         }]
     }]
 });
@@ -48,7 +49,7 @@ GameSchema.statics = {
     },
 
     /**
-     * List matches
+     * List games
      *
      * @param {Object} options
      * @param {Function} cb
@@ -65,6 +66,21 @@ GameSchema.statics = {
         
         this.find(criteria)
             .sort({ 'dueDate': 1 }) // sort by date
+            .exec(cb);
+    },
+
+    /**
+     * List all games for the given match
+     *
+     * @param {Object} matchId
+     * @param {Function} cb
+     */
+
+    listGamesForMatch: function(matchId, cb) {
+        var criteria = { 'matches.match':  matchId };
+        var projection = { matches: { $elemMatch: { match: matchId } } };
+
+        this.find(criteria)
             .exec(cb);
     }
 };
