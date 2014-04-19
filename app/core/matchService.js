@@ -13,53 +13,42 @@ exports.updateTipsIfNeeded = function(match) {
     else
         console.log('Match not finished yet - revert points of all corresponding tips...');
         
-    
     Game.listGamesForMatch(match._id, function(err, games) {
         
         // update tips in games
-        for (var i = 0; i < games.length; i++) {
+        games.forEach(function(game) {
 
-            var tips = games[i].matches[0].tips; // a match can only be added once to a game, so matches[0] is ok!
-            
-            for (var j = 0; j < tips.length; j++) {
+            game.matches.forEach(function(gm) {
 
-                if (isMatchFinished)
-                    setPointsForTip(tips[j], match);
-                else
-                    resetPointsForTip(tips[j]);
-            }
-        }
+                if (gm.match != match.id)
+                    return;
 
-        saveAll(games, function(error) {
+                gm.tips.forEach(function(tip) {
 
-            // todo: 
-            // furhter error handling
+                    if (isMatchFinished)
+                        setPointsForTip(tip, match);
+                    else
+                        resetPointsForTip(tip);
+                });
+            });
 
-            if (error)
-                console.log(utils.formatErrors(error));
+            game.save(function(error) {
+                // todo: 
+                // furhter error handling
+
+                if (error)
+                    console.log(utils.formatErrors(error));
+            });
         });
     });
+
+    console.log('Finished updating all points of all corresponding tips.');
 };
 
 var setPointsForTip = function(tip, match) {
-    console.log(tip.homeScore);
-    console.log(tip.guestScore);
     tip.points = 10;
-    tip.homeScore = 10;
 };
 
 var resetPointsForTip = function(tip) {
     tip.points = null;
 };
-
-function saveAll(games, callback) {
-    var count = 0;
-    games.forEach(function(game) {
-        game.save(function(err) {
-            count++;
-            if (count == games.length || err) {
-                callback(err);
-            }
-        });
-    });
-}
