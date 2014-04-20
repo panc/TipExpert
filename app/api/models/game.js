@@ -78,8 +78,7 @@ GameSchema.statics = {
 
     listGamesForMatch: function(matchId, cb) {
         var criteria = { 'matches.match':  matchId };
-        var projection = { matches: { $elemMatch: { match: matchId } } };
-
+        
         this.find(criteria)
             .exec(cb);
     }

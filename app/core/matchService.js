@@ -32,6 +32,8 @@ exports.updateTipsIfNeeded = function(match) {
                 });
             });
 
+            finishGameIfNeeded(game);
+
             game.save(function(error) {
                 // todo: 
                 // furhter error handling
@@ -45,10 +47,25 @@ exports.updateTipsIfNeeded = function(match) {
     console.log('Finished updating all points of all corresponding tips.');
 };
 
-var setPointsForTip = function(tip, match) {
-    tip.points = 10;
+function finishGameIfNeeded(match) {
+    // todo
+}
+
+function setPointsForTip(tip, match) {
+    
+    var diffMatch = match.homeScore - match.guestScore;
+    var diffTip = tip.homeScore - tip.guestScore;
+
+    if (match.homeScore == tip.homeScore && match.guestScore == tip.guestScore)
+        tip.points = 5;
+    
+    else if ((diffMatch < 0 && diffTip < 0) || (diffMatch >= 0 && diffTip >= 0))
+        tip.points = (diffMatch == diffTip) ? 3 : 1;
+
+    else
+        tip.points = 0;
 };
 
-var resetPointsForTip = function(tip) {
+function resetPointsForTip (tip) {
     tip.points = null;
 };
