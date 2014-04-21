@@ -90,7 +90,7 @@ UserSchema.pre('save', function(next) {
         return next();
 });
 
-// static methods for the user schema
+// methods for the user schema
 UserSchema.methods = {
   /**
    * Authenticate - check if the passwords are the same

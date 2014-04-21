@@ -20,6 +20,13 @@ MatchSchema.path('guestTeam').required(true, 'Guest team cannot be blank');
 MatchSchema.path('dueDate').required(true, 'Due date cannot be blank');
 MatchSchema.path('league').required(true, 'League cannot be blank');
 
+MatchSchema.methods = {
+
+    isFinished: function() {
+        return this.homeScore != null && this.guestScore != null;
+    }
+};
+
 // static methods for the match schema
 MatchSchema.statics = {
     /**

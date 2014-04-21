@@ -6,8 +6,7 @@ var mongoose = require('mongoose'),
 
 exports.updateTipsIfNeeded = function(match) {
 
-    var isMatchFinished = match.homeScore != null && match.guestScore != null;
-
+    var isMatchFinished = match.isFinished();
     if (isMatchFinished)
         console.log('Match finished - update points of all corresponding tips...');
     else
@@ -20,7 +19,7 @@ exports.updateTipsIfNeeded = function(match) {
 
             game.matches.forEach(function(gm) {
 
-                if (gm.match != match.id)
+                if (gm.match.id != match.id)
                     return;
 
                 gm.tips.forEach(function(tip) {
@@ -47,8 +46,38 @@ exports.updateTipsIfNeeded = function(match) {
     console.log('Finished updating all points of all corresponding tips.');
 };
 
-function finishGameIfNeeded(match) {
-    // todo
+function finishGameIfNeeded(game) {
+
+    console.log("Finish game '" + game.title + "' if needed ...");
+    
+    var userPoints = {};
+    var allMatchesFinished = true;
+
+    for (var i = 0; i < game.matches.length; i++) {
+
+        var match = game.matches[i];
+        if (!match.match.isFinished()) {
+            allMatchesFinished = false;
+            break;
+        }
+
+        match.tips.forEach(function(tip) {
+
+            var points = userPoints[tip.user] || 0;
+            userPoints[tip.user] = points + tip.points;
+        });
+    }
+
+    if (allMatchesFinished) {
+
+        console.log("Game '" + game.title + "' has been finished...");
+        for (var propertyName in userPoints) {
+
+            console.log(propertyName + ": " + userPoints[propertyName]);
+        }
+    } else {
+        console.log("Game '" + game.title + "' has NOT been finished yet.");
+    }
 }
 
 function setPointsForTip(tip, match) {

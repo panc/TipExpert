@@ -13,7 +13,9 @@ var GameSchema = new Schema({
     
     players: [{
         user: { type : Schema.ObjectId, ref : 'User'},
-        stake: { type: Number, default: 0 }
+        stake: { type: Number, default: 0 },
+        profit: { type: Number, default: null },
+        totalPoints: {type: Number, default: null }
     }],
     
     matches: [{
@@ -80,6 +82,7 @@ GameSchema.statics = {
         var criteria = { 'matches.match':  matchId };
         
         this.find(criteria)
+            .populate('matches.match')
             .exec(cb);
     }
 };
