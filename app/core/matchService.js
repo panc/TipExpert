@@ -31,7 +31,7 @@ exports.updateTipsIfNeeded = function(match) {
                 });
             });
 
-            finishGameIfNeeded(game);
+            updateTotalPointsForAllUser(game);
 
             game.save(function(error) {
                 // todo: 
@@ -46,12 +46,17 @@ exports.updateTipsIfNeeded = function(match) {
     console.log('Finished updating all points of all corresponding tips.');
 };
 
-function finishGameIfNeeded(game) {
+function updateTotalPointsForAllUser(game) {
 
     console.log("Finish game '" + game.title + "' if needed ...");
     
     var userPoints = {};
     var allMatchesFinished = true;
+
+    // Calculate the total points for each user and 
+    // determine whether all matches in the game are already finished.
+    // If so, set the total points for each user to the calculated values.
+    // If not, reset the total points of each user.
 
     for (var i = 0; i < game.matches.length; i++) {
 
@@ -62,22 +67,22 @@ function finishGameIfNeeded(game) {
         }
 
         match.tips.forEach(function(tip) {
-
             var points = userPoints[tip.user] || 0;
             userPoints[tip.user] = points + tip.points;
         });
     }
 
-    if (allMatchesFinished) {
+    game.players.forEach(function(player) {
+        if (allMatchesFinished) {
+            var totalPoints = userPoints[player.user];
+            player.totalPoints = totalPoints;
 
-        console.log("Game '" + game.title + "' has been finished...");
-        for (var propertyName in userPoints) {
+            // todo: calculate profite
 
-            console.log(propertyName + ": " + userPoints[propertyName]);
+        } else {
+            player.totalPoints = null;
         }
-    } else {
-        console.log("Game '" + game.title + "' has NOT been finished yet.");
-    }
+    });
 }
 
 function setPointsForTip(tip, match) {
