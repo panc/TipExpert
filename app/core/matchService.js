@@ -71,6 +71,8 @@ function updateTotalPointsForAllUser(game) {
             userPoints[tip.user] = points + tip.points;
         });
     }
+    
+    game.isFinished = allMatchesFinished;
 
     game.players.forEach(function(player) {
         if (allMatchesFinished) {

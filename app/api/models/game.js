@@ -9,7 +9,7 @@ var GameSchema = new Schema({
     description: { type: String, default: '' },
     creator: { type: Schema.ObjectId, ref: 'User' },
     minStake: { type: Number, default: 0 },
-    dueDate: { type: Date, default: Date.now }, // wenn sich dieses Datum nicht eh automatisch aus dem letzten Match-Datum ergibt...
+    isFinished: { type: Boolean, default: false },
     
     players: [{
         user: { type : Schema.ObjectId, ref : 'User'},
@@ -31,7 +31,7 @@ var GameSchema = new Schema({
 
 // validation
 GameSchema.path('creator').required(true, 'Creator cannot be blank');
-GameSchema.path('dueDate').required(true, 'Due date cannot be blank');
+GameSchema.path('title').required(true, 'Title cannot be blank');
 
 // static methods for the match schema
 GameSchema.statics = {

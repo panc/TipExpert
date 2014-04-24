@@ -47,10 +47,7 @@ match.controller('matchController', ['$scope', '$modal', 'leagueService', 'match
             function() {
                 league.editorEnabled = false;
             },
-            function() {
-                // todo
-                alert(data);
-            });
+            toast.error);
     };
     
     // matches
@@ -62,14 +59,11 @@ match.controller('matchController', ['$scope', '$modal', 'leagueService', 'match
             function(matches) {
                 $scope.matches = matches;
             },
-            function(data) {
-                // todo
-                alert(data);
-            });
+            toast.error);
     };
     
     $scope.addMatch = function() {
-        var match = { homeTeam: 'Home', guestTeam: '', dueDate: Date.now(), league: $scope.selectedLeague._id };
+        var match = { homeTeam: '', guestTeam: '', dueDate: Date.now(), league: $scope.selectedLeague._id };
         showEditMatchDialog(match, function (newMatch) {
             $scope.matches.push(newMatch);
         });

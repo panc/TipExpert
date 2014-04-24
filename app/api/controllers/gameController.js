@@ -17,9 +17,11 @@ var findUserObject = function(containers, id) {
     return null;
 };
 
-var prepareUser = function(user) {
+var preparePlayer = function(player) {
 
+    var user = player.user;
     var picture = '';
+
     if (user.google)
         picture = user.google.picture;
     if (user.facebook)
@@ -27,7 +29,9 @@ var prepareUser = function(user) {
 
     return {
         name: user.name,
-        picture: picture
+        picture: picture,
+        totalPoints: player.totalPoints,
+        profit: player.profit
     };
 };
 
@@ -37,7 +41,7 @@ var prepareGameForPlayer = function(game, userId) {
     var tips = [];
 
     for (var i = 0; i < game.players.length; i++)
-        allPlayers.push(prepareUser(game.players[i].user));
+        allPlayers.push(preparePlayer(game.players[i]));
 
     for (var i = 0; i < game.matches.length; i++) {
 
@@ -68,11 +72,14 @@ var prepareGameForPlayer = function(game, userId) {
         creator: game.creator.name,
         allPlayers: allPlayers,
         minStake: game.minStake,
+        isFinished: game.isFinished,
 
         player: {
             id: player._id,
             stake: player.stake || game.minStake,
             stakeNotSet: player.stake == null,
+            totalPoints: player.totalPoints,
+            profit: player.profit,
             tips: tips
         }
     };

@@ -17,10 +17,7 @@ game.controller('AddGameController', ['$scope', '$modalInstance', '$state', 'gam
                 $modalInstance.close();
                 $state.go('games.edit', { gameId: newGame._id });
             },
-            function(err) {
-                // todo
-                alert(err);
-            });
+            toast.error);
     };
 
     $scope.cancel = function() {

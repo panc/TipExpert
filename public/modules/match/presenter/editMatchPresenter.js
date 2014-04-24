@@ -10,13 +10,12 @@ match.controller('EditMatchController', ['$scope', '$modalInstance', 'matchServi
     
     $scope.save = function() {
 
-        var error = function(data) { alert(data); /* todo */ };
         var success = function(newOrUpdatedMatch) { $modalInstance.close(newOrUpdatedMatch); };
 
         if (match._id) 
-            matchService.update(match, success, error);
+            matchService.update(match, success, toast.error);
         else
-            matchService.create(match, success, error);
+            matchService.create(match, success, toast.error);
     };
 
     $scope.cancel = function() {
