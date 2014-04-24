@@ -58,9 +58,9 @@ var prepareGameForPlayer = function(game, userId) {
             guestTip: storedTip.guestScore,
             homeResult: match.match.homeScore,
             guestResult: match.match.guestScore,
-            points: storedTip.points,
-            finished: storedTip.points != null
-        };
+            points: storedTip.points || 0,
+            finished: match.match.isFinished()
+    };
         
         tips.push(tip);
     }

@@ -4,7 +4,7 @@ var mongoose = require('mongoose'),
     Game = mongoose.model('Game'),
     utils = require('../helper/formatHelper');
 
-exports.updateTipsIfNeeded = function(match) {
+exports.updateTipsForMatch = function(match) {
 
     var isMatchFinished = match.isFinished();
     if (isMatchFinished)
