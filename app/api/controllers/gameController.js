@@ -178,9 +178,11 @@ exports.create = function(req, res) {
  */
 exports.update = function(req, res) {
     var game = req.game;
-    
+
+    if (game.creator != req.user.id)
+        return res.json('304', 'Only the creator can update the game!');
+
     game.title = req.body.title;
-    game.creator = req.body.creator;
     game.minStake = req.body.minStake;
     game.dueDate = req.body.dueDate;
     game.description = req.body.description;
@@ -197,10 +199,6 @@ exports.update = function(req, res) {
     
     if (!creatorExists)
         game.players.push({ user: req.user });
-
-    // todo
-    // check that an update can only be done
-    // by the creator or by an administrator!
 
     game.save(function(error) {
         if (error)
