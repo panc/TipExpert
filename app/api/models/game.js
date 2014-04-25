@@ -84,7 +84,122 @@ GameSchema.statics = {
         this.find(criteria)
             .populate('matches.match')
             .exec(cb);
+    },
+    
+    /**
+    * Update all tips which are linked with the given match
+    */
+    updateAllTips: function(match) {
+
+        var isMatchFinished = match.isFinished();
+        if (isMatchFinished)
+            console.log('Match finished - update points of all corresponding tips...');
+        else
+            console.log('Match not finished yet - revert points of all corresponding tips...');
+
+        this.listGamesForMatch(match._id, function(err, games) {
+
+            // update tips in games
+            games.forEach(function(game) {
+
+                game.matches.forEach(function(gm) {
+
+                    if (gm.match.id != match.id)
+                        return;
+
+                    gm.tips.forEach(function(tip) {
+
+                        if (isMatchFinished)
+                            setPointsForTip(tip, match);
+                        else
+                            resetPointsForTip(tip);
+                    });
+                });
+
+                game.finishGameAndUpdateTotalPoints(game);
+
+                game.save(function(error) {
+                    // todo: 
+                    // furhter error handling
+
+                    if (error)
+                        console.log(utils.formatErrors(error));
+                });
+            });
+        });
+
+        console.log('Finished updating all points of all corresponding tips.');
     }
 };
 
+
+GameSchema.methods = {
+    /**
+    * Finish the game if all matches are finished and calculate the total points for each user.
+    * If the game is finished, the total points of all users are set.
+    * If the game is not finished, the total points of all users are reseted.
+    */    
+    finishGameAndUpdateTotalPoints: function() {
+
+        console.log("Finish game '" + this.title + "' if needed ...");
+
+        var userPoints = {};
+        var allMatchesFinished = true;
+
+        for (var i = 0; i < this.matches.length; i++) {
+
+            var match = this.matches[i];
+            if (!match.match.isFinished()) {
+                allMatchesFinished = false;
+                break;
+            }
+
+            match.tips.forEach(function(tip) {
+                var points = userPoints[tip.user] || 0;
+                userPoints[tip.user] = points + tip.points;
+            });
+        }
+
+        this.isFinished = allMatchesFinished;
+
+        this.players.forEach(function(player) {
+            if (allMatchesFinished) {
+                var totalPoints = userPoints[player.user];
+                player.totalPoints = totalPoints;
+
+                // todo: calculate profite
+
+            } else {
+                player.totalPoints = null;
+            }
+        });
+    }
+};
+
+    
 mongoose.model('Game', GameSchema);
+
+
+/*
+* Helper methods
+*/
+
+var setPointsForTip = function (tip, match) {
+    
+    var diffMatch = match.homeScore - match.guestScore;
+    var diffTip = tip.homeScore - tip.guestScore;
+
+    if (match.homeScore == tip.homeScore && match.guestScore == tip.guestScore)
+        tip.points = 5;
+    
+    else if ((diffMatch < 0 && diffTip < 0) || (diffMatch >= 0 && diffTip >= 0))
+        tip.points = (diffMatch == diffTip) ? 3 : 1;
+
+    else
+        tip.points = 0;
+};
+
+var resetPointsForTip = function (tip) {
+    tip.points = null;
+};
+

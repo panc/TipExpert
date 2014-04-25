@@ -60,7 +60,7 @@ var prepareGameForPlayer = function(game, userId) {
             guestResult: match.match.guestScore,
             points: storedTip.points || 0,
             finished: match.match.isFinished()
-    };
+        };
         
         tips.push(tip);
     }
@@ -102,7 +102,7 @@ exports.load = function(req, res, next, id) {
 };
 
 /**
- * Loads a single game the edit view
+ * Loads a single game for the edit view
  */
 exports.loadGameForEdit = function(req, res) {
 

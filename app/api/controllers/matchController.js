@@ -2,7 +2,7 @@
 var mongoose = require('mongoose'),
     League = mongoose.model('League'),
     Match = mongoose.model('Match'),
-    gameUpdater = require('../../core/gameUpdater');
+    Game = mongoose.model('Game'),
     utils = require('../../helper/formatHelper'),
     _ = require('underscore');
     
@@ -48,7 +48,7 @@ exports.update = function(req, res) {
         if (error)
             return res.json('500', utils.formatErrors(error.errors));
 
-        gameUpdater.updateTipsForMatch(match);
+        Game.updateAllTips(match);
 
         return res.json(match);
     });
