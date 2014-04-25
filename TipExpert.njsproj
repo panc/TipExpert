@@ -39,6 +39,7 @@
     <Compile Include="app\api\models\match.js" />
     <Compile Include="app\api\models\user.js" />
     <Compile Include="app\config\assets-config.js" />
+    <Compile Include="app\core\gameTransformer.js" />
     <Compile Include="app\helper\postInstall.js" />
     <Compile Include="public\modules\game\presenter\myGamesPresenter.js" />
     <Compile Include="public\modules\game\presenter\selectPlayersPresenter.js" />
