@@ -3,6 +3,14 @@ var mongoose = require('mongoose'),
     ObjectId = require('mongoose').Types.ObjectId,
     Schema = mongoose.Schema;
 
+var validateStake = [
+    function(stake) {
+
+        return this.minStake <= stake;
+
+    }, 'The stake for a player must be heigher than the defined minimum stake!'
+];
+
 // game schema
 var GameSchema = new Schema({
     title: { type: String, default: '' },
@@ -13,7 +21,7 @@ var GameSchema = new Schema({
     
     players: [{
         user: { type : Schema.ObjectId, ref : 'User'},
-        stake: { type: Number, default: 0 },
+        stake: { type: Number, default: 0, validate: validateStake },
         profit: { type: Number, default: null },
         totalPoints: {type: Number, default: null }
     }],
@@ -32,6 +40,7 @@ var GameSchema = new Schema({
 // validation
 GameSchema.path('creator').required(true, 'Creator cannot be blank');
 GameSchema.path('title').required(true, 'Title cannot be blank');
+
 
 // static methods for the match schema
 GameSchema.statics = {
@@ -199,7 +208,6 @@ var setPointsForTip = function (tip, match) {
         tip.points = 0;
 };
 
-var resetPointsForTip = function (tip) {
+var resetPointsForTip = function(tip) {
     tip.points = null;
 };
-

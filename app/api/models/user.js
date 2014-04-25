@@ -92,37 +92,34 @@ UserSchema.pre('save', function(next) {
 
 // methods for the user schema
 UserSchema.methods = {
-  /**
+    /**
    * Authenticate - check if the passwords are the same
    *
    * @param {String} plainText
    * @return {Boolean}
    * @api public
    */
-
     authenticate: function(plainText) {
         return this.encryptPassword(plainText) === this.hashed_password;
     },
 
-  /**
+    /**
    * Make salt
    *
    * @return {String}
    * @api public
    */
-
     makeSalt: function() {
         return Math.round((new Date().valueOf() * Math.random())) + '';
     },
 
-  /**
+    /**
    * Encrypt password
    *
    * @param {String} password
    * @return {String}
    * @api public
    */
-
     encryptPassword: function(password) {
         if (!password)
             return '';
@@ -131,15 +128,14 @@ UserSchema.methods = {
         try {
             encrypred = crypto.createHmac('sha1', this.salt).update(password).digest('hex');
             return encrypred;
-        } catch(err) {
+        } catch (err) {
             return '';
         }
     },
 
-  /**
+    /**
    * Validation is not required if using OAuth
    */
-
     doesNotRequireValidation: function() {
         return ~oAuthTypes.indexOf(this.provider);
     }
@@ -147,17 +143,16 @@ UserSchema.methods = {
 
 // static methods for the user schema
 UserSchema.statics = {
-   /**
+    /**
     * List all user
     */
-
     list: function(cb) {
 
         this.find()
             .sort({ 'name': 1 })
             .exec(cb);
     },
-    
+
     /**
      * Find user by id
      *
@@ -165,7 +160,6 @@ UserSchema.statics = {
      * @param {Function} cb
      * @api private
      */
-
     load: function(id, cb) {
         this.findOne({ _id: id })
             .exec(cb);
