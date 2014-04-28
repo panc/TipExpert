@@ -12,7 +12,8 @@ module.exports = function(config) {
             '/css/main.min.css': [
                 //'/bower_components/bootstrap/dist/css/bootstrap.css'
                 '/public/css/bootstrap.css',
-                '/public/css/site.css'
+                '/public/css/site.css',
+                '/public/css/site.theme.css'
             ],
             '/js/bower.min.js': [
                 '/bower_components/angular/angular.js',

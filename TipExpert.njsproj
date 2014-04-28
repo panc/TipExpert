@@ -76,6 +76,7 @@
     <Content Include="app\api\views\404.html" />
     <Content Include="app\api\views\template.html" />
     <Content Include="app\api\views\userInfo.html" />
+    <Content Include="public\css\site.theme.css" />
     <Content Include="public\locales\de.json" />
     <Content Include="public\locales\en.json" />
     <Content Include="public\modules\game\views\game.html" />

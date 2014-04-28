@@ -1,0 +1,22 @@
+body {
+    padding-top: 130px;
+    background-color: #ECECEC;
+}
+
+.navbar-default {
+  background-color: #52646E;
+  border-bottom: 5px #B1C901 solid;
+}
+
+.header-navbar {
+    min-height: 123px;
+}
+
+section.main {
+    padding-bottom: 130px;
+}
+
+.footer-navbar {
+    min-height: 60px;
+    background: #B1C901;
+}
