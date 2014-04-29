@@ -8,7 +8,7 @@
     <div class="col-md-6 home-right">
         <form role="form" name="submitForm" class="form-horizontal" novalidate>
             <fieldset>
-                <legend>Sign up</legend>
+                <legend translate="HOME-SIGN-UP"></legend>
 
                 <!-- USERNAME -->
                 <div class="form-group" ng-class="{ 'has-error' : submitForm.name.$invalid && submitted }">
@@ -40,8 +40,7 @@
                 <!-- BUTTONS -->
                 <div class="form-group">
                     <div class="col-lg-10 col-lg-offset-2">
-                        <a ui-sref="home" title="cancel" class="btn-default btn">Cancel</a>
-                        <button ng-click="signup()" class="btn btn-primary">Save</button>
+                        <button ng-click="signup()" class="btn btn-primary" translate="HOME-SIGN-UP-BUTTON"></button>
                     </div>
                 </div>
             </fieldset>
