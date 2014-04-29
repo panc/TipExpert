@@ -1,10 +1,37 @@
 
 // module dependencies
-var minify = require('connect-minify');
+var minify = require('connect-minify'),
+    fs = require('fs'),
+    env = process.env.NODE_ENV || 'development',
+    config = require('./app-config')[env];
 
 module.exports = function(config) {
 
-    var env = process.env.NODE_ENV || 'development';
+    var readModuleFiles = function(path) {
+        var results = [];
+    
+        var list = fs.readdirSync(path);
+        list.forEach(function(file) {
+            
+            file = path + '/' + file;
+            var stat = fs.statSync(file);
+
+            if (stat && stat.isDirectory())
+                results = results.concat(readModuleFiles(file));
+            else if (~file.indexOf('.js') && !~file.indexOf('userConfig.js'))
+                results.push(file.replace(config.root, ''));
+        });
+
+        return results;
+    };
+
+    var modules = readModuleFiles(config.root + '/public/modules');
+    var app = [
+        '/public/modules/user/userConfig.js',
+        '/public/toast.js',
+        '/public/app.js'
+        ]
+        .concat(modules);
 
     return minify({
         // assets map - maps served file identifier to a list of resources
@@ -25,31 +52,7 @@ module.exports = function(config) {
                 '/bower_components/angular-translate/angular-translate.js',
                 '/bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js'
             ],
-            '/js/app.min.js': [
-                '/public/modules/user/userConfig.js',
-                '/public/toast.js',
-                '/public/app.js',
-                '/public/modules/home/presenter/languagePresenter.js',
-                '/public/modules/home/presenter/navigationPresenter.js',
-                '/public/modules/home/presenter/homePresenter.js',
-                '/public/modules/user/services/authenticationService.js',
-                '/public/modules/user/services/userService.js',
-                '/public/modules/user/presenter/loginPresenter.js',
-                '/public/modules/user/presenter/signUpPresenter.js',
-                '/public/modules/user/presenter/userPresenter.js',
-                '/public/modules/user/presenter/userProfilePresenter.js',
-                '/public/modules/match/services/leagueService.js',
-                '/public/modules/match/services/matchService.js',
-                '/public/modules/match/presenter/matchPresenter.js',
-                '/public/modules/match/presenter/editMatchPresenter.js',
-                '/public/modules/game/services/gameService.js',
-                '/public/modules/game/presenter/gamePresenter.js',
-                '/public/modules/game/presenter/myGamesPresenter.js',
-                '/public/modules/game/presenter/editGamePresenter.js',
-                '/public/modules/game/presenter/addGamePresenter.js',
-                '/public/modules/game/presenter/selectMatchesPresenter.js',
-                '/public/modules/game/presenter/selectPlayersPresenter.js'
-            ]
+            '/js/app.min.js': app
         },
         // root - where resources can be found
         root: config.root,
