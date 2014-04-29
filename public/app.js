@@ -148,8 +148,10 @@ tipExpert.config(['$translateProvider', function($translateProvider) {
         })
         .determinePreferredLanguage();
 
+    var origin = window.location.origin || window.location.protocol + '//' + window.location.host;
+
     $translateProvider.useStaticFilesLoader({
-        prefix: window.location.origin + '/locales/',
+        prefix:  origin + '/locales/',
         suffix: '.json'
     });
 }]);
