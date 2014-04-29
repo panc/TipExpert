@@ -1,14 +1,21 @@
 <div>
     <div class="col-md-6 home-left">
         <div translate="HOME-INFO"></div>
-
         <img src="./images/ball.png" alt="balls" />
     </div>
     
     <div class="col-md-6 home-right">
+        <div>
+            <h3>Social Login</h3>
+            <div class="text-center">
+                <a href="" data-ng-click="loginOauth('facebook')"><img src="/images/facebook.png" /></a>
+                <a href="" data-ng-click="loginOauth('google')"><img src="/images/google.png" /></a>
+            </div>
+        </div>
+
         <form role="form" name="submitForm" class="form-horizontal" novalidate>
             <fieldset>
-                <legend translate="HOME-SIGN-UP"></legend>
+                <h3 translate="HOME-SIGN-UP"></h3>
 
                 <!-- USERNAME -->
                 <div class="form-group" ng-class="{ 'has-error' : submitForm.name.$invalid && submitted }">
