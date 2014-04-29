@@ -1,6 +1,10 @@
-{
+﻿{
 	"ENGLISH": "English",
 	"GERMAN": "German",
+	"ABOUT-US": "About us",
+	"SUPPORT": "Support",
+	"FAQ": "FAQ",
+	"IMPRESSUM": "Impressum",
 	"CHANGE-LANGUAGE": "Change the current language:",
 	"GAME-MINSTAKEAREA": "1. Define Minimum Stake",
 	"GAME-MATCHAREA": "2. Select Matches",

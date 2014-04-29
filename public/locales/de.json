@@ -1,10 +1,14 @@
-{
+﻿{
 	"ENGLISH": "Englisch",
 	"GERMAN": "Deutsch",
-	"CHANGE-LANGUAGE": "Die aktuelle Sprache �ndern:",
+	"ABOUT-US": "Über uns",
+	"SUPPORT": "Hilfe/Support",
+	"FAQ": "FAQ",
+	"IMPRESSUM": "Impressum",
+	"CHANGE-LANGUAGE": "Die aktuelle Sprache ändern:",
 	"GAME-MINSTAKEAREA": "1. Minimalen Einsatz festlegen",
 	"GAME-MATCHAREA": "2. Spielpaarungen festlegen",
-	"GAME-PLAYERSAREA": "3. Freunde ausw�hlen",
+	"GAME-PLAYERSAREA": "3. Freunde auswählen",
 	"MYGAMES-CREATED": "Von mir erstellte Tipp-Spiele:",
 	"MYGAMES-INVITED": "Tipp-Spiele zu denen ich eingeladen wurde:"
 }

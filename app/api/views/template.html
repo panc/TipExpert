@@ -75,10 +75,14 @@
     </section>
     
     <footer class="navbar navbar-fixed-bottom footer-navbar" ng-controller="languageController">
-        <div translate="CHANGE-LANGUAGE"></div>
-        <div>
-            <a class="left" ng-click="changeLanguage('de')" translate="GERMAN"></a>
-            <a class="left" ng-click="changeLanguage('en')" translate="ENGLISH"></a>
+        <div class="container">
+            <a class="left footer-content-left" ng-click="changeLanguage('de')" translate="GERMAN" href=""></a>
+            <a class="left footer-content-left" ng-click="changeLanguage('en')" translate="ENGLISH" href=""></a>
+            
+            <a class="right footer-content-right" href="" translate="ABOUT-US"></a>
+            <a class="right footer-content-right" href="" translate="SUPPORT"></a>
+            <a class="right footer-content-right" href="" translate="FAQ"></a>
+            <a class="right footer-content-right" href="" translate="IMPRESSUM"></a>
         </div>
     </footer>
 </body>

@@ -19,4 +19,15 @@ section.main {
 .footer-navbar {
     min-height: 60px;
     background: #B1C901;
+    border-top: 5px #52646E solid;
+}
+
+.footer-content-left {
+    color: #FFFFFF;
+    margin: 5px 10px 0 0;
+}
+
+.footer-content-right {
+    color: #FFFFFF;
+    margin: 5px 0 0 10px;
 }

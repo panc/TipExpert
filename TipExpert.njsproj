@@ -47,13 +47,14 @@
     <Compile Include="public\modules\game\presenter\addGamePresenter.js" />
     <Compile Include="public\modules\game\presenter\editGamePresenter.js" />
     <Compile Include="public\modules\game\services\gameService.js" />
+    <Compile Include="public\modules\home\presenter\languagePresenter.js" />
     <Compile Include="public\modules\user\services\userService.js" />
     <Compile Include="public\toast.js" />
     <Compile Include="public\modules\match\presenter\editMatchPresenter.js" />
     <Compile Include="public\modules\match\services\matchService.js" />
     <Compile Include="public\modules\match\services\leagueService.js" />
     <Compile Include="public\modules\user\presenter\loginPresenter.js" />
-    <Compile Include="public\modules\user\presenter\navigationPresenter.js" />
+    <Compile Include="public\modules\home\presenter\navigationPresenter.js" />
     <Compile Include="public\modules\user\presenter\signUpPresenter.js" />
     <Compile Include="public\modules\user\presenter\userProfilePresenter.js" />
     <Compile Include="public\modules\user\userConfig.js" />
@@ -67,7 +68,7 @@
     <Compile Include="public\modules\game\presenter\gamePresenter.js" />
     <Compile Include="public\modules\match\presenter\matchPresenter.js" />
     <Compile Include="public\modules\user\presenter\userPresenter.js" />
-    <Compile Include="public\modules\home\homePresenter.js" />
+    <Compile Include="public\modules\home\presenter\homePresenter.js" />
     <Compile Include="public\modules\user\services\authenticationService.js" />
     <Compile Include="test\helper.js" />
     <Compile Include="test\test-leagues.js" />
@@ -121,6 +122,7 @@
     <Folder Include="public\modules\game\views\" />
     <Folder Include="public\modules\game\services\" />
     <Folder Include="public\modules\game\presenter\" />
+    <Folder Include="public\modules\home\presenter\" />
     <Folder Include="public\modules\home\views\" />
     <Folder Include="public\modules\home\" />
     <Folder Include="public\modules\match\" />
