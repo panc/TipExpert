@@ -145,8 +145,10 @@ tipExpert.config(['$translateProvider', function($translateProvider) {
             'de_DE': 'de',
             'de_CH': 'de',
             'de_AT': 'de'
-        })
-        .determinePreferredLanguage();
+        });
+
+    $translateProvider.useCookieStorage();
+    $translateProvider.determinePreferredLanguage();
 
     var origin = window.location.origin || window.location.protocol + '//' + window.location.host;
 

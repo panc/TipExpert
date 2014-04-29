@@ -50,7 +50,8 @@ module.exports = function(config) {
                 '/bower_components/angular-cookies/angular-cookies.js',
                 '/bower_components/angular-ui-router/release/angular-ui-router.js',
                 '/bower_components/angular-translate/angular-translate.js',
-                '/bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js'
+                '/bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js',
+                '/bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js'
             ],
             '/js/app.min.js': app
         },
