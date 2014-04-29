@@ -10,10 +10,7 @@ user.controller('navigationController', ['$scope', '$state', 'Auth', function($s
         Auth.logout(function() {
             $state.go('login');
         },
-        function(err) {
-            // todo
-            alert(data);
-        });
+        toast.error);
     };
     
 }]);
