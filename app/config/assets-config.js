@@ -1,6 +1,6 @@
 
 // module dependencies
-var minify = require('connect-minify'),
+var minify = require('connect-minify-ext'),
     fs = require('fs'),
     env = process.env.NODE_ENV || 'development',
     config = require('./app-config')[env];
