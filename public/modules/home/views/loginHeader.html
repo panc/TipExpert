@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">
+            <div class="header-logo">&nbsp;</div>
+        </a>
+    </div>
+
+    <div class="navbar-collapse collapse navbar-responsive-collapse">
+        <form class="navbar-form navbar-right" name="loginForm" ng-submit="login()" novalidate>
+            <fieldset>
+                
+                <div class="row">
+                    <label class="col-lg-2 control-label">Email</label>
+                    
+                    <label class="col-lg-2 control-label">Password</label>
+                </div>
+                
+                <div class="row">
+                    <!-- EMAIL -->
+                    <div class="form-group" ng-class="{ 'has-error' : loginForm.email.$invalid && submitted }">
+                        <div class="col-lg-10">
+                            <input type="email" name="email" placeholder="Email" class="form-control" ng-model="email" required />
+                            <p ng-show="loginForm.email.$invalid && submitted" class="help-block">E-Mail is required.</p>
+                        </div>
+                    </div>
+
+                    <!-- PASSWORD -->
+                    <div class="form-group" ng-class="{ 'has-error' : loginForm.password.$invalid && submitted }">
+                        <div class="col-lg-10">
+                            <input type="password" name="password" placeholder="Password" class="form-control" ng-model="password" required />
+                            <p ng-show="loginForm.password.$invalid && submitted" class="help-block">Password is required.</p>
+                        </div>
+                    </div>
+
+                    <!-- BUTTONS -->
+                    <div class="form-group">
+                        <div class="col-lg-10 col-lg-offset-2">
+                            <button type="submit" class="btn btn-primary">Log in</button>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

@@ -53,9 +53,7 @@
     <Compile Include="public\modules\match\presenter\editMatchPresenter.js" />
     <Compile Include="public\modules\match\services\matchService.js" />
     <Compile Include="public\modules\match\services\leagueService.js" />
-    <Compile Include="public\modules\user\presenter\loginPresenter.js" />
     <Compile Include="public\modules\home\presenter\navigationPresenter.js" />
-    <Compile Include="public\modules\user\presenter\signUpPresenter.js" />
     <Compile Include="public\modules\user\presenter\userProfilePresenter.js" />
     <Compile Include="public\modules\user\userConfig.js" />
     <Compile Include="app\helper\formatHelper.js" />
@@ -76,7 +74,6 @@
     <Content Include=".travis.yml" />
     <Content Include="app\api\views\404.html" />
     <Content Include="app\api\views\template.html" />
-    <Content Include="app\api\views\userInfo.html" />
     <Content Include="public\css\site.theme.css" />
     <Content Include="public\locales\de.json" />
     <Content Include="public\locales\en.json" />
@@ -86,10 +83,10 @@
     <Content Include="public\modules\game\views\addGameDialog.html" />
     <Content Include="public\modules\game\views\editGame.html" />
     <Content Include="public\modules\game\views\myGames.html" />
+    <Content Include="public\modules\home\views\loginHeader.html" />
+    <Content Include="public\modules\home\views\header.html" />
     <Content Include="public\modules\match\views\editMatchDialog.html" />
     <Content Include="public\modules\match\views\matches.html" />
-    <Content Include="public\modules\user\views\signup.html" />
-    <Content Include="public\modules\user\views\login.html" />
     <Content Include="app\api\views\500.html" />
     <Content Include="bower.json" />
     <Content Include="package.json" />

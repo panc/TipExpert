@@ -6,8 +6,16 @@
     margin-top: 10px;
 }
 
+.header-logo-small {
+    background: url(../images/tipexpert_v4_2_white.png) no-repeat;
+    background-size: 125px 20px;
+    width: 160px;
+    height: 25px;
+    margin-top: 10px;
+}
+
 .login-info {
-    margin: 10px 0px 10px 40px;
+    margin: 10px 0 10px 40px;
 }
 
 .center-login {

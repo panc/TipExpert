@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">
+            <div class="header-logo-small">&nbsp;</div>
+        </a>
+    </div>
+    <div class="navbar-collapse collapse navbar-responsive-collapse">
+        <ul class="nav navbar-nav">
+
+            <li class="dropdown">
+                <a href="" class="dropdown-toggle" data-toggle="dropdown">Administration <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a ui-sref="matches.overview">Matches</a></li>
+                    <li><a ui-sref="user.overview">User</a></li>
+                </ul>
+            </li>
+
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tip-Game <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a ui-sref="games.overview">All My Games</a></li>
+                    <li><a ui-sref="games.search">Search for Games</a></li>
+                </ul>
+            </li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+            <li ng-if="user.isLoggedIn"><a href="" ng-click="logout()">Log out</a></li>
+
+            <li ng-if="user.isLoggedIn"><a ui-sref="user.profile({ userId: user.id })" ng-bind="user.name"></a></li>
+
+            <li ng-if="user.isLoggedIn"><img src="&#123;&#123; user.picture &#125&#125" alt="avatar" height="40" /></li>
+
+            <li ng-if="!user.isLoggedIn"><a ui-sref="login">Sign in</a></li>
+        </ul>
+    </div>
+</div>

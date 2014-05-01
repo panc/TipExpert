@@ -32,46 +32,10 @@
 </head>
 <body>
 
-    <header class="navbar navbar-default navbar-fixed-top header-navbar" ng-controller="navigationController">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/">
-                    <div class="header-logo">&nbsp;</div>
-                </a>
-            </div>
-            <div class="navbar-collapse collapse navbar-responsive-collapse" ng-if="user.isLoggedIn">
-                <ul class="nav navbar-nav">
-
-                    <li class="dropdown">
-                        <a href="" class="dropdown-toggle" data-toggle="dropdown">Administration <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a ui-sref="matches.overview">Matches</a></li>
-                            <li><a ui-sref="user.overview">User</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tip-Game <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a ui-sref="games.overview">All My Games</a></li>
-                            <li><a ui-sref="games.search">Search for Games</a></li>
-                        </ul>
-                    </li>
-                </ul>
-
-                <ul class="nav navbar-nav navbar-right">
-                    {% include "userInfo.html" %}
-                </ul>
-            </div>
-        </div>
+    <header class="navbar navbar-default navbar-fixed-top header-navbar" ng-controller="navigationController" ui-view="header">
     </header>
 
-    <section role="main" class="main container" ui-view>
+    <section role="main" class="main container" ui-view="main">
     </section>
     
     <footer class="navbar navbar-fixed-bottom footer-navbar" ng-controller="languageController">

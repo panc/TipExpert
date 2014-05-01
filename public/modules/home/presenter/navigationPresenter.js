@@ -12,5 +12,25 @@ user.controller('navigationController', ['$scope', '$state', 'Auth', function($s
         },
         toast.error);
     };
+
+    $scope.login = function() {
+        $scope.submitted = true;
+        
+        if ($scope.loginForm.$invalid)
+                return;
+
+        Auth.login({
+                email: $scope.loginForm.email.$modelValue,
+                password: $scope.loginForm.password.$modelValue
+            },
+            function(res) {
+                $state.go('home');
+            },
+            toast.error);
+    };
+
+    $scope.loginOauth = function(provider) {
+        $window.location.href = '/auth/' + provider;
+    };
     
 }]);

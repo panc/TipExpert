@@ -12,6 +12,15 @@ var tipExpert = angular.module('tipExpert', ['tipExpert.home', 'tipExpert.user',
 tipExpert.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
 
     var accessLevels = userConfig.accessLevels;
+    var abstractView = {
+        'header': {
+            templateUrl: '/modules/home/views/header.html',
+            controller: 'navigationController',
+        },
+        'main': {
+            template: '<ui-view/>',
+        }
+    };
 
     $stateProvider
     
@@ -19,8 +28,8 @@ tipExpert.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '
         .state('user', {
             // Note: abstract still needs a ui-view for its children to populate.
             // We can simply add it inline here.
-            template: '<ui-view/>',
             url: '/user',
+            views: abstractView,
             abstract: true
         })
         .state('user.overview', {
@@ -40,8 +49,8 @@ tipExpert.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '
     
         // routes for match module
         .state('matches', {
-            template: '<ui-view/>',
             url: '/matches',
+            views: abstractView,
             abstract: true
         })
         .state('matches.overview', {
@@ -61,15 +70,15 @@ tipExpert.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '
     
         // routes for game module
         .state('games', {
-            template: '<ui-view/>',
             url: '/games',
+            views: abstractView,
             abstract: true
         })
         .state('games.overview', {
             title: 'Games',
             url: '',
-            templateUrl: '/modules/game/views/myGames.html',
-            controller: 'myGamesController',
+            templateUrl: '/modules/game/views/game.html',
+            controller: 'homeController',
             access: accessLevels.user // todo
         })
         .state('games.create', {
@@ -94,28 +103,20 @@ tipExpert.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '
             access: accessLevels.user // todo
         })
     
-        // session routes
-        .state('login', {
-            title: 'Login',
-            url: '/login',
-            templateUrl: '/modules/user/views/login.html',
-            controller: 'loginController',
-            access: accessLevels.public
-        })
-        .state('signup', {
-            title: 'Sign Up',
-            url: '/signup',
-            templateUrl: '/modules/user/views/signup.html',
-            controller: 'signUpController',
-            access: accessLevels.public
-        })
-    
         // routes for home module
         .state('home', {
             title: 'Home',
             url: '/',
-            templateUrl: '/modules/home/views/index.html',
-            controller: 'homeController',
+            views: {
+                'header': {
+                    templateUrl: '/modules/home/views/loginHeader.html',
+                    controller: 'navigationController',
+                },
+                'main': {
+                    templateUrl: '/modules/home/views/index.html',
+                    controller: 'homeController',
+                }
+            },
             access: accessLevels.public
         });
 
@@ -169,7 +170,7 @@ tipExpert.run(['$rootScope', '$location', '$state', 'Auth', function($rootScope,
             if (Auth.user.isLoggedIn)
                 $state.go('home');
             else
-                $state.go('login');
+                $state.go('home');
         }
     });
 }]);
