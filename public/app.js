@@ -18,6 +18,8 @@ tipExpert.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '
             controller: 'navigationController',
         },
         'main': {
+            // Note: abstract still needs a ui-view for its children to populate.
+            // We can simply add it inline here.
             template: '<ui-view/>',
         }
     };
@@ -26,8 +28,6 @@ tipExpert.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '
     
         // routes for user module
         .state('user', {
-            // Note: abstract still needs a ui-view for its children to populate.
-            // We can simply add it inline here.
             url: '/user',
             views: abstractView,
             abstract: true
@@ -77,8 +77,8 @@ tipExpert.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '
         .state('games.overview', {
             title: 'Games',
             url: '',
-            templateUrl: '/modules/game/views/game.html',
-            controller: 'homeController',
+            templateUrl: '/modules/game/views/myGames.html',
+            controller: 'myGamesController',
             access: accessLevels.user // todo
         })
         .state('games.create', {
@@ -114,7 +114,7 @@ tipExpert.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '
                 },
                 'main': {
                     templateUrl: '/modules/home/views/index.html',
-                    controller: 'homeController',
+                    controller: 'homeController'
                 }
             },
             access: accessLevels.public
@@ -126,7 +126,7 @@ tipExpert.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '
         return {
             'responseError': function(response) {
                 if (response.status === 401 || response.status === 403) {
-                    $location.path('/login');
+                    $location.path('/');
                     return $q.reject(response);
                 } else {
                     return $q.reject(response);
@@ -163,14 +163,16 @@ tipExpert.run(['$rootScope', '$location', '$state', 'Auth', function($rootScope,
 
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
 
+        var isLoggedIn = Auth.user.isLoggedIn;
+        
         if (!Auth.authorize(toState.access)) {
 
             event.preventDefault();
-
-            if (Auth.user.isLoggedIn)
-                $state.go('home');
-            else
-                $state.go('home');
+            $state.go(isLoggedIn ? 'home' : 'games.overview');
+        }
+        else if (toState.name == 'home' && isLoggedIn) {
+            event.preventDefault();
+            $state.go('games.overview');
         }
     });
 }]);

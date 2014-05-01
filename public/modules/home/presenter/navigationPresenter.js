@@ -8,7 +8,7 @@ user.controller('navigationController', ['$scope', '$state', 'Auth', function($s
 
     $scope.logout = function() {
         Auth.logout(function() {
-            $state.go('login');
+            $state.go('home');
         },
         toast.error);
     };
@@ -24,7 +24,7 @@ user.controller('navigationController', ['$scope', '$state', 'Auth', function($s
                 password: $scope.loginForm.password.$modelValue
             },
             function(res) {
-                $state.go('home');
+                $state.go('games.overview');
             },
             toast.error);
     };
