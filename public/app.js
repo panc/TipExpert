@@ -58,14 +58,14 @@ tipExpert.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '
             url: '',
             templateUrl: '/modules/match/views/matches.html',
             controller: 'matchController',
-            access: accessLevels.user // todo
+            access: accessLevels.admin
         })
         .state('matches.finished', {
             title: 'Not implemented yet!',
             url: '/finished',
             templateUrl: 'todo',
             controller: 'finishedMatchesController',
-            access: accessLevels.user
+            access: accessLevels.admin
         })
     
         // routes for game module

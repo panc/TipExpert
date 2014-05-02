@@ -78,7 +78,7 @@ module.exports = function(app, shrinkr, passport) {
             get: [
                 passport.authenticate('facebook', {
                     scope: ['email', 'user_about_me'],
-                    failureRedirect: '/login'
+                    failureRedirect: '/'
                 }),
                 user.signin
             ]
@@ -87,7 +87,7 @@ module.exports = function(app, shrinkr, passport) {
             path: "/callback",
             get: [
                 passport.authenticate('facebook', {
-                    failureRedirect: '/login'
+                    failureRedirect: '/'
                 }),
                 user.authCallback
             ]
@@ -96,7 +96,7 @@ module.exports = function(app, shrinkr, passport) {
             path: "/google",
             get: [
                 passport.authenticate('google', {
-                    failureRedirect: '/login',
+                    failureRedirect: '/',
                     scope: [
                         'https://www.googleapis.com/auth/userinfo.profile',
                         'https://www.googleapis.com/auth/userinfo.email'
@@ -109,7 +109,7 @@ module.exports = function(app, shrinkr, passport) {
             path: "/callback",
             get: [
                 passport.authenticate('google', {
-                    failureRedirect: '/login'
+                    failureRedirect: '/'
                 }),
                 user.authCallback
             ]
