@@ -34,6 +34,11 @@
 
     <header class="navbar navbar-default navbar-fixed-top header-navbar" ng-controller="navigationController" ui-view="header">
     </header>
+    
+    <div class="alert" ng-controller="alertController">
+        <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+        <button class='btn btn-default' ng-click="addAlert()">Add Alert</button>
+    </div>
 
     <section role="main" class="main container" ui-view="main">
     </section>
