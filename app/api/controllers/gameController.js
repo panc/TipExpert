@@ -101,7 +101,7 @@ exports.update = function(req, res) {
     var game = req.game;
 
     if (game.creator != req.user.id)
-        return res.json('304', 'Only the creator can update the game!');
+        return res.json('500', 'Only the creator can update the game!');
 
     game.title = req.body.title;
     game.minStake = req.body.minStake;
@@ -137,7 +137,7 @@ exports.updateStake = function(req, res) {
     var player = game.players.id(req.body.playerId);
 
     if (!player || player.user.id != req.user.id)
-        return res.send(304, 'Nothing to update!');
+        return res.send(500, 'The stake can only be set for the current user!');
 
     player.stake = req.body.stake;
 
@@ -159,7 +159,7 @@ exports.updateTip = function(req, res) {
     
     var match = game.matches.id(matchId);
     if (!match)
-         return res.send(304, 'Nothing to update!');
+         return res.send(500, 'Match not found!');
 
     var tip = match.tips.id(tipId);
     if (!tip) {
@@ -167,7 +167,7 @@ exports.updateTip = function(req, res) {
         match.tips.push(tip);
     }
     else if (tip.user != req.user.id) {
-        return res.send(304, 'Wrong user!');
+        return res.send(500, 'Wrong user!');
     }
 
     tip.homeScore = req.body.homeTip;

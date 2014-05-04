@@ -1,12 +1,13 @@
     
 var mongoose = require('mongoose'),
     ObjectId = require('mongoose').Types.ObjectId,
-    Schema = mongoose.Schema;
+    Schema = mongoose.Schema,
+    utils = require('../../helper/formatHelper');
 
 var validateStake = [
     function(stake) {
 
-        return this.minStake <= stake;
+        return stake != null && this.minStake <= stake;
 
     }, 'The stake for a player must be heigher than the defined minimum stake!'
 ];
@@ -21,7 +22,7 @@ var GameSchema = new Schema({
     
     players: [{
         user: { type : Schema.ObjectId, ref : 'User'},
-        stake: { type: Number, default: 0, validate: validateStake },
+        stake: { type: Number, default: null, validate: validateStake },
         profit: { type: Number, default: null },
         totalPoints: {type: Number, default: null }
     }],
@@ -132,7 +133,7 @@ GameSchema.statics = {
                     // furhter error handling
 
                     if (error)
-                        console.log(utils.formatErrors(error));
+                        console.log(utils.formatErrors(error.errors));
                 });
             });
         });

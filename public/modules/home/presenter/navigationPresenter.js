@@ -33,4 +33,9 @@ user.controller('navigationController', ['$scope', '$state', 'Auth', 'alertServi
         $window.location.href = '/auth/' + provider;
     };
     
+    $scope.alerts = alertService.alerts;
+
+    $scope.closeAlert = function(index) {
+        alertService.closeAlert(index);
+    };
 }]);

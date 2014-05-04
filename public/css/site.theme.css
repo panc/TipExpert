@@ -8,8 +8,19 @@ body {
   border-bottom: 5px #B1C901 solid;
 }
 
-.header-navbar {
-    
+.alert-container {
+    position: absolute;
+    top: 64px;
+    left: 50%;
+}
+
+.inner-alert-container {
+    position: relative;
+    left: -50%;
+}
+
+.alert {
+    margin-bottom: 0;
 }
 
 section.main {

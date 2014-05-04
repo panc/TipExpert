@@ -9,6 +9,7 @@ user.factory('alertService', function() {
     var addAlert = function(message, type) {
         alerts.push({ msg: message, type: type });
 
+        console.log(message);
         // todo: add timer to close alert...
     };
 
@@ -16,7 +17,7 @@ user.factory('alertService', function() {
         alerts: alerts,
 
         error: function(message) {
-            addAlert(message, 'error');
+            addAlert(message, 'warning');
         },
 
         info: function(message) {
