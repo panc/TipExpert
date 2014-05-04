@@ -2,15 +2,28 @@
 
 var user = angular.module('tipExpert.user');
 
-user.factory('alertService', function() {
+user.factory('alertService', ['$timeout', function($timeout) {
 
     var alerts = [];
 
     var addAlert = function(message, type) {
-        alerts.push({ msg: message, type: type });
 
-        console.log(message);
-        // todo: add timer to close alert...
+        var item = { msg: message, type: type };
+
+        item.timeout = $timeout(function() {
+            closeAlert(item);
+        }, 3000);  
+
+        alerts.push(item);
+    };
+
+    var closeAlert = function(item) {
+
+        if (item.timeout)
+            $timeout.cancel(item.timeout);
+
+        var index = alerts.indexOf(item);
+        alerts.splice(index, 1);
     };
 
     return {
@@ -25,7 +38,7 @@ user.factory('alertService', function() {
         },
 
         closeAlert: function(index) {
-            alerts.splice(index, 1);
+            closeAlert(alerts[index]);
         }
     };
-});
+}]);
