@@ -28,6 +28,10 @@
 
 
 /* HOME */
+.home-content {
+    margin-top: 100px;
+}
+
 .home-left {
     padding-right: 70px;
 }
@@ -38,7 +42,6 @@
 
 
 /* MATCH  */
-
 .league-list {
     list-style: none;
     margin-top: 20px;
@@ -127,7 +130,6 @@
 
 
 /* GAME */
-
 .game-title {
     font-size: 20px;
 }
