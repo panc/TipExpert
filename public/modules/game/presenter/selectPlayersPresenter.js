@@ -2,7 +2,7 @@
 
 var game = angular.module('tipExpert.game');
 
-game.controller('SelectPlayersController', ['$scope', '$modalInstance', 'Auth', 'userService', 'gameService', 'game', function($scope, $modalInstance, Auth, userService, gameService, game) {
+game.controller('SelectPlayersController', ['$scope', '$modalInstance', 'Auth', 'userService', 'gameService', 'alertService', 'game', function($scope, $modalInstance, Auth, userService, gameService, alertService, game) {
     
     var selectedplayers = game.players.slice(0);
     
@@ -38,7 +38,7 @@ game.controller('SelectPlayersController', ['$scope', '$modalInstance', 'Auth', 
             function(updatedGame) {
                 $modalInstance.close(updatedGame);
             },
-            toast.error);
+            alertService.error);
     };
 
     $scope.cancel = function() {
@@ -58,5 +58,5 @@ game.controller('SelectPlayersController', ['$scope', '$modalInstance', 'Auth', 
             });
 
         },
-        toast.error);
+        alertService.error);
 }]);

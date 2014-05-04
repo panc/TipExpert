@@ -51,7 +51,6 @@
     <Compile Include="public\modules\home\presenter\languagePresenter.js" />
     <Compile Include="public\modules\home\services\alertService.js" />
     <Compile Include="public\modules\user\services\userService.js" />
-    <Compile Include="public\toast.js" />
     <Compile Include="public\modules\match\presenter\editMatchPresenter.js" />
     <Compile Include="public\modules\match\services\matchService.js" />
     <Compile Include="public\modules\match\services\leagueService.js" />

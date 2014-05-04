@@ -4,21 +4,23 @@
 
 var match = angular.module('tipExpert.match');
 
-match.controller('EditMatchController', ['$scope', '$modalInstance', 'matchService', 'match', function($scope, $modalInstance, matchService, match) {
+match.controller('EditMatchController', [
+    '$scope', '$modalInstance', 'matchService', 'alertService', 'match', function($scope, $modalInstance, matchService, alertService, match) {
 
-    $scope.match = match;
-    
-    $scope.save = function() {
+        $scope.match = match;
 
-        var success = function(newOrUpdatedMatch) { $modalInstance.close(newOrUpdatedMatch); };
+        $scope.save = function() {
 
-        if (match._id) 
-            matchService.update(match, success, toast.error);
-        else
-            matchService.create(match, success, toast.error);
-    };
+            var success = function(newOrUpdatedMatch) { $modalInstance.close(newOrUpdatedMatch); };
 
-    $scope.cancel = function() {
-        $modalInstance.dismiss('cancel');
-    };
-}]);
+            if (match._id)
+                matchService.update(match, success, alertService.error);
+            else
+                matchService.create(match, success, alertService.error);
+        };
+
+        $scope.cancel = function() {
+            $modalInstance.dismiss('cancel');
+        };
+    }
+]);

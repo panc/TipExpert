@@ -8,6 +8,8 @@ user.factory('alertService', function() {
 
     var addAlert = function(message, type) {
         alerts.push({ msg: message, type: type });
+
+        // todo: add timer to close alert...
     };
 
     return {
@@ -20,5 +22,9 @@ user.factory('alertService', function() {
         info: function(message) {
             addAlert(message, 'success');
         },
+
+        closeAlert: function(index) {
+            alerts.splice(index, 1);
+        }
     };
 });

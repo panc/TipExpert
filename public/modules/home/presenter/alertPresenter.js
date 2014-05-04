@@ -11,7 +11,7 @@ user.controller('alertController', ['$scope', 'alertService', function($scope, a
         };
 
         $scope.closeAlert = function(index) {
-            $scope.alerts.splice(index, 1);
+            alertService.closeAlert(index);
         };
     }
 ]);

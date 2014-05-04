@@ -2,7 +2,7 @@
 
 var user = angular.module('tipExpert.user');
 
-user.controller('navigationController', ['$scope', '$state', 'Auth', function($scope, $state, Auth) {
+user.controller('navigationController', ['$scope', '$state', 'Auth', 'alertService', function($scope, $state, Auth, alertService) {
 
     $scope.user = Auth.user;
 
@@ -10,7 +10,7 @@ user.controller('navigationController', ['$scope', '$state', 'Auth', function($s
         Auth.logout(function() {
             $state.go('home');
         },
-        toast.error);
+        alertService.error);
     };
 
     $scope.login = function() {
@@ -26,7 +26,7 @@ user.controller('navigationController', ['$scope', '$state', 'Auth', function($s
             function(res) {
                 $state.go('games.overview');
             },
-            toast.error);
+            alertService.error);
     };
 
     $scope.loginOauth = function(provider) {

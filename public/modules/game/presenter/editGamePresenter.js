@@ -2,7 +2,7 @@
 
 var game = angular.module('tipExpert.game');
 
-game.controller('editGameController', ['$scope', '$state', '$stateParams', '$modal', 'gameService', 'matchService', function($scope, $state, $stateParams, $modal, gameService, matchService) {
+game.controller('editGameController', ['$scope', '$state', '$stateParams', '$modal', 'gameService', 'alertService', function($scope, $state, $stateParams, $modal, gameService, alertService) {
     
     $scope.game = { };
 
@@ -11,7 +11,7 @@ game.controller('editGameController', ['$scope', '$state', '$stateParams', '$mod
             function(game) {
                 $scope.game = game;
             },
-            toast.error);
+            alertService.error);
     }
 
     $scope.save = function() {
@@ -23,9 +23,9 @@ game.controller('editGameController', ['$scope', '$state', '$stateParams', '$mod
         gameService.update($scope.game,
             function(updatedGame) {
                 $scope.game = updatedGame;
-                toast.info('Successfully saved!');
+                alertService.info('Successfully saved!');
             },
-            toast.error);
+            alertService.error);
     };
 
     $scope.addMatch = function() {
@@ -41,7 +41,7 @@ game.controller('editGameController', ['$scope', '$state', '$stateParams', '$mod
 
         modalInstance.result.then(function(updatedGame) {
             $scope.game = updatedGame;
-            toast.info('Changes successfully saved!');
+            alertService.info('Changes successfully saved!');
 
         }, function() {
             // canceld -> nothing to do
@@ -61,7 +61,7 @@ game.controller('editGameController', ['$scope', '$state', '$stateParams', '$mod
 
         modalInstance.result.then(function(updatedGame) {
             $scope.game = updatedGame;
-            toast.info('Changes successfully saved!');
+            alertService.info('Changes successfully saved!');
 
         }, function() {
             // canceld -> nothing to do

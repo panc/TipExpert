@@ -2,7 +2,7 @@
 
 var game = angular.module('tipExpert.game');
 
-game.controller('myGamesController', ['$scope', '$modal', '$state', 'gameService', function($scope, $modal, $state, gameService) {
+game.controller('myGamesController', ['$scope', '$modal', '$state', 'gameService', 'alertService', function($scope, $modal, $state, gameService, alertService) {
     $scope.createdGames = [];
     $scope.invitedGames = [];
 
@@ -17,12 +17,12 @@ game.controller('myGamesController', ['$scope', '$modal', '$state', 'gameService
         function(games) {
             $scope.createdGames = games;
         },
-        toast.error);
+        alertService.error);
 
     gameService.loadGamesForCurrentUser(
         function(games) {
             $scope.invitedGames = games;
         },
-        toast.error);
+        alertService.error);
 }]);
 

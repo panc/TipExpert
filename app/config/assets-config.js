@@ -28,7 +28,6 @@ module.exports = function(config) {
     var modules = readModuleFiles(config.root + '/public/modules');
     var app = [
         '/public/modules/user/userConfig.js',
-        '/public/toast.js',
         '/public/app.js'
         ]
         .concat(modules);

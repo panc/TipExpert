@@ -2,7 +2,7 @@
 
 var game = angular.module('tipExpert.game');
 
-game.controller('gameController', ['$scope', '$modal', '$stateParams', 'gameService', function($scope, $modal, $stateParams, gameService) {
+game.controller('gameController', ['$scope', '$modal', '$stateParams', 'gameService', 'alertService', function($scope, $modal, $stateParams, gameService, alertService) {
     
     $scope.game = { };
     $scope.submitted = true;
@@ -21,7 +21,7 @@ game.controller('gameController', ['$scope', '$modal', '$stateParams', 'gameServ
                 $scope.game.player.stake = $scope.stake;
                 $scope.editStake = false;
             }, 
-            toast.error);
+            alertService.error);
     };
 
     $scope.saveTip = function(tip) {
@@ -33,7 +33,7 @@ game.controller('gameController', ['$scope', '$modal', '$stateParams', 'gameServ
 
                 tip.showSaveButton = false;
             }, 
-            toast.error);
+            alertService.error);
     };
 
     $scope.cancelTipEditing = function(tip) {
@@ -51,7 +51,7 @@ game.controller('gameController', ['$scope', '$modal', '$stateParams', 'gameServ
                 $scope.minStake = game.minStake;
                 $scope.stake = game.player.stake;
             },
-            toast.error);
+            alertService.error);
     }
 }]);
 
