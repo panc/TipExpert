@@ -7,7 +7,7 @@ var mongoose = require('mongoose'),
 var validateStake = [
     function(stake) {
 
-        return stake != null && this.minStake <= stake;
+        return !stake || this.parent().minStake <= stake;
 
     }, 'The stake for a player must be heigher than the defined minimum stake!'
 ];

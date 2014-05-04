@@ -100,7 +100,7 @@ exports.create = function(req, res) {
 exports.update = function(req, res) {
     var game = req.game;
 
-    if (game.creator != req.user.id)
+    if (game.creator.id != req.user.id)
         return res.json('500', 'Only the creator can update the game!');
 
     game.title = req.body.title;
