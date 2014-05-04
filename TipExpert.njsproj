@@ -47,7 +47,6 @@
     <Compile Include="public\modules\game\presenter\addGamePresenter.js" />
     <Compile Include="public\modules\game\presenter\editGamePresenter.js" />
     <Compile Include="public\modules\game\services\gameService.js" />
-    <Compile Include="public\modules\home\presenter\alertPresenter.js" />
     <Compile Include="public\modules\home\presenter\languagePresenter.js" />
     <Compile Include="public\modules\home\services\alertService.js" />
     <Compile Include="public\modules\user\services\userService.js" />
@@ -76,6 +75,8 @@
     <Content Include="app\api\views\404.html" />
     <Content Include="app\api\views\template.html" />
     <Content Include="public\css\site.theme.css" />
+    <Content Include="public\images\ball.png" />
+    <Content Include="public\images\tipexpert_v4_2_white.png" />
     <Content Include="public\locales\de.json" />
     <Content Include="public\locales\en.json" />
     <Content Include="public\modules\game\views\game.html" />
