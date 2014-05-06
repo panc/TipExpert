@@ -156,6 +156,7 @@ GameSchema.methods = {
         var userPoints = {};
         var allMatchesFinished = true;
 
+        // calculate total points
         for (var i = 0; i < this.matches.length; i++) {
 
             var match = this.matches[i];
@@ -170,20 +171,13 @@ GameSchema.methods = {
             });
         }
 
+        // update total points
         this.isFinished = allMatchesFinished;
 
-        this.players.forEach(function(player) {
-            if (allMatchesFinished) {
-                var totalPoints = userPoints[player.user];
-                player.totalPoints = totalPoints;
-            } else {
-                player.totalPoints = null;
-            }
-        });
-
-        // todo: calculate profite
-        // order players by total points
-        // and set profite
+        if (allMatchesFinished) 
+            setProfit(this.players, userPoints);
+        else
+            resetProfit(this.players);
     }
 };
 
@@ -212,4 +206,56 @@ var setPointsForTip = function (tip, match) {
 
 var resetPointsForTip = function(tip) {
     tip.points = null;
+};
+
+var setProfit = function(players, userPoints) {
+
+    var totalStake = 0;
+
+    players.forEach(function(player) {
+        totalStake += player.stake;
+
+        var totalPoints = userPoints[player.user];
+        player.totalPoints = totalPoints;
+    });
+
+    players.sort(comparePlayer);
+
+    // only 'The winner gets it all' mode is currently supported
+    var winner = players[0];
+
+    players.forEach(function(player) {
+
+        if (player == winner)
+            player.profit = totalStake; // calulate the total cash
+        else
+            player.profit = 0;
+
+        console.log('player: ' + player.user + ' - profit: ' + player.profit);
+    });
+
+    // todo
+    // update the users cash
+};
+
+var resetProfit = function(players) {
+    
+    players.forEach(function(player) {
+        player.totalPoints = null;
+        player.profit = null;
+    });
+
+    // todo
+    // reset the users cash
+}
+
+var comparePlayer = function(a, b) {
+    if (!a.totalPoints && !b.totalPoints || a == b)
+        return 0;
+    if (!a.totalPoints)
+        return 1;
+    if (!b.totalPoints)
+        return -1;
+
+    return b.totalPoints - a.totalPoints;
 };
