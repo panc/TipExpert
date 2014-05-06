@@ -176,13 +176,14 @@ GameSchema.methods = {
             if (allMatchesFinished) {
                 var totalPoints = userPoints[player.user];
                 player.totalPoints = totalPoints;
-
-                // todo: calculate profite
-
             } else {
                 player.totalPoints = null;
             }
         });
+
+        // todo: calculate profite
+        // order players by total points
+        // and set profite
     }
 };
 
