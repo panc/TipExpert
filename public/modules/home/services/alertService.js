@@ -12,7 +12,7 @@ user.factory('alertService', ['$timeout', function($timeout) {
 
         item.timeout = $timeout(function() {
             closeAlert(item);
-        }, 3000);  
+        }, 5000);  
 
         alerts.push(item);
     };

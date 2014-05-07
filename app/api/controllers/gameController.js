@@ -139,11 +139,11 @@ exports.updateStake = function(req, res) {
     if (!player || player.user.id != req.user.id)
         return res.send(500, 'The stake can only be set for the current user!');
 
-    player.stake = req.body.stake;
+    player.stake = req.body.stake || -1;
 
     game.save(function(error) {
         if (error)
-            return res.json('500', utils.formatErrors(error.errors || error.err || error));
+            return res.json('500', utils.formatErrors(error));
 
         return res.send({ stake: player.stake });
     });

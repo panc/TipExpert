@@ -5,8 +5,13 @@
  * @return {Array}
  */
 exports.formatErrors = function(errors) {
+    errors = errors.errors || errors.err || errors;
+
     if (typeof errors === 'string')
         return errors;
+
+    if (errors.message)
+        return errors.message;
 
     var keys = Object.keys(errors);
     var errs = [];

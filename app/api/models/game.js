@@ -4,14 +4,6 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     utils = require('../../helper/formatHelper');
 
-var validateStake = [
-    function(stake) {
-
-        return !stake || this.parent().minStake <= stake;
-
-    }, 'The stake for a player must be heigher than the defined minimum stake!'
-];
-
 // game schema
 var GameSchema = new Schema({
     title: { type: String, default: '' },
@@ -22,7 +14,7 @@ var GameSchema = new Schema({
     
     players: [{
         user: { type : Schema.ObjectId, ref : 'User'},
-        stake: { type: Number, default: null, validate: validateStake },
+        stake: { type: Number, default: null },
         profit: { type: Number, default: null },
         totalPoints: {type: Number, default: null }
     }],
@@ -42,6 +34,17 @@ var GameSchema = new Schema({
 GameSchema.path('creator').required(true, 'Creator cannot be blank');
 GameSchema.path('title').required(true, 'Title cannot be blank');
 
+GameSchema.pre('save', function(next) {
+    var err = null;
+    
+    for(var i = 0; i < this.players.length; i++) {
+        if (this.minStake > this.players[i].stake) {
+            err = new Error('The stake for a player must be heigher than the defined minimum stake (' + this.minStake  + ')!');
+        }
+    }
+    
+    next(err);
+});
 
 // static methods for the match schema
 GameSchema.statics = {
@@ -213,6 +216,7 @@ var setProfit = function(players, userPoints) {
     var totalStake = 0;
 
     players.forEach(function(player) {
+        console.log('stake: ' + player.stake);
         totalStake += player.stake;
 
         var totalPoints = userPoints[player.user];
@@ -227,7 +231,7 @@ var setProfit = function(players, userPoints) {
     players.forEach(function(player) {
 
         if (player == winner)
-            player.profit = totalStake; // calulate the total cash
+            player.profit = totalStake;
         else
             player.profit = 0;
 
