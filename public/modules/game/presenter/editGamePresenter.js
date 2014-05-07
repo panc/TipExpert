@@ -28,54 +28,56 @@ game.controller( 'editGameController', ['$scope', '$state', '$stateParams', '$mo
             alertService.error );
     };
 
-    $scope.delete = function() {
-        if ($scope.game.isFinished)
-            alertService.error('Can not delete a finished game!');
-        
-        gameService.delete($scope.game, function() {
-                alertService.info('Successfully deleted!');
-                $state.go('games.overview');
-            },
-            alertService.error);
+    $scope.delete = function () {
+        if ( $scope.game.isFinished ) {
+            alertService.error( 'Can not delete a finished game!' );
+            return;
+        }
+
+        gameService.delete( $scope.game, function () {
+            alertService.info( 'Successfully deleted!' );
+            $state.go( 'games.overview' );
+        },
+            alertService.error );
     };
 
-    $scope.addMatch = function() {
-        var modalInstance = $modal.open({
+    $scope.addMatch = function () {
+        var modalInstance = $modal.open( {
             templateUrl: '/modules/game/views/selectMatchesDialog.html',
             controller: 'SelectMatchesController',
             resolve: {
-                game: function() {
+                game: function () {
                     return $scope.game;
                 }
             }
         });
 
-        modalInstance.result.then(function(updatedGame) {
+        modalInstance.result.then( function ( updatedGame ) {
             $scope.game = updatedGame;
-            alertService.info('Changes successfully saved!');
+            alertService.info( 'Changes successfully saved!' );
 
-        }, function() {
-            // canceld -> nothing to do
-        });
+        }, function () {
+                // canceld -> nothing to do
+            });
     };
 
-    $scope.addPlayer = function() {
-        var modalInstance = $modal.open({
+    $scope.addPlayer = function () {
+        var modalInstance = $modal.open( {
             templateUrl: '/modules/game/views/selectPlayersDialog.html',
             controller: 'SelectPlayersController',
             resolve: {
-                game: function() {
+                game: function () {
                     return $scope.game;
                 }
             }
         });
 
-        modalInstance.result.then(function(updatedGame) {
+        modalInstance.result.then( function ( updatedGame ) {
             $scope.game = updatedGame;
-            alertService.info('Changes successfully saved!');
+            alertService.info( 'Changes successfully saved!' );
 
-        }, function() {
-            // canceld -> nothing to do
-        });
+        }, function () {
+                // canceld -> nothing to do
+            });
     };
 }] );

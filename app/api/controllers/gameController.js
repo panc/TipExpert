@@ -202,7 +202,7 @@ exports.delete = function(req, res) {
 
     game.remove(function(err) {
         if (err)
-            return res.json(500, utils.formatErrors(err.errors));
+            return res.json(500, utils.formatErrors(err));
 
         return res.send(200);
     });
