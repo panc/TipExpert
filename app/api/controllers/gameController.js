@@ -184,7 +184,7 @@ exports.updateTip = function(req, res) {
 
     game.save(function(error) {
         if (error)
-            return res.json('500', utils.formatErrors(error));
+            return res.json(500, utils.formatErrors(error));
     
         return res.send({ homeScore: tip.homeScore, guestScore: tip.guestScore });
     });
@@ -202,7 +202,7 @@ exports.delete = function(req, res) {
 
     game.remove(function(err) {
         if (err)
-            return res.json('500', utils.formatErrors(err.errors));
+            return res.json(500, utils.formatErrors(err.errors));
 
         return res.send(200);
     });

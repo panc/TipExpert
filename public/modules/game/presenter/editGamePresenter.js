@@ -1,29 +1,40 @@
 'use strict';
 
-var game = angular.module('tipExpert.game');
+var game = angular.module( 'tipExpert.game' );
 
-game.controller('editGameController', ['$scope', '$state', '$stateParams', '$modal', 'gameService', 'alertService', function($scope, $state, $stateParams, $modal, gameService, alertService) {
-    
-    $scope.game = { };
+game.controller( 'editGameController', ['$scope', '$state', '$stateParams', '$modal', 'gameService', 'alertService', function ( $scope, $state, $stateParams, $modal, gameService, alertService ) {
 
-    if ($stateParams.gameId) {
-        gameService.loadForEdit($stateParams.gameId,
-            function(game) {
+    $scope.game = {};
+
+    if ( $stateParams.gameId ) {
+        gameService.loadForEdit( $stateParams.gameId,
+            function ( game ) {
                 $scope.game = game;
             },
-            alertService.error);
+            alertService.error );
     }
 
-    $scope.save = function() {
+    $scope.save = function () {
         $scope.submitted = true;
 
-        if ($scope.submitForm.$invalid)
+        if ( $scope.submitForm.$invalid )
             return;
 
-        gameService.update($scope.game,
-            function(updatedGame) {
+        gameService.update( $scope.game,
+            function ( updatedGame ) {
                 $scope.game = updatedGame;
-                alertService.info('Successfully saved!');
+                alertService.info( 'Successfully saved!' );
+            },
+            alertService.error );
+    };
+
+    $scope.delete = function() {
+        if ($scope.game.isFinished)
+            alertService.error('Can not delete a finished game!');
+        
+        gameService.delete($scope.game, function() {
+                alertService.info('Successfully deleted!');
+                $state.go('games.overview');
             },
             alertService.error);
     };
@@ -47,7 +58,7 @@ game.controller('editGameController', ['$scope', '$state', '$stateParams', '$mod
             // canceld -> nothing to do
         });
     };
-    
+
     $scope.addPlayer = function() {
         var modalInstance = $modal.open({
             templateUrl: '/modules/game/views/selectPlayersDialog.html',
@@ -67,4 +78,4 @@ game.controller('editGameController', ['$scope', '$state', '$stateParams', '$mod
             // canceld -> nothing to do
         });
     };
-}]);
+}] );

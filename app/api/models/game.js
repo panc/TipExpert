@@ -46,6 +46,15 @@ GameSchema.pre('save', function(next) {
     next(err);
 });
 
+GameSchema.pre('remove', function(next) {
+    var err = null;
+
+    if (this.isFinished)
+        err = new Error('A finished game can not be deleted!');
+
+    next(err);
+});
+
 // static methods for the match schema
 GameSchema.statics = {
     /**
@@ -136,7 +145,7 @@ GameSchema.statics = {
                     // furhter error handling
 
                     if (error)
-                        console.log(utils.formatErrors(error.errors));
+                        console.log(utils.formatErrors(error));
                 });
             });
         });

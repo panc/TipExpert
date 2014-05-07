@@ -80,8 +80,9 @@ game.factory('gameService', [
                     .error(error);
             },
 
-            delete: function(game, error) {
+            delete: function(game, success, error) {
                 $http.delete('/api/games/' + game._id + '/edit')
+                    .success(success)
                     .error(error);
             }
         };
