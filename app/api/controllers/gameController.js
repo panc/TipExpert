@@ -101,7 +101,10 @@ exports.update = function(req, res) {
     var game = req.game;
 
     if (game.creator.id != req.user.id)
-        return res.json('500', 'Only the creator can update the game!');
+        return res.json(500, 'Only the creator can update the game!');
+
+    if (game.isFinished)
+        return res.json(500, 'A finished game can not be changed!');
 
     game.title = req.body.title;
     game.minStake = req.body.minStake;
@@ -123,7 +126,7 @@ exports.update = function(req, res) {
 
     game.save(function(error) {
         if (error)
-            return res.json('500', utils.formatErrors(error.errors || error.err || error));
+            return res.json(500, utils.formatErrors(error));
         
         return res.send(game);
     });
@@ -137,13 +140,16 @@ exports.updateStake = function(req, res) {
     var player = game.players.id(req.body.playerId);
 
     if (!player || player.user.id != req.user.id)
-        return res.send(500, 'The stake can only be set for the current user!');
+        return res.json(500, 'The stake can only be set for the current user!');
+
+     if (game.isFinished)
+        return res.json(500, 'The stake can not be changed for a finished game!');
 
     player.stake = req.body.stake || -1;
 
     game.save(function(error) {
         if (error)
-            return res.json('500', utils.formatErrors(error));
+            return res.json(500, utils.formatErrors(error));
 
         return res.send({ stake: player.stake });
     });
@@ -157,6 +163,9 @@ exports.updateTip = function(req, res) {
     var tipId = req.body.tip;
     var matchId = req.body.match;
     
+    if (game.isFinished)
+        return res.json(500, 'Tips can not be changed for a finished game!');
+
     var match = game.matches.id(matchId);
     if (!match)
          return res.send(500, 'Match not found!');
@@ -175,7 +184,7 @@ exports.updateTip = function(req, res) {
 
     game.save(function(error) {
         if (error)
-            return res.json('500', utils.formatErrors(error.errors || error.err || error));
+            return res.json('500', utils.formatErrors(error));
     
         return res.send({ homeScore: tip.homeScore, guestScore: tip.guestScore });
     });
