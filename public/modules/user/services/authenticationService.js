@@ -21,12 +21,13 @@ userModule.factory( 'Auth', ['$http', '$cookieStore', 'userService', function ( 
         currentUser.role = user.role;
         currentUser.email = user.email;
         currentUser.picture = user.picture;
+        currentUser.coins = user.coins;
 
         currentUser.isLoggedIn = user.role == userRoles.user || user.role == userRoles.admin;
     };
 
     var currentUser = $cookieStore.get( 'user' ) || { id: '', name: '', role: userRoles.public, email: '', isLoggedIn: false };
-    //$cookieStore.remove( 'user' );
+    $cookieStore.remove( 'user' );
 
     changeUser(currentUser);
     reloadProfile();

@@ -19,12 +19,13 @@ exports.transform = function(user) {
         picture = user.google.picture;
     if (user.facebook)
         picture = user.facebook.picture.data.url;
-    
+
     return {
-        'id': user.id || user._id || '',
-        'name': user.name || '',
-        'role': user.role || roles.public,
-        'picture': picture,
-        'email': user.email
+        id: user.id || user._id || '',
+        name: user.name || '',
+        role: user.role || roles.public,
+        picture: picture,
+        email: user.email,
+        coins: user.coins
     };
 };

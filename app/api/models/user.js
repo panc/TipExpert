@@ -10,12 +10,13 @@ var UserSchema = new Schema({
     name: { type: String, default: '' },
     email: { type: String, default: '' },
     role: { type: Number, default: roles.user },
+    coins: { type: Number, default: 10000 },
     provider: { type: String, default: '' },
     hashed_password: { type: String, default: '' },
     salt: { type: String, default: '' },
     authToken: { type: String, default: '' },
-    facebook: { },
-    google: { }
+    facebook: {},
+    google: {}
 });
 
 // virtuals
