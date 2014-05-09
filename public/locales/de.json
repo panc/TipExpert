@@ -5,12 +5,22 @@
 	"FOOTER-SUPPORT": "Hilfe/Support",
 	"FOOTER-FAQ": "FAQ",
 	"FOOTER-IMPRESSUM": "Impressum",
+
 	"HOME-INFO": "TIPEXPERT ist ein kostenloses Tippspiel, das dir die Möglichkeit bietet, dich mit deinen Freunden und Bekannten sportlich zu messen und Spaß am Sport zu haben.",
 	"HOME-SIGN-UP": "Registrierung",
 	"HOME-SIGN-UP-BUTTON": "Registrieren",
+	
 	"GAME-MINSTAKEAREA": "1. Minimalen Einsatz festlegen",
 	"GAME-MATCHAREA": "2. Spielpaarungen festlegen",
 	"GAME-PLAYERSAREA": "3. Freunde auswählen",
+	"GAME-PARTICIPANTS": "Teilnehmer",
+	"GAME-TIPS": "Meine Tips",
+
 	"MYGAMES-CREATED": "Von mir erstellte Tipp-Spiele:",
-	"MYGAMES-INVITED": "Tipp-Spiele zu denen ich eingeladen wurde:"
+	"MYGAMES-INVITED": "Tipp-Spiele zu denen ich eingeladen wurde:",
+
+	"PROFILE-USERNAME": "Benuter",
+	"PROFILE-RIGHT": "Rechte",
+	"PROFILE-EMAIL": "E-Mail",
+	"PROFILE-COINS": "Coins"
 }
