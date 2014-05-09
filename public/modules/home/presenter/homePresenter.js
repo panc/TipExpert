@@ -3,7 +3,7 @@
 var homeModule = angular.module('tipExpert.home', []);
 
 homeModule.controller('homeController', [
-    '$scope', '$state', 'Auth', 'alertService', function($scope, $state, Auth, alertService) {
+    '$scope', '$state', '$window', 'Auth', 'alertService', function($scope, $state, $window, Auth, alertService) {
 
         $scope.user = {
             name: '',
@@ -21,6 +21,10 @@ homeModule.controller('homeController', [
                     $state.go('home');
                 },
                 alertService.error);
+        };
+
+        $scope.loginOauth = function(provider) {
+            $window.location.href = '/auth/' + provider;
         };
     }
 ]);
