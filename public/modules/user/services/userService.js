@@ -2,7 +2,7 @@
 
 var user = angular.module('tipExpert.user');
 
-user.factory('userService', ['$http', 'Auth', function($http, Auth) {
+user.factory('userService', ['$http', function($http) {
 
     var users = [];
 
@@ -32,6 +32,14 @@ user.factory('userService', ['$http', 'Auth', function($http, Auth) {
             // return all users for now
             // we can load the friends of a user later on
             load(success, error);
+        },
+
+        loadProfile: function(userId, success, error) {
+            $http.get('api/user/' + userId)
+                .success(function(user) {
+                    success(user);
+                }).
+                error(error);
         },
 
         update: function(usersToSave, success, error) {

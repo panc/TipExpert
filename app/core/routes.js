@@ -1,35 +1,14 @@
-// module dependencies
-var auth = require('../middlewares/authorization');
-
-// controller
-var user = require('../api/controllers/userController'),
+var auth = require('../middlewares/authorization'),
+    user = require('../api/controllers/userController'),
     matches = require('../api/controllers/matchController'),
     leagues = require('../api/controllers/leagueController'),
     games = require('../api/controllers/gameController'),
-    roles = require('../../public/modules/user/userConfig').roles;
+    userTransformer = require('./userTransformer');
 
 
 var redirectToAngular = function(req, res) {
-    res.cookie('user', JSON.stringify(convertUser(req.user)));    
+    res.cookie('user', JSON.stringify(userTransformer.transformForCookie(req.user)));    
     res.render('template');
-};
-
-var convertUser = function(user) {
-    user = user || { };
-    
-    var picture = '';
-    if (user.google)
-        picture = user.google.picture;
-    if (user.facebook)
-        picture = user.facebook.picture.data.url;
-    
-    return {
-        'id': user.id || user._id || '',
-        'name': user.name || '',
-        'role': user.role || roles.public,
-        'picture': picture,
-        'email': user.email
-    };
 };
 
 module.exports = function(app, shrinkr, passport) {
@@ -69,7 +48,7 @@ module.exports = function(app, shrinkr, passport) {
                         if (req.body.rememberme) 
                             req.session.cookie.maxAge = 1000 * 60 * 60 * 24 * 7;
                         
-                        res.json(200, convertUser(user));
+                        res.json(200, userTransformer.transform(user));
                     });
                 })(req, res, next);
             }
@@ -127,6 +106,7 @@ module.exports = function(app, shrinkr, passport) {
         },
         "api.user.item": {
             path: "/:userId",
+            get: [ user.loadProfile ],
             put: [ auth.requiresLogin, user.update ]
         },
         

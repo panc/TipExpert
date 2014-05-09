@@ -3,6 +3,7 @@ var mongoose = require('mongoose'),
     User = mongoose.model('User'),
     utils = require('../../helper/formatHelper'),
     roles = require('../../../public/modules/user/userConfig').roles,
+    userTransformer = require('../../core/userTransformer'),
     _ = require('underscore');
 
 
@@ -83,4 +84,15 @@ exports.list = function(req, res) {
        
         res.json(users);
     });
+};
+
+/**
+ * Loads the profile and shows all infos which the user is allowed to see...
+ */
+exports.loadProfile = function(req, res) {
+    var user = req.user;
+
+    // todo:
+
+    res.json(userTransformer.transform(user));
 };
