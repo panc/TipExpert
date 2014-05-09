@@ -35,7 +35,7 @@ user.factory('userService', ['$http', function($http) {
         },
 
         loadProfile: function(userId, success, error) {
-            $http.get('api/user/' + userId)
+            $http.get('/api/user/' + userId)
                 .success(function(user) {
                     success(user);
                 }).
@@ -46,7 +46,7 @@ user.factory('userService', ['$http', function($http) {
 
             angular.forEach(usersToSave, function(user) {
 
-                $http.put('api/user/' + user._id, user)
+                $http.put('/api/user/' + user._id, user)
                     .success(function(data, status, headers, config) {
                         success();
                     })

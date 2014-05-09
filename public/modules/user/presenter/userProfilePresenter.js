@@ -7,4 +7,5 @@ user.controller('userProfileController', ['$scope', 'Auth', function($scope, Aut
     $scope.user = Auth.user;
     $scope.hideRole = Auth.user.role == userConfig.roles.user;
 
+    Auth.reloadCurrentUserProfile();
 }]);
