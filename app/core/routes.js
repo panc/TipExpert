@@ -27,7 +27,8 @@ var convertUser = function(user) {
         'id': user.id || user._id || '',
         'name': user.name || '',
         'role': user.role || roles.public,
-        'picture': picture
+        'picture': picture,
+        'email': user.email
     };
 };
 

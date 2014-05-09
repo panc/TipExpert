@@ -1,4 +1,17 @@
 <div>
-    TOdo .)
+    <dl class="dl-horizontal">
+        <dt class="profile-row" translate="PROFILE-USERNAME"></dt>
+        <dd>{{ user.name }}</dd>
+        
+        <div ng-hide="hideRole">
+            <dt class="profile-row" translate="PROFILE-RIGHT"></dt>
+            <dd>{{ user.role }}</dd>
+        </div>
 
+        <dt class="profile-row" translate="PROFILE-EMAIL"></dt>
+        <dd>{{ user.email }}</dd>
+        
+        <dt class="profile-row" translate="PROFILE-COINS"></dt>
+        <dd>{{ user.coins }}</dd>
+    </dl>
 </div>

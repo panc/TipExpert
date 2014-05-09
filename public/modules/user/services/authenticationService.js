@@ -11,6 +11,7 @@ userModule.factory('Auth', ['$http', '$cookieStore', function($http, $cookieStor
             currentUser.id = user.id;
             currentUser.name = user.name;
             currentUser.role = user.role;
+            currentUser.email = user.email;
             
             currentUser.isLoggedIn = user.role == userRoles.user || user.role == userRoles.admin;
         }

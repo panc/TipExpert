@@ -220,3 +220,8 @@
     cursor: pointer;
     background-color: #a5d2eb;
 }
+
+/* User Profile */
+.profile-row {
+    line-height: 2;
+}

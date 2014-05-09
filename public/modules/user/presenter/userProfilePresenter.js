@@ -2,6 +2,9 @@
 
 var user = angular.module('tipExpert.user');
 
-user.controller('userProfileController', ['$http', '$scope', function($http, $scope)  {
-    
+user.controller('userProfileController', ['$scope', 'Auth', function($scope, Auth) {
+
+    $scope.user = Auth.user;
+    $scope.hideRole = Auth.user.role == userConfig.roles.user;
+
 }]);

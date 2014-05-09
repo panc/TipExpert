@@ -5,14 +5,22 @@
 	"FOOTER-SUPPORT": "Support",
 	"FOOTER-FAQ": "FAQ",
 	"FOOTER-IMPRESSUM": "Impressum",
+
 	"HOME-INFO": "TIPEXPERT is a free prediction game that offers you the opportunity to measure yourself sporty with your friends and acquaintances and to have fun in sports.",
 	"HOME-SIGN-UP": "Sign up",
 	"HOME-SIGN-UP-BUTTON": "Sign up",
+	
 	"GAME-MINSTAKEAREA": "1. Define Minimum Stake",
 	"GAME-MATCHAREA": "2. Select Matches",
 	"GAME-PLAYERSAREA": "3. Select Friends",
 	"GAME-PARTICIPANTS": "Participants",
 	"GAME-TIPS": "My Tips",
+	
 	"MYGAMES-CREATED": "Games created by me:",
-	"MYGAMES-INVITED": "Games I'm invited to:"
+	"MYGAMES-INVITED": "Games I'm invited to:",
+
+	"PROFILE-USERNAME": "Username",
+	"PROFILE-RIGHT": "Rights",
+	"PROFILE-EMAIL": "E-Mail",
+	"PROFILE-COINS": "Coins"
 }
