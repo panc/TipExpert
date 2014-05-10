@@ -2,20 +2,20 @@
 
 var userModule = angular.module( 'tipExpert.user' );
 
-userModule.factory( 'Auth', ['$http', '$cookieStore', 'userService', function ( $http, $cookieStore, userService ) {
+userModule.factory('Auth', ['$http', '$cookieStore', 'userService', function($http, $cookieStore, userService) {
 
     var accessLevels = userConfig.accessLevels;
     var userRoles = userConfig.roles;
 
-    var reloadProfile = function () {
+    var reloadProfile = function() {
         var id = currentUser.id;
-        if ( !id || id == '' )
+        if (!id || id == '')
             return;
 
         userService.loadProfile(id, changeUser, function() { /* no error handling for now */ });
     };
 
-    var changeUser = function ( user ) {
+    var changeUser = function(user) {
         currentUser.id = user.id;
         currentUser.name = user.name;
         currentUser.role = user.role;
@@ -26,47 +26,47 @@ userModule.factory( 'Auth', ['$http', '$cookieStore', 'userService', function ( 
         currentUser.isLoggedIn = user.role == userRoles.user || user.role == userRoles.admin;
     };
 
-    var currentUser = $cookieStore.get( 'user' ) || { id: '', name: '', role: userRoles.public, email: '' };
-    currentUser.isLoggedIn = user.role == userRoles.user || user.role == userRoles.admin;
-    $cookieStore.remove( 'user' );
+    var currentUser = $cookieStore.get('user') || { id: '', name: '', role: userRoles.public, email: '' };
+    currentUser.isLoggedIn = currentUser.role == userRoles.user || currentUser.role == userRoles.admin;
+    $cookieStore.remove('user');
 
     reloadProfile();
 
     return {
-        authorize: function ( accessLevel, role ) {
-            if ( role === undefined )
+        authorize: function(accessLevel, role) {
+            if (role === undefined)
                 role = currentUser.role;
 
-            if ( accessLevel == accessLevels.admin )
+            if (accessLevel == accessLevels.admin)
                 return role == userRoles.admin;
 
-            if ( accessLevel == accessLevels.user )
+            if (accessLevel == accessLevels.user)
                 return role == userRoles.admin || role == userRoles.user;
 
             return true;
         },
-        signup: function ( user, success, error ) {
-            $http.post( '/signup', user ).success( function ( res ) {
-                changeUser( res );
+        signup: function(user, success, error) {
+            $http.post('/signup', user).success(function(res) {
+                changeUser(res);
                 success();
-            }).error( error );
+            }).error(error);
         },
-        login: function ( user, success, error ) {
-            $http.post( '/auth', user ).success( function ( usr ) {
-                changeUser( usr );
-                success( usr );
-            }).error( error );
+        login: function(user, success, error) {
+            $http.post('/auth', user).success(function(usr) {
+                changeUser(usr);
+                success(usr);
+            }).error(error);
         },
-        logout: function ( success, error ) {
-            $http.post( '/logout' ).success( function () {
+        logout: function(success, error) {
+            $http.post('/logout').success(function() {
 
-                changeUser( {
+                changeUser({
                     username: '',
                     role: userRoles.public
                 });
 
                 success();
-            }).error( error );
+            }).error(error);
         },
         reloadCurrentUserProfile: reloadProfile,
         user: currentUser
