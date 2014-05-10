@@ -40,24 +40,15 @@ exports.loadGameForPlayer = function(req, res) {
 };
 
 /**
- * List all games for a user
- */
-exports.list = function(req, res) {
-    
-    Game.list({ players: req.user.id }, function(err, games) {
-        if (err)
-            return res.json('500', utils.formatErrors(err.errors));
-
-        return res.json(games);
-    });
-};
-
-/**
- * List all games for a user
+ * List all games which are created by the current user
  */
 exports.listCreated = function(req, res) {
+    var options = {
+        creator: req.user.id,
+        isFinished: false
+    };
     
-    Game.list({ creator: req.user.id }, function(err, games) {
+    Game.list(options, function(err, games) {
         if (err)
             return res.json('500', utils.formatErrors(err.errors));
 
@@ -69,8 +60,13 @@ exports.listCreated = function(req, res) {
  * List all games for a user
  */
 exports.listInvited = function(req, res) {
-    
-    Game.list({ player: req.user.id }, function(err, games) {
+    var options = {
+        notCreator: req.user.id,
+        player: req.user.id,
+        isFinished: false
+    };
+
+    Game.list(options, function(err, games) {
         if (err)
             return res.json('500', utils.formatErrors(err.errors));
 

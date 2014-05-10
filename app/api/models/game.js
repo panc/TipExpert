@@ -63,13 +63,12 @@ GameSchema.statics = {
      * @param {ObjectId} id
      * @param {Function} cb
      */
-
-    load: function ( id, cb ) {
-        this.findOne( { _id: id })
-            .populate( 'creator' )
-            .populate( 'matches.match' )
-            .populate( 'players.user' )
-            .exec( cb );
+    load: function(id, cb) {
+        this.findOne({ _id: id })
+            .populate('creator')
+            .populate('matches.match')
+            .populate('players.user')
+            .exec(cb);
     },
 
     /**
@@ -79,18 +78,24 @@ GameSchema.statics = {
      * @param {Function} cb
      */
 
-    list: function ( options, cb ) {
+    list: function(options, cb) {
         var criteria = {};
 
-        if ( options.creator )
-            criteria.creator = new ObjectId( options.creator );
+        if (options.creator)
+            criteria.creator = new ObjectId(options.creator);
 
-        if ( options.player )
-            criteria['players.user'] = new ObjectId( options.player );
+        if (options.notCreator)
+            criteria.creator = { $ne: new ObjectId(options.notCreator) };
+        
+        if (options.player)
+            criteria['players.user'] = new ObjectId(options.player);
 
-        this.find( criteria )
-            .sort( { 'dueDate': 1 }) // sort by date
-            .exec( cb );
+        if (options.isFinished != null)
+            criteria.isFinished = options.isFinished;
+
+        this.find(criteria)
+            .sort({ 'dueDate': 1 }) // sort by date
+            .exec(cb);
     },
 
     /**
@@ -100,57 +105,57 @@ GameSchema.statics = {
      * @param {Function} cb
      */
 
-    listGamesForMatch: function ( matchId, cb ) {
+    listGamesForMatch: function(matchId, cb) {
         var criteria = { 'matches.match': matchId };
 
-        this.find( criteria )
-            .populate( 'matches.match' )
-            .exec( cb );
+        this.find(criteria)
+            .populate('matches.match')
+            .exec(cb);
     },
 
     /**
     * Update all tips which are linked with the given match
     */
-    updateAllTips: function ( match ) {
+    updateAllTips: function(match) {
 
         var isMatchFinished = match.isFinished();
-        if ( isMatchFinished )
-            console.log( 'Match finished - update points of all corresponding tips...' );
+        if (isMatchFinished)
+            console.log('Match finished - update points of all corresponding tips...');
         else
-            console.log( 'Match not finished yet - revert points of all corresponding tips...' );
+            console.log('Match not finished yet - revert points of all corresponding tips...');
 
-        this.listGamesForMatch( match._id, function ( err, games ) {
+        this.listGamesForMatch(match._id, function(err, games) {
 
             // update tips in games
-            games.forEach( function ( game ) {
+            games.forEach(function(game) {
 
-                game.matches.forEach( function ( gm ) {
+                game.matches.forEach(function(gm) {
 
-                    if ( gm.match.id != match.id )
+                    if (gm.match.id != match.id)
                         return;
 
-                    gm.tips.forEach( function ( tip ) {
+                    gm.tips.forEach(function(tip) {
 
-                        if ( isMatchFinished )
-                            setPointsForTip( tip, match );
+                        if (isMatchFinished)
+                            setPointsForTip(tip, match);
                         else
-                            resetPointsForTip( tip );
+                            resetPointsForTip(tip);
                     });
                 });
 
                 game.finishGameAndUpdateTotalPoints();
 
-                game.save( function ( error ) {
+                game.save(function(error) {
                     // todo: 
                     // furhter error handling
 
-                    if ( error )
-                        console.log( utils.formatErrors( error ) );
+                    if (error)
+                        console.log(utils.formatErrors(error));
                 });
             });
         });
 
-        console.log( 'Finished updating all points of all corresponding tips.' );
+        console.log('Finished updating all points of all corresponding tips.');
     }
 };
 
@@ -249,14 +254,14 @@ var setProfit = function ( players, userPoints ) {
             player.profit = 0;
 
         // update the users coins
-        var userModel = mongoose.model('User');
-        userModel.load(player.user, function(err, user) {
-            if (err)
+        var userModel = mongoose.model( 'User' );
+        userModel.load( player.user, function ( err, user ) {
+            if ( err )
                 return;
 
             user.coins += player.profit;
             user.save();
-            console.log('user: ' + user.name + ' - cash: ' + user.coins);
+            console.log( 'user: ' + user.name + ' - cash: ' + user.coins );
         });
 
         console.log( 'player: ' + player.user + ' - profit: ' + player.profit );
@@ -270,18 +275,18 @@ var resetProfit = function ( players ) {
         player.totalPoints = null;
         player.profit = null;
 
-        if (oldProfit == 0)
+        if ( oldProfit == 0 )
             return;
 
         // reset the users coins
-        var userModel = mongoose.model('User');
-        userModel.load(player.user, function(err, user) {
-            if (err)
+        var userModel = mongoose.model( 'User' );
+        userModel.load( player.user, function ( err, user ) {
+            if ( err )
                 return;
 
             user.coins -= oldProfit;
             user.save();
-            console.log('user: ' + user.name + ' - cash: ' + user.coins);
+            console.log( 'user: ' + user.name + ' - cash: ' + user.coins );
         });
     });
 }

@@ -138,7 +138,6 @@ module.exports = function(app, shrinkr, passport) {
         // Game routes
         "api.games": {
             path: "/games",
-            get: [ auth.requiresLogin, games.list ],
             post: [ auth.requiresLogin, games.create ]
         },
         "api.games.created": {
