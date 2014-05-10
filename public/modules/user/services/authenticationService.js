@@ -26,10 +26,10 @@ userModule.factory( 'Auth', ['$http', '$cookieStore', 'userService', function ( 
         currentUser.isLoggedIn = user.role == userRoles.user || user.role == userRoles.admin;
     };
 
-    var currentUser = $cookieStore.get( 'user' ) || { id: '', name: '', role: userRoles.public, email: '', isLoggedIn: false };
+    var currentUser = $cookieStore.get( 'user' ) || { id: '', name: '', role: userRoles.public, email: '' };
+    currentUser.isLoggedIn = user.role == userRoles.user || user.role == userRoles.admin;
     $cookieStore.remove( 'user' );
 
-    changeUser(currentUser);
     reloadProfile();
 
     return {

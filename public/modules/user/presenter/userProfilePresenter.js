@@ -2,10 +2,19 @@
 
 var user = angular.module('tipExpert.user');
 
-user.controller('userProfileController', ['$scope', 'Auth', function($scope, Auth) {
+user.controller('userProfileController', [
+    '$scope', '$stateParams', 'userService', 'alertService', function($scope, $stateParams, userService, alertService) {
 
-    $scope.user = Auth.user;
-    $scope.hideRole = Auth.user.role == userConfig.roles.user;
+        $scope.user = {};
+        $scope.hideRole = true;
 
-    Auth.reloadCurrentUserProfile();
-}]);
+        if ($stateParams.userId) {
+            userService.loadProfile($stateParams.userId,
+                function(user) {
+                    $scope.user = user;
+                    $scope.hideRole = user.role == userConfig.roles.user;
+                },
+                alertService.error);
+        }
+    }
+]);

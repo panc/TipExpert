@@ -90,7 +90,7 @@ exports.list = function(req, res) {
  * Loads the profile and shows all infos which the user is allowed to see...
  */
 exports.loadProfile = function(req, res) {
-    var user = req.user;
+    var user = req.loadedUser;
 
     // todo:
 
