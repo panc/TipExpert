@@ -9,12 +9,12 @@ user.controller('userProfileController', [
         $scope.hideRole = true;
 
         if ($stateParams.userId) {
-            userService.loadProfile($stateParams.userId,
-                function(user) {
+            userService.loadProfile($stateParams.userId)
+                .then(function(user) {
                     $scope.user = user;
                     $scope.hideRole = user.role == userConfig.roles.user;
-                },
-                alertService.error);
+                })
+                .catch(alertService.error);
         }
     }
 ]);

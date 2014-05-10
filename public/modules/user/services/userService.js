@@ -2,14 +2,16 @@
 
 var user = angular.module('tipExpert.user');
 
-user.factory('userService', ['$http', function($http) {
+user.factory('userService', ['$http', '$q', function($http, $q) {
 
     var users = [];
 
-    var load = function(success, error) {
+    var load = function() {
+        var deferred = $q.defer();
+
         if (users.length > 0) {
-            success(users);
-            return;
+            deferred.resolve(users);
+            return deferred.promise;
         }
 
         $http.get('/api/user')
@@ -19,9 +21,11 @@ user.factory('userService', ['$http', function($http) {
                     users.push(user);
                 });
 
-                success(users);
+                deferred.resolve(users);
             })
-            .error(error);
+            .error(deferred.reject);
+
+        return deferred.promise;
     };
 
     return {
@@ -34,24 +38,31 @@ user.factory('userService', ['$http', function($http) {
             load(success, error);
         },
 
-        loadProfile: function(userId, success, error) {
+        loadProfile: function(userId) {
+            var deferred = $q.defer();
+
             $http.get('/api/user/' + userId)
-                .success(function(user) {
-                    success(user);
-                }).
-                error(error);
+                .success(deferred.resolve)
+                .error(deferred.reject);
+
+            return deferred.promise;
         },
 
-        update: function(usersToSave, success, error) {
-
+        update: function(usersToSave) {
+            var deferred = $q.defer();
+            var promises = [];
+            
             angular.forEach(usersToSave, function(user) {
-
-                $http.put('/api/user/' + user._id, user)
-                    .success(function(data, status, headers, config) {
-                        success();
-                    })
-                    .error(error);
+                promises.push($http.put('/api/user/' + user._id, user));
             });
+
+            $q.all(promises)
+                .then(deferred.resolve)
+                .catch(function(result) {
+                    deferred.reject(result.data);
+                });
+
+            return deferred.promise;
         }
     };
 }]);
