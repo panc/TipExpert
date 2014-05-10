@@ -68,8 +68,10 @@
                 </tr>
             </table>
             
-            <div ng-show="game.isFinished">(Total points: {{ game.player.totalPoints }})</div>
-            <div ng-show="game.isFinished">(Earned profit: {{ game.player.profit }})</div>
+            <div ng-show="game.isFinished">
+                <div>(Total points: {{ game.player.totalPoints }})</div>
+                <div>(Earned profit: {{ game.player.profit }})</div>
+            </div>
         </div>
         
         <div class="row">
