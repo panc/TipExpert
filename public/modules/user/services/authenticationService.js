@@ -12,7 +12,7 @@ userModule.factory('Auth', ['$http', '$cookieStore', 'userService', function($ht
         if (!id || id == '')
             return;
 
-        userService.loadProfile(id, changeUser, function() { /* no error handling for now */ });
+        userService.loadProfile(id).then(changeUser);
     };
 
     var changeUser = function(user) {
