@@ -44,9 +44,9 @@ game.controller('SelectPlayersController', ['$scope', '$modalInstance', 'Auth', 
     $scope.cancel = function() {
         $modalInstance.dismiss('cancel');
     };
-    
-    userService.loadFriendsForUser(Auth.currentUser,
-        function(users) {
+
+    userService.loadFriendsForUser(Auth.currentUser)
+        .then(function(users) {
             $scope.users = users;
 
             angular.forEach(users, function(user) {
@@ -56,7 +56,6 @@ game.controller('SelectPlayersController', ['$scope', '$modalInstance', 'Auth', 
                         user.selected = true;
                 });
             });
-
-        },
-        alertService.error);
+        })
+        .catch(alertService.error);
 }]);

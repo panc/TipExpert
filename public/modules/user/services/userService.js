@@ -31,11 +31,11 @@ user.factory('userService', ['$http', '$q', function($http, $q) {
     return {
         loadAllUser: load,
 
-        loadFriendsForUser: function(user, success, error) {
+        loadFriendsForUser: function(user) {
             // todo:
             // return all users for now
             // we can load the friends of a user later on
-            load(success, error);
+            return load();
         },
 
         loadProfile: function(userId) {
