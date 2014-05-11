@@ -61,6 +61,10 @@ section.main {
   display: block; 
 }
 
+.modal-description {
+    margin-bottom: 30px;
+}
+
 .ng-modal-overlay {
     /* A dark translucent div that covers the whole screen */
     position: absolute;
