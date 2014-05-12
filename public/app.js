@@ -178,10 +178,15 @@ tipExpert.run(['$rootScope', '$location', '$state', 'Auth', 'alertService', func
         if (!Auth.authorize(toState.access)) {
 
             event.preventDefault();
-            if (!isLoggedIn)
+            if (!isLoggedIn) {
                 $state.go('home');
-            else
+            }
+            else {
+                if (!fromState.controller)
+                    $state.go('games.overview');
+
                 alertService.error('You are not allowed to access this page');
+            }
         }
         else if (toState.name == 'home' && isLoggedIn) {
 
