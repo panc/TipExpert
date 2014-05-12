@@ -162,6 +162,8 @@ tipExpert.config(['$translateProvider', function($translateProvider) {
 
 tipExpert.run(['$rootScope', '$location', '$state', 'Auth', 'alertService', function($rootScope, $location, $state, Auth, alertService) {
 
+    $rootScope.$state = $state;
+
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
 
         var isLoggedIn = Auth.user.isLoggedIn;
