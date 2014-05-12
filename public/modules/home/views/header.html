@@ -12,19 +12,14 @@
     <div class="navbar-collapse collapse navbar-responsive-collapse">
         <ul class="nav navbar-nav">
 
-            <li class="dropdown">
+            <li><a ui-sref="games.overview">My Games</a></li>
+            <li><a ui-sref="games.history">History</a></li>
+            
+            <li class="dropdown" ng-show="user.isAdmin">
                 <a href="" class="dropdown-toggle" data-toggle="dropdown">Administration <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li><a ui-sref="matches.overview">Matches</a></li>
                     <li><a ui-sref="user.overview">User</a></li>
-                </ul>
-            </li>
-
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tip-Game <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                    <li><a ui-sref="games.overview">All My Games</a></li>
-                    <li><a ui-sref="games.search">Search for Games</a></li>
                 </ul>
             </li>
         </ul>

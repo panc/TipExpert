@@ -81,6 +81,13 @@ tipExpert.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '
             controller: 'myGamesController',
             access: accessLevels.user // todo
         })
+        .state('games.history', {
+            title: 'Games History',
+            url: '/history',
+            templateUrl: '/modules/game/views/gamesHistory.html',
+            controller: 'gamesHistoryController',
+            access: accessLevels.user // todo
+        })
         .state('games.create', {
             title: 'Create game',
             url: '/create',

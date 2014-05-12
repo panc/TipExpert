@@ -24,6 +24,7 @@ userModule.factory('Auth', ['$http', '$cookieStore', 'userService', function($ht
         currentUser.coins = user.coins;
 
         currentUser.isLoggedIn = user.role == userRoles.user || user.role == userRoles.admin;
+        currentUser.isAdmin = user.role == userRoles.admin;
     };
 
     var currentUser = $cookieStore.get('user') || { id: '', name: '', role: userRoles.public, email: '' };
