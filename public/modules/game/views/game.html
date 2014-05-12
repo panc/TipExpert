@@ -40,7 +40,7 @@
         <h3 translate="GAME-PARTICIPANTS"></h3>
         <ul>
             <li ng-repeat="player in game.allPlayers">
-                <img class="left" ng-src="{{ player.picture }}" alt="avatar" height="40" ng-show="{{ player.picture }}" />
+                <img class="left" ng-src="{{ player.picture }}" alt="avatar" height="40" ng-hide="{{ !player.picture }}" />
                 <div class="left">{{ player.name }}</div>
                 <div class="left" ng-show="game.isFinished">(Total points: {{ player.totalPoints }})</div>
                 <div class="clear">
