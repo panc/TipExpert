@@ -1,0 +1,15 @@
+<div>
+    
+    <div class="row">
+        <h2 translate="GAMESHISTORY-TITLE"></h2>
+        <ul>
+            <li ng-repeat="game in games">
+                <span>
+                    {{game.title}}
+                    <a ui-sref="games.show({ gameId: game._id })">Show</a>
+                </span>
+            </li>
+        </ul>
+    </div>
+    
+</div>

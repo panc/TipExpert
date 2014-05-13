@@ -2,89 +2,101 @@
 
 var game = angular.module('tipExpert.game');
 
-game.factory('gameService', [
-    '$http', 'Auth', function($http, Auth) {
+game.factory('gameService', ['$http', 'Auth', function($http, Auth) {
 
-        return {
-            loadGamesForCurrentUser: function(success, error) {
-                $http.get('/api/games/invited')
-                    .success(function(data, status, headers, config) {
-                        success(data);
-                    })
-                    .error(error);
-            },
+    return {
+        loadGamesForCurrentUser: function() {
+            var deferred = $q.defer();
 
-            loadGamesCreatedByCurrentUser: function(success, error) {
-                $http.get('/api/games/created')
-                    .success(function(data, status, headers, config) {
-                        success(data);
-                    })
-                    .error(error);
-            },
+            $http.get('/api/games/invited')
+                .success(deferred.resolve)
+                .error(deferred.reject);
 
-            load: function(gameId, success, error) {
-                $http.get('/api/games/' + gameId)
-                    .success(function(data, status, headers, config) {
-                        success(data);
-                    })
-                    .error(error);
-            },
+            return deferred.promise;
+        },
 
-            loadForEdit: function(gameId, success, error) {
-                $http.get('/api/games/' + gameId + '/edit')
-                    .success(function(data, status, headers, config) {
-                        success(data);
-                    })
-                    .error(error);
-            },
+        loadGamesCreatedByCurrentUser: function() {
+            var deferred = $q.defer();
 
-            create: function(newGame, success, error) {
-                $http.post('/api/games', newGame)
-                    .success(function(game, status, headers, config) {
-                        success(game);
-                    })
-                    .error(error);
-            },
+            $http.get('/api/games/created')
+                .success(deferred.resolve)
+                .error(deferred.reject);
 
-            update: function(game, success, error) {
-                $http.put('/api/games/' + game._id + '/edit', game)
-                    .success(function(data, status, headers, config) {
-                        success(data);
-                    })
-                    .error(error);
-            },
+            return deferred.promise;
+        },
 
-            updateStake: function(gameId, playerId, newStake, success, error) {
-                $http.put('/api/games/' + gameId + '/stake',
-                    {
-                        playerId: playerId,
-                        stake: newStake
-                    })
-                    .success(function(data, status, headers, config) {
-                        success();
-                    })
-                    .error(error);
-            },
+        loadFinishedGamesForCurrentUser: function() {
+            var deferred = $q.defer();
 
-            updateTip: function(gameId, matchId, tip, success, error) {
-                $http.put('/api/games/' + gameId + '/tip',
-                    {
-                        tip: tip.id,
-                        match: matchId,
-                        homeTip: tip.homeTip,
-                        guestTip: tip.guestTip
-                    })
-                    .success(function(data, status, headers, config) {
-                        success(data.homeTip, data.guestTip);
-                    })
-                    .error(error);
-            },
+            $http.get('/api/games/finished')
+                .success(deferred.resolve)
+                .error(deferred.reject);
 
-            delete: function(game, success, error) {
-                $http.delete('/api/games/' + game._id + '/edit')
-                    .success(success)
-                    .error(error);
-            }
-        };
-    }
-]);
+            return deferred.promise;
+        },
+
+        load: function(gameId, success, error) {
+            $http.get('/api/games/' + gameId)
+                .success(function(data, status, headers, config) {
+                    success(data);
+                })
+                .error(error);
+        },
+
+        loadForEdit: function(gameId, success, error) {
+            $http.get('/api/games/' + gameId + '/edit')
+                .success(function(data, status, headers, config) {
+                    success(data);
+                })
+                .error(error);
+        },
+
+        create: function(newGame, success, error) {
+            $http.post('/api/games', newGame)
+                .success(function(game, status, headers, config) {
+                    success(game);
+                })
+                .error(error);
+        },
+
+        update: function(game, success, error) {
+            $http.put('/api/games/' + game._id + '/edit', game)
+                .success(function(data, status, headers, config) {
+                    success(data);
+                })
+                .error(error);
+        },
+
+        updateStake: function(gameId, playerId, newStake, success, error) {
+            $http.put('/api/games/' + gameId + '/stake',
+                {
+                    playerId: playerId,
+                    stake: newStake
+                })
+                .success(function(data, status, headers, config) {
+                    success();
+                })
+                .error(error);
+        },
+
+        updateTip: function(gameId, matchId, tip, success, error) {
+            $http.put('/api/games/' + gameId + '/tip',
+                {
+                    tip: tip.id,
+                    match: matchId,
+                    homeTip: tip.homeTip,
+                    guestTip: tip.guestTip
+                })
+                .success(function(data, status, headers, config) {
+                    success(data.homeTip, data.guestTip);
+                })
+                .error(error);
+        },
+
+        delete: function(game, success, error) {
+            $http.delete('/api/games/' + game._id + '/edit')
+                .success(success)
+                .error(error);
+        }
+    };
+}]);

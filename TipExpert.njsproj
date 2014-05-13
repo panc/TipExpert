@@ -42,6 +42,7 @@
     <Compile Include="app\core\userTransformer.js" />
     <Compile Include="app\core\gameTransformer.js" />
     <Compile Include="app\helper\postInstall.js" />
+    <Compile Include="public\modules\game\presenter\gamesHistoryPresenter.js" />
     <Compile Include="public\modules\game\presenter\myGamesPresenter.js" />
     <Compile Include="public\modules\game\presenter\selectPlayersPresenter.js" />
     <Compile Include="public\modules\game\presenter\selectMatchesPresenter.js" />
@@ -81,6 +82,7 @@
     <Content Include="public\locales\de.json" />
     <Content Include="public\locales\en.json" />
     <Content Include="public\modules\game\views\game.html" />
+    <Content Include="public\modules\game\views\gamesHistory.html" />
     <Content Include="public\modules\game\views\selectPlayersDialog.html" />
     <Content Include="public\modules\game\views\selectMatchesDialog.html" />
     <Content Include="public\modules\game\views\addGameDialog.html" />
