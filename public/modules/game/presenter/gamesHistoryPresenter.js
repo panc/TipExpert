@@ -7,7 +7,7 @@ game.controller('gamesHistoryController', ['$scope', '$modal', 'gameService', 'a
 
     gameService.loadFinishedGamesForCurrentUser()
         .then(function(games) {
-            $scope.invitedGames = games;
+            $scope.games = games;
         })
         .catch(alertService.error);
 }]);

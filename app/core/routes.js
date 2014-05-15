@@ -148,6 +148,10 @@ module.exports = function(app, shrinkr, passport) {
             path: "/invited",
             get: [ auth.requiresLogin, games.listInvited ]
         },
+        "api.games.finished": {
+            path: "/finished",
+            get: [auth.requiresLogin, games.listFinished]
+        },
         "api.games.item": {
             path: "/:gameId",
             get: [ auth.requiresLogin, games.loadGameForPlayer ]

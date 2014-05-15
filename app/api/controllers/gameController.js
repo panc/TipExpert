@@ -57,13 +57,30 @@ exports.listCreated = function(req, res) {
 };
 
 /**
- * List all games for a user
+ * List all games to which the user has been invited to
  */
 exports.listInvited = function(req, res) {
     var options = {
         notCreator: req.user.id,
         player: req.user.id,
         isFinished: false
+    };
+
+    Game.list(options, function(err, games) {
+        if (err)
+            return res.json('500', utils.formatErrors(err.errors));
+
+        return res.json(games);
+    });
+};
+
+/**
+ * List all finished games of the user
+ */
+exports.listFinished = function(req, res) {
+    var options = {
+        player: req.user.id,
+        isFinished: true
     };
 
     Game.list(options, function(err, games) {

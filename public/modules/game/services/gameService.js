@@ -2,7 +2,7 @@
 
 var game = angular.module('tipExpert.game');
 
-game.factory('gameService', ['$http', 'Auth', function($http, Auth) {
+game.factory('gameService', ['$http', '$q', function ($http, $q) {
 
     return {
         loadGamesForCurrentUser: function() {
