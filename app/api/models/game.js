@@ -34,25 +34,25 @@ var GameSchema = new Schema( {
 GameSchema.path( 'creator' ).required( true, 'Creator cannot be blank' );
 GameSchema.path( 'title' ).required( true, 'Title cannot be blank' );
 
-GameSchema.pre( 'save', function ( next ) {
+GameSchema.pre('save', function(next) {
     var err = null;
 
-    for ( var i = 0; i < this.players.length; i++ ) {
-        if ( this.minStake > this.players[i].stake ) {
-            err = new Error( 'The stake for a player must be heigher than the defined minimum stake (' + this.minStake + ')!' );
+    for (var i = 0; i < this.players.length; i++) {
+        if (this.players[i].stake && this.minStake > this.players[i].stake) {
+            err = new Error('The stake for a player must be heigher than the defined minimum stake (' + this.minStake + ')!');
         }
     }
 
-    next( err );
+    next(err);
 });
 
-GameSchema.pre( 'remove', function ( next ) {
+GameSchema.pre('remove', function(next) {
     var err = null;
 
-    if ( this.isFinished )
-        err = new Error( 'A finished game can not be deleted!' );
+    if (this.isFinished)
+        err = new Error('A finished game can not be deleted!');
 
-    next( err );
+    next(err);
 });
 
 // static methods for the match schema
