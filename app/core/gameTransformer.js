@@ -51,7 +51,7 @@ var transformTip = function(match, userId) {
 var transformPlayer = function(player) {
 
     var user = player.user;
-    var picture = '';
+    var picture = '../images/noavatar.png';
 
     if (user.google)
         picture = user.google.picture;

@@ -54,7 +54,7 @@
     </div>
         
     <div class="row" ng-show="notFinishedGames.length > 0">
-        <h4>Upcomming Games</h4>
+        <p translate="GAME-TIPS-DESCRIPTION"></p>
         <table>
             <tr ng-repeat="tip in notFinishedGames = (game.player.tips | filter:{ finished: false })"
                 ng-init="tip.oldHomeTip = tip.homeTip; tip.oldGuestTip = tip.guestTip">
