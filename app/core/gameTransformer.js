@@ -31,20 +31,35 @@ exports.transformToGameForPlayer = function(game, userId) {
 };
 
 var transformTip = function(match, userId) {
-    var storedTip = findUserObject(match.tips, userId) || { };
-
-    return {
-        id: storedTip._id,
+    var userTip = findUserObject(match.tips, userId) || { };
+	var finishedTipsOfAllPlayers = [];
+    
+	if (match.match.isFinished()) {
+		for (var i = 0; i < match.tips.length; i++) {
+			var tip = match.tips[i];
+			
+			finishedTipsOfAllPlayers.push({
+				userName: 'todo',
+				homeTip: tip.homeScore,
+				guestTip: tip.guestScore,
+				points: tip.points || 0
+			});
+		}
+	}
+	
+	return {
+        id: userTip._id,
         match: match._id,
         user: userId,
         homeTeam: match.match.homeTeam,
         guestTeam: match.match.guestTeam,
-        homeTip: storedTip.homeScore,
-        guestTip: storedTip.guestScore,
+        homeTip: userTip.homeScore,
+        guestTip: userTip.guestScore,
         homeResult: match.match.homeScore,
         guestResult: match.match.guestScore,
-        points: storedTip.points || 0,
-        finished: match.match.isFinished()
+        points: userTip.points || 0,
+        finished: match.match.isFinished(),
+		finishedTipsOfAllPlayers: finishedTipsOfAllPlayers
     };
 }
 
