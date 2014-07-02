@@ -10,7 +10,9 @@ exports.transformToGameForPlayer = function(game, userId) {
     for (var i = 0; i < game.matches.length; i++) 
         tips.push(transformTip(game.matches[i], userId));
     
-	sortTips(tips, game.matches, allPlayers);
+	var userPoints = calculateUserPoints(game.matches);
+	sortTips(tips, userPoints);
+	sortPlayers(allPlayers, userPoints);
 	
     return {
         id: game._id,
@@ -49,10 +51,6 @@ var transformTip = function(match, userId) {
 		}
 	}
 	
-	/*finishedTipsOfAllPlayers.sort(function(tip1, tip2){
-		return tip2.points - tip1.points;
-	});*/
-	
 	return {
         id: userTip._id,
         match: match._id,
@@ -80,6 +78,7 @@ var transformPlayer = function(player) {
         picture = user.facebook.picture.data.url;
 
     return {
+		userId: user._id,
         name: user.name,
         picture: picture,
         totalPoints: player.totalPoints,
@@ -87,7 +86,7 @@ var transformPlayer = function(player) {
     };
 };
 
-var sortTips = function(tips, matches, players) {
+var calculateUserPoints = function(matches){
 
 	var userPoints = {};
 	
@@ -98,6 +97,11 @@ var sortTips = function(tips, matches, players) {
 		});
 	});
 	
+	return userPoints;
+}
+
+var sortTips = function(tips, userPoints) {
+	
 	tips.forEach(function(tip){
 		tip.finishedTipsOfAllPlayers.sort(function(x, y){
 			pointsX = userPoints[x.user];
@@ -105,6 +109,16 @@ var sortTips = function(tips, matches, players) {
 			
 			return pointsY - pointsX;
 		});
+	});
+};
+
+var sortPlayers = function(players, userPoints) {
+	
+	players.sort(function(x, y){
+		pointsX = userPoints[x.userId];
+		pointsY = userPoints[y.userId];
+		
+		return pointsY - pointsX;
 	});
 };
 
