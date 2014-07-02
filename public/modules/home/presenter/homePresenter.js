@@ -19,7 +19,7 @@ homeModule.controller('homeController', [
 
             Auth.signup($scope.user)
 				.then(function() {
-					$state.go('home');
+					$state.go('games.overview');
 				})
 				.catch(alertService.error);
         };
