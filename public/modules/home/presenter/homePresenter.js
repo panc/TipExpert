@@ -17,10 +17,11 @@ homeModule.controller('homeController', [
             if ($scope.submitForm.$invalid)
                 return;
 
-            Auth.signup($scope.user, function() {
-                    $state.go('home');
-                },
-                alertService.error);
+            Auth.signup($scope.user)
+				.then(function() {
+					$state.go('home');
+				})
+				.catch(alertService.error);
         };
 
         $scope.loginOauth = function(provider) {

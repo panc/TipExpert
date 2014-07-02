@@ -8,7 +8,18 @@ user.factory('alertService', ['$timeout', function($timeout) {
 
     var addAlert = function(message, type) {
 
-        var item = { msg: message, type: type };
+		var text = 'An error occoured';
+		
+		if (message != undefined) {
+			if (message.msg != undefined)
+				text = message.msg;
+			else if (message.errors != undefined)
+				text = message.errors[0];
+			else
+				text = message;
+		}
+			
+        var item = { msg: text, type: type };
 
         item.timeout = $timeout(function() {
             closeAlert(item);

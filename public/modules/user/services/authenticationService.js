@@ -2,7 +2,7 @@
 
 var userModule = angular.module( 'tipExpert.user' );
 
-userModule.factory('Auth', ['$http', '$cookieStore', 'userService', function($http, $cookieStore, userService) {
+userModule.factory('Auth', ['$http', '$q', '$cookieStore', 'userService', function($http, $q, $cookieStore, userService) {
 
     var accessLevels = userConfig.accessLevels;
     var userRoles = userConfig.roles;
@@ -46,11 +46,17 @@ userModule.factory('Auth', ['$http', '$cookieStore', 'userService', function($ht
 
             return true;
         },
-        signup: function(user, success, error) {
-            $http.post('/signup', user).success(function(res) {
+        signup: function(user) {
+            var deferred = $q.defer();
+
+			$http.post('/signup', user)
+			.success(function(res) {
                 changeUser(res);
-                success();
-            }).error(error);
+                deferred.resolve(res);
+            })
+			.error(deferred.reject);
+			
+            return deferred.promise;
         },
         login: function(user, success, error) {
             $http.post('/auth', user).success(function(usr) {

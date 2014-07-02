@@ -48,3 +48,9 @@
         </form>
     </div>
 </div>
+
+<div class="alert-container container">
+    <div class="inner-alert-container">
+        <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{ alert.msg }}</alert>
+    </div>
+</div>
