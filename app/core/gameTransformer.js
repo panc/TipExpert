@@ -10,6 +10,8 @@ exports.transformToGameForPlayer = function(game, userId) {
     for (var i = 0; i < game.matches.length; i++) 
         tips.push(transformTip(game.matches[i], userId));
     
+	sortTips(tips, game.matches, allPlayers);
+	
     return {
         id: game._id,
         title: game.title,
@@ -39,7 +41,7 @@ var transformTip = function(match, userId) {
 			var tip = match.tips[i];
 			
 			finishedTipsOfAllPlayers.push({
-				userName: 'todo',
+				user: tip.user,
 				homeTip: tip.homeScore,
 				guestTip: tip.guestScore,
 				points: tip.points || 0
@@ -47,9 +49,9 @@ var transformTip = function(match, userId) {
 		}
 	}
 	
-	finishedTipsOfAllPlayers.sort(function(tip1, tip2){
+	/*finishedTipsOfAllPlayers.sort(function(tip1, tip2){
 		return tip2.points - tip1.points;
-	});
+	});*/
 	
 	return {
         id: userTip._id,
@@ -83,6 +85,27 @@ var transformPlayer = function(player) {
         totalPoints: player.totalPoints,
         profit: player.profit
     };
+};
+
+var sortTips = function(tips, matches, players) {
+
+	var userPoints = {};
+	
+	matches.forEach(function(match){
+		match.tips.forEach(function(tip) {
+			var points = userPoints[tip.user] || 0;
+			userPoints[tip.user] = points + tip.points;
+		});
+	});
+	
+	tips.forEach(function(tip){
+		tip.finishedTipsOfAllPlayers.sort(function(x, y){
+			pointsX = userPoints[x.user];
+			pointsY = userPoints[y.user];
+			
+			return pointsY - pointsX;
+		});
+	});
 };
 
 var findUserObject = function(containers, id) {

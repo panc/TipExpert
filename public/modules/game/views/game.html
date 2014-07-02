@@ -81,6 +81,17 @@
 	<div class="game-finished-tips row" ng-show="finishedGames.length > 0">
 		<h3>Finished Games</h4>
 		<table>
+			<tr>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th class="game-tip-all-result">Test</th>
+				<th>Test</th>
+				<th>Test</th>
+			</tr>
 			<tr ng-repeat="tip in finishedGames = (game.player.tips | filter:{ finished: true })">
 				<td class="game-tip-team-col">{{ tip.homeTeam }}</td>
 				<td>&nbsp; - &nbsp;</td>
@@ -91,7 +102,7 @@
 				
 				<td ng-repeat="t in tipsOfAllPlayers = (tip.finishedTipsOfAllPlayers)">
 				
-				<div class="game-tip-all-result">{{ t.homeTip }}&nbsp; : &nbsp;{{ t.guestTip }} ({{ t.points }})</div>
+					<div class="game-tip-all-result">{{ t.homeTip }}&nbsp; : &nbsp;{{ t.guestTip }} ({{ t.points }}) - {{ t.user }}</div>
 				
 				</td>
 			</tr>
