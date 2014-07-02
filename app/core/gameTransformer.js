@@ -47,6 +47,10 @@ var transformTip = function(match, userId) {
 		}
 	}
 	
+	finishedTipsOfAllPlayers.sort(function(tip1, tip2){
+		return tip2.points - tip1.points;
+	});
+	
 	return {
         id: userTip._id,
         match: match._id,
