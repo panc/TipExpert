@@ -1,16 +1,17 @@
 
 exports.transformToGameForPlayer = function(game, userId) {
     var player = findUserObject(game.players, userId);
-    var allPlayers = [];
+    var userPoints = calculateUserPoints(game.matches);
+	
+	var allPlayers = [];
     var tips = [];
 
     for (var i = 0; i < game.players.length; i++)
-        allPlayers.push(transformPlayer(game.players[i]));
+        allPlayers.push(transformPlayer(game.players[i], userPoints));
 
     for (var i = 0; i < game.matches.length; i++) 
         tips.push(transformTip(game.matches[i], userId));
     
-	var userPoints = calculateUserPoints(game.matches);
 	sortTips(tips, userPoints);
 	sortPlayers(allPlayers, userPoints);
 	
@@ -67,10 +68,11 @@ var transformTip = function(match, userId) {
     };
 }
 
-var transformPlayer = function(player) {
+var transformPlayer = function(player, userPoints) {
 
     var user = player.user;
     var picture = '../images/noavatar.png';
+	var points = userPoints[user._id];
 
     if (user.google)
         picture = user.google.picture;
@@ -81,6 +83,7 @@ var transformPlayer = function(player) {
 		userId: user._id,
         name: user.name,
         picture: picture,
+		points: userPoints[user._id],
         totalPoints: player.totalPoints,
         profit: player.profit
     };
@@ -118,7 +121,7 @@ var sortPlayers = function(players, userPoints) {
 		pointsX = userPoints[x.userId];
 		pointsY = userPoints[y.userId];
 		
-		return pointsY - pointsX;
+		return y.points - x.points;
 	});
 };
 
