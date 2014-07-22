@@ -22,6 +22,8 @@
 	"GAME-SELECT-PLAYER-DESCRIPTION": "Lade Freunde oder andere Benutzer zu dein Tippspiel ein (no Mail Support yet!)",
 	"GAME-SUMPOINTS-COL": "Gesamtpunkte:",
 	"GAME-RANKING-COL": "Platzierung:",
+	"GAME-STATISTIC": "Statistik",
+	"GAME-STATISTIC-DESCRIPTION": "Statistik aller abgeschlossenen Partien.",
 	
 	"MYGAMES-CREATED": "Von mir erstellte Tipp-Spiele:",
 	"MYGAMES-INVITED": "Tipp-Spiele zu denen ich eingeladen wurde:",
