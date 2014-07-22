@@ -15,7 +15,7 @@ exports.transformToGameForPlayer = function(game, userId) {
 	sortTips(tips, userPoints);
 	sortPlayers(allPlayers, userPoints);
 	
-	var userRanking = updateRanking(allPlayers, player);
+	var userRanking = updateRanking(allPlayers, userId);
 	
     return {
         id: game._id,
