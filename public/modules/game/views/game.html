@@ -36,7 +36,7 @@
     </div>
 
 
-    <div class="game-participants row">
+    <!--<div class="game-participants row">
         <h3 translate="GAME-PARTICIPANTS"></h3>
         <ul>
             <li ng-repeat="player in game.allPlayers">
@@ -45,7 +45,7 @@
                 <div class="clear"></div>
             </li>
         </ul>
-    </div>
+    </div>-->
  
     <div class="game-tips row" ng-show="notFinishedMatches.length > 0">
         <h3 translate="GAME-TIPS"></h3>
@@ -82,20 +82,21 @@
         </table>
     </div>
     
+	<div ng-show="game.isFinished" class="row">
+		<h3 translate="GAME-STATISTICS-FINISHEDGAME"></h3>
+		
+		<div class="game-finished-statistics">
+			<div><span translate="GAME-RANKING-COL"></span> {{ game.player.ranking }}.</div>
+			<div><span translate="GAME-SUMPOINTS-COL"></span> {{ game.player.totalPoints }}</div>
+			<div><span translate="GAME-EARNEDPOINTS"></span> {{ game.player.profit }}</div>
+		</div>
+	</div>
+	
+	
 	<div class="game-finished-tips row" ng-show="finishedMatches.length > 0">
 		<h3 translate="GAME-STATISTICS"></h3>
-			
-		<div ng-show="game.isFinished">
-			<h4 translate="GAME-STATISTICS-FINISHEDGAME"></h4>
-			
-			<div class="game-finished-statistics">
-				<div><span translate="GAME-RANKING-COL"></span> {{ game.player.ranking }}.</div>
-				<div><span translate="GAME-SUMPOINTS-COL"></span> {{ game.player.totalPoints }}</div>
-				<div><span translate="GAME-EARNEDPOINTS"></span> {{ game.player.profit }}</div>
-			</div>
-		</div>
+		<p translate="GAME-STATISTICS-ALLMATCHES"></p>
 		
-		<h4 translate="GAME-STATISTICS-ALLMATCHES"></h4>
 		<table>
 			<tr>
 				<!-- Placeholder for columns without headline -->
