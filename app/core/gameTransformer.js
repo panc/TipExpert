@@ -14,6 +14,7 @@ exports.transformToGameForPlayer = function(game, userId) {
     
 	sortTips(tips, userPoints);
 	sortPlayers(allPlayers, userPoints);
+	updateRanking(allPlayers);
 	
     return {
         id: game._id,
@@ -115,14 +116,26 @@ var sortTips = function(tips, userPoints) {
 	});
 };
 
-var sortPlayers = function(players, userPoints) {
+var sortPlayers = function(players) {
 	
 	players.sort(function(x, y){
-		pointsX = userPoints[x.userId];
-		pointsY = userPoints[y.userId];
-		
 		return y.points - x.points;
 	});
+};
+
+var updateRanking = function(players) {
+	
+	var ranking = 1;
+
+	for(var i = 0; i < players.length; i++) {
+		
+		var player = players[i];
+		
+		if (i != 0 && player.points != players[i-1].points)
+			ranking++;
+			
+		player.ranking = ranking;
+	}
 };
 
 var findUserObject = function(containers, id) {

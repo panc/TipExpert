@@ -70,8 +70,13 @@
                 </td>
                 <td ng-show="tip.showSaveButton">
                     <span class="input-group-btn left">
-                        <button class="btn btn-default" type="button" ng-click="saveTip(tip)"><span class="glyphicon glyphicon-ok"></span></button>
-                        <button class="btn btn-default" type="button" ng-click="cancelTipEditing(tip)"><span class="glyphicon glyphicon-remove"></span></button>
+                        <button class="btn btn-default" type="button" ng-click="saveTip(tip)">
+							<span class="glyphicon glyphicon-ok"></span>
+						</button>
+                        
+						<button class="btn btn-default" type="button" ng-click="cancelTipEditing(tip)">
+							<span class="glyphicon glyphicon-remove"></span>
+						</button>
                     </span>
                 </td>
             </tr>
@@ -89,9 +94,10 @@
 				<th></th>
 				<th></th>
 				<th></th>
-				<th class="game-tip-all-result" 
+				<th class="game-tip-result-caption-col" 
 					ng-repeat="p in game.allPlayers">{{ p.name }}</th>
 			</tr>
+			
 			<tr ng-repeat="tip in finishedMatches = (game.player.tips | filter:{ finished: true })">
 				<td class="game-tip-team-col">{{ tip.homeTeam }}</td>
 				<td>&nbsp; - &nbsp;</td>
@@ -102,15 +108,25 @@
 				
 				<td ng-repeat="t in tipsOfAllPlayers = (tip.finishedTipsOfAllPlayers)">
 				
-					<div class="game-tip-all-result">
+					<div class="game-tip-result-col">
 						{{ t.homeTip }}&nbsp; : &nbsp;{{ t.guestTip }} ({{ t.points }})
 					</div>
 				
 				</td>
 			</tr>
+			
+			<tr>
+				<td colspan="6" class="game-tip-sumrow-col" translate="GAME-SUMPOINTS-COL"></td>
+				<td class="game-tip-sumrow-value-col" ng-repeat="p in game.allPlayers">{{ p.points }}</td>	
+			</tr>
+			
+			<tr>
+				<td colspan="6" class="game-tip-rankingrow-col" translate="GAME-RANKING-COL"></td>
+				<td class="game-tip-rankingrow-value-col" ng-repeat="p in game.allPlayers">{{ p.ranking }}</td>	
+			</tr>
 		</table>
 
-		<div ng-show="game.isFinished">
+		<div ng-show="game.isFinished" class="result-area">
 			<div>(Total points: {{ game.player.totalPoints }})</div>
 			<div>(Earned profit: {{ game.player.profit }})</div>
 		</div>

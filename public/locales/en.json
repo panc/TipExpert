@@ -20,6 +20,8 @@
 	"GAME-SELECT-MATCH-DESCRIPTION": "Select the matches for your tip game.",
 	"GAME-SELECT-PLAYER-HEADER": "Player Selection",
 	"GAME-SELECT-PLAYER-DESCRIPTION": "Invite friends or other user to your tip game (no Mail Support yet!).",
+	"GAME-SUMPOINTS-COL": "Total Points:",
+	"GAME-RANKING-COL": "Ranking:",
 	
 	"MYGAMES-CREATED": "Games created by me:",
 	"MYGAMES-INVITED": "Games I'm invited to:",

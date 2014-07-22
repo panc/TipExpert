@@ -20,6 +20,8 @@
 	"GAME-SELECT-MATCH-DESCRIPTION": "Wähle die Spielpaarungen für dein Tippspiel aus.",
 	"GAME-SELECT-PLAYER-HEADER": "Spieler Auswsahl",
 	"GAME-SELECT-PLAYER-DESCRIPTION": "Lade Freunde oder andere Benutzer zu dein Tippspiel ein (no Mail Support yet!)",
+	"GAME-SUMPOINTS-COL": "Gesamtpunkte:",
+	"GAME-RANKING-COL": "Platzierung:",
 	
 	"MYGAMES-CREATED": "Von mir erstellte Tipp-Spiele:",
 	"MYGAMES-INVITED": "Tipp-Spiele zu denen ich eingeladen wurde:",

@@ -157,8 +157,30 @@
     padding-left: 10px;
 }
 
-.game-tip-all-result {
+.game-tip-result-col, .game-tip-result-caption-col {
     padding-left: 50px;
+}
+
+.game-tip-result-caption-col {
+	text-align: center;
+}
+
+.game-tip-sumrow-col, .game-tip-sumrow-value-col {
+	font-weight: bold;
+	padding-top: 15px;
+}
+
+.game-tip-rankingrow-col, .game-tip-rankingrow-value-col {
+	font-weight: bold;
+}
+
+.game-tip-sumrow-value-col, .game-tip-rankingrow-value-col {
+	text-align: center;
+	padding-left: 50px;
+}
+
+.game-tip-sumrow-col, .game-tip-rankingrow-col {
+	text-align: right;
 }
 
 .game-stake {
