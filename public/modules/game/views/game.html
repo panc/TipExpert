@@ -48,12 +48,12 @@
         </ul>
     </div>
  
-    <div class="game-tips row" ng-show="notFinishedGames.length > 0">
+    <div class="game-tips row" ng-show="notFinishedMatches.length > 0">
         <h3 translate="GAME-TIPS"></h3>
 		<p translate="GAME-TIPS-DESCRIPTION"></p>
         
 		<table>
-            <tr ng-repeat="tip in notFinishedGames = (game.player.tips | filter:{ finished: false })"
+            <tr ng-repeat="tip in notFinishedMatches = (game.player.tips | filter:{ finished: false })"
                 ng-init="tip.oldHomeTip = tip.homeTip; tip.oldGuestTip = tip.guestTip">
 
                 <td class="game-tip-team-col">{{ tip.homeTeam }}</td>
@@ -78,10 +78,11 @@
         </table>
     </div>
     
-	<div class="game-finished-tips row" ng-show="finishedGames.length > 0">
+	<div class="game-finished-tips row" ng-show="finishedMatches.length > 0">
 		<h3>Finished Games</h4>
 		<table>
 			<tr>
+				<!-- Placeholder for columns without headline -->
 				<th></th>
 				<th></th>
 				<th></th>
@@ -91,7 +92,7 @@
 				<th class="game-tip-all-result" 
 					ng-repeat="p in game.allPlayers">{{ p.name }}</th>
 			</tr>
-			<tr ng-repeat="tip in finishedGames = (game.player.tips | filter:{ finished: true })">
+			<tr ng-repeat="tip in finishedMatches = (game.player.tips | filter:{ finished: true })">
 				<td class="game-tip-team-col">{{ tip.homeTeam }}</td>
 				<td>&nbsp; - &nbsp;</td>
 				<td class="game-tip-team-col">{{ tip.guestTeam }}</td>
@@ -101,7 +102,9 @@
 				
 				<td ng-repeat="t in tipsOfAllPlayers = (tip.finishedTipsOfAllPlayers)">
 				
-					<div class="game-tip-all-result">{{ t.homeTip }}&nbsp; : &nbsp;{{ t.guestTip }} ({{ t.points }})</div>
+					<div class="game-tip-all-result">
+						{{ t.homeTip }}&nbsp; : &nbsp;{{ t.guestTip }} ({{ t.points }})
+					</div>
 				
 				</td>
 			</tr>
