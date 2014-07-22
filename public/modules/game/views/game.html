@@ -11,7 +11,7 @@
 
         <div ng-show="!editStake">
             <p class="stake-text left">{{ game.player.stake }}</p>
-            <div class="edit-stake-button left" ng-click="editStake = true">Edit...</div>
+            <div class="edit-stake-button left" ng-hide="game.isFinished" ng-click="editStake = true">Edit...</div>
         </div>
 
         <form name="stakeForm" class="stake-form left" ng-show="editStake" novalidate>

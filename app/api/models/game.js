@@ -191,10 +191,10 @@ GameSchema.methods = {
         // update total points
         this.isFinished = allMatchesFinished;
 
-        if ( allMatchesFinished )
-            setProfit( this.players, userPoints );
+        if (allMatchesFinished)
+            setProfit(this.players, userPoints, this.minStake);
         else
-            resetProfit( this.players );
+            resetProfit(this.players);
     }
 };
 
@@ -229,13 +229,13 @@ var resetPointsForTip = function ( tip ) {
 * update profit
 */
 
-var setProfit = function ( players, userPoints ) {
+var setProfit = function (players, userPoints, minStake) {
 
     var totalStake = 0;
 
     players.forEach( function ( player ) {
         console.log( 'stake: ' + player.stake );
-        totalStake += player.stake;
+        totalStake += player.stake || minStake;
 
         var totalPoints = userPoints[player.user];
         player.totalPoints = totalPoints;
