@@ -42,7 +42,6 @@
             <li ng-repeat="player in game.allPlayers">
                 <img class="left" ng-src="{{ player.picture }}" alt="avatar" height="40" ng-hide="{{ !player.picture }}" />
                 <div class="left">{{ player.name }}</div>
-                <div class="left" ng-show="game.isFinished">(Total points: {{ player.totalPoints }})</div>
                 <div class="clear"></div>
             </li>
         </ul>
@@ -84,8 +83,19 @@
     </div>
     
 	<div class="game-finished-tips row" ng-show="finishedMatches.length > 0">
-		<h3 translate="GAME-STATISTIC"></h3>
-		<p translate="GAME-STATISTIC-DESCRIPTION"></p>
+		<h3 translate="GAME-STATISTICS"></h3>
+			
+		<div ng-show="game.isFinished">
+			<h4 translate="GAME-STATISTICS-FINISHEDGAME"></h4>
+			
+			<div class="game-finished-statistics">
+				<div><span translate="GAME-RANKING-COL"></span> {{ game.player.ranking }}.</div>
+				<div><span translate="GAME-SUMPOINTS-COL"></span> {{ game.player.totalPoints }}</div>
+				<div><span translate="GAME-EARNEDPOINTS"></span> {{ game.player.profit }}</div>
+			</div>
+		</div>
+		
+		<h4 translate="GAME-STATISTICS-ALLMATCHES"></h4>
 		<table>
 			<tr>
 				<!-- Placeholder for columns without headline -->
@@ -123,14 +133,9 @@
 			
 			<tr>
 				<td colspan="6" class="game-tip-rankingrow-col" translate="GAME-RANKING-COL"></td>
-				<td class="game-tip-rankingrow-value-col" ng-repeat="p in game.allPlayers">{{ p.ranking }}</td>	
+				<td class="game-tip-rankingrow-value-col" ng-repeat="p in game.allPlayers">{{ p.ranking }}.</td>	
 			</tr>
 		</table>
-
-		<div ng-show="game.isFinished" class="result-area">
-			<div>(Total points: {{ game.player.totalPoints }})</div>
-			<div>(Earned profit: {{ game.player.profit }})</div>
-		</div>
 	</div>
 	
     <div class="form-group buttonbar-offset row">

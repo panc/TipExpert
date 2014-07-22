@@ -183,6 +183,11 @@
 	text-align: right;
 }
 
+.game-finished-statistics {
+	padding-left: 15px;
+	margin-bottom: 30px;
+}
+
 .game-stake {
     margin-top: 20px;
     font-size: 18px;

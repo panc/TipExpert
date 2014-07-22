@@ -14,7 +14,8 @@ exports.transformToGameForPlayer = function(game, userId) {
     
 	sortTips(tips, userPoints);
 	sortPlayers(allPlayers, userPoints);
-	updateRanking(allPlayers);
+	
+	var userRanking = updateRanking(allPlayers, player);
 	
     return {
         id: game._id,
@@ -31,6 +32,7 @@ exports.transformToGameForPlayer = function(game, userId) {
             stakeNotSet: player.stake == null,
             totalPoints: player.totalPoints,
             profit: player.profit,
+			ranking: userRanking,
             tips: tips
         }
     };
@@ -123,9 +125,10 @@ var sortPlayers = function(players) {
 	});
 };
 
-var updateRanking = function(players) {
+var updateRanking = function(players, userId) {
 	
 	var ranking = 1;
+	var userRanking = 1;
 
 	for(var i = 0; i < players.length; i++) {
 		
@@ -133,9 +136,14 @@ var updateRanking = function(players) {
 		
 		if (i != 0 && player.points != players[i-1].points)
 			ranking++;
-			
+		
+		if (player.userId == userId)
+			userRanking = ranking;
+		
 		player.ranking = ranking;
 	}
+	
+	return userRanking;
 };
 
 var findUserObject = function(containers, id) {
