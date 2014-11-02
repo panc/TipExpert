@@ -127,7 +127,10 @@ tipExpert.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '
             access: accessLevels.public
         });
 
-    $locationProvider.html5Mode(true);
+    $locationProvider.html5Mode({
+        enabled: true,
+        requireBase: false
+    });
 
     $httpProvider.interceptors.push(['$q', '$location', function($q, $location) {
         return {
