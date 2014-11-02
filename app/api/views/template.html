@@ -29,6 +29,27 @@
     {% for app in appList %}
     <script src="{{ app }}" type="text/javascript"></script>
     {% endfor %}
+    
+    <script type="text/javascript">
+        // Fix a bug in the facebook OAuth 2.0 authentication
+        // which appends a '#_=_' hash to the redirect url.
+        // see https://github.com/jaredhanson/passport-facebook/issues/12#issuecomment-5913711 for more info.
+        if (window.location.hash && window.location.hash == '#_=_') {
+            if (window.history && history.pushState) {
+                window.history.pushState("", document.title, window.location.pathname);
+            } else {
+                // Prevent scrolling by storing the page's current scroll offset
+                var scroll = {
+                    top: document.body.scrollTop,
+                    left: document.body.scrollLeft
+                };
+                window.location.hash = '';
+                // Restore the scroll offset, should be flicker free
+                document.body.scrollTop = scroll.top;
+                document.body.scrollLeft = scroll.left;
+            }
+        }
+    </script>
 </head>
 <body>
 
