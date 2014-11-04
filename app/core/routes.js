@@ -1,9 +1,10 @@
-var auth = require('../middlewares/authorization'),
-    user = require('../api/controllers/userController'),
-    matches = require('../api/controllers/matchController'),
-    leagues = require('../api/controllers/leagueController'),
-    games = require('../api/controllers/gameController'),
-    userTransformer = require('./userTransformer');
+var express = require('express');
+var auth = require('../middlewares/authorization');
+var user = require('../api/controllers/userController');
+var matches = require('../api/controllers/matchController');
+var leagues = require('../api/controllers/leagueController');
+var games = require('../api/controllers/gameController');
+var userTransformer = require('./userTransformer');
 
 
 var redirectToAngular = function(req, res) {
@@ -11,7 +12,7 @@ var redirectToAngular = function(req, res) {
     res.render('template');
 };
 
-module.exports = function(app, shrinkr, passport) {
+module.exports = function(app, passport) {
 
     // Parameter based preloaders
     app.param('leagueId', leagues.load);
@@ -19,82 +20,79 @@ module.exports = function(app, shrinkr, passport) {
     app.param('userId', user.load);
     app.param('gameId', games.load);
     
-    shrinkr.route({
-        // Session routes
-        "logout": {
-            path: "/logout",
-            post: user.logout
-        },
-        "signup": {
-            path: "/signup",
-            post: user.create
-        },
-        
-        // Authentication routes
-        "auth": {
-            path: "/auth",
-            post: function(req, res, next) {
-                passport.authenticate('local', function(err, user) {
+    
+    // Session routes
+    app.post("/logout", user.logout);
+    app.post("/signup", user.create);
 
-                    if (err)
+    var authenticationRoutes = express.Router();
+    
+    // /auth/
+    authenticationRoutes.route('/')
+        .post(function(req, res, next) {
+            passport.authenticate('local', function(err, user) {
+
+                if (err)
+                    return next(err);
+                if (!user)
+                    return res.json(400, { msg: 'User or E-Mail is invalid!' });
+
+                req.logIn(user, function(e) {
+                    if (e)
                         return next(err);
-                    if (!user)
-                        return res.json(400, {msg: 'User or E-Mail is invalid!'});
 
-                    req.logIn(user, function(e) {
-                        if (e)
-                            return next(err);
+                    if (req.body.rememberme)
+                        req.session.cookie.maxAge = 1000 * 60 * 60 * 24 * 7;
 
-                        if (req.body.rememberme) 
-                            req.session.cookie.maxAge = 1000 * 60 * 60 * 24 * 7;
-                        
-                        res.json(200, userTransformer.transform(user));
-                    });
-                })(req, res, next);
-            }
-        },
-        "auth.facebook": {
-            path: "/facebook",
-            get: [
-                passport.authenticate('facebook', {
+                    res.json(200, userTransformer.transform(user));
+                });
+            })(req, res, next);
+        });
+    
+    // /auth/facebook
+    authenticationRoutes.route('/facebook')
+        .get(passport.authenticate('facebook',
+                {
+                    scope: ['email', 'user_about_me'], 
+                    failureRedirect: '/'
+                }), 
+             user.signin);
+    
+    // /auth/facebook/callback
+    authenticationRoutes.route('/facebook/callback')
+        .get(passport.authenticate('facebook', 
+                {
                     scope: ['email', 'user_about_me'],
                     failureRedirect: '/'
                 }),
-                user.signin
-            ]
-        },
-        "auth.facebook.callback": {
-            path: "/callback",
-            get: [
-                passport.authenticate('facebook', {
-                    failureRedirect: '/'
-                }),
-                user.authCallback
-            ]
-        },
-        "auth.google": {
-            path: "/google",
-            get: [
-                passport.authenticate('google', {
+             user.authCallback);
+    
+    // /auth/google
+    authenticationRoutes.route('/google')
+        .get(passport.authenticate('google',
+                {
                     failureRedirect: '/',
                     scope: [
                         'https://www.googleapis.com/auth/userinfo.profile',
                         'https://www.googleapis.com/auth/userinfo.email'
                     ]
                 }),
-                user.signin
-            ]
-        },
-        "auth.google.callback": {
-            path: "/callback",
-            get: [
-                passport.authenticate('google', {
+             user.signin);
+    
+    // /auth/google/callback
+    authenticationRoutes.route('/google/callback')
+        .get(passport.authenticate('google', 
+                {
                     failureRedirect: '/'
                 }),
-                user.authCallback
-            ]
-        },
+             user.authCallback);
+
+    app.use('/auth', authenticationRoutes);
+    
+
+    //shrinkr.route({
         
+        /*
         // API routes (for angular.js or any mobile app)
         "api": {
             path: "/api",
@@ -170,7 +168,7 @@ module.exports = function(app, shrinkr, passport) {
             path: "/tip",
             put: [ auth.requiresLogin, auth.requiresGamePlayer, games.updateTip ]
         }
-    });
+    });*/
     
     // let angularjs handle all other routes
     // this can not be done via shrink route, because it fails when handling paramerts (e.g. :userId)

@@ -1,13 +1,13 @@
 // module dependencies
-var express = require('express'),
-    fs = require('fs'),
-    passport = require('passport'),
-    logger = require('winston');
+var express = require('express');
+var fs = require('fs');
+var passport = require('passport');
+var logger = require('winston');
 
 // load configurations
-var env = process.env.NODE_ENV || 'development'
-  , config = require('./app/config/app-config')[env]
-  , mongoose = require('mongoose');
+var env = process.env.NODE_ENV || 'development';
+var config = require('./app/config/app-config')[env];
+var mongoose = require('mongoose');
 
 // bootstrap db connection
 // connect to mongodb

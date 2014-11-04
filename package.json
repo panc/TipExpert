@@ -1,45 +1,48 @@
 {
-    "name": "TipExpert",
-    "version": "0.1.0",
-    "description": "Tipexpert ist das Tippspiel der nächsten Generation. Individuell anpassbar, persönlich und sozial. Messe spielerisch dein sportliches Gefühl mit Freunden, Bekannten und Kollegen.",
-    "keywords": "tip,expert",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/panc/TipExpert.git"
-    },
-    "scripts": {
-        "start": "node app.js",
-        "test": "NODE_ENV=test ./node_modules/.bin/mocha --reporter spec test/test-*.js",
-        "postinstall": "node ./app/helper/postInstall.js"
-    },
-    "author": {
-        "name": "Christoph",
-        "email": ""
-    },
-	"engines": {
-        "node": "0.10.x"
-    },
-    "dependencies": {
-        "express": "~4.10.*",
-        "shrinkroute": "~0.3",
-        "swig": "~1.3",
-        "connect-mongo": "~0.4",
-        "mongoose": "~3.8",
-        "underscore": "~1.6",
-        "passport": "latest",
-        "passport-local": "latest",
-        "passport-facebook": "latest",
-        "passport-google-oauth": "latest",
-        "winston": "latest",
-        "bower": "1.3.x",
-        "connect-minify-ext": "latest",
-        "compression":  "latest",
-        "morgan":  "latest"
-    },
-    "devDependencies": {
-        "supertest": "latest",
-        "should": "latest",
-        "mocha": "latest",
-        "async": "~0.2.9"
-    }
+  "name": "TipExpert",
+  "version": "0.1.0",
+  "description": "Tipexpert ist das Tippspiel der nächsten Generation. Individuell anpassbar, persönlich und sozial. Messe spielerisch dein sportliches Gefühl mit Freunden, Bekannten und Kollegen.",
+  "keywords": "tip,expert",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/panc/TipExpert.git"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "test": "NODE_ENV=test ./node_modules/.bin/mocha --reporter spec test/test-*.js",
+    "postinstall": "node ./app/helper/postInstall.js"
+  },
+  "author": {
+    "name": "Christoph",
+    "email": ""
+  },
+  "engines": {
+    "node": "0.10.x"
+  },
+  "dependencies": {
+    "express": "~4.10.*",
+    "shrinkroute": "~0.3",
+    "swig": "~1.3",
+    "connect-mongo": "~0.4",
+    "mongoose": "~3.8",
+    "underscore": "~1.6",
+    "passport": "latest",
+    "passport-local": "latest",
+    "passport-facebook": "latest",
+    "passport-google-oauth": "latest",
+    "bower": "1.3.x",
+    "connect-minify-ext": "latest",
+    "compression": "latest",
+    "morgan": "latest",
+    "cookie-parser": "latest",
+    "body-parser": "latest",
+    "express-session": "latest",
+    "csurf": "latest"
+  },
+  "devDependencies": {
+    "supertest": "latest",
+    "should": "latest",
+    "mocha": "latest",
+    "async": "~0.2.9"
+  }
 }

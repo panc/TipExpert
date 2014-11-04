@@ -1,15 +1,16 @@
-// module dependencies
-var express = require('express'),
-    session = require('express-session');
-    mongoStore = require('connect-mongo')(session),
-    pkg = require('../../package.json'),
-    swig = require('swig'),
-    logger = require('winston'),
-    shrinkroute = require('shrinkroute'),
-    compression = require('compression'),
-    path = require('path'),
-    morgan = require('morgan'),
-    assetConfig = require('../config/assets-config');
+var express = require('express');
+var session = require('express-session');
+var mongoStore = require('connect-mongo')(session);
+var pkg = require('../../package.json');
+var swig = require('swig');
+var compression = require('compression');
+var path = require('path');
+var logger = require('morgan');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+var assetConfig = require('../config/assets-config');
+var csrf = require('csurf');
+var session = require('express-session');
 
 module.exports = function(app, config, passport) {
 
@@ -20,9 +21,6 @@ module.exports = function(app, config, passport) {
         return assets.minifiedURL(url);
     });
 
-    var shrinkr = shrinkroute();
-    shrinkr.app(app);
-
     app.set('showStackError', true);
 
     // should be placed before express.static
@@ -32,26 +30,10 @@ module.exports = function(app, config, passport) {
         },
         level: 9
     }));
-
-    app.use(express.favicon());
-
-    // logging
-    var log;
-
-    if (env !== 'development') {
-        log = {
-            stream: {
-                write: function(message, encoding) {
-                    logger.info(message);
-                }
-            }
-        };
-    } else {
-        log = 'dev';
-    }
-
+    
     // don't log during tests
-    if (env !== 'test') app.use(express.logger(log));
+    if (env !== 'test')
+        app.use(logger(env !== 'development' ? 'combined' : 'dev'));
 
     app.engine('html', swig.renderFile);
 
@@ -64,16 +46,12 @@ module.exports = function(app, config, passport) {
         next();
     });
 
-    // cookieParser should be above session
-    app.use(express.cookieParser());
-
-    // json parser should be above methodOverride
-    app.use(express.urlencoded());
-    app.use(express.json());
-    app.use(express.methodOverride());
+    app.use(cookieParser()); // cookieParser should be above session
+    app.use(bodyParser.urlencoded());
+    app.use(bodyParser.json());
 
     // express/mongo session storage
-    app.use(express.session({
+    app.use(session({
         secret: 'tipexpert', // todo
         store: new mongoStore({
             url: config.db,
@@ -92,8 +70,9 @@ module.exports = function(app, config, passport) {
 
     // adds CSRF support
     if (process.env.NODE_ENV !== 'test') {
-        app.use(express.csrf());
+        app.use(csrf());
         
+        // pass the csrfToken to every response
         app.use(function(req, res, next) {
             res.cookie('XSRF-TOKEN', req.csrfToken());
             next();
@@ -103,8 +82,7 @@ module.exports = function(app, config, passport) {
     }
 
     // routes should be at the last
-    app.use(app.router);
-    require('./routes')(app, shrinkr, passport);
+    require('./routes')(app, passport);
 
     // assume "not found" in the error msgs
     // is a 404. this is somewhat silly, but
