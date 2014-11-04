@@ -1,12 +1,14 @@
-
 // module dependencies
 var express = require('express'),
-    mongoStore = require('connect-mongo')(express),
+    session = require('express-session');
+    mongoStore = require('connect-mongo')(session),
     pkg = require('../../package.json'),
     swig = require('swig'),
     logger = require('winston'),
     shrinkroute = require('shrinkroute'),
+    compression = require('compression'),
     path = require('path'),
+    morgan = require('morgan'),
     assetConfig = require('../config/assets-config');
 
 module.exports = function(app, config, passport) {
@@ -24,7 +26,7 @@ module.exports = function(app, config, passport) {
     app.set('showStackError', true);
 
     // should be placed before express.static
-    app.use(express.compress({
+    app.use(compression({
         filter: function(req, res) {
             return /json|text|javascript|css/.test(res.getHeader('Content-Type'));
         },

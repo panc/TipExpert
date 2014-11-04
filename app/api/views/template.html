@@ -31,7 +31,7 @@
     {% endfor %}
     
     <script type="text/javascript">
-        // Fix a bug in the facebook OAuth 2.0 authentication
+        // Woraround for a bug in the facebook OAuth 2.0 authentication
         // which appends a '#_=_' hash to the redirect url.
         // see https://github.com/jaredhanson/passport-facebook/issues/12#issuecomment-5913711 for more info.
         if (window.location.hash && window.location.hash == '#_=_') {
