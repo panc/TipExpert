@@ -25,10 +25,10 @@ module.exports = function(app, passport) {
     app.post("/logout", user.logout);
     app.post("/signup", user.create);
 
-    var authenticationRoutes = express.Router();
+    var authentication = express.Router();
     
     // /auth/
-    authenticationRoutes.route('/')
+    authentication.route('/')
         .post(function(req, res, next) {
             passport.authenticate('local', function(err, user) {
 
@@ -50,25 +50,27 @@ module.exports = function(app, passport) {
         });
     
     // /auth/facebook
-    authenticationRoutes.route('/facebook')
+    authentication.route('/facebook')
         .get(passport.authenticate('facebook',
                 {
                     scope: ['email', 'user_about_me'], 
                     failureRedirect: '/'
                 }), 
-             user.signin);
+             user.signin
+         );
     
     // /auth/facebook/callback
-    authenticationRoutes.route('/facebook/callback')
+    authentication.route('/facebook/callback')
         .get(passport.authenticate('facebook', 
                 {
                     scope: ['email', 'user_about_me'],
                     failureRedirect: '/'
                 }),
-             user.authCallback);
+             user.authCallback
+         );
     
     // /auth/google
-    authenticationRoutes.route('/google')
+    authentication.route('/google')
         .get(passport.authenticate('google',
                 {
                     failureRedirect: '/',
@@ -77,62 +79,75 @@ module.exports = function(app, passport) {
                         'https://www.googleapis.com/auth/userinfo.email'
                     ]
                 }),
-             user.signin);
+             user.signin
+         );
     
     // /auth/google/callback
-    authenticationRoutes.route('/google/callback')
+    authentication.route('/google/callback')
         .get(passport.authenticate('google', 
                 {
                     failureRedirect: '/'
                 }),
-             user.authCallback);
+             user.authCallback
+         );
 
-    app.use('/auth', authenticationRoutes);
+    app.use('/auth', authentication);
     
-
+    
+    // API routes (for angular.js or any mobile app)
+    var api = express.Router();
+    
+    api.route('/')
+       .get(redirectToAngular);
+       
+    // /api/user
+    api.route('/user')
+       .get(auth.requiresLogin, user.list);
+       
+    // /api/user/{id}
+    api.route('/user/:userId')
+       .get(user.loadProfile)
+       .put(auth.requiresLogin, user.update);
+       
+       
+    // League routes
+    
+    // /api/leagues
+    api.route('/leagues')
+       .get(auth.requiresLogin, leagues.list)
+       .post(auth.requiresLogin, leagues.create);
+       
+    // /api/leagues/{id}
+    api.route('/leagues/:leagueId')
+       .put(auth.requiresLogin, leagues.update)
+       .delete(auth.requiresLogin, leagues.delete);
+       
+    // /api/leagues/{id}/matches
+    api.route('/leagues/:leagueId/matches')
+       .get(auth.requiresLogin, matches.getMatchesForLeague);
+    
+    
+    // Match routes
+    
+    // /api/matches
+    api.route('/matches')
+       .get(auth.requiresLogin, matches.list)
+       .post(auth.requiresLogin, matches.create);
+       
+    // /api/matches/{id}
+    api.route('/matches/:matchId')
+       .put(auth.requiresLogin, matches.update);
+    
+    
+    // Game routes
+    
+    
+    
     //shrinkr.route({
         
         /*
         // API routes (for angular.js or any mobile app)
-        "api": {
-            path: "/api",
-            get: redirectToAngular
-        },
-        "api.user": {
-            path: "/user",
-            get: [ auth.requiresLogin, user.list ]
-        },
-        "api.user.item": {
-            path: "/:userId",
-            get: [ user.loadProfile ],
-            put: [ auth.requiresLogin, user.update ]
-        },
-        
-        // Match and League routes
-        "api.leagues": {
-            path: "/leagues",
-            get: [ auth.requiresLogin, leagues.list ],
-            post: [ auth.requiresLogin, leagues.create ]
-        },
-        "api.leagues.item": {
-            path: "/:leagueId",
-            put: [ auth.requiresLogin, leagues.update ],
-            delete: [ auth.requiresLogin, leagues.delete ]
-        },
-        "api.leagues.matches": {
-            path: "/:leagueId/matches",
-            get: [ auth.requiresLogin, matches.getMatchesForLeague ]
-        },
-        "api.matches": { 
-            path: "/matches",
-            get: [ auth.requiresLogin, matches.list ],
-            post: [ auth.requiresLogin, matches.create ]
-        },
-        "api.matches.item": { 
-            path: "/:matchId",
-            put: [ auth.requiresLogin, matches.update ]
-        },
-        
+                
         // Game routes
         "api.games": {
             path: "/games",
