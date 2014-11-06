@@ -91,9 +91,6 @@ module.exports = function(app, passport) {
              user.authCallback
          );
 
-    app.use('/auth', authentication);
-    
-    
     // API routes (for angular.js or any mobile app)
     var api = express.Router();
     
@@ -141,6 +138,32 @@ module.exports = function(app, passport) {
     
     // Game routes
     
+    var gameApi = express.Router();
+    
+    // /api/games
+    gameApi.route('/')
+       .post(auth.requiresLogin, games.create);
+    
+    // /api/games/created
+    gameApi.route('/created')
+       .get(auth.requiresLogin, games.listCreated);
+    
+    // /api/games/invited
+    gameApi.route('/invited')
+       .get(auth.requiresLogin, games.listInvited);
+    
+    // /api/games/finished
+    gameApi.route('/finished')
+       .get(auth.requiresLogin, games.listFinished);
+    
+    // /api/games/:gameId
+    gameApi.route('/:gameId')
+       .get(auth.requiresLogin, games.loadGameForPlayer);
+    
+    // /api/games/:gameId
+    gameApi.route('/:gameId')
+       .get(auth.requiresLogin, games.loadGameForPlayer);
+    
     
     
     //shrinkr.route({
@@ -149,26 +172,7 @@ module.exports = function(app, passport) {
         // API routes (for angular.js or any mobile app)
                 
         // Game routes
-        "api.games": {
-            path: "/games",
-            post: [ auth.requiresLogin, games.create ]
-        },
-        "api.games.created": {
-            path: "/created",
-            get: [ auth.requiresLogin, games.listCreated ]
-        },
-        "api.games.invited": {
-            path: "/invited",
-            get: [ auth.requiresLogin, games.listInvited ]
-        },
-        "api.games.finished": {
-            path: "/finished",
-            get: [auth.requiresLogin, games.listFinished]
-        },
-        "api.games.item": {
-            path: "/:gameId",
-            get: [ auth.requiresLogin, games.loadGameForPlayer ]
-        },
+       
         "api.games.item.edit": {
             path: "/edit",
             get: [ auth.requiresLogin, auth.requiresGameCreator, games.loadGameForEdit ],
@@ -185,6 +189,11 @@ module.exports = function(app, passport) {
         }
     });*/
     
+  
+    app.use('/auth', authentication);
+    app.use('/api', api);
+    api.use('/games', gameApi);
+
     // let angularjs handle all other routes
     // this can not be done via shrink route, because it fails when handling paramerts (e.g. :userId)
     app.get('*', redirectToAngular);
