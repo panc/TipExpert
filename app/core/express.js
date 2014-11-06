@@ -90,7 +90,7 @@ module.exports = function(app, config, passport) {
     // properties, use instanceof etc.
     app.use(function(err, req, res, next) {
         // log it
-        logger.error(err.stack);
+        console.log(err.stack);
 
         // treat as 404
         if (err.message

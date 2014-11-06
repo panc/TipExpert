@@ -14,13 +14,6 @@ var redirectToAngular = function(req, res) {
 
 module.exports = function(app, passport) {
 
-    // Parameter based preloaders
-    app.param('leagueId', leagues.load);
-    app.param('matchId', matches.load);
-    app.param('userId', user.load);
-    app.param('gameId', games.load);
-    
-    
     // Session routes
     app.post("/logout", user.logout);
     app.post("/signup", user.create);
@@ -93,7 +86,10 @@ module.exports = function(app, passport) {
 
     // API routes (for angular.js or any mobile app)
     var api = express.Router();
-    
+    api.param('userId', user.load); // Parameter based preloaders
+    app.param('leagueId', leagues.load);
+    app.param('matchId', matches.load);
+            
     api.route('/')
        .get(redirectToAngular);
        
@@ -139,6 +135,7 @@ module.exports = function(app, passport) {
     // Game routes
     
     var gameApi = express.Router();
+    gameApi.param('gameId', games.load);
     
     // /api/games
     gameApi.route('/')
@@ -163,33 +160,21 @@ module.exports = function(app, passport) {
     // /api/games/:gameId
     gameApi.route('/:gameId')
        .get(auth.requiresLogin, games.loadGameForPlayer);
-    
-    
-    
-    //shrinkr.route({
         
-        /*
-        // API routes (for angular.js or any mobile app)
-                
-        // Game routes
+    // /api/games/:gameId/edit
+    gameApi.route('/:gameId/edit')
+       .get(auth.requiresLogin, auth.requiresGameCreator, games.loadGameForEdit)
+       .put(auth.requiresLogin, auth.requiresGameCreator, games.update)
+       .delete(auth.requiresLogin, auth.requiresGameCreator, games.delete);
        
-        "api.games.item.edit": {
-            path: "/edit",
-            get: [ auth.requiresLogin, auth.requiresGameCreator, games.loadGameForEdit ],
-            put: [ auth.requiresLogin, auth.requiresGameCreator, games.update ],
-            delete: [ auth.requiresLogin, auth.requiresGameCreator, games.delete ]
-        },
-        "api.games.item.stake": {
-            path: "/stake",
-            put: [ auth.requiresLogin, auth.requiresGamePlayer, games.updateStake ]
-        },
-        "api.games.item.tip": {
-            path: "/tip",
-            put: [ auth.requiresLogin, auth.requiresGamePlayer, games.updateTip ]
-        }
-    });*/
+    // /api/games/:gameId/stake
+    gameApi.route('/:gameId/stake')
+       .put(auth.requiresLogin, auth.requiresGamePlayer, games.updateStake);
     
-  
+    // /api/games/:gameId/tip
+    gameApi.route('/:gameId/stake')
+       .put(auth.requiresLogin, auth.requiresGamePlayer, games.updateTip);
+           
     app.use('/auth', authentication);
     app.use('/api', api);
     api.use('/games', gameApi);
