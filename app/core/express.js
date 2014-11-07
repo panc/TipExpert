@@ -47,11 +47,12 @@ module.exports = function(app, config, passport) {
     });
 
     app.use(cookieParser()); // cookieParser should be above session
-    app.use(bodyParser.urlencoded());
     app.use(bodyParser.json());
 
     // express/mongo session storage
     app.use(session({
+        resave: true,
+        saveUninitialized: false,
         secret: 'tipexpert', // todo
         store: new mongoStore({
             url: config.db,

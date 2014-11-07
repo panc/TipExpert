@@ -87,8 +87,8 @@ module.exports = function(app, passport) {
     // API routes (for angular.js or any mobile app)
     var api = express.Router();
     api.param('userId', user.load); // Parameter based preloaders
-    app.param('leagueId', leagues.load);
-    app.param('matchId', matches.load);
+    api.param('leagueId', leagues.load);
+    api.param('matchId', matches.load);
             
     api.route('/')
        .get(redirectToAngular);

@@ -11,6 +11,8 @@ var mongoose = require('mongoose'),
 exports.load = function(req, res, next, id) {
     
     League.load(id, function(err, league) {
+        console.log('Load league');
+        
         if (err)
             return next(err);
         if (!league)
