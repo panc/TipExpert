@@ -2,17 +2,17 @@
   "name": "TipExpert",
   "version": "0.1.0",
   "dependencies": {
-    "angular": "~1.3.*",
-    "angular-ui-router": "~0.2.*",
+    "angular": "1.3.*",
+    "angular-ui-router": "0.2.*",
     "angular-resource": "latest",
     "angular-cookies": "latest",
     "angular-mocks": "latest",
     "angular-route": "latest",
-    "bootstrap": "~3.3.*",
-    "angular-bootstrap": "~0.11.*",
-    "angular-ui-utils": "~0.1.*",
-	"angular-translate": "~2.1.0",
-    "angular-translate-loader-static-files": "~2.1.0",
-	"angular-translate-storage-cookie": "~2.1.0"
+    "bootstrap": "3.3.*",
+    "angular-bootstrap": "0.11.*",
+    "angular-ui-utils": "0.1.*",
+    "angular-translate": "2.4.*",
+    "angular-translate-loader-static-files": "2.4.*",
+    "angular-translate-storage-cookie": "2.4.*"
   }
 }
