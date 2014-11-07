@@ -18,7 +18,6 @@ exports.formatErrors = function(errors) {
 
     // if there is no validation error, just display a generic error
     if (!keys) {
-        console.log(errors);
         return ['Oops! There was an error'];
     }
 

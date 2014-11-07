@@ -5,12 +5,13 @@ var pkg = require('../../package.json');
 var swig = require('swig');
 var compression = require('compression');
 var path = require('path');
-var logger = require('morgan');
+var morgan = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var assetConfig = require('../config/assets-config');
 var csrf = require('csurf');
 var session = require('express-session');
+var logger = require('winston');
 
 module.exports = function(app, config, passport) {
 
@@ -33,7 +34,7 @@ module.exports = function(app, config, passport) {
     
     // don't log during tests
     if (env !== 'test')
-        app.use(logger(env !== 'development' ? 'combined' : 'dev'));
+        app.use(morgan(env !== 'development' ? 'combined' : 'dev'));
 
     app.engine('html', swig.renderFile);
 
@@ -79,7 +80,7 @@ module.exports = function(app, config, passport) {
             next();
         });
     } else {
-        console.log("Test mode - csrf support not activated!");
+        logger.debug("Test mode - csrf support not activated!");
     }
 
     // routes should be at the last
@@ -91,7 +92,7 @@ module.exports = function(app, config, passport) {
     // properties, use instanceof etc.
     app.use(function(err, req, res, next) {
         // log it
-        console.log(err.stack);
+        logger.error(err.stack);
 
         // treat as 404
         if (err.message

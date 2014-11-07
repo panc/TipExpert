@@ -1,8 +1,9 @@
 
-var mongoose = require( 'mongoose' ),
-    ObjectId = require( 'mongoose' ).Types.ObjectId,
-    Schema = mongoose.Schema,
-    utils = require( '../../helper/formatHelper' );
+var mongoose = require( 'mongoose' );
+var ObjectId = require( 'mongoose' ).Types.ObjectId;
+var Schema = mongoose.Schema;
+var utils = require( '../../helper/formatHelper' );
+var logger = require('winston');
 
 // game schema
 var GameSchema = new Schema( {
@@ -120,9 +121,9 @@ GameSchema.statics = {
 
         var isMatchFinished = match.isFinished();
         if (isMatchFinished)
-            console.log('Match finished - update points of all corresponding tips...');
+            logger.debug('Match finished - update points of all corresponding tips...');
         else
-            console.log('Match not finished yet - revert points of all corresponding tips...');
+            logger.debug('Match not finished yet - revert points of all corresponding tips...');
 
         this.listGamesForMatch(match._id, function(err, games) {
 
@@ -150,12 +151,12 @@ GameSchema.statics = {
                     // furhter error handling
 
                     if (error)
-                        console.log(utils.formatErrors(error));
+                        logger.error(utils.formatErrors(error));
                 });
             });
         });
 
-        console.log('Finished updating all points of all corresponding tips.');
+        logger.debug('Finished updating all points of all corresponding tips.');
     }
 };
 
@@ -168,7 +169,7 @@ GameSchema.methods = {
     */
     finishGameAndUpdateTotalPoints: function () {
 
-        console.log( "Finish game '" + this.title + "' if needed ..." );
+        logger.debug( "Finish game '" + this.title + "' if needed ..." );
 
         var userPoints = {};
         var allMatchesFinished = true;
@@ -234,7 +235,7 @@ var setProfit = function (players, userPoints, minStake) {
     var totalStake = 0;
 
     players.forEach( function ( player ) {
-        console.log( 'stake: ' + player.stake );
+        logger.debug( 'stake: ' + player.stake );
         totalStake += player.stake || minStake;
 
         var totalPoints = userPoints[player.user];
@@ -261,10 +262,10 @@ var setProfit = function (players, userPoints, minStake) {
 
             user.coins += player.profit;
             user.save();
-            console.log( 'user: ' + user.name + ' - cash: ' + user.coins );
+            logger.debug( 'user: ' + user.name + ' - cash: ' + user.coins );
         });
 
-        console.log( 'player: ' + player.user + ' - profit: ' + player.profit );
+        logger.debug( 'player: ' + player.user + ' - profit: ' + player.profit );
     });
 };
 
@@ -286,7 +287,7 @@ var resetProfit = function ( players ) {
 
             user.coins -= oldProfit;
             user.save();
-            console.log( 'user: ' + user.name + ' - cash: ' + user.coins );
+            logger.debug( 'user: ' + user.name + ' - cash: ' + user.coins );
         });
     });
 }
