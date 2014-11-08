@@ -55,7 +55,7 @@ module.exports = {
         }
     },
     azure: {
-        db: "mongodb://AzureUser:tipexpert@ds045107.mongolab.com:45107/Tipexpert",
+        db: process.env.CUSTOMCONNSTR_MONGOLAB_URI,
         root: rootPath,
         app: {
             name: 'Tip Expert - Demo'
