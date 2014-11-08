@@ -53,5 +53,22 @@ module.exports = {
             clientSecret: "0rmj7j31DP2U-BVpPeZR-_Ia",
             callbackURL: "http://tipexpert.herokuapp.com/auth/google/callback"
         }
+    },
+    azure: {
+        db: "mongodb://AzureUser:tipexpert@ds045107.mongolab.com:45107/Tipexpert",
+        root: rootPath,
+        app: {
+            name: 'Tip Expert - Demo'
+        },
+        facebook: {
+            clientID: "404904372977899",
+            clientSecret: "0bc86293adce59c1a748d3923f5ff851",
+            callbackURL: "http://tipexpert.herokuapp.com/auth/facebook/callback"
+        },
+        google: {
+            clientID: "252448485731-nkmpq849obisvg9o22iqkp2o08pidji3.apps.googleusercontent.com",
+            clientSecret: "0rmj7j31DP2U-BVpPeZR-_Ia",
+            callbackURL: "http://tipexpert.herokuapp.com/auth/google/callback"
+        }
     }
 };
