@@ -2,13 +2,13 @@ var env = process.env.NODE_ENV;
 
 console.log('post install script for environment "' + env + '"');
 
-if (env === 'heroku' || env == 'azure' || env === 'production') {
+if (env === 'heroku' || env == 'azure') {
     
     console.log('Install bower components after "npm intall"');
 
     var exec = require('child_process').exec;
 
-    var command = env != 'heroku'
+    var command = env == 'azure'
         ? '"node_modules/.bin/bower" install'
         : './node_modules/.bin/bower install';
 
