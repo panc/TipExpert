@@ -9,7 +9,7 @@ if (env === 'heroku' || env == 'azure' || env === 'production') {
     var exec = require('child_process').exec;
 
     var command = env != 'heroku'
-        ? 'node_modules/.bin/bower install'
+        ? '"node_modules/.bin/bower" install'
         : './node_modules/.bin/bower install';
 
     child = exec(command, function(error, stdout, stderr) {
